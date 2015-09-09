@@ -10,3 +10,7 @@ A. H.
 W. M.
 
 F. M.
+
+Framework: Ruby on Rails
+Base de datos: PostgreSQL
+Vistas e interaccion con el usuario: HTML5, Bootstraps CSS, JavaScript: JQuery
