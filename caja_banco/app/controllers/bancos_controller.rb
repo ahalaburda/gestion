@@ -4,6 +4,7 @@ class BancosController < ApplicationController
   # GET /bancos
   # GET /bancos.json
   def index
+    @banco = Banco.new
     @bancos = Banco.all
   end
 
