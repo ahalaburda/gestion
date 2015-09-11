@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tipos_de_movimientos
+
   resources :bancos
 
   get 'home/index'

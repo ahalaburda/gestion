@@ -1,0 +1,21 @@
+<%= form_for(@tipo_de_movimiento) do |f| %>
+  <% if @tipo_de_movimiento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tipo_de_movimiento.errors.count, "error") %> prohibited this tipo_de_movimiento from being saved:</h2>
+
+      <ul>
+      <% @tipo_de_movimiento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :descripcion %><br>
+    <%= f.text_field :descripcion %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
