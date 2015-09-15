@@ -5,6 +5,7 @@ class TiposDeMovimientosController < ApplicationController
   # GET /tipos_de_movimientos.json
   def index
     @tipos_de_movimientos = TipoDeMovimiento.all
+    @tipo_de_movimiento = TipoDeMovimiento.new
   end
 
   # GET /tipos_de_movimientos/1
@@ -28,7 +29,7 @@ class TiposDeMovimientosController < ApplicationController
 
     respond_to do |format|
       if @tipo_de_movimiento.save
-        format.html { redirect_to @tipo_de_movimiento, notice: 'Tipo de movimiento was successfully created.' }
+        format.html { redirect_to tipos_de_movimientos_url, notice: 'Tipo de movimiento was successfully created.' }
         format.json { render :show, status: :created, location: @tipo_de_movimiento }
       else
         format.html { render :new }

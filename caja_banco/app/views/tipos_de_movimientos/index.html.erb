@@ -1,9 +1,14 @@
-<h1>Listing tipos_de_movimientos</h1>
+<div class="container">
+<h1> Tipos de Movimientos <button type="button" class="btn btn-info btn-outline btn-circle" id="btn1"><span class="glyphicon glyphicon-plus" id="gbtn1"></span></button></h1>
+<div id="form-toggle">
+  <%= render 'formulario' %>
+</div><br>
 
-<table>
+<table id="table" class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Descripcion</th>
+      <th>Acciones</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,14 +17,16 @@
     <% @tipos_de_movimientos.each do |tipo_de_movimiento| %>
       <tr>
         <td><%= tipo_de_movimiento.descripcion %></td>
-        <td><%= link_to 'Show', tipo_de_movimiento %></td>
-        <td><%= link_to 'Edit', edit_tipo_de_movimiento_path(tipo_de_movimiento) %></td>
-        <td><%= link_to 'Destroy', tipo_de_movimiento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <%= link_to edit_tipo_de_movimiento_path(tipo_de_movimiento), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+          <span class="glyphicon glyphicon-pencil"></span>
+        <% end %>
+        <%= link_to tipo_de_movimiento, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
+          <span class="glyphicon glyphicon-remove"></span>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Tipo de movimiento', new_tipo_de_movimiento_path %>
+</div>
