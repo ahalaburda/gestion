@@ -43,7 +43,7 @@ class TiposDeMovimientosController < ApplicationController
   def update
     respond_to do |format|
       if @tipo_de_movimiento.update(tipo_de_movimiento_params)
-        format.html { redirect_to @tipo_de_movimiento, notice: 'Tipo de movimiento was successfully updated.' }
+        format.html { redirect_to tipo_de_movimiento_url, notice: 'Tipo de movimiento was successfully updated.' }
         format.json { render :show, status: :ok, location: @tipo_de_movimiento }
       else
         format.html { render :edit }
