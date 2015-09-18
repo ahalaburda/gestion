@@ -17,8 +17,7 @@
 //= require_tree .
 
 $(document).ready(function() {
-	$('#form-toggle').hide();
-	$("#btn1").click(function(){
+	$("#gbtn1").click(function(){
 		$('#form-toggle').fadeToggle();
 		if($('#gbtn1').hasClass('glyphicon glyphicon-plus')){
 			$('#gbtn1').removeClass('glyphicon glyphicon-plus');

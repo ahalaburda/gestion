@@ -23,7 +23,12 @@
     src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 
-
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #333333;
+  }
 #tabla_print{
       display: none !important;
 }
@@ -46,16 +51,31 @@ a:visited {
   color: inherit;
   background-color: transparent;
   transition: all .5s;
+  outline: 0 !important;
 }
 .btn-primary {
   color: #ffffff;
   background-color: #18bc9c;
   border-color: #18bc9c;
+  transition: all .5s;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
   color: #ffffff;
   background-color: #128f76;
   border-color: #11866f;
+  transition: all .5s;
+}
+.btn-reset {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    transition: all .5s;
+}
+.btn-reset:hover, .btn-reset:focus, .btn-reset:active, .btn-reset.active, .open>.dropdown-toggle.btn-reset {
+  color: #ffffff;
+  background-color: #A90505;
+  border-color: #A90505;
+  transition: all .5s;
 }
 .btn-pdf {
   color: #ffffff;
@@ -211,6 +231,8 @@ a:visited {
 */
 
 .subnavbar-inner {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
   height: 60px;
   background: #fff;
   border-bottom: 1px solid #d6d6d6;
