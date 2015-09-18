@@ -2,16 +2,17 @@
 <div class="row">
 	<div class="col-md-4">
 		<div class="field">
-		  <%= f.input :descripcion, required: true %>
+		  <%= f.input :descripcion, required: true, autofocus: true %>
 		  </div>
 	</div>
 	
 </div>
 </br>
-	<div class="col-md-offset-11">
+	<div class="col-md-offset-10">
 		<div class="actions">
 			<% if controller.action_name == 'new' or controller.action_name == 'index' %>
 				<%= f.submit "Agregar", :class => 'btn btn-primary'%>
+				<%= button_tag "Cancelar", type: :reset , :class => 'btn btn-reset'%>
 			<% elsif controller.action_name == 'edit' %>
 				<%= f.submit "Actualizar", :class => 'btn btn-primary'%>
 			<% end %>
