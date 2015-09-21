@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
+//= require turbolinks
 //= require_tree .
 
 $(document).ready(function() {
@@ -25,6 +25,36 @@ $(document).ready(function() {
 		}else{
 			$('#gbtn1').removeClass('glyphicon glyphicon-chevron-up');
 			$('#gbtn1').addClass('glyphicon glyphicon-plus');
+		}
+	});
+});
+
+//validacion lado cliente para el 
+//campo Descripcion del abm de 
+//tipos de movimientos
+$(document).ready(function() {
+	$("#tipo_de_movimiento_descripcion").blur(function(){
+		if ($("#tipo_de_movimiento_descripcion").val() == ""){
+			$("#field_descripcion").addClass('form-group has-error');
+			$('#field_descripcion').append('<div id="alertdiv"><span>'+"Este campo es requerido"+'</span></div>');
+			setTimeout(function() { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+				$("#alertdiv").remove();
+			}, 5000);
+		}else if ($("#tipo_de_movimiento_descripcion").val().length > 20){
+			$("#field_descripcion").addClass('form-group has-error');
+			$('#field_descripcion').append('<div id="alertdiv"><span>'+"Este campo debe tener como maximo 20 caracteres"+'</span></div>');
+			setTimeout(function() { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+				$("#alertdiv").remove();
+			}, 5000);
+		}else if (/^[a-zA-Z]+$/i.test($("#tipo_de_movimiento_descripcion").val()) == false){
+			$("#field_descripcion").addClass('form-group has-error');
+			$('#field_descripcion').append('<div id="alertdiv"><span>'+"Este campo solo debe tener letras"+'</span></div>');
+			setTimeout(function() { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+				$("#alertdiv").remove();
+			}, 5000);
+		}else{
+			$("#field_descripcion").removeClass("form-group has-error");
+			$("#field_descripcion").addClass("form-group has-success");
 		}
 	});
 });
