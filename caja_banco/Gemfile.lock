@@ -1,3 +1,19 @@
+GIT
+  remote: git://github.com/DavyJonesLocker/client_side_validations-simple_form.git
+  revision: f6f0bc9dd1c12c17b8e478d600ebc8bcd664a704
+  specs:
+    client_side_validations-simple_form (3.1.0)
+      client_side_validations (~> 4.2.0)
+      simple_form (~> 3.1)
+
+GIT
+  remote: git://github.com/DavyJonesLocker/client_side_validations.git
+  revision: 9e0b844b8267e2ae1d4c87711cca14c8579cfffd
+  specs:
+    client_side_validations (4.2.0)
+      jquery-rails (>= 3.1.2, < 5.0.0)
+      rails (>= 4.0.0, < 4.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -121,6 +137,8 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.5)
+  client_side_validations!
+  client_side_validations-simple_form!
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
