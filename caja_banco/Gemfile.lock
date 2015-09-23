@@ -43,6 +43,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    ajax-datatables-rails (0.3.1)
+      railties (>= 3.1)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (5.2.1.2)
       execjs
@@ -65,10 +67,18 @@ GEM
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-datatables-rails (3.3.0)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
     jquery-rails (3.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.6.1)
@@ -134,12 +144,15 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  ajax-datatables-rails
   bootstrap-sass (~> 3.3.5)
   client_side_validations!
   client_side_validations-simple_form!
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
+  jquery-datatables-rails (~> 3.3.0)
   jquery-rails
+  kaminari
   rails (= 4.1.8)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

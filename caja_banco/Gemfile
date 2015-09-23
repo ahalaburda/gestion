@@ -54,3 +54,8 @@ gem 'client_side_validations', :git => 'https://github.com/DavyJonesLocker/clien
 #https://github.com/DavyJonesLocker/client_side_validations-simple_form
 # gem 'client_side_validations-simple_form', github: 'DavyJonesLocker/client_side_validations-simple_form'
 gem 'client_side_validations-simple_form',:git => 'https://github.com/DavyJonesLocker/client_side_validations-simple_form.git'
+
+
+gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'ajax-datatables-rails'
+gem "kaminari"
