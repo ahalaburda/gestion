@@ -13,13 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
+// require turbolinks
 //= require_tree .
 //= require rails.validations
 //= require rails.validations.simple_form
 
 $(document).ready(function() {
-	$("#gbtn1","#btn1").click(function(){
+	$("#gbtn1 , #btn1").click(function(){
 		$('#form-toggle').fadeToggle();
 		if($('#gbtn1').hasClass('glyphicon glyphicon-plus')){
 			$('#gbtn1').removeClass('glyphicon glyphicon-plus');

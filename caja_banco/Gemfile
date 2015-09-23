@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -49,6 +49,8 @@ gem 'simple_form'
 # SOlUCION AL ERROR DE CLIENT SIDE VALIDATION http://stackoverflow.com/questions/21102324/the-rails-way-of-doing-client-side-validation-rails-4-with-simple-form
 
 #https://github.com/DavyJonesLocker/client_side_validations
-gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
+# gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
+gem 'client_side_validations', :git => 'https://github.com/DavyJonesLocker/client_side_validations.git'
 #https://github.com/DavyJonesLocker/client_side_validations-simple_form
-gem 'client_side_validations-simple_form', github: 'DavyJonesLocker/client_side_validations-simple_form'
+# gem 'client_side_validations-simple_form', github: 'DavyJonesLocker/client_side_validations-simple_form'
+gem 'client_side_validations-simple_form',:git => 'https://github.com/DavyJonesLocker/client_side_validations-simple_form.git'

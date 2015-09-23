@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/DavyJonesLocker/client_side_validations-simple_form.git
+  remote: https://github.com/DavyJonesLocker/client_side_validations-simple_form.git
   revision: f6f0bc9dd1c12c17b8e478d600ebc8bcd664a704
   specs:
     client_side_validations-simple_form (3.1.0)
@@ -7,7 +7,7 @@ GIT
       simple_form (~> 3.1)
 
 GIT
-  remote: git://github.com/DavyJonesLocker/client_side_validations.git
+  remote: https://github.com/DavyJonesLocker/client_side_validations.git
   revision: 9e0b844b8267e2ae1d4c87711cca14c8579cfffd
   specs:
     client_side_validations (4.2.0)
@@ -121,8 +121,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     tzinfo-data (1.2015.6)
@@ -148,6 +146,8 @@ DEPENDENCIES
   simple_form
   sprockets-rails
   sqlite3
-  turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)
+
+BUNDLED WITH
+   1.10.6
