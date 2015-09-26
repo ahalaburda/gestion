@@ -1,4 +1,4 @@
-<h1> Bancos <button type="button" class="btn btn-info btn-outline btn-circle" id="btn1"><span class="glyphicon glyphicon-chevron-up" id="gbtn1"></span></button></h1>
+<h1 id="titulo_banco"> Bancos <button type="button" class="btn btn-info btn-outline btn-circle" id="btn1"><span class="glyphicon glyphicon-chevron-up" id="gbtn1"></span></button></h1>
 <div id="form-toggle">
   <%= render 'formulario' %>
 </div><br>
@@ -21,7 +21,7 @@
         <td><%= banco.direccion %></td>
         <td><%= banco.telefono %></td>
         <td>
-        <%= link_to edit_banco_path(banco), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+        <%= link_to edit_banco_path(banco), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
           <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
         <%= link_to banco, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>

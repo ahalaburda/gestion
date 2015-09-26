@@ -20,6 +20,10 @@ class BancosController < ApplicationController
 
   # GET /bancos/1/edit
   def edit
+    @banco = Banco.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /bancos
@@ -43,7 +47,7 @@ class BancosController < ApplicationController
   def update
     respond_to do |format|
       if @banco.update(banco_params)
-        format.html { redirect_to @banco, notice: 'Banco was successfully updated.' }
+        format.html { redirect_to bancos_url, notice: 'Actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @banco }
       else
         format.html { render :edit }
