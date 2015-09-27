@@ -1,0 +1,14 @@
+$("#form-toggle").html(" <%= escape_javascript render  'formulario', tipo_de_movimiento: @tipo_de_movimiento %>");
+
+$("html, body").scrollTop(0);
+$('#form-toggle').fadeIn(500);
+if($('#gbtn1').hasClass('glyphicon glyphicon-plus')){
+	$('#gbtn1').removeClass('glyphicon glyphicon-plus');
+	$('#gbtn1').addClass('glyphicon glyphicon-chevron-up');
+}
+
+document.getElementById("titulo_tipo_de_movimiento").innerHTML = "Editando Tipo de movimiento";
+
+$("#btn_cancelar").click(function() {
+  location.href = "/tipos_de_movimientos";
+});

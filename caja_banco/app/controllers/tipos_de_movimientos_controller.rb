@@ -20,6 +20,10 @@ class TiposDeMovimientosController < ApplicationController
 
   # GET /tipos_de_movimientos/1/edit
   def edit
+    @tipo_de_movimiento = TipoDeMovimiento.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /tipos_de_movimientos
