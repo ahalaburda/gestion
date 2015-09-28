@@ -41,12 +41,6 @@ th{
 td{
    text-align: center;
 }
-a{
-  color: #B4B4C2;
-}
-a:visited {
-  color: #B4B4C2;
-}
 
 
 .btn-outline {
@@ -54,6 +48,23 @@ a:visited {
   background-color: transparent;
   transition: all .5s;
   outline: 0 !important;
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.428571429;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-size: 18px;
+  line-height: 1.33;
 }
 .btn-primary {
   color: #ffffff;
@@ -79,6 +90,16 @@ a:visited {
   border-color: #A90505;
   transition: all .5s;
 }
+.btn-print {
+  color: #ffffff;
+  background-color: #46b8da;
+  border-color: #46b8da;
+}
+.btn-print:hover, .btn-print:focus, .btn-print:active, .btn-print.active, .open>.dropdown-toggle.btn-print {
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #428bca;
+}
 .btn-pdf {
   color: #ffffff;
   background-color: #d9534f;
@@ -98,33 +119,6 @@ a:visited {
   color: #ffffff;
   background-color: #00890C;
   border-color: #00890C;
-}
-.btn-print {
-  color: #ffffff;
-  background-color: #46b8da;
-  border-color: #46b8da;
-}
-.btn-print:hover, .btn-print:focus, .btn-print:active, .btn-print.active, .open>.dropdown-toggle.btn-print {
-  color: #ffffff;
-  background-color: #428bca;
-  border-color: #428bca;
-}
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  padding: 6px 0;
-  border-radius: 15px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.428571429;
-}
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  border-radius: 25px;
-  font-size: 18px;
-  line-height: 1.33;
 }
 
 /////////////////////form login
@@ -171,7 +165,6 @@ a:visited {
 .form-group {
      margin-bottom: 0px; 
 }
-
 .form-group #alertdiv{
      font-size: 12px; 
      color: #a94442;
@@ -191,13 +184,11 @@ a:visited {
   border-color: #03658C !important;
   border-radius: 0;
 }
-
 .dropdown .dropdown-menu {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
 }
-
 
 /*------------------------------------------------------------------
 [2. Navbar / .navbar]
@@ -206,7 +197,6 @@ a:visited {
 .navbar .container {
     position: relative;
 }
-
 .navbar-inner {
   padding: 7px 0;
   background: #00ba8b !important;
@@ -214,11 +204,9 @@ a:visited {
   -webkit-border-radius: 0;
   border-radius: 0;
 }
-
 .navbar-fixed-top {
   position: static;
 }
-
 .navbar .nav a {
   font-size: 11px;
 }
@@ -235,7 +223,6 @@ a:visited {
   margin-top: 6px;
 }
 
-
 /*------------------------------------------------------------------
 [3. Subnavbar / .subnavbar]
 */
@@ -247,7 +234,6 @@ a:visited {
   background: #fff;
   border-bottom: 1px solid #d6d6d6;
 }
-
 .subnavbar .container > ul {
   display: inline-block;
   
@@ -255,10 +241,9 @@ a:visited {
   padding: 0;
   margin: 0;
 }
-
 .subnavbar .container > ul > li {
   float: left;
-  
+
   min-width: 90px;
   height: 60px;
   padding: 0;
@@ -269,7 +254,6 @@ a:visited {
 
   border-left: 1px solid #d9d9d9; 
 }
-
 .subnavbar .container > ul > li > a {
   display: block;
   
@@ -280,12 +264,10 @@ a:visited {
   font-weight: bold;
   color: #b2afaa;
 }
-
 .subnavbar .container > ul > li > a:hover {
   color: #888;
   text-decoration: none;
 }
-
 .subnavbar .container > ul > li > a > i {
   display: inline-block;
   
@@ -295,20 +277,16 @@ a:visited {
   margin-bottom: -3px;
   font-size: 20px;
 }
-
 .subnavbar .container > ul > li > a > span {
   display: block; 
 }
-
 .subnavbar .container > ul > li.active > a {
   border-bottom:3px solid #03658C;
   color: #383838;
 }
-
 .subnavbar .dropdown .dropdown-menu a {
   font-size: 12px;
 }
-
 .subnavbar .dropdown .dropdown-menu {
   text-align: left;
   
@@ -319,7 +297,6 @@ a:visited {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
 .subnavbar .dropdown-menu::before {
   content: '';
   display: inline-block;
@@ -331,7 +308,6 @@ a:visited {
   top: -7px;
   left: 9px;
 }
-
 .subnavbar .dropdown-menu::after {
   content: '';
   display: inline-block;
@@ -342,13 +318,11 @@ a:visited {
   top: -6px;
   left: 10px;
 }
-
 .subnavbar .caret {
   margin-top: 4px;
   border-top-color: white;
   border-bottom-color: white;
 }
-
 .subnavbar .dropdown.open .caret {
   display: none;
 }
