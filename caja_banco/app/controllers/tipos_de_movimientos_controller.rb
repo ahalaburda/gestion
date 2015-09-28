@@ -6,6 +6,15 @@ class TiposDeMovimientosController < ApplicationController
   def index
     @tipos_de_movimientos = TipoDeMovimiento.all
     @tipo_de_movimiento = TipoDeMovimiento.new
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @tipos_de_movimientos }
+        format.xls { send_data @tipos_de_movimientos.to_xls(
+          :columns => [:created_at, :descripcion, :updated_at],
+          :headers => ["Fecha Creada", "tipos de movimientos", "Fecha actualizacion"] ),
+          :filename => 'tipos_de_movimientos.xls' }
+        format.pdf { render_tipos_de_movimientos_list(@tipos_de_movimientos) }
+    end
   end
 
   # GET /tipos_de_movimientos/1
@@ -75,5 +84,20 @@ class TiposDeMovimientosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tipo_de_movimiento_params
       params.require(:tipo_de_movimiento).permit(:descripcion)
+    end
+ def render_tipos_de_movimientos_list(tipo_de_movimiento)
+      report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'tipos_de_movimientos', 'show.tlf')
+
+      tipo_de_movimiento.each do |task|
+        report.list.add_row do |row|
+          row.values no: task.id, 
+                     descripcion: task.descripcion
+          row.item(:descripcion).style(:color, 'red')
+        end
+      end
+      
+      send_data report.generate, filename: 'tipos de movimientos.pdf', 
+                                 type: 'application/pdf', 
+                                 disposition: 'attachment'
     end
 end
