@@ -59,3 +59,5 @@ gem 'client_side_validations-simple_form',:git => 'https://github.com/DavyJonesL
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'ajax-datatables-rails'
 gem "kaminari"
+gem "to_xls"
+gem 'thinreports-rails'
