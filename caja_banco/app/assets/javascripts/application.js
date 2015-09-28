@@ -20,6 +20,7 @@
 //= require rails.validations.simple_form
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require autoNumeric
 //= require_tree .
 
 $(document).ready(function() {
@@ -68,6 +69,8 @@ $(document).ready(function() {
 			}
 	    }
 	});
+
+	$('input[data-role=money]').autoNumeric('init');
 });
 
 $(document).ready(function() {
