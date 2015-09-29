@@ -6,6 +6,15 @@ class BancosController < ApplicationController
   def index
     @banco = Banco.new
     @bancos = Banco.all
+    respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @bancos }
+        format.xls { send_data @bancos.to_xls(
+          :columns => [:created_at, :nombre, :direccion, :telefono, :updated_at],
+          :headers => ["Fecha Creada", "Banco", "Direccion", "Telefono", "Fecha actualizacion"] ),
+          :filename => 'bancos.xls' }
+        format.pdf { render_banco_list(@bancos) }
+    end
   end
 
   # GET /bancos/1
@@ -75,5 +84,25 @@ class BancosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def banco_params
       params.require(:banco).permit(:nombre, :direccion, :telefono)
+    end
+
+    def render_banco_list(banco)
+      report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'bancos', 'show.tlf')
+
+      banco.each do |task|
+        report.list.add_row do |row|
+          row.values no: task.id, 
+                     name: task.nombre,
+                     direccion: task.direccion,
+                     telefono: task.telefono
+          row.item(:name).style(:color, 'red')
+          row.item(:direccion).style(:color, 'red')
+          row.item(:telefono).style(:color, 'red')
+        end
+      end
+      
+      send_data report.generate, filename: 'bancos.pdf', 
+                                 type: 'application/pdf', 
+                                 disposition: 'attachment'
     end
 end

@@ -1,0 +1,5 @@
+report.start_new_page do |page|
+  page.item(:name).value(@bancos.nombre)
+  page.item(:direccion).value(@bancos.direccion)
+  page.item(:telefono).value(@bancos.telefono)
+end
