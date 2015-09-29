@@ -2,14 +2,19 @@
 <div id="form-toggle">
   <%= render 'formulario' %>
 </div><br>
+<div class="reports" style="margin-left: 90.333333%">
+  <%= link_to '#', onclick: "printpage()", class: 'btn btn-print btn-outline btn-circle', title: 'Imprimir reporte', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+    <span class="glyphicon glyphicon-print" style="color: white"></span>
+  <% end %>
+  <%= link_to bancos_path(@bancos, format: 'pdf'), class: 'btn btn-pdf btn-outline btn-circle', title: 'Exportar en formato PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+    <span style="color: white">PDF</span>
+  <% end %>
+  <%= link_to bancos_path(:format => :xls), class: 'btn btn-xls btn-outline btn-circle', title: 'Exportar en formato XLS', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+    <span style="color: white">XLS</span>
+  <% end %>
+</div></br>
 
 <table id="table" class="table table-striped table-hover">
-  <%= link_to tipos_de_movimientos_path(:format => :xls), class: 'btn btn-xls btn-outline btn-circle', title: 'Exportar en formato XLS', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
-        <span style="color: white">XLS</span>
-      <% end %>
-  <%= link_to tipos_de_movimientos_path(@tipos_de_movimientos, format: 'pdf'), class: 'btn btn-pdf btn-outline btn-circle', title: 'Exportar en formato PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
-        <span style="color: white">PDF</span>
-      <% end %>
   <thead>
     <tr>
       <th>Descripcion</th>
@@ -34,3 +39,21 @@
     <% end %>
   </tbody>
 </table>
+
+<!-- tabla oculta formateada para impresion -->
+<div id="tabla_print">
+  <h1>Listado de Tipos de Movimientos</h1>
+    <table class="table table-striped table-hover" >
+  <thead>
+    <tr>
+      <th>Descripcion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tipos_de_movimientos.each do |tipo_de_movimiento| %>
+      <tr>
+        <td><%= tipo_de_movimiento.descripcion %></td>
+    <% end %>
+  </tbody>
+    </table>
+</div>
