@@ -43,7 +43,7 @@
 
 <!-- tabla oculta formateada para impresion -->
 <div id="tabla_print">
-  <h1>Tipos de Movimientos</h1>
+  <h1>Listado de Tipos de Movimientos</h1>
     <table class="table table-striped table-hover" >
   <thead>
     <tr>
@@ -51,10 +51,10 @@
     </tr>
   </thead>
   <tbody>
- <% @tipos_de_movimientos.each do |tipo_de_movimiento| %>
+    <% @tipos_de_movimientos.each do |tipo_de_movimiento| %>
       <tr>
         <td><%= tipo_de_movimiento.descripcion %></td>
-      </tr>
+        </tr>
     <% end %>
   </tbody>
     </table>
