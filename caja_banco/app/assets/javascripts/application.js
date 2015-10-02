@@ -18,8 +18,6 @@
 // require turbolinks
 //= require rails.validations
 //= require rails.validations.simple_form
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require autoNumeric
 //= require_tree .
 

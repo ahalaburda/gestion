@@ -14,7 +14,7 @@ class TiposDeMovimientosController < ApplicationController
           :headers => ["Fecha Creada", "tipos de movimientos", "Fecha actualizacion"] ),
           :filename => 'tipos_de_movimientos.xls' }
         format.pdf { render_tipos_de_movimientos_list(@tipos_de_movimientos) }
-    end
+      end
   end
 
   # GET /tipos_de_movimientos/1
