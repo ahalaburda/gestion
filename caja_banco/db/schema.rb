@@ -32,4 +32,10 @@ ActiveRecord::Schema.define(version: 20151004195647) do
     t.datetime "updated_at"
   end
 
+  create_table "tipos_de_personas", force: true do |t|
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end
