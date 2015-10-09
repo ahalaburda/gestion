@@ -1,19 +1,33 @@
 <%= simple_form_for @banco, :validate => true do |f| %>
 <div class="row">
-	<div class="col-md-4">
-		<div class="field">
-		  <%= f.input :nombre, :input_html => {class: "form-control"} , autofocus: true %>
-		  </div>
-	</div>
-	<div class="col-md-4">
-		<div class="field">
-		  <%= f.input :direccion, :input_html => {class: "form-control"} %>
-		  </div>
-	</div>
-	<div class="col-md-4">
-		<div class="field">
-		  <%= f.input :telefono, :input_html => {class: "form-control"} %>
-		  
+  <div class="col-md-4">
+    <div class="field">
+      <%= f.input :nombre, :input_html => {class: "form-control"} , autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.input :sucursal, :input_html => {class: "form-control"} %>
+    </div>
+    <div class="field">
+      <%= f.input :direccion, :input_html => {class: "form-control"} %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="field">
+      <%= f.input :pais_id, :input_html => {class: "form-control"}%>
+    </div>
+    <div class="field">
+      <%= f.input :departamento_id, :input_html => {class: "form-control"}%>
+    </div>
+    <div class="field">
+      <%= f.input :ciudad_id, :input_html => {class: "form-control"}%>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="field">
+      <%= f.input :telefono, :input_html => {class: "form-control"} %>
+    </div>
+    <div class="field">
+			<%= f.input :correo, :input_html => {class: "form-control"}%>	  
 		</div>
 	</div>
 </div>

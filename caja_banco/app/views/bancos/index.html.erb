@@ -19,6 +19,7 @@
   <thead>
     <tr>
       <th>Nombre del Banco</th>
+      <th>Sucursal</th>
       <th>Direccion</th>
       <th>Telefono</th>
       <th>Acciones</th>
@@ -29,6 +30,7 @@
     <% @bancos.each do |banco| %>
       <tr>
         <td><%= banco.nombre %></td>
+        <td><%= banco.sucursal%></td>
         <td><%= banco.direccion %></td>
         <td><%= banco.telefono %></td>
         <td>
@@ -47,20 +49,22 @@
 <div id="tabla_print">
   <h1>Listado de Bancos</h1>
     <table class="table table-striped table-hover" >
-  <thead>
-    <tr>
-      <th>Nombre del banco</th>
-      <th>Direccion</th>
-      <th>Telefono</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bancos.each do |banco| %>
-      <tr>
-        <td><%= banco.nombre %></td>
-        <td><%= banco.direccion %></td>
-        <td><%= banco.telefono %></td>
-    <% end %>
-  </tbody>
+      <thead>
+        <tr>
+          <th>Nombre del Banco</th>
+          <th>Sucursal</th>
+          <th>Direccion</th>
+          <th>Telefono</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bancos.each do |banco| %>
+          <tr>
+            <td><%= banco.nombre %></td>
+            <td><%= banco.sucursal%></td>
+            <td><%= banco.direccion %></td>
+            <td><%= banco.telefono %></td>
+        <% end %>
+      </tbody>
     </table>
 </div>

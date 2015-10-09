@@ -10,10 +10,17 @@ class BancosController < ApplicationController
         format.html # index.html.erb
         format.json { render json: @bancos }
         format.xls { send_data @bancos.to_xls(
-          :columns => [:created_at, :nombre, :direccion, :telefono, :updated_at],
-          :headers => ["Fecha Creada", "Banco", "Direccion", "Telefono", "Fecha actualizacion"] ),
+          :columns => [ :nombre, :sucursal, :direccion, :pais_id, :telefono, :created_at, :updated_at],
+          :headers => [ "Banco", "Sucursal","Direccion", "Pais", "Telefono", "Fecha de Creacion", "Fecha de actualizacion"] ),
           :filename => 'bancos.xls' }
         format.pdf { render_banco_list(@bancos) }
+    end
+  end
+
+  def get_pais( pais_id)
+    @pais = Pais.all
+    if @pais.find(params[:pais_id])
+      @pais.nombre
     end
   end
 
@@ -83,7 +90,7 @@ class BancosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def banco_params
-      params.require(:banco).permit(:nombre, :direccion, :telefono)
+      params.require(:banco).permit(:nombre, :direccion, :telefono, :sucursal, :pais_id, :departamento_id, :ciudad_id, :correo)
     end
 
     def render_banco_list(banco)
