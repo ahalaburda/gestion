@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :estados
+
   resources :tipos_de_personas
 
   resources :tipos_de_movimientos
