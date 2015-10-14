@@ -51,9 +51,5 @@ validates :correo,
 			message: 'Este campo es requerido'},
 	:length =>{
 			:maximum => 50,
-			:too_long => 'Debe tener como maximo %{count} caracteres'},
-	:format => {
-				with: /\A[a-zA-Z]+\z/,
-		message: 'Solo permite letras'}
-
+			:too_long => 'Debe tener como maximo %{count} caracteres'}
 end
