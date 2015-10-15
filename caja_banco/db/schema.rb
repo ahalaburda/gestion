@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014215746) do
+ActiveRecord::Schema.define(version: 20151015005930) do
 
   create_table "bancos", force: true do |t|
     t.string   "nombre"
@@ -26,7 +26,32 @@ ActiveRecord::Schema.define(version: 20151014215746) do
     t.string   "correo"
   end
 
+  create_table "ciudades", force: true do |t|
+    t.string   "descripcion"
+    t.integer  "codigo_postal"
+    t.integer  "departamento_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ciudades", ["departamento_id"], name: "index_ciudades_on_departamento_id"
+
+  create_table "departamentos", force: true do |t|
+    t.string   "descripcion"
+    t.integer  "pais_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "departamentos", ["pais_id"], name: "index_departamentos_on_pais_id"
+
   create_table "estados", force: true do |t|
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+  
+   create_table "paises", force: true do |t|
     t.string   "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,8 +70,6 @@ ActiveRecord::Schema.define(version: 20151014215746) do
     t.string   "direccion"
     t.date     "fecha_de_nacimiento"
     t.string   "correo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "personas", ["categoria_id"], name: "index_personas_on_categoria_id"

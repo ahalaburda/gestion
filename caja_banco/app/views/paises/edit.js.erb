@@ -1,0 +1,14 @@
+$("#form-toggle").html(" <%= escape_javascript render  'formulario', pais: @pais %>");
+
+$("html, body").scrollTop(0);
+$('#form-toggle').fadeIn(500);
+if($('#gbtn1').hasClass('glyphicon glyphicon-plus')){
+	$('#gbtn1').removeClass('glyphicon glyphicon-plus');
+	$('#gbtn1').addClass('glyphicon glyphicon-chevron-up');
+}
+
+document.getElementById("titulo_pais").innerHTML = "Editando pais";
+
+$("#btn_cancelar").click(function() {
+  location.href = "/paises";
+});

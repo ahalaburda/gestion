@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   resources :personas
 
+  resources :ciudades
+
+  resources :departamentos
+
+  resources :paises
+
   resources :estados
 
   resources :tipos_de_personas
