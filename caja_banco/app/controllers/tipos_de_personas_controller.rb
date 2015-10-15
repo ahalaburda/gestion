@@ -38,7 +38,7 @@ class TiposDePersonasController < ApplicationController
 
     respond_to do |format|
       if @tipo_de_persona.save
-        format.html { redirect_to @tipo_de_persona_url, notice: 'Tipo de persona was successfully created.' }
+        format.html { redirect_to tipo_de_persona_url, notice: 'Tipo de persona was successfully created.' }
         format.json { render :show, status: :created, location: @tipo_de_persona }
       else
         format.html { render :new }

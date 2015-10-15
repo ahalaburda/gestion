@@ -9,7 +9,7 @@ validates :nombre,
 		with: /\A[a-zA-Z]+\z/,
 		message: 'Solo permite letras'},
 	:uniqueness => {
-		message: 'El nombre que desea usar ya a sido utilizado'}
+		message: 'El nombre que desea usar ya ha sido utilizado'}
 
 validates :sucursal,
 	:presence => {
