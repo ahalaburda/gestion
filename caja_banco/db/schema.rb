@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010175717) do
+ActiveRecord::Schema.define(version: 20151014210854) do
 
   create_table "bancos", force: true do |t|
     t.string   "nombre"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20151010175717) do
     t.integer  "ciudad_id"
     t.string   "correo"
   end
+
+  create_table "departamentos", force: true do |t|
+    t.string   "descripcion"
+    t.integer  "pais_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "departamentos", ["pais_id"], name: "index_departamentos_on_pais_id"
 
   create_table "estados", force: true do |t|
     t.string   "descripcion"
