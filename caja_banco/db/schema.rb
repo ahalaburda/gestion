@@ -50,12 +50,33 @@ ActiveRecord::Schema.define(version: 20151015005930) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "paises", force: true do |t|
+  
+   create_table "paises", force: true do |t|
     t.string   "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "personas", force: true do |t|
+    t.integer  "tipo_de_persona_id"
+    t.integer  "categoria_id"
+    t.string   "nombre"
+    t.string   "apellido"
+    t.integer  "telefono"
+    t.integer  "cedula_identidad"
+    t.integer  "pais_id"
+    t.integer  "departamento_id"
+    t.integer  "ciudad_id"
+    t.string   "direccion"
+    t.date     "fecha_de_nacimiento"
+    t.string   "correo"
+  end
+
+  add_index "personas", ["categoria_id"], name: "index_personas_on_categoria_id"
+  add_index "personas", ["ciudad_id"], name: "index_personas_on_ciudad_id"
+  add_index "personas", ["departamento_id"], name: "index_personas_on_departamento_id"
+  add_index "personas", ["pais_id"], name: "index_personas_on_pais_id"
+  add_index "personas", ["tipo_de_persona_id"], name: "index_personas_on_tipo_de_persona_id"
 
   create_table "tipos_de_movimientos", force: true do |t|
     t.string   "descripcion"

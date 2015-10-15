@@ -1,0 +1,1 @@
+json.extract! @persona, :id, :tipo_de_persona_id, :categoria_id, :nombre, :apellido, :telefono, :cedula_identidad, :pais_id, :departamento_id, :ciudad_id, :direccion, :fecha_de_nacimiento, :correo, :created_at, :updated_at

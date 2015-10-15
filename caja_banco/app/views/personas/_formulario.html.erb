@@ -1,0 +1,60 @@
+<%= simple_form_for @persona, :validate => true do |f| %>
+<div class="row">
+  <div class="col-md-3">
+    <div class="field">
+      <%= f.input :nombre, :input_html => {class: "form-control"} , autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.input :apellido, :input_html => {class: "form-control"} %>
+    </div>
+    <div class="field">
+      <%= f.input :cedula_identidad, :input_html => {class: "form-control"} %>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="field">
+      <%= f.input :direccion, :input_html => {class: "form-control"} %>
+    </div>
+    <div class="field">
+      <%= f.input :pais_id, :input_html => {class: "form-control"}%>
+    </div>
+    <div class="field">
+      <%= f.input :departamento_id, :input_html => {class: "form-control"}%>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="field">
+      <%= f.input :ciudad_id, :input_html => {class: "form-control"}%>
+    </div>
+    <div class="field">
+      <%= f.input :telefono, :input_html => {class: "form-control"} %>
+    </div>
+    <div class="field">
+			<%= f.input :correo, :input_html => {class: "form-control"}%>	  
+		</div>
+	</div>
+  <div class="col-md-3">
+    <div class="field">
+      <%= f.input :fecha_de_nacimiento, :input_html => {class: "form-control"} %>
+    </div>
+    <div class="field">
+      <%= f.input :categoria, :input_html => {class: "form-control"}%>   
+    </div>
+    <div class="field">
+      <%= f.input :tipo_de_persona, :input_html => {class: "form-control"}%>   
+    </div>
+  </div>
+</div>
+</br>
+	<div class="col-md-offset-10">
+		<div class="actions">
+			<% if controller.action_name == 'new' or controller.action_name == 'index' %>
+				<%= f.submit "Agregar", :class => 'btn btn-primary'%>
+				
+			<% elsif controller.action_name == 'edit' %>
+				<%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+			<% end %>
+			<%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+		</div>
+	</div>
+<% end %>

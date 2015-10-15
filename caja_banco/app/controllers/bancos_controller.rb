@@ -94,9 +94,19 @@ class BancosController < ApplicationController
           row.values no: task.id, 
                      name: task.nombre,
                      direccion: task.direccion,
+                     sucursal: task.sucursal,
+                     departamento: task.departamento_id,
+                     pais: task.pais_id,
+                     ciudad: task.ciudad_id,
+                     correo: task.correo,
                      telefono: task.telefono
           row.item(:name).style(:color, 'red')
           row.item(:direccion).style(:color, 'red')
+          row.item(:sucursal).style(:color, 'red')
+          row.item(:departamento).style(:color, 'red')
+          row.item(:pais).style(:color, 'red')
+          row.item(:ciudad).style(:color, 'red')
+          row.item(:correo).style(:color, 'red')
           row.item(:telefono).style(:color, 'red')
         end
       end

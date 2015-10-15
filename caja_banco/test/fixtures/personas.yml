@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_de_persona_id: 
+  categoria_id: 
+  nombre: MyString
+  apellido: MyString
+  telefono: 1
+  cedula_identidad: 1
+  pais_id: 
+  departamento_id: 
+  ciudad_id: 
+  direccion: MyString
+  fecha_de_nacimiento: 2015-10-14
+  correo: MyString
+
+two:
+  tipo_de_persona_id: 
+  categoria_id: 
+  nombre: MyString
+  apellido: MyString
+  telefono: 1
+  cedula_identidad: 1
+  pais_id: 
+  departamento_id: 
+  ciudad_id: 
+  direccion: MyString
+  fecha_de_nacimiento: 2015-10-14
+  correo: MyString
