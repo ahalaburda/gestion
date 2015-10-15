@@ -11,11 +11,10 @@ class PaisesController < ApplicationController
         format.json { render json: @paises }
         format.xls { send_data @paises.to_xls(
           :columns => [ :id, :descripcion, :created_at, :updated_at],
-          :headers => [ "ID", "","descripcion", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :headers => [ "ID", "descripcion", "Fecha de Creacion", "Fecha de actualizacion"] ),
           :filename => 'pais.xls' }
         format.pdf { render_pais_list(@paises) }
     end
-
   end
 
   # GET /paises/1
@@ -85,7 +84,7 @@ class PaisesController < ApplicationController
     def render_pais_list(pais)
       report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'paises', 'show.tlf')
 
-      banco.each do |task|
+      pais.each do |task|
         report.list.add_row do |row|
           row.values no: task.id, 
                      name: task.descripcion
