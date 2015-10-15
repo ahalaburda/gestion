@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015005930) do
+ActiveRecord::Schema.define(version: 20151015014403) do
 
   create_table "bancos", force: true do |t|
     t.string   "nombre"
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20151015005930) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-  
-   create_table "paises", force: true do |t|
+
+  create_table "paises", force: true do |t|
     t.string   "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20151015005930) do
 
   create_table "personas", force: true do |t|
     t.integer  "tipo_de_persona_id"
-    t.integer  "categoria_id"
     t.string   "nombre"
     t.string   "apellido"
     t.integer  "telefono"
@@ -70,9 +69,10 @@ ActiveRecord::Schema.define(version: 20151015005930) do
     t.string   "direccion"
     t.date     "fecha_de_nacimiento"
     t.string   "correo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "personas", ["categoria_id"], name: "index_personas_on_categoria_id"
   add_index "personas", ["ciudad_id"], name: "index_personas_on_ciudad_id"
   add_index "personas", ["departamento_id"], name: "index_personas_on_departamento_id"
   add_index "personas", ["pais_id"], name: "index_personas_on_pais_id"
