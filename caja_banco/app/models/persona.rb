@@ -68,8 +68,4 @@ class Persona < ActiveRecord::Base
 	validates :tipo_de_persona_id,
 		:presence => {
 			message: 'Debe seleccionar un Tipo de persona'}
-
-	validates :categoria_id,
-		:presence => {
-			message: 'Debe seleccionar una Categoria'}
 end
