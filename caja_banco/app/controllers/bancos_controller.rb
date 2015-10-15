@@ -17,13 +17,6 @@ class BancosController < ApplicationController
     end
   end
 
-  def get_pais( pais_id)
-    @pais = Pais.all
-    if @pais.find(params[:pais_id])
-      @pais.nombre
-    end
-  end
-
   # GET /bancos/1
   # GET /bancos/1.json
   def show
