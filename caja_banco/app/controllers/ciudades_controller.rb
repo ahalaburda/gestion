@@ -6,6 +6,15 @@ class CiudadesController < ApplicationController
   def index
     @ciudad = Ciudad.new
     @ciudades = Ciudad.all
+    respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @ciudades }
+        format.xls { send_data @ciudades.to_xls(
+          :columns => [:descripcion, :codigo_postal, :departamento_id, :created_at, :updated_at],
+          :headers => ["Ciudad", "Codigo Postal", "departamento", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :filename => 'Ciudades.xls' }
+        format.pdf { render_ciudad_list(@ciudades) }
+    end
   end
 
   # GET /ciudades/1
@@ -71,5 +80,24 @@ class CiudadesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ciudad_params
       params.require(:ciudad).permit(:descripcion, :codigo_postal, :departamento_id)
+    end
+
+    def render_ciudad_list(ciudad)
+      report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'ciudades', 'show.tlf')
+
+      ciudad.each do |task|
+        report.list.add_row do |row|
+          row.values no: task.id, 
+                     name: task.descripcion,
+                     codigo_postal: task.codigo_postal,
+                     departamento: task.departamento_id
+          row.item(:name).style(:color, 'red')
+          row.item(:codigo_postal).style(:color, 'red')
+          row.item(:departamento).style(:color, 'red')
+        end
+      end 
+      send_data report.generate, filename: 'ciudades.pdf', 
+                                   type: 'application/pdf', 
+                                   disposition: 'attachment'
     end
 end

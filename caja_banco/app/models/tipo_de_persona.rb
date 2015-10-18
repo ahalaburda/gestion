@@ -16,6 +16,6 @@ class TipoDePersona < ActiveRecord::Base
 				message: 'Solo permite letras'},
 
 			:uniqueness => {
-				message: 'Este tipo de movimiento ya existe'
+				message: 'Este tipo de persona ya existe'
 			}
 end
