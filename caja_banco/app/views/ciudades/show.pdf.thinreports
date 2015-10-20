@@ -1,0 +1,5 @@
+report.start_new_page do |page|
+  page.item(:descripcion).value(@ciudades.descripcion)
+  page.item(:codigo_postal).value(@ciudades.codigo_postal)
+  page.item(:departamento).value(@ciudades.departamento_id)
+end

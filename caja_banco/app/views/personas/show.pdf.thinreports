@@ -1,0 +1,11 @@
+report.start_new_page do |page|
+  page.item(:name).value(@personas.nombre)
+  page.item(:apellido).value(@personas.apellido)
+  page.item(:cedula).value(@personas.cedula_identidad)
+  page.item(:direccion).value(@personas.direccion)
+  page.item(:departamento).value(@personas.departamento_id)
+  page.item(:pais).value(@personas.pais_id)
+  page.item(:ciudad).value(@personas.ciudad_id)
+  page.item(:correo).value(@personas.correo)
+  page.item(:telefono).value(@personas.telefono)
+end
