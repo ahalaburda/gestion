@@ -1,6 +1,7 @@
 class Departamento < ActiveRecord::Base
   belongs_to :pais
-
+  has_many :cuidades
+  
   	validates :descripcion,
 			:presence => {
 				message: 'Este campo es requerido'},

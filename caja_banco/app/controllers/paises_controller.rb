@@ -38,7 +38,7 @@ class PaisesController < ApplicationController
 
     respond_to do |format|
       if @pais.save
-        format.html { redirect_to @pais, notice: 'Pais was successfully created.' }
+        format.html { redirect_to paises_url, notice: 'Pais was successfully created.' }
         format.json { render :show, status: :created, location: @pais }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class PaisesController < ApplicationController
   def update
     respond_to do |format|
       if @pais.update(pais_params)
-        format.html { redirect_to @pais, notice: 'Pais was successfully updated.' }
+        format.html { redirect_to paises_url, notice: 'Pais was successfully updated.' }
         format.json { render :show, status: :ok, location: @pais }
       else
         format.html { render :edit }

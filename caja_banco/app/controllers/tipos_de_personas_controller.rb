@@ -38,7 +38,7 @@ class TiposDePersonasController < ApplicationController
 
     respond_to do |format|
       if @tipo_de_persona.save
-        format.html { redirect_to tipo_de_persona_url, notice: 'Tipo de persona was successfully created.' }
+        format.html { redirect_to tipos_de_personas_url, notice: 'Tipo de persona was successfully created.' }
         format.json { render :show, status: :created, location: @tipo_de_persona }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class TiposDePersonasController < ApplicationController
   def update
     respond_to do |format|
       if @tipo_de_persona.update(tipo_de_persona_params)
-        format.html { redirect_to @tipo_de_persona_url, notice: 'Tipo de persona was successfully updated.' }
+        format.html { redirect_to tipos_de_personas_url, notice: 'Tipo de persona was successfully updated.' }
         format.json { render :show, status: :ok, location: @tipo_de_persona }
       else
         format.html { render :edit }

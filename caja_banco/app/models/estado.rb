@@ -1,7 +1,6 @@
 class Estado < ActiveRecord::Base
 	#has_many: cajas
 
-
 	validates :descripcion,
 			:presence => {
 				message: 'Este campo es requerido'},
