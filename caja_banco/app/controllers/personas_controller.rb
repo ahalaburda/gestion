@@ -6,6 +6,15 @@ class PersonasController < ApplicationController
   def index
     @persona = Persona.new
     @personas = Persona.all
+    respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @personas }
+        format.xls { send_data @personas.to_xls(
+          :columns => [ :nombre, :apellido, :telefono, :cedula_identidad, :pais_id, :departamento_id, :ciudad_id, :direccion, :fecha_de_nacimiento, :correo, :created_at, :updated_at],
+          :headers => [ "Nombre", "Apellido", "Telefono","Cedula de Identidad", "Pais", "Departamento", "Ciudad", "Direccion","fecha de nacimiento", "Correo", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :filename => 'personas.xls' }
+        format.pdf { render_persona_list(@personas) }
+    end
   end
 
   # GET /personas/1
@@ -75,5 +84,37 @@ class PersonasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def persona_params
       params.require(:persona).permit(:tipo_de_persona_id, :nombre, :apellido, :telefono, :cedula_identidad, :pais_id, :departamento_id, :ciudad_id, :direccion, :fecha_de_nacimiento, :correo)
+    end
+
+    def render_persona_list(persona)
+      report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'personas', 'show.tlf')
+
+      persona.each do |task|
+        report.list.add_row do |row|
+          row.values no: task.id, 
+                     name: task.nombre,
+                     apellido: task.apellido,
+                     cedula: task.cedula_identidad,
+                     direccion: task.direccion,
+                     departamento: task.departamento_id,
+                     pais: task.pais_id,
+                     ciudad: task.ciudad_id,
+                     correo: task.correo,
+                     telefono: task.telefono
+          row.item(:name).style(:color, 'red')
+          row.item(:apellido).style(:color, 'red')
+          row.item(:cedula).style(:color, 'red')
+          row.item(:direccion).style(:color, 'red')
+          row.item(:departamento).style(:color, 'red')
+          row.item(:pais).style(:color, 'red')
+          row.item(:ciudad).style(:color, 'red')
+          row.item(:correo).style(:color, 'red')
+          row.item(:telefono).style(:color, 'red')
+        end
+      end
+      
+      send_data report.generate, filename: 'personas.pdf', 
+                                 type: 'application/pdf', 
+                                 disposition: 'attachment'
     end
 end

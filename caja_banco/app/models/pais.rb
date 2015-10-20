@@ -14,6 +14,6 @@ class Pais < ActiveRecord::Base
 				message: 'Solo permite letras'},
 
 			:uniqueness => {
-				message: 'Este tipo de movimiento ya existe'
+				message: 'Este pais ya existe'
 			}
 end

@@ -1,7 +1,10 @@
 class Ciudad < ActiveRecord::Base
+
 	belongs_to :departamento
 
-		validates :descripcion,
+
+  validates :descripcion,
+
 			:presence => {
 				message: 'Este campo es requerido'},
 			:length => { 

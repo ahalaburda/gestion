@@ -1,5 +1,10 @@
 report.start_new_page do |page|
   page.item(:name).value(@bancos.nombre)
   page.item(:direccion).value(@bancos.direccion)
+  page.item(:sucursal).value(@bancos.sucursal)
+  page.item(:departamento).value(@bancos.departamento)
+  page.item(:pais).value(@bancos.pais_id)
+  page.item(:ciudad).value(@bancos.ciudad_id)
+  page.item(:correo).value(@bancos.correo)
   page.item(:telefono).value(@bancos.telefono)
 end

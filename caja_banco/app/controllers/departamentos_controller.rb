@@ -10,8 +10,8 @@ class DepartamentosController < ApplicationController
         format.html # index.html.erb
         format.json { render json: @departamentos }
         format.xls { send_data @departamentos.to_xls(
-          :columns => [ :id, :descripcion, :pais, :created_at, :updated_at],
-          :headers => [ "ID", "Descripcion", "Pais", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :columns => [:descripcion, :pais_id, :created_at, :updated_at],
+          :headers => ["Departamento", "Pais", "Fecha de Creacion", "Fecha de actualizacion"] ),
           :filename => 'departamento.xls' }
         format.pdf { render_departamento_list(@departamentos) }
     end
@@ -87,9 +87,10 @@ class DepartamentosController < ApplicationController
       departamento.each do |task|
         report.list.add_row do |row|
           row.values no: task.id, 
-                     name: task.descripcion
-          row.item(:id).style(:color, 'red')
-          row.item(:descripcion).style(:color, 'red')
+                     name: task.descripcion,
+                     pais: task.pais_id
+          row.item(:name).style(:color, 'red')
+          row.item(:pais).style(:color, 'red')
         end
       end 
       send_data report.generate, filename: 'departamentos.pdf', 

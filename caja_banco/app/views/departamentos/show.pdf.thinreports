@@ -1,0 +1,4 @@
+report.start_new_page do |page|
+  page.item(:descripcion).value(@departamentos.descripcion)
+  page.item(:pais).value(@departamentos.pais_id)
+end

@@ -10,11 +10,9 @@ class Departamento < ActiveRecord::Base
 				:too_long => 'debe tener como maximo %{count} caracteres'},
 			:format => {
 				with: /\A[a-zA-Z]+\z/,
-				message: 'Solo permite letras'},
-			:uniqueness => {
-				message: 'El nombre que desea usar ya a sido utilizado'}
+				message: 'Solo permite letras'}
 
 		validates :pais_id,
 			:presence => {
-				message: 'Este campo es requerido'}
+				message: 'Debe seleccionar un pais'}
 end

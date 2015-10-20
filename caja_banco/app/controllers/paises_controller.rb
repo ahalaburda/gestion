@@ -10,8 +10,8 @@ class PaisesController < ApplicationController
         format.html # index.html.erb
         format.json { render json: @paises }
         format.xls { send_data @paises.to_xls(
-          :columns => [ :id, :descripcion, :created_at, :updated_at],
-          :headers => [ "ID", "descripcion", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :columns => [ :descripcion, :created_at, :updated_at],
+          :headers => ["Nombre", "Fecha de Creacion", "Fecha de actualizacion"] ),
           :filename => 'pais.xls' }
         format.pdf { render_pais_list(@paises) }
     end
@@ -88,8 +88,7 @@ class PaisesController < ApplicationController
         report.list.add_row do |row|
           row.values no: task.id, 
                      name: task.descripcion
-          row.item(:id).style(:color, 'red')
-          row.item(:descripcion).style(:color, 'red')
+          row.item(:name).style(:color, 'red')
         end
       end 
       send_data report.generate, filename: 'paises.pdf', 
