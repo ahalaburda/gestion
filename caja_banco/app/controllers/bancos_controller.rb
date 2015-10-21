@@ -6,6 +6,9 @@ class BancosController < ApplicationController
   def index
     @banco = Banco.new
     @bancos = Banco.all
+    @pais = Pais.new
+    @departamento = Departamento.new
+    @ciudad = Ciudad.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @bancos }

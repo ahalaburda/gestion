@@ -13,13 +13,31 @@
   </div>
   <div class="col-md-4">
     <div class="field">
-      <%= f.input :pais_id, :input_html => {class: "form-control"}%>
+      <label for="bancos_pais">* Pais  
+        <%= link_to "#modal-pais", "data-toggle" => "modal" , class: 'btn btn-warning btn-outline btn-circle' do %>
+          <span class="glyphicon glyphicon-plus"></span>
+        <% end %>
+      </label>
+      </br>
+        <%= f.association :pais, label_method: "#{:descripcion}", prompt: "Seleciona un Pais", label: false %>
     </div>
     <div class="field">
-      <%= f.input :departamento_id, :input_html => {class: "form-control"}%>
+      <label for="bancos_departamento">* Departamento  
+        <%= link_to "#modal-departamento", "data-toggle" => "modal" , class: 'btn btn-warning btn-outline btn-circle' do %>
+          <span class="glyphicon glyphicon-plus"></span>
+        <% end %>
+      </label>
+      </br>
+      <%= f.association :departamento, label_method: "#{:descripcion}", prompt: "Seleciona un Departamento", label: false %>
     </div>
     <div class="field">
-      <%= f.input :ciudad_id, :input_html => {class: "form-control"}%>
+      <label for="bancos_ciudad">* Ciudad  
+          <%= link_to "#modal-ciudad", "data-toggle" => "modal" , class: 'btn btn-warning btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+      </label>
+      </br>
+      <%= f.association :ciudad, label_method: "#{:descripcion}", prompt: "Seleciona una Ciudad", label: false %>
     </div>
   </div>
   <div class="col-md-4">
@@ -44,3 +62,7 @@
 		</div>
 	</div>
 <% end %>
+
+<%= render 'bancos/modals/pais' %>
+<%= render 'bancos/modals/departamento' %>
+<%= render 'bancos/modals/ciudad' %>

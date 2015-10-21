@@ -1,7 +1,7 @@
 class Ciudad < ActiveRecord::Base
 
 	belongs_to :departamento
-
+	has_many :bancos
 
   validates :descripcion,
 
