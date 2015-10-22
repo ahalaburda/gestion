@@ -13,6 +13,7 @@
 	inflect.irregular 'tipo_de_persona', 'tipos_de_personas'
 	inflect.irregular 'pais', 'paises'
 	inflect.irregular 'ciudad', 'ciudades'
+	inflect.irregular 'cheque_entrante', 'cheques_entrantes'
 # These inflection rules are supported but not enabled by default:
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'

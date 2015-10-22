@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :cheques_entrantes
+
   resources :personas
 
   resources :ciudades
