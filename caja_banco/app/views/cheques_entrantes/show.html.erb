@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Banco:</strong>
+  <%= @cheque_entrante.banco %>
+</p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @cheque_entrante.numero %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @cheque_entrante.fecha %>
+</p>
+
+<p>
+  <strong>Monto:</strong>
+  <%= @cheque_entrante.monto %>
+</p>
+
+<p>
+  <strong>Concepto:</strong>
+  <%= @cheque_entrante.concepto %>
+</p>
+
+<p>
+  <strong>Persona:</strong>
+  <%= @cheque_entrante.persona %>
+</p>
+
+<%= link_to 'Edit', edit_cheque_entrante_path(@cheque_entrante) %> |
+<%= link_to 'Back', cheques_entrantes_path %>

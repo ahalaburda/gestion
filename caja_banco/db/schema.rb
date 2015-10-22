@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021200901) do
+ActiveRecord::Schema.define(version: 20151021221335) do
 
   create_table "bancos", force: true do |t|
     t.string   "nombre"
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 20151021200901) do
   add_index "bancos", ["ciudad_id"], name: "index_bancos_on_ciudad_id"
   add_index "bancos", ["departamento_id"], name: "index_bancos_on_departamento_id"
   add_index "bancos", ["pais_id"], name: "index_bancos_on_pais_id"
+
+  create_table "cheques_entrantes", force: true do |t|
+    t.integer  "banco_id"
+    t.integer  "numero"
+    t.date     "fecha"
+    t.decimal  "monto"
+    t.string   "concepto"
+    t.integer  "persona_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cheques_entrantes", ["banco_id"], name: "index_cheques_entrantes_on_banco_id"
+  add_index "cheques_entrantes", ["persona_id"], name: "index_cheques_entrantes_on_persona_id"
 
   create_table "ciudades", force: true do |t|
     t.string   "descripcion"
