@@ -6,6 +6,14 @@ class ChequesEntrantesController < ApplicationController
   def index
     @cheques_entrantes = ChequeEntrante.all
     @cheque_entrante = ChequeEntrante.new
+    respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @cheques_entrantes }
+        format.xls { send_data @cheques_entrantes.to_xls(
+          :columns => [ :banco_id, :numero, :fecha, :monto, :concepto, :persona_id, :created_at, :updated_at],
+          :headers => [ "Banco", "Numero","Fecha", "Monto", "Concepto", "Persona", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :filename => 'cheques_entrantes.xls' }
+        format.pdf { render_cheque_entrante_list(@cheques_entrantes) }
   end
 
   # GET /cheques_entrantes/1
@@ -75,5 +83,31 @@ class ChequesEntrantesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cheque_entrante_params
       params.require(:cheque_entrante).permit(:banco_id, :numero, :fecha, :monto, :concepto, :persona_id)
+    end
+
+    def render_cheque_entrante_list(cheque_entrante)
+      report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'cheques_entrantes', 'show.tlf')
+
+      cheque_entrante.each do |task|
+        report.list.add_row do |row|
+          row.values no: task.id, 
+                     banco: task.banco.nombre,
+                     numero: task.numero,
+                     fecha: task.fecha,
+                     monto: task.monto,
+                     concepto: task.concepto,
+                     persona: task.persona.nombre,
+          row.item(:banco).style(:color, 'red')
+          row.item(:numero).style(:color, 'red')
+          row.item(:fecha).style(:color, 'red')
+          row.item(:monto).style(:color, 'red')
+          row.item(:concepto).style(:color, 'red')
+          row.item(:persona).style(:color, 'red')
+        end
+      end
+      
+      send_data report.generate, filename: 'cheques_entrantes.pdf', 
+                                 type: 'application/pdf', 
+                                 disposition: 'attachment'
     end
 end

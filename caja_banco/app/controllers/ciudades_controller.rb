@@ -85,12 +85,12 @@ class CiudadesController < ApplicationController
     def render_ciudad_list(ciudad)
       report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'ciudades', 'show.tlf')
 
-      ciudad.each do |task|
+      ciudad.each do |ciudad|
         report.list.add_row do |row|
-          row.values no: task.id, 
-                     name: task.descripcion,
-                     codigo_postal: task.codigo_postal,
-                     departamento: task.departamento_id
+          row.values no: ciudad.id, 
+                     name: ciudad.descripcion,
+                     codigo_postal: ciudad.codigo_postal,
+                     departamento: ciudad.departamento.descripcion
           row.item(:name).style(:color, 'red')
           row.item(:codigo_postal).style(:color, 'red')
           row.item(:departamento).style(:color, 'red')
