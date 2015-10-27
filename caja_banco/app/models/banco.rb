@@ -56,4 +56,8 @@ class Banco < ActiveRecord::Base
 		:length =>{
 				:maximum => 50,
 				:too_long => 'Debe tener como maximo %{count} caracteres'}
+
+	def banco_sucursal
+    "#{nombre} - #{sucursal}"
+  end
 end

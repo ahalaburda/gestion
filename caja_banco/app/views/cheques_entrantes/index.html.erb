@@ -31,12 +31,12 @@
   <tbody>
     <% @cheques_entrantes.each do |cheque_entrante| %>
       <tr>
-        <td><%= cheque_entrante.banco %></td>
+        <td><%= cheque_entrante.banco.banco_sucursal %></td>
         <td><%= cheque_entrante.numero %></td>
         <td><%= cheque_entrante.fecha %></td>
         <td><%= cheque_entrante.monto %></td>
         <td><%= cheque_entrante.concepto %></td>
-        <td><%= cheque_entrante.persona %></td>
+        <td><%= cheque_entrante.persona.nombre_apellido %></td>
         <td>
         <%= link_to edit_cheque_entrante_path(cheque_entrante), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
           <span class="glyphicon glyphicon-pencil"></span>
@@ -67,12 +67,12 @@
       <tbody>
         <% @cheques_entrantes.each do |cheque_entrante| %>
           <tr>
-            <td><%= cheque_entrante.banco %></td>
+            <td><%= cheque_entrante.banco.banco_sucursal %></td>
             <td><%= cheque_entrante.numero %></td>
             <td><%= cheque_entrante.fecha %></td>
             <td><%= cheque_entrante.monto %></td>
             <td><%= cheque_entrante.concepto %></td>
-            <td><%= cheque_entrante.persona %></td>
+            <td><%= cheque_entrante.persona.nombre_apellido %></td>
           </tr>
         <% end %>
       </tbody>

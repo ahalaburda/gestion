@@ -36,14 +36,14 @@
   <tbody>
     <% @personas.each do |persona| %>
       <tr>
-        <td><%= persona.tipo_de_persona %></td>
+        <td><%= persona.tipo_de_persona.descripcion %></td>
         <td><%= persona.nombre %></td>
         <td><%= persona.apellido %></td>
         <td><%= persona.telefono %></td>
         <td><%= persona.cedula_identidad %></td>
-        <td><%= persona.pais %></td>
-        <td><%= persona.departamento %></td>
-        <td><%= persona.ciudad %></td>
+        <td><%= persona.pais.descripcion %></td>
+        <td><%= persona.departamento.descripcion %></td>
+        <td><%= persona.ciudad.descripcion %></td>
         <td><%= persona.direccion %></td>
         <td><%= persona.fecha_de_nacimiento %></td>
         <td><%= persona.correo %></td>
