@@ -68,4 +68,8 @@ class Persona < ActiveRecord::Base
 	validates :tipo_de_persona_id,
 		:presence => {
 			message: 'Debe seleccionar un Tipo de persona'}
+
+	def nombre_apellido
+    "#{nombre} #{apellido}"
+  end
 end

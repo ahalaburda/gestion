@@ -5,7 +5,7 @@
     <div class="col-md-4">
       <div class="field">
         <div class="form-inputs">
-        <%= f.association :banco, label_method: "#{:nombre}", prompt: "Seleccione un Banco" %>
+        <%= f.association :banco, label_method: :banco_sucursal, prompt: "Seleccione un Banco" %>
         </div>
       </div>
       <div class="field">
@@ -29,7 +29,7 @@
     <div class="col-md-4">
       <div class="field">
         <div class="form-inputs">
-          <%= f.association :persona, label_method: "#{:nombre} #{:apellido}", prompt: "Seleccione una persona" %>
+          <%= f.association :persona, label_method: :nombre_apellido, prompt: "Seleccione una persona" %>
         </div>
       </div>
       <div class="field">

@@ -14,6 +14,7 @@ class ChequesEntrantesController < ApplicationController
           :headers => [ "Banco", "Numero","Fecha", "Monto", "Concepto", "Persona", "Fecha de Creacion", "Fecha de actualizacion"] ),
           :filename => 'cheques_entrantes.xls' }
         format.pdf { render_cheque_entrante_list(@cheques_entrantes) }
+    end
   end
 
   # GET /cheques_entrantes/1
@@ -96,7 +97,7 @@ class ChequesEntrantesController < ApplicationController
                      fecha: task.fecha,
                      monto: task.monto,
                      concepto: task.concepto,
-                     persona: task.persona.nombre,
+                     persona: task.persona.nombre
           row.item(:banco).style(:color, 'red')
           row.item(:numero).style(:color, 'red')
           row.item(:fecha).style(:color, 'red')
