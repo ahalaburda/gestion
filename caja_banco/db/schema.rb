@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021221335) do
+ActiveRecord::Schema.define(version: 20151028214614) do
 
   create_table "bancos", force: true do |t|
     t.string   "nombre"
@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(version: 20151021221335) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "firmantes", force: true do |t|
+    t.integer  "cuenta_bancaria_id"
+    t.integer  "persona_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "firmantes", ["cuenta_bancaria_id"], name: "index_firmantes_on_cuenta_bancaria_id"
+  add_index "firmantes", ["persona_id"], name: "index_firmantes_on_persona_id"
 
   create_table "paises", force: true do |t|
     t.string   "descripcion"

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cuenta bancaria:</strong>
+  <%= @firmante.cuenta_bancaria %>
+</p>
+
+<p>
+  <strong>Persona:</strong>
+  <%= @firmante.persona %>
+</p>
+
+<%= link_to 'Edit', edit_firmante_path(@firmante) %> |
+<%= link_to 'Back', firmantes_path %>
