@@ -11,7 +11,13 @@
 # Note: client_side_validation requires the error to be encapsulated within
 # <label for="#{instance.send(:tag_id)}" class="message"></label>
 #
-require 'client_side_validations/simple_form' if defined?(::SimpleForm)
+# ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+#   unless html_tag =~ /^<label/
+#     %{<div class="field_with_errors">#{html_tag}<label for="#{instance.send(:tag_id)}" class="message">#{instance.error_message.first}</label></div>}.html_safe
+#   else
+#     %{<div class="field_with_errors">#{html_tag}</div>}.html_safe
+#   end
+# end
 
 ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
   unless html_tag =~ /^<label/
@@ -20,4 +26,3 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
     %{<div class="field_with_errors">#{html_tag}</div>}.html_safe
   end
 end
-

@@ -109,10 +109,12 @@
       }
       return valid;
     };
-    destroyInputName = element.attr('name').replace(/\[([^\]]*?)\]$/, '[_destroy]');
-    if ($("input[name='" + destroyInputName + "']").val() === "1") {
-      passElement();
-      return afterValidate();
+    if (element.attr('name').search(/\[([^\]]*?)\]$/) >= 0) {
+      destroyInputName = element.attr('name').replace(/\[([^\]]*?)\]$/, '[_destroy]');
+      if ($("input[name='" + destroyInputName + "']").val() === "1") {
+        passElement();
+        return afterValidate();
+      }
     }
     if (element.data('changed') === false) {
       return afterValidate();
@@ -250,9 +252,8 @@
           return $(this).attr('data-validate', true);
         }).on(event, binding);
       }
-      $input.filter(':checkbox').on('click.ClientSideValidations', function() {
-        $(this).isValid(form.ClientSideValidations.settings.validators);
-        return true;
+      $input.filter(':checkbox').on('change.ClientSideValidations', function() {
+        return $(this).isValid(form.ClientSideValidations.settings.validators);
       });
       return $input.filter('[id$=_confirmation]').each(function() {
         var confirmationElement, element, ref1, results;
@@ -283,6 +284,11 @@
       return jQuery.extend({}, ClientSideValidations.validators.local, ClientSideValidations.validators.remote);
     },
     local: {
+      absence: function(element, options) {
+        if (!/^\s*$/.test(element.val() || '')) {
+          return options.message;
+        }
+      },
       presence: function(element, options) {
         if (/^\s*$/.test(element.val() || '')) {
           return options.message;
@@ -311,10 +317,10 @@
           }
           return message;
         }
-        if (options["with"] && !options["with"].test(element.val())) {
+        if (options["with"] && !new RegExp(options["with"].source, options["with"].options).test(element.val())) {
           return options.message;
         }
-        if (options.without && options.without.test(element.val())) {
+        if (options.without && !new RegExp(options.without.source, options.without.options).test(element.val())) {
           return options.message;
         }
       },
@@ -604,7 +610,7 @@
         var errorFieldClass, form, inputErrorField, label, labelErrorField;
         form = $(element[0].form);
         errorFieldClass = jQuery(settings.input_tag).attr('class');
-        inputErrorField = element.closest("." + (errorFieldClass.replace(" ", ".")));
+        inputErrorField = element.closest("." + (errorFieldClass.replace(/\ /g, ".")));
         label = form.find("label[for='" + (element.attr('id')) + "']:not(.message)");
         labelErrorField = label.closest("." + errorFieldClass);
         if (inputErrorField[0]) {
@@ -640,7 +646,7 @@
     }
   };
 
-  $(function() {
+  $(document).bind((window.Turbolinks ? 'page:change' : 'ready'), function() {
     ClientSideValidations.disableValidators();
     return $(ClientSideValidations.selectors.forms).validate();
   });
