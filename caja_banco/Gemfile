@@ -45,19 +45,22 @@ gem 'bootstrap-sass', '~> 3.3.5'
 #gem 'sass-rails', '>= 3.2'
 
 #https://github.com/plataformatec/simple_form
-gem 'simple_form'
+# gem 'simple_form'
 # SOlUCION AL ERROR DE CLIENT SIDE VALIDATION http://stackoverflow.com/questions/21102324/the-rails-way-of-doing-client-side-validation-rails-4-with-simple-form
 
 #https://github.com/DavyJonesLocker/client_side_validations
 # gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
-gem 'client_side_validations', :git => 'https://github.com/DavyJonesLocker/client_side_validations.git'
+gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations', branch: "4-2-stable"
+# gem 'client_side_validations', :git => 'https://github.com/DavyJonesLocker/client_side_validations.git', branch: "4-2-stable"
 #https://github.com/DavyJonesLocker/client_side_validations-simple_form
 # gem 'client_side_validations-simple_form', github: 'DavyJonesLocker/client_side_validations-simple_form'
-gem 'client_side_validations-simple_form',:git => 'https://github.com/DavyJonesLocker/client_side_validations-simple_form.git'
-
+#gem 'client_side_validations-simple_form',:git => 'https://github.com/DavyJonesLocker/client_side_validations-simple_form.git'
 
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'ajax-datatables-rails'
+
 gem "kaminari"
 gem "to_xls"
 gem 'thinreports-rails'
+
+gem "select2-rails"
