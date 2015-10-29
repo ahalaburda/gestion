@@ -15,4 +15,7 @@ class Departamento < ActiveRecord::Base
 	validates :pais_id,
 		:presence => {
 			message: 'Debe seleccionar un pais'}
+	def nombre
+    "#{descripcion}"
+  end
 end

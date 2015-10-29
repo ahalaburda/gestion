@@ -28,5 +28,8 @@ class Ciudad < ActiveRecord::Base
 
 			validates :departamento_id,
 				:presence => {
-					message: 'Debe seleccionar un Departamento'}
+					message: 'Debe seleccionar un Departamento'}	
+	def nombre
+    "#{descripcion}"
+  end
 end

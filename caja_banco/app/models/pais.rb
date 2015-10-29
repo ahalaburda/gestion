@@ -14,4 +14,7 @@ class Pais < ActiveRecord::Base
 		:uniqueness => {
 			message: 'Este pais ya existe'
 		}
+	def nombre
+    "#{descripcion}"
+  end
 end
