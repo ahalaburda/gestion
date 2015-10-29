@@ -1,4 +1,4 @@
-<%= form_for(@banco) do |f| %>
+<%= form_for @banco , :validate => true do |f| %>
   <% if @banco.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@banco.errors.count, "error") %> prohibited this banco from being saved:</h2>
@@ -15,27 +15,54 @@
         <%= f.label :nombre %><br>
         <%= f.text_field :nombre , autofocus:true , :class => 'form-control' %>
       </div>
+      <div class="field">
+        <%= f.label :sucursal %><br>
+        <%= f.text_field :sucursal , class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :direccion %><br>
+        <%= f.text_field :direccion , autofocus:true , :class => 'form-control' %>
+      </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
-        <%= f.label :direccion %><br>
-        <%= f.text_field :direccion , :class => 'form-control' %>
+        <%= f.label :pais_id %>
+        </br>
+        <%= f.collection_select :pais_id, Pais.all, :id, :nombre, {prompt: "Seleccione un Pais"}, {class: "form-control"} %>
+      </div>
+      <div class="field">
+        <%= f.label :departamento_id %>
+        </br>
+        <%= f.collection_select :departamento_id, Departamento.all, :id, :nombre, {prompt: "Seleccione un departamento"}, {class: "form-control"} %>
+      </div>
+      <div class="field">
+        <%= f.label :ciudad_id %>
+        </br>
+        <%= f.collection_select :ciudad_id, Ciudad.all, :id, :nombre, {prompt: "Seleccione una Ciudad"}, {class: "form-control"} %>
       </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
         <%= f.label :telefono %><br>
-        <%= f.number_field :telefono , :class => 'form-control' %>
+        <%= f.text_field :telefono , autofocus:true , :class => 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :correo %><br>
+        <%= f.text_field :correo , autofocus:true , :class => 'form-control' %> 
       </div>
     </div>
   </div>
-  <br>
-  <div class="actions">
-    <% if controller.action_name == 'new' or controller.action_name == 'index' %>
-      <%= f.submit "Agregar", :class => 'btn btn-primary'%>
-      <%= button_tag "Reset", type: :reset%>
-        <% elsif controller.action_name == 'edit' %>
-          <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
-    <% end %>
+</br>
+  <div class="col-md-offset-10">
+    <div class="actions">
+     <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+      <% elsif controller.action_name == 'edit' %>
+        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+      <% end %>
+     
+    </div>
   </div>
 <% end %>
+<div class="separador"></div>
