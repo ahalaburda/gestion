@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  banco_id: 
+  numero_cuenta: 1
+  fecha_apertura: 2015-10-28
+  saldo: 9.99
+  estado_id: 
+
+two:
+  banco_id: 
+  numero_cuenta: 1
+  fecha_apertura: 2015-10-28
+  saldo: 9.99
+  estado_id: 

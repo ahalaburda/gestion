@@ -1,0 +1,48 @@
+<%= simple_form_for @cuenta_bancaria, validate: true do |f| %>
+  <%= f.error_notification %>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="field">
+        <div class="form-inputs">
+          <%= f.association :banco, label_method: :banco_sucursal, prompt: "Seleccione un Banco" %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="form-inputs">
+          <%= f.input :numero_cuenta %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="form-inputs">
+          <%= f.input :fecha_apertura %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="field">
+        <div class="form-inputs">
+          <%= f.input :saldo, :disabled => true, input_html: { value: '0' } %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="form-inputs">
+          <%= f.association :estado, label_method: :descripcion, prompt: "Seleccione un Estado" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </br>
+  <div class="col-md-offset-10">
+    <div class="actions">
+      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+        
+      <% elsif controller.action_name == 'edit' %>
+        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+      <% end %>
+      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+    </div>
+  </div>
+<% end %>

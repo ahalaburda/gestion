@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021221335) do
+ActiveRecord::Schema.define(version: 20151029203157) do
 
   create_table "bancos", force: true do |t|
     t.string   "nombre"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20151021221335) do
   add_index "bancos", ["ciudad_id"], name: "index_bancos_on_ciudad_id"
   add_index "bancos", ["departamento_id"], name: "index_bancos_on_departamento_id"
   add_index "bancos", ["pais_id"], name: "index_bancos_on_pais_id"
+
+  create_table "chequeras", force: true do |t|
+    t.integer  "cuenta_bancaria_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chequeras", ["cuenta_bancaria_id"], name: "index_chequeras_on_cuenta_bancaria_id"
 
   create_table "cheques_entrantes", force: true do |t|
     t.integer  "banco_id"
@@ -54,6 +62,19 @@ ActiveRecord::Schema.define(version: 20151021221335) do
 
   add_index "ciudades", ["departamento_id"], name: "index_ciudades_on_departamento_id"
 
+  create_table "cuentas_bancarias", force: true do |t|
+    t.integer  "banco_id"
+    t.integer  "numero_cuenta"
+    t.date     "fecha_apertura"
+    t.decimal  "saldo"
+    t.integer  "estado_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cuentas_bancarias", ["banco_id"], name: "index_cuentas_bancarias_on_banco_id"
+  add_index "cuentas_bancarias", ["estado_id"], name: "index_cuentas_bancarias_on_estado_id"
+
   create_table "departamentos", force: true do |t|
     t.string   "descripcion"
     t.integer  "pais_id"
@@ -68,6 +89,16 @@ ActiveRecord::Schema.define(version: 20151021221335) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "firmantes", force: true do |t|
+    t.integer  "cuenta_bancaria_id"
+    t.integer  "persona_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "firmantes", ["cuenta_bancaria_id"], name: "index_firmantes_on_cuenta_bancaria_id"
+  add_index "firmantes", ["persona_id"], name: "index_firmantes_on_persona_id"
 
   create_table "paises", force: true do |t|
     t.string   "descripcion"
