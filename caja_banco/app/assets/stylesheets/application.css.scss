@@ -86,8 +86,8 @@ td{
 }
 .btn-reset:hover, .btn-reset:focus, .btn-reset:active, .btn-reset.active, .open>.dropdown-toggle.btn-reset {
   color: #ffffff;
-  background-color: #A90505;
-  border-color: #A90505;
+  background-color: #777;
+  border-color: #777;
   transition: all .5s;
 }
 .btn-print {
@@ -352,4 +352,9 @@ td{
     border: none;
     background-color: none;
     background: none;
+}
+.separador{
+  margin-top: 10px;
+  border-bottom: solid 1px #77f;
+  margin-bottom: 10px;
 }
