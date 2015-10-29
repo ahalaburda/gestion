@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Banco:</strong>
+  <%= @cuenta_bancaria.banco %>
+</p>
+
+<p>
+  <strong>Numero cuenta:</strong>
+  <%= @cuenta_bancaria.numero_cuenta %>
+</p>
+
+<p>
+  <strong>Fecha apertura:</strong>
+  <%= @cuenta_bancaria.fecha_apertura %>
+</p>
+
+<p>
+  <strong>Saldo:</strong>
+  <%= @cuenta_bancaria.saldo %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @cuenta_bancaria.estado %>
+</p>
+
+<%= link_to 'Edit', edit_cuenta_bancaria_path(@cuenta_bancaria) %> |
+<%= link_to 'Back', cuentas_bancarias_path %>

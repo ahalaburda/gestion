@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :cuentas_bancarias
+
   resources :firmantes
 
   resources :cheques_entrantes
