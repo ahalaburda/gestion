@@ -6,6 +6,15 @@ class CuentasBancariasController < ApplicationController
   def index
     @cuentas_bancarias = CuentaBancaria.all
     @cuenta_bancaria = CuentaBancaria.new
+    respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @cuentas_bancarias }
+        format.xls { send_data @cuentas_bancarias.to_xls(
+          :columns => [:banco_id, :numero_cuenta, :saldo, :fecha_apertura, :estado_id, :created_at, :updated_at],
+          :headers => ["Banco", "Numero de cuenta", "Saldo", "Fecha de apertura", "Estado", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :filename => 'cuentas_bancarias.xls' }
+        format.pdf { render_cuenta_bancaria_list(@cuentas_bancarias) }
+    end
   end
 
   # GET /cuentas_bancarias/1
@@ -75,5 +84,28 @@ class CuentasBancariasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cuenta_bancaria_params
       params.require(:cuenta_bancaria).permit(:banco_id, :numero_cuenta, :fecha_apertura, :saldo, :estado_id)
+    end
+
+    def render_cuenta_bancaria_list(cuenta_bancaria)
+      report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'cuentas_bancarias', 'show.tlf')
+
+      cuenta_bancaria.each do |cuenta_bancaria|
+        report.list.add_row do |row|
+          row.values no: cuenta_bancaria.id, 
+                     banco: cuenta_bancaria.banco.banco_sucursal,
+                     numero_cuenta: cuenta_bancaria.numero_cuenta,
+                     saldo: cuenta_bancaria.departamento.saldo,
+                     fecha_apertura: cuenta_bancaria.fecha_apertura,
+                     estado: cuenta_bancaria.estado.descripcion
+          row.item(:banco).style(:color, 'red')
+          row.item(:numero_cuenta).style(:color, 'red')
+          row.item(:saldo).style(:color, 'red')
+          row.item(:fecha_apertura).style(:color, 'red')
+          row.item(:estado).style(:color, 'red')
+        end
+      end 
+      send_data report.generate, filename: 'cuentas_bancarias.pdf', 
+                                   type: 'application/pdf', 
+                                   disposition: 'attachment'
     end
 end

@@ -1,0 +1,4 @@
+report.start_new_page do |page|
+  page.item(:firmante).value(@firmantes.persona.nombre_apellido)
+  page.item(:numero_cuenta).value(@firmantes.cuenta_bancaria.numero_cuenta)
+end
