@@ -20,10 +20,14 @@
 //= require select2_locale_es
 //= require rails.validations
 // require client_side_select2
+//= require moment
+//= require moment/es
+//= require bootstrap-datetimepicker
 //= require autoNumeric
 //= require_tree .
 
 $(document).ready(function() {
+	$('.datepicker').datetimepicker();
 	$("#btn1").click(function(){
 		$('#form-toggle').fadeToggle();
 		if($('#gbtn1').hasClass('glyphicon glyphicon-plus')){

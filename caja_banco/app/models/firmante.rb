@@ -6,7 +6,7 @@ class Firmante < ActiveRecord::Base
 		:presence => {
 			message: 'Debe seleccionar una persona'}
 
-	validates :cuenta_bancaria_id,
+	validates :cuenta_bancaria,
 		:presence => {
-			message: 'Debe seleccionar una cuentabancaria'}
+			message: 'Debe seleccionar una cuenta bancaria'}
 end

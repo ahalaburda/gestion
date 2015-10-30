@@ -31,16 +31,16 @@
   <tbody>
     <% @cuentas_bancarias.each do |cuenta_bancaria| %>
       <tr>
-        <td><%= cuenta_bancaria.banco_sucursal %></td>
+        <td><%= cuenta_bancaria.banco.banco_sucursal %></td>
         <td><%= cuenta_bancaria.numero_cuenta %></td>
         <td><%= cuenta_bancaria.fecha_apertura %></td>
         <td><%= cuenta_bancaria.saldo %></td>
         <td><%= cuenta_bancaria.estado.descripcion %></td>
         <td>
-        <%= link_to edit_cuenta_corriente_path(cuenta_corriente), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+        <%= link_to edit_cuenta_bancaria_path(cuenta_bancaria), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
           <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
-        <%= link_to cuenta_corriente, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
+        <%= link_to cuenta_bancaria, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
           <span class="glyphicon glyphicon-remove"></span>
         <% end %>
         </td>
@@ -64,7 +64,7 @@
       <tbody>
     <% @cuentas_bancarias.each do |cuenta_bancaria| %>
       <tr>
-        <td><%= cuenta_bancaria.banco_sucursal %></td>
+        <td><%= cuenta_bancaria.banco.banco_sucursal %></td>
         <td><%= cuenta_bancaria.numero_cuenta %></td>
         <td><%= cuenta_bancaria.fecha_apertura %></td>
         <td><%= cuenta_bancaria.saldo %></td>
