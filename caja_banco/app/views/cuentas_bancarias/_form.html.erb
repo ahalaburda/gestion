@@ -1,34 +1,43 @@
-<%= simple_form_for @cuenta_bancaria, validate: true do |f| %>
-  <%= f.error_notification %>
+<%= form_for @cuenta_bancaria, validate: true do |f| %>
+  <% if @cuenta_bancaria.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cuenta_bancaria.errors.count, "error") %> prohibited this cuenta_bancaria from being saved:</h2>
+      <ul>
+      <% @cuenta_bancaria.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="row">
     <div class="col-md-4">
       <div class="field">
-        <div class="form-inputs">
-          <%= f.association :banco, label_method: :banco_sucursal, prompt: "Seleccione un Banco" %>
-        </div>
+        <%= f.label :banco_id %>
+        <%= f.collection_select :banco_id, Banco.all, :id, :banco_sucursal, {prompt: "Seleccione un Banco"}, {class: "form-control"} %>
       </div>
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :numero_cuenta %>
-        </div>
+        <%= f.label :numero_cuenta %>
+        <%= f.text_field :numero_cuenta , class: "form-control" %>
       </div>
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :fecha_apertura %>
-        </div>
-      </div>
+        <%= f.label :fecha_apertura %><br>  
+          <div class="input-group">           
+            <%= f.text_field :fecha_apertura, :class => 'datepicker form-control' %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+      </div> 
     </div>
     <div class="col-md-4">
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :saldo, :disabled => true, input_html: { value: '0' } %>
-        </div>
+        <%= f.label :saldo %>
+        <%= f.text_field :saldo , class: "form-control", value: '0', :disabled => true%>
       </div>
       <div class="field">
-        <div class="form-inputs">
-          <%= f.association :estado, label_method: :descripcion, prompt: "Seleccione un Estado" %>
-        </div>
+        <%= f.label :estado_id %>
+        <%= f.collection_select :estado_id, Estado.all, :id, :descripcion, {prompt: "Seleccione un estado"}, {class: "form-control"} %>
       </div>
     </div>
   </div>

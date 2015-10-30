@@ -3,65 +3,61 @@
 
   <div class="row">
     <div class="col-md-3">
-      <div class="field">
-        <div class="form-inputs">
-        <%= f.association :tipo_de_persona, label_method: "#{:descripcion}", prompt: "Seleccione un tipo de persona" %>
-        </div>
+    <div class="field">
+        <%= f.label :tipo_de_persona_id %>
+        <%= f.collection_select :tipo_de_persona_id, TipodePersona.all, :id, :descripcion, {prompt: "Seleccione un tipo de persona"}, {class: "form-control"} %>
       </div>
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :nombre %>
-        </div>
+        <%= f.label :nombre %>
+        <%= f.text_field :nombre , class: "form-control" %>
       </div>
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :apellido %>
-        </div>
+        <%= f.label :apellido %>
+        <%= f.text_field :apellido , class: "form-control" %>
       </div>
     </div>
     <div class="col-md-3">
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :telefono %>
-        </div>
+        <%= f.label :telefono %>
+        <%= f.text_field :telefono , class: "form-control" %>
       </div>
         <div class="field">
-        <div class="form-inputs">
-          <%= f.input :cedula_identidad %>
-        </div>
+        <%= f.label :cedula_identidad %>
+        <%= f.text_field :cedula_identidad , class: "form-control" %>
       </div>
         <div class="field">
-        <div class="form-inputs">
-          <%= f.input :direccion %>
-        </div>
+        <%= f.label :direccion %>
+        <%= f.text_field :direccion , class: "form-control" %>
       </div>
     </div>
     <div class="col-md-3">
       <div class="field">
-        <div class="form-inputs">
-          <%= f.association :pais, label_method: "#{:descripcion}", prompt: "Seleccione un pais" %>
-        </div>
+        <%= f.label :pais_id %>
+        <%= f.collection_select :pais_id, Pais.all, :id, :descripcion, {prompt: "Seleccione un pais"}, {class: "form-control"} %>
       </div>
       <div class="field">
-        <div class="form-inputs">
-          <%= f.association :departamento, label_method: "#{:descripcion}", prompt: "Seleccione un departamento" %>
-        </div>
-      </div>
+            <%= f.label :departamento_id %>
+            <%= f.collection_select :departamento_id, Departamento.all, :id, :nombre, {prompt: "Seleccione un departamento"}, {class: "form-control"} %>
+          </div>
     </div>
     <div class="col-md-3">
       <div class="field">
-        <div class="form-inputs">
-          <%= f.association :ciudad, label_method: "#{:descripcion}", prompt: "Seleccione una ciudad" %>
-       </div>
-      <div class="field">
-        <div class="form-inputs">
-         <%= f.input :fecha_de_nacimiento %>
-        </div>
+        <%= f.label :ciudad_id %>
+        </br>
+        <%= f.collection_select :ciudad_id, Ciudad.all, :id, :nombre, {prompt: "Seleccione una Ciudad"}, {class: "form-control"} %>
       </div>
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :correo %>
-        </div>
+        <%= f.label :fecha_de_nacimiento %><br>  
+          <div class="input-group">           
+            <%= f.text_field :fecha_de_nacimiento, :class => 'datepicker form-control' %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+      </div> 
+      <div class="field">
+        <%= f.label :correo %>
+        <%= f.text_field :correo , class: "form-control" %>
       </div>
     </div>
   </div>

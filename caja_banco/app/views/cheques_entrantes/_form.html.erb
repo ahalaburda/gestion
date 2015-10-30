@@ -1,43 +1,52 @@
-<%= simple_form_for @cheque_entrante, validate: true do |f| %>
-  <%= f.error_notification %>
+<%= form_for @cheque_entrante, validate: true do |f| %>
+  <% if @cheque_entrante.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cheque_entrante.errors.count, "error") %> prohibited this cheque_entrante from being saved:</h2>
+      <ul>
+      <% @cheque_entrante.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="row">
     <div class="col-md-4">
       <div class="field">
-        <div class="form-inputs">
-        <%= f.association :banco, label_method: :banco_sucursal, prompt: "Seleccione un Banco" %>
-        </div>
+        <%= f.label :banco_id %>
+        <%= f.collection_select :banco_id, Banco.all, :id, :banco_sucursal, {prompt: "Seleccione un Banco"}, {class: "form-control"} %>
       </div>
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :numero %>
-        </div>
+        <%= f.label :numero %>
+        <%= f.text_field :numero , class: "form-control" %>
       </div>
     </div>
     <div class="col-md-4">
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :monto %>
-        </div>
+        <%= f.label :monto %>
+        <%= f.text_field :monto , class: "form-control" %>
       </div>
-        <div class="field">
-        <div class="form-inputs">
-          <%= f.input :concepto %>
-        </div>
+      <div class="field">
+        <%= f.label :concepto %>
+        <%= f.text_field :concepto , class: "form-control" %>
       </div>
     </div>
     <div class="col-md-4">
       <div class="field">
-        <div class="form-inputs">
-          <%= f.association :persona, label_method: :nombre_apellido, prompt: "Seleccione una persona" %>
-        </div>
+        <%= f.label :persona_id %>
+        <%= f.collection_select :persona_id, Persona.all, :id, :nombre_apellido, {prompt: "Seleccione una persona"}, {class: "form-control"} %>
       </div>
       <div class="field">
-        <div class="form-inputs">
-          <%= f.input :fecha %>
-        </div>
-      </div>
-    </div>
+        <%= f.label :fecha %><br>  
+          <div class="input-group">           
+            <%= f.text_field :fecha, :class => 'datepicker form-control' %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+      </div> 
+    </div>     
+  </div>
 
 </br>
   <div class="col-md-offset-10">
