@@ -12,10 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+// require turbolinks
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require bootstrap-sprockets
-// require turbolinks
+//= require select2
+//= require select2_locale_es
+//= require rails.validations
+// require client_side_select2
 //= require autoNumeric
 //= require_tree .
 
@@ -67,25 +71,27 @@ $(document).ready(function() {
 	});
 
 	$('input[data-role=money]').autoNumeric('init');
-});
 
+	$( "select#select2" ).select2({
+
+	});
+});
 
 function printpage() {
 	//Get the HTML of div
 	var divElements = document.getElementById("tabla_print").innerHTML;
 	//Get the HTML of whole page
 	var oldPage = document.body.innerHTML;
-
 	//Reset the page's HTML with div's HTML only
 	document.body.innerHTML = 
 	  "<html><head><title></title></head><body>" + 
 	  divElements + "</body>";
-
 	//Print Page
 	window.print();
-
 	//Restore orignal HTML
 	document.body.innerHTML = oldPage;
-
-          
 }
+//Solucion de error de visualizacion de mensaje de validacion
+ClientSideValidations.selectors.validate_inputs += ', .select2-container:visible + :enabled[data-validate]';
+ClientSideValidations.selectors.inputs += ', .select2-container:visible + :enabled[data-validate]';
+ClientSideValidations.formBuilders['NestedForm::Builder'] = ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'];

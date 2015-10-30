@@ -7,6 +7,7 @@ class BancosController < ApplicationController
     @banco = Banco.new
     @bancos = Banco.all
     @pais = Pais.new
+    @paises = Pais.all
     @departamento = Departamento.new
     @ciudad = Ciudad.new
     respond_to do |format|
