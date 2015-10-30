@@ -1,11 +1,34 @@
-<%= simple_form_for @pais , validate: true do |f| %>
-  <%= f.error_notification %>
+<%= form_for @pais , validate: true do |f| %>
+  <% if @pais.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pais.errors.count, "error") %> prohibited this pais from being saved:</h2>
 
-  <div class="form-inputs">
-    <%= f.input :descripcion %>
-  </div>
+      <ul>
+      <% @pais.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.label :descripcion %>
+        <%= f.text_field :descripcion , autofocus:true , :class => 'form-control' %>
+      </div>
+    </div>
   </div>
+</br>
+  <div class="col-md-offset-10">
+      <div class="actions">
+        <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+          <%= f.submit "Agregar", class: 'btn btn-primary'%>
+          
+        <% elsif controller.action_name == 'edit' %>
+          <%= f.submit "Actualizar", class: 'btn btn-primary'%>
+        <% end %>
+        <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar', class: 'btn btn-reset'%>
+      </div>
+    </div>
 <% end %>

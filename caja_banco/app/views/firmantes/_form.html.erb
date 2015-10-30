@@ -1,20 +1,27 @@
-<%= simple_form_for @firmante, validate: true do |f| %>
-  <%= f.error_notification %>
+<%= form_for @firmante, validate: true do |f| %>
+  <% if @firmante.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@firmante.errors.count, "error") %> prohibited this firmante from being saved:</h2>
+      <ul>
+      <% @firmante.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 	<div class="row">
 		<div class="col-md-4">
 			<div class="field">
-				<div class="form-inputs">
-					<%= f.association :cuenta_bancaria, label_method: :numero_cuenta, prompt: "Seleciona una Cuenta Bancaria"%>
-				</div>
-			</div>
-		</div>
+		        <%= f.label :cuenta_bancaria %>
+		        <%= f.collection_select :cuenta_bancaria, CuentaBancaria.all, :id, :numero_cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
+      		</div>
+    	</div>
 		<div class="col-md-4">
 			<div class="field">
-				<div class="form-inputs">
-					<%= f.association :persona, label_method: :nombre_apellido, prompt: "Seleciona una Persona"%>
-				</div>
-			</div>
+        		<%= f.label :persona_id %>
+        		<%= f.collection_select :persona_id, Persona.all, :id, :nombre_apellido, {prompt: "Seleccione una persona"}, {class: "form-control"} %>
+      		</div>
 		</div>
 	</div>
 	</br>

@@ -17,10 +17,8 @@ class Ciudad < ActiveRecord::Base
 				message: 'El nombre que desea usar ya a sido utilizado'}
 
 			validates :codigo_postal,
-				:presence => {
-					message: 'Este campo es requerido'},
 				:length => { 
-					:maximum => 20,
+					:maximum => 8,
 					:too_long => 'debe tener como maximo %{count} caracteres'},
 				:format => {
 					with: /\A[0-9]+\z/,

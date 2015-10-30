@@ -1,26 +1,32 @@
-<%= simple_form_for @ciudad, validate: true do |f| %>
-	<%= f.error_notification %>
+<%= form_for @ciudad, validate: true do |f| %>
+	<% if @ciudad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ciudad.errors.count, "error") %> prohibited this ciudad from being saved:</h2>
+      <ul>
+      <% @ciudad.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="field">
-				<div class="form-inputs">
-					<%= f.input :descripcion, autofocus: true %>
-				</div>
-			</div>
+		        <%= f.label :descripcion %>
+		        <%= f.text_field :descripcion , autofocus:true , :class => 'form-control' %>
+	      	</div>
 		</div>
 		<div class="col-md-4">
 			<div class="field">
-				<div class="form-inputs">
-					<%= f.input :codigo_postal %>
-				</div>
-			</div>
+		        <%= f.label :codigo_postal %>
+		        <%= f.text_field :codigo_postal , :class => 'form-control' %>
+	      	</div>
 		</div>
 		<div class="col-md-4">
 			<div class="field">
-				<div class="form-inputs">
-					<%= f.association :departamento , label_method: "#{:descripcion}", prompt: "Seleciona un Departamento"%>
-				</div>
-			</div>
+		        <%= f.label :departamento_id %>
+		        <%= f.collection_select :departamento_id, Departamento.all, :id, :nombre, {prompt: "Seleccione un departamento"}, {class: "form-control"} %>
+	      	</div>
 		</div>
 	</div>
 	</br>
