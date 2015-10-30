@@ -73,7 +73,7 @@ $(document).ready(function() {
 	$('input[data-role=money]').autoNumeric('init');
 
 	$( "select#select2" ).select2({
-
+		    placeholder: "Por favor selecciona "
 	});
 });
 

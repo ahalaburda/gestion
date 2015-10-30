@@ -12,35 +12,35 @@
   <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
-        <%= f.label :nombre %>
-        <%= f.text_field :nombre , autofocus:true , :class => 'form-control' %>
+        <%= f.label :nombre , class: 'required'  %>
+        <%= f.text_field :nombre , autofocus:true , class: 'form-control' %>
       </div>
       <div class="field">
-        <%= f.label :sucursal %>
+        <%= f.label :sucursal , class: 'required' %>
         <%= f.text_field :sucursal , class: "form-control" %>
       </div>
       <div class="field">
-        <%= f.label :direccion %>
+        <%= f.label :direccion , class: 'required' %>
         <%= f.text_field :direccion , autofocus:true , :class => 'form-control' %>
       </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
-        <%= f.label :pais_id %>
+        <%= f.label :pais_id, class: "required" %>
 
       <%= f.select :pais_id, 
           options_from_collection_for_select(Pais.all, :id, :nombre, @banco.pais_id),
-          {prompt: true}, id: "select2", class: "form-control"%>
+          {prompt: true}, id: "select2", include_blank: true, class: "form-control"%>
 
       </div>
       <div class="field">
-        <%= f.label :departamento_id %>
+        <%= f.label :departamento_id , class: 'required' %>
         <%= f.select :departamento_id, 
                 options_from_collection_for_select(Departamento.all, :id, :nombre, @banco.departamento_id),
                 {prompt: true}, id: "select2", class: "form-control"%>
       </div>
       <div class="field">
-        <%= f.label :ciudad_id %>
+        <%= f.label :ciudad_id , class: 'required'%>
         <%= f.select :ciudad_id, 
           options_from_collection_for_select(Ciudad.all, :id, :nombre, @banco.ciudad_id),
           {prompt: true}, id: "select2", class: "form-control"%>
@@ -48,11 +48,11 @@
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
-        <%= f.label :telefono %>
+        <%= f.label :telefono , class: 'required'%>
         <%= f.text_field :telefono , autofocus:true , :class => 'form-control' %>
       </div>
       <div class="field">
-        <%= f.label :correo %>
+        <%= f.label :correo , class: 'required'%>
         <%= f.text_field :correo , autofocus:true , :class => 'form-control' %> 
       </div>
     </div>
