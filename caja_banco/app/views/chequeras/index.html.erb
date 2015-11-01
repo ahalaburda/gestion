@@ -20,6 +20,10 @@
   <thead>
     <tr>
       <th>Cuenta bancaria</th>
+      <th>Numero de cheque inicial</th>
+      <th>Numero de Cheque final</th>
+      <th>Estado</th>
+      <th>Acciones</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,8 +32,9 @@
     <% @chequeras.each do |chequera| %>
       <tr>
         <td><%= chequera.cuenta_bancaria.numero_cuenta %></td>
-        <td><%= link_to 'Show', chequera %></td>
-        <td><%= link_to 'Edit', edit_chequera_path(chequera) %></td>
+        <td><%= chequera.numero_cheque_inicial %></td>
+        <td><%= chequera.numero_cheque_final %></td>
+        <td><%= chequera.estado.descripcion %></td>
         <td>
         <%= link_to edit_chequera_path(chequera), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
           <span class="glyphicon glyphicon-pencil"></span>
@@ -49,12 +54,18 @@
       <thead>
     <tr>
       <th>Cuenta bancaria</th>
+      <th>Numero de cheque inicial</th>
+      <th>Numero de Cheque final</th>
+      <th>Estado</th>
     </tr>
   </thead>
       <tbody>
         <% @chequeras.each do |chequera| %>
           <tr>
             <td><%= chequera.cuenta_bancaria.numero_cuenta %></td>
+            <td><%= chequera.numero_cheque_inicial %></td>
+            <td><%= chequera.numero_cheque_final %></td>
+            <td><%= chequera.estado.descripcion %></td>
         <% end %>
       </tbody>
     </table>

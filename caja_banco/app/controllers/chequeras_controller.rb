@@ -10,8 +10,8 @@ class ChequerasController < ApplicationController
         format.html # index.html.erb
         format.json { render json: @chequeras }
         format.xls { send_data @chequeras.to_xls(
-          :columns => [:cuenta_bancaria_id, :created_at, :updated_at],
-          :headers => ["Cuenta Bancaria", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :columns => [:cuenta_bancaria_id, :estado_id, :numero_cheque_inicial, :numero_cheque_final, :created_at, :updated_at],
+          :headers => ["Cuenta Bancaria","Estado", "Numero de Cheque Inicial", "Numero de Cheque Final", "Fecha de Creacion", "Fecha de actualizacion"] ),
           :filename => 'chequeras.xls' }
         format.pdf { render_chequera_list(@chequeras) }
     end
@@ -79,7 +79,7 @@ class ChequerasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chequera_params
-      params.require(:chequera).permit(:cuenta_bancaria_id)
+      params.require(:chequera).permit(:cuenta_bancaria_id, :estado_id, :numero_cheque_inicial, :numero_cheque_final)
     end
 
     def render_chequera_list(chequera)
@@ -88,8 +88,14 @@ class ChequerasController < ApplicationController
       chequera.each do |chequera|
         report.list.add_row do |row|
           row.values no: chequera.id, 
-                     cuenta_bancaria: chequera.cuenta_bancaria.numero_cuenta
+                     cuenta_bancaria: chequera.cuenta_bancaria.numero_cuenta,
+                     estado: chequera.estado.descripcion,
+                     numero_cheque_inicial: chequera.numero_cheque_inicial,
+                     numero_cheque_final: chequera.numero_cheque_final
           row.item(:cuenta_bancaria).style(:color, 'red')
+          row.item(:estado).style(:color, 'red')
+          row.item(:numero_cheque_inicial).style(:color, 'red')
+          row.item(:numero_cheque_final).style(:color, 'red')
         end
       end 
       send_data report.generate, filename: 'chequeras.pdf', 

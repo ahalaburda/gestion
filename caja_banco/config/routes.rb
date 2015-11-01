@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :cheques_propios
+
   resources :chequeras
 
   resources :cuentas_bancarias

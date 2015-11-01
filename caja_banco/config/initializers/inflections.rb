@@ -15,6 +15,7 @@
 	inflect.irregular 'ciudad', 'ciudades'
 	inflect.irregular 'cheque_entrante', 'cheques_entrantes'
 	inflect.irregular 'cuenta_bancaria', 'cuentas_bancarias'
+	inflect.irregular 'cheque_propio', 'cheques_propios'
 # These inflection rules are supported but not enabled by default:
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
