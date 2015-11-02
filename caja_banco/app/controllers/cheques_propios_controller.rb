@@ -6,6 +6,15 @@ class ChequesPropiosController < ApplicationController
   def index
     @cheques_propios = ChequePropio.all
     @cheque_propio = ChequePropio.new
+    respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @cheques_propios }
+        format.xls { send_data @cheques_propios.to_xls(
+          :columns => [ :numero_cheque, :monto, :concepto, :fecha, :created_at, :updated_at],
+          :headers => [ "Numero de Cheque", "Monto","Concepto", "Fecha", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :filename => 'cheques_propios.xls' }
+        format.pdf { render_cheque_propio_list(@cheques_propios) }
+    end
   end
 
   # GET /cheques_propios/1
@@ -75,5 +84,29 @@ class ChequesPropiosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cheque_propio_params
       params.require(:cheque_propio).permit(:chequera_id, :numero_cheque, :fecha, :concepto, :monto)
+    end
+
+    def render_cheque_propio_list(cheque_propio)
+      report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'cheques_propios', 'show.tlf')
+
+      cheque_propio.each do |task|
+        report.list.add_row do |row|
+          row.values no: task.id,
+                     chequera: task.chequera_id,
+                     numero_cheque: task.numero_cheque,
+                     fecha: task.fecha,
+                     concepto: task.concepto,
+                     monto: task.monto
+          row.item(:chequera).style(:color, 'red')
+          row.item(:numero_cheque).style(:color, 'red')
+          row.item(:fecha).style(:color, 'red')
+          row.item(:concepto).style(:color, 'red')
+          row.item(:monto).style(:color, 'red')
+        end
+      end
+
+      send_data report.generate, filename: 'cheques_propios.pdf',
+                                 type: 'application/pdf',
+                                 disposition: 'attachment'
     end
 end
