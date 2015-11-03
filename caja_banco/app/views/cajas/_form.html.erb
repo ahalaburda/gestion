@@ -12,22 +12,22 @@
   <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
      <div class="field">
-        <%= f.label :persona , class: 'required' %>
-        <%= f.select :persona, 
-          options_from_collection_for_select(Persona.all, :id, :nombre, @caja.persona),
+        <%= f.label :persona_id , class: 'required' %>
+        <%= f.select :persona_id,
+          options_from_collection_for_select(Persona.all, :id, :nombre_apellido, @caja.persona),
           {prompt: true}, id: "select2", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
         <%= f.label :estado_id , class: 'required' %>
-        <%= f.select :estado_id, 
+        <%= f.select :estado_id,
           options_from_collection_for_select(Estado.all, :id, :descripcion, @caja.estado_id),
           {prompt: true}, id: "select2", include_blank: true, class: "form-control"%>
       </div>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <div class="field">
-        <%= f.label :apertura, class: 'required' %><br>  
-          <div class="input-group">           
+        <%= f.label :apertura, class: 'required' %><br>
+          <div class="input-group">
             <%= f.text_field :apertura, :class => 'datepicker form-control' %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
@@ -35,8 +35,8 @@
           </div>
       </div>
       <div class="field">
-        <%= f.label :cierre, class: 'required' %><br>  
-          <div class="input-group">           
+        <%= f.label :cierre, class: 'required' %><br>
+          <div class="input-group">
             <%= f.text_field :cierre, :class => 'datepicker form-control' %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
