@@ -10,10 +10,10 @@ class CajasController < ApplicationController
         format.html # index.html.erb
         format.json { render json: @cajas }
         format.xls { send_data @cajas.to_xls(
-          :columns => [  :created_at, :updated_at],
-          :headers => [  "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :columns => [ :apertura, :cierre, :saldo_inicial_efectivo, :saldo_inicial_cheque, :saldo_final_efectivo, :saldo_final_cheque, :estado_id, :persona_id, :created_at, :updated_at],
+          :headers => [  "Apertura", "Cierre", "Saldo Inicial Efectivo", "Saldo Inicial Cheque", "Saldo Final Efectivo", "Saldo Final Cheque", "Estado", "Cajero", "Fecha de Creacion", "Fecha de actualizacion"] ),
           :filename => 'cajas.xls' }
-        format.pdf { render_banco_list(@cajas) }
+        format.pdf { render_caja_list(@cajas) }
     end
   end
 
@@ -42,7 +42,7 @@ class CajasController < ApplicationController
 
     respond_to do |format|
       if @caja.save
-        format.html { redirect_to @caja, notice: 'Caja was successfully created.' }
+        format.html { redirect_to cajas_url, notice: 'Caja was successfully created.' }
         format.json { render :show, status: :created, location: @caja }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class CajasController < ApplicationController
   def update
     respond_to do |format|
       if @caja.update(caja_params)
-        format.html { redirect_to @caja, notice: 'Caja was successfully updated.' }
+        format.html { redirect_to cajas_url, notice: 'Caja was successfully updated.' }
         format.json { render :show, status: :ok, location: @caja }
       else
         format.html { render :edit }
@@ -84,5 +84,35 @@ class CajasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def caja_params
       params.require(:caja).permit(:apertura, :cierre, :saldo_inicial_efectivo, :saldo_inicial_cheque, :saldo_final_efectivo, :saldo_final_cheque, :estado_id, :persona_id)
+    end
+
+    def render_caja_list(caja)
+      report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'cajas', 'show.tlf')
+
+      caja.each do |task|
+        report.list.add_row do |row|
+          row.values no: task.id,
+                     apertura: task.apertura,
+                     cierre: task.cierre,
+                     saldo_inicial_efectivo: task.saldo_inicial_efectivo,
+                     saldo_inicial_cheque: task.saldo_inicial_cheque,
+                     saldo_final_efectivo: task.saldo_final_efectivo,
+                     saldo_final_cheque: task.saldo_final_cheque,
+                     estado: task.estado.descripcion,
+                     cajero: task.persona.nombre_apellido
+          row.item(:apertura).style(:color, 'red')
+          row.item(:cierre).style(:color, 'red')
+          row.item(:saldo_inicial_efectivo).style(:color, 'red')
+          row.item(:saldo_inicial_cheque).style(:color, 'red')
+          row.item(:saldo_final_efectivo).style(:color, 'red')
+          row.item(:saldo_final_cheque).style(:color, 'red')
+          row.item(:estado).style(:color, 'red')
+          row.item(:cajero).style(:color, 'red')
+        end
+      end
+
+      send_data report.generate, filename: 'cajas.pdf',
+                                 type: 'application/pdf',
+                                 disposition: 'attachment'
     end
 end
