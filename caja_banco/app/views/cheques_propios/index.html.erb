@@ -30,16 +30,16 @@
   <tbody>
     <% @cheques_propios.each do |cheque_propio| %>
       <tr>
-        <td><%= cheque_propio.chequeras %></td>
+        <td><%= cheque_propio.chequera_id %></td>
         <td><%= cheque_propio.numero_cheque %></td>
         <td><%= cheque_propio.fecha %></td>
         <td><%= cheque_propio.concepto %></td>
         <td><%= cheque_propio.monto %></td>
         <td>
-        <%= link_to edit_cheques_propios_path(cheques_propios), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+        <%= link_to edit_cheque_propio_path(cheque_propio), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
           <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
-        <%= link_to cheques_propios, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
+        <%= link_to cheque_propio, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
           <span class="glyphicon glyphicon-remove"></span>
         <% end %>
         </td>
@@ -64,7 +64,7 @@
       <tbody>
         <% @cheques_propios.each do |cheque_propio| %>
           <tr>
-            <td><%= cheque_propio.chequeras %></td>
+            <td><%= cheque_propio.chequera_id %></td>
             <td><%= cheque_propio.numero_cheque %></td>
             <td><%= cheque_propio.fecha %></td>
             <td><%= cheque_propio.concepto %></td>

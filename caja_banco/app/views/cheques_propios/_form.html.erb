@@ -13,6 +13,10 @@
   <div class="row">
     <div class="col-md-4">
       <div class="field">
+        <%= f.label :chequera_id %>
+        <%= f.collection_select :chequera_id, Chequera.all, :id, :id, {prompt: "Seleccione una Chequera"}, {class: "form-control"} %>
+      </div>
+      <div class="field">
         <%= f.label :numero_cheque %>
         <%= f.text_field :numero_cheque , class: "form-control" %>
       </div>
@@ -27,18 +31,18 @@
         <%= f.text_field :monto , class: "form-control" %>
       </div>
       <div class="field">
-        <%= f.label :fecha %><br>  
-          <div class="input-group">           
+        <%= f.label :fecha %><br>
+          <div class="input-group">
             <%= f.text_field :fecha, :class => 'datepicker form-control' %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
           </div>
-      </div> 
+      </div>
     </div>
     <div class="col-md-4">
-      
-    </div>     
+
+    </div>
   </div>
 
 </br>
@@ -46,7 +50,7 @@
     <div class="actions">
       <% if controller.action_name == 'new' or controller.action_name == 'index' %>
         <%= f.submit "Agregar", :class => 'btn btn-primary'%>
-        
+
       <% elsif controller.action_name == 'edit' %>
         <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
       <% end %>
