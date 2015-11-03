@@ -27,11 +27,9 @@
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
         <%= f.label :pais_id, class: "required" %>
-
       <%= f.select :pais_id, 
           options_from_collection_for_select(Pais.all, :id, :nombre, @banco.pais_id),
           {prompt: true}, id: "select2", include_blank: true, class: "form-control"%>
-
       </div>
       <div class="field">
         <%= f.label :departamento_id , class: 'required' %>
@@ -66,7 +64,6 @@
       <% elsif controller.action_name == 'edit' %>
         <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
       <% end %>
-     
     </div>
   </div>
 <% end %>

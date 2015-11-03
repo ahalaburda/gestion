@@ -27,7 +27,9 @@
 //= require_tree .
 
 $(document).ready(function() {
-	$('.datepicker').datetimepicker();
+	$('.datepicker').datetimepicker({
+		locale:'es'
+	});
 	$("#btn1").click(function(){
 		$('#form-toggle').fadeToggle();
 		if($('#gbtn1').hasClass('glyphicon glyphicon-plus')){
@@ -95,7 +97,28 @@ function printpage() {
 	//Restore orignal HTML
 	document.body.innerHTML = oldPage;
 }
+
 //Solucion de error de visualizacion de mensaje de validacion
 ClientSideValidations.selectors.validate_inputs += ', .select2-container:visible + :enabled[data-validate]';
 ClientSideValidations.selectors.inputs += ', .select2-container:visible + :enabled[data-validate]';
 ClientSideValidations.formBuilders['NestedForm::Builder'] = ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'];
+
+// $(document).ready(function() {
+// 	$('select#select2').select2({
+// 		placeholder: "Por favor selecciona ",
+// 		ajax: {
+// 			url: "/people.json",
+// 			dataType: "json",
+// 			results: function(data, page) {
+// 				return {
+// 					results: $.map(
+// 						data,
+// 						function(person, i) {
+// 							return { id: person.id, text: person.name }
+// 						}
+// 					)
+// 				}
+// 			}
+// 		}
+// 	});
+// });
