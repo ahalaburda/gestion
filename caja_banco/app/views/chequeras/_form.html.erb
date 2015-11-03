@@ -12,9 +12,23 @@
 
  <div class="row">
     <div class="col-md-4">
-    <div class="field">
-        <%= f.label :cuenta_bancaria %>
-        <%= f.collection_select :cuenta_bancaria, CuentaBancaria.all, :id, :numero_cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
+      <div class="field">
+          <%= f.label :cuenta_bancaria_id %>
+          <%= f.collection_select :cuenta_bancaria_id, CuentaBancaria.all, :id, :numero_cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
+      </div>
+      <div class="field">
+          <%= f.label :estado_id %>
+          <%= f.collection_select :estado_id, Estado.all, :id, :descripcion, {prompt: "Seleccione un estado"}, {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="field">
+          <%= f.label :numero_cheque_inicial %>
+           <%= f.text_field :numero_cheque_inicial , class: "form-control" %>
+      </div>
+      <div class="field">
+          <%= f.label :numero_cheque_final %>
+           <%= f.text_field :numero_cheque_final , class: "form-control" %>
       </div>
     </div>
  </div>

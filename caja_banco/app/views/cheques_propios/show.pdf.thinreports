@@ -1,0 +1,7 @@
+report.start_new_page do |page|
+  page.item(:chequera).value(@cheques_propios.chequera_id)
+  page.item(:numero_cheque).value(@cheques_propios.numero_cheque)
+  page.item(:fecha).value(@cheques_propios.fecha)
+  page.item(:monto).value(@cheques_propios.monto)
+  page.item(:concepto).value(@cheques_propios.concepto)
+end
