@@ -1,0 +1,7 @@
+report.start_new_page do |page|
+  page.item(:tabla_modificada).value(@auditorias.tabla_modificada)
+  page.item(:operacion).value(@auditorias.operacion)
+  page.item(:valor_anterior).value(@auditorias.valor_anterior)
+  page.item(:valor_nuevo).value(@auditorias.valor_nuevo)
+  page.item(:nombre_usuario).value(@auditorias.nombre_usuario)
+end

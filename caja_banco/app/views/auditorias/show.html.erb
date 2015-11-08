@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre tabla:</strong>
+  <%= @auditoria.nombre_tabla %>
+</p>
+
+<p>
+  <strong>Operacion:</strong>
+  <%= @auditoria.operacion %>
+</p>
+
+<p>
+  <strong>Valor anterior:</strong>
+  <%= @auditoria.valor_anterior %>
+</p>
+
+<p>
+  <strong>Valor nuevo:</strong>
+  <%= @auditoria.valor_nuevo %>
+</p>
+
+<p>
+  <strong>Nombre usuario:</strong>
+  <%= @auditoria.nombre_usuario %>
+</p>
+
+<%= link_to 'Edit', edit_auditoria_path(@auditoria) %> |
+<%= link_to 'Back', auditorias_path %>

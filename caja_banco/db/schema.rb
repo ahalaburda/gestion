@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101205329) do
+ActiveRecord::Schema.define(version: 20151108170158) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "auditorias", force: true do |t|
+    t.string   "nombre_tabla"
+    t.string   "operacion"
+    t.string   "valor_anterior"
+    t.string   "valor_nuevo"
+    t.string   "nombre_usuario"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bancos", force: true do |t|
     t.string   "nombre"
@@ -26,9 +39,9 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.string   "correo"
   end
 
-  add_index "bancos", ["ciudad_id"], name: "index_bancos_on_ciudad_id"
-  add_index "bancos", ["departamento_id"], name: "index_bancos_on_departamento_id"
-  add_index "bancos", ["pais_id"], name: "index_bancos_on_pais_id"
+  add_index "bancos", ["ciudad_id"], name: "index_bancos_on_ciudad_id", using: :btree
+  add_index "bancos", ["departamento_id"], name: "index_bancos_on_departamento_id", using: :btree
+  add_index "bancos", ["pais_id"], name: "index_bancos_on_pais_id", using: :btree
 
   create_table "cajas", force: true do |t|
     t.date     "apertura"
@@ -43,8 +56,8 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.datetime "updated_at"
   end
 
-  add_index "cajas", ["estado_id"], name: "index_cajas_on_estado_id"
-  add_index "cajas", ["persona_id"], name: "index_cajas_on_persona_id"
+  add_index "cajas", ["estado_id"], name: "index_cajas_on_estado_id", using: :btree
+  add_index "cajas", ["persona_id"], name: "index_cajas_on_persona_id", using: :btree
 
   create_table "chequeras", force: true do |t|
     t.integer  "cuenta_bancaria_id"
@@ -55,7 +68,7 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.integer  "numero_cheque_final"
   end
 
-  add_index "chequeras", ["cuenta_bancaria_id"], name: "index_chequeras_on_cuenta_bancaria_id"
+  add_index "chequeras", ["cuenta_bancaria_id"], name: "index_chequeras_on_cuenta_bancaria_id", using: :btree
 
   create_table "cheques_entrantes", force: true do |t|
     t.integer  "banco_id"
@@ -68,8 +81,8 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.datetime "updated_at"
   end
 
-  add_index "cheques_entrantes", ["banco_id"], name: "index_cheques_entrantes_on_banco_id"
-  add_index "cheques_entrantes", ["persona_id"], name: "index_cheques_entrantes_on_persona_id"
+  add_index "cheques_entrantes", ["banco_id"], name: "index_cheques_entrantes_on_banco_id", using: :btree
+  add_index "cheques_entrantes", ["persona_id"], name: "index_cheques_entrantes_on_persona_id", using: :btree
 
   create_table "cheques_propios", force: true do |t|
     t.integer  "chequera_id"
@@ -81,7 +94,7 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.datetime "updated_at"
   end
 
-  add_index "cheques_propios", ["chequera_id"], name: "index_cheques_propios_on_chequera_id"
+  add_index "cheques_propios", ["chequera_id"], name: "index_cheques_propios_on_chequera_id", using: :btree
 
   create_table "ciudades", force: true do |t|
     t.string   "descripcion"
@@ -91,7 +104,7 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.datetime "updated_at"
   end
 
-  add_index "ciudades", ["departamento_id"], name: "index_ciudades_on_departamento_id"
+  add_index "ciudades", ["departamento_id"], name: "index_ciudades_on_departamento_id", using: :btree
 
   create_table "cuentas_bancarias", force: true do |t|
     t.integer  "banco_id"
@@ -103,8 +116,8 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.datetime "updated_at"
   end
 
-  add_index "cuentas_bancarias", ["banco_id"], name: "index_cuentas_bancarias_on_banco_id"
-  add_index "cuentas_bancarias", ["estado_id"], name: "index_cuentas_bancarias_on_estado_id"
+  add_index "cuentas_bancarias", ["banco_id"], name: "index_cuentas_bancarias_on_banco_id", using: :btree
+  add_index "cuentas_bancarias", ["estado_id"], name: "index_cuentas_bancarias_on_estado_id", using: :btree
 
   create_table "departamentos", force: true do |t|
     t.string   "descripcion"
@@ -113,7 +126,7 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.datetime "updated_at"
   end
 
-  add_index "departamentos", ["pais_id"], name: "index_departamentos_on_pais_id"
+  add_index "departamentos", ["pais_id"], name: "index_departamentos_on_pais_id", using: :btree
 
   create_table "estados", force: true do |t|
     t.string   "descripcion"
@@ -128,8 +141,8 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.datetime "updated_at"
   end
 
-  add_index "firmantes", ["cuenta_bancaria_id"], name: "index_firmantes_on_cuenta_bancaria_id"
-  add_index "firmantes", ["persona_id"], name: "index_firmantes_on_persona_id"
+  add_index "firmantes", ["cuenta_bancaria_id"], name: "index_firmantes_on_cuenta_bancaria_id", using: :btree
+  add_index "firmantes", ["persona_id"], name: "index_firmantes_on_persona_id", using: :btree
 
   create_table "paises", force: true do |t|
     t.string   "descripcion"
@@ -153,10 +166,10 @@ ActiveRecord::Schema.define(version: 20151101205329) do
     t.datetime "updated_at"
   end
 
-  add_index "personas", ["ciudad_id"], name: "index_personas_on_ciudad_id"
-  add_index "personas", ["departamento_id"], name: "index_personas_on_departamento_id"
-  add_index "personas", ["pais_id"], name: "index_personas_on_pais_id"
-  add_index "personas", ["tipo_de_persona_id"], name: "index_personas_on_tipo_de_persona_id"
+  add_index "personas", ["ciudad_id"], name: "index_personas_on_ciudad_id", using: :btree
+  add_index "personas", ["departamento_id"], name: "index_personas_on_departamento_id", using: :btree
+  add_index "personas", ["pais_id"], name: "index_personas_on_pais_id", using: :btree
+  add_index "personas", ["tipo_de_persona_id"], name: "index_personas_on_tipo_de_persona_id", using: :btree
 
   create_table "tipos_de_movimientos", force: true do |t|
     t.string   "descripcion"

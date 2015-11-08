@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :auditorias
+
   resources :cajas
 
   resources :cheques_propios
