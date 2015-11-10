@@ -1,0 +1,28 @@
+<%= form_for(@boleta_de_deposito) do |f| %>
+<% if @boleta_de_deposito.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@boleta_de_deposito.errors.count, "error") %> prohibited this boleta_de_deposito from being saved:</h2>
+    <ul>
+    <% @boleta_de_deposito.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div class="form-inputs">
+    <%= f.label :banco_id %>
+    <%= f.text_field :banco_id %>
+    <%= f.label :persona_id %>
+    <%= f.text_field :persona_id %>
+    <%= f.label :cuenta_bancaria_id %>
+    <%= f.text_field :cuenta_bancaria_id %>
+    <%= f.label :caja_id %>
+    <%= f.text_field :caja_id %>
+    <%= f.label :fecha %>
+    <%= f.text_field :fecha %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
