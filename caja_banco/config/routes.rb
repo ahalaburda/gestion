@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :boletas_de_depositos do
+    resources :boletas_de_depositos_detalles
+  end
+  
   resources :auditorias
 
   resources :cajas
