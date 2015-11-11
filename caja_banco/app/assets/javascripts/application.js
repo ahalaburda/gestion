@@ -78,7 +78,10 @@ $(document).ready(function() {
 
 	$('input[data-role=money]').autoNumeric('init');
 
-	$( "select#select2" ).select2({
+	$( "select#select2 #departamento_pais_id" ).select2({
+		    placeholder: "Por favor selecciona "
+	});
+		$( "select#departamento_pais_id" ).select2({
 		    placeholder: "Por favor selecciona "
 	});
 });
