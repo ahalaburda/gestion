@@ -4,6 +4,7 @@ class DepartamentosController < ApplicationController
   # GET /departamentos
   # GET /departamentos.json
   def index
+    @pais= Pais.new
     @departamento = Departamento.new
     @departamentos = Departamento.all
     respond_to do |format|
@@ -29,6 +30,10 @@ class DepartamentosController < ApplicationController
 
   # GET /departamentos/1/edit
   def edit
+    @departamento = Departamento.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /departamentos

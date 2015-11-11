@@ -1,0 +1,3 @@
+$("#modal_pais").html(" <%= escape_javascript render  'paises/modals/pais' %>");
+$("#modal_pais .modal-body").html(" <%= escape_javascript render  'form', pais: @pais, remote: true %>");
+$("#modal_pais .modal").modal("show");

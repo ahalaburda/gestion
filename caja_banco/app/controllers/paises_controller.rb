@@ -20,26 +20,40 @@ class PaisesController < ApplicationController
   # GET /paises/1
   # GET /paises/1.json
   def show
+    @pais = Pais.new(pais_params)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @pais }
+    end
   end
 
   # GET /paises/new
   def new
     @pais = Pais.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @pais }
+      format.js 
+    end
   end
 
   # GET /paises/1/edit
   def edit
+    @pais = Pais.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /paises
   # POST /paises.json
   def create
     @pais = Pais.new(pais_params)
-
     respond_to do |format|
       if @pais.save
         format.html { redirect_to paises_url, notice: 'Pais was successfully created.' }
         format.json { render :show, status: :created, location: @pais }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @pais.errors, status: :unprocessable_entity }
@@ -50,6 +64,7 @@ class PaisesController < ApplicationController
   # PATCH/PUT /paises/1
   # PATCH/PUT /paises/1.json
   def update
+    @pais = Pais.find(params[:id])
     respond_to do |format|
       if @pais.update(pais_params)
         format.html { redirect_to paises_url, notice: 'Pais was successfully updated.' }

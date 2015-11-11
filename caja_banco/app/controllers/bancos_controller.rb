@@ -28,6 +28,7 @@ class BancosController < ApplicationController
   # GET /bancos/1
   # GET /bancos/1.json
   def show
+    @banco = Banco.find(params[:id])
   end
 
   # GET /bancos/new
@@ -99,7 +100,7 @@ class BancosController < ApplicationController
 
       banco.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id, 
+          row.values no: task.id,
                      name: task.nombre,
                      direccion: task.direccion,
                      sucursal: task.sucursal,
@@ -118,9 +119,9 @@ class BancosController < ApplicationController
           row.item(:telefono).style(:color, 'red')
         end
       end
-      
-      send_data report.generate, filename: 'bancos.pdf', 
-                                 type: 'application/pdf', 
+
+      send_data report.generate, filename: 'bancos.pdf',
+                                 type: 'application/pdf',
                                  disposition: 'attachment'
     end
 end

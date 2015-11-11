@@ -17,10 +17,18 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<div class="field">
-		    <%= f.label :pais_id %>
-		    <%= f.collection_select :pais_id, Pais.all, :id, :descripcion, {prompt: "Seleccione un pais"}, {class: "form-control"} %>
-	    </div>
+	  <div class="field">
+        <label for="departamento_pais_id">Pais 
+            <%= link_to new_pais_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+              <span class="glyphicon glyphicon-plus"></span>
+            <% end %>
+        </label>
+        </br>
+      <%= f.select :pais_id, 
+          options_from_collection_for_select(Pais.all, :id, :nombre, @departamento.pais_id),
+          {prompt: true}, id: "departamento_pais_id", include_blank: true, class: "form-control"%>
+
+    </div>
 	</div>
 </div>
 </br>
@@ -36,3 +44,4 @@
 		</div>
 	</div>
 <% end %>
+<div id="modal_pais"></div>
