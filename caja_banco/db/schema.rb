@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111215118) do
+ActiveRecord::Schema.define(version: 20151111232450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,6 +194,32 @@ ActiveRecord::Schema.define(version: 20151111215118) do
 
   add_index "movimientos_de_bancos_detalles", ["cuenta_bancaria_id"], name: "index_movimientos_de_bancos_detalles_on_cuenta_bancaria_id", using: :btree
   add_index "movimientos_de_bancos_detalles", ["movimiento_de_banco_id"], name: "index_movimientos_de_bancos_detalles_on_movimiento_de_banco_id", using: :btree
+
+  create_table "movimientos_de_cajas", force: true do |t|
+    t.integer  "tipo_de_movimiento_id"
+    t.integer  "caja_id"
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movimientos_de_cajas", ["caja_id"], name: "index_movimientos_de_cajas_on_caja_id", using: :btree
+  add_index "movimientos_de_cajas", ["tipo_de_movimiento_id"], name: "index_movimientos_de_cajas_on_tipo_de_movimiento_id", using: :btree
+
+  create_table "movimientos_de_cajas_detalles", force: true do |t|
+    t.integer  "movimiento_de_caja_id"
+    t.integer  "cheque_entrante_id"
+    t.integer  "cheque_propio_id"
+    t.decimal  "monto_efectivo"
+    t.decimal  "monto_cheque"
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movimientos_de_cajas_detalles", ["cheque_entrante_id"], name: "index_movimientos_de_cajas_detalles_on_cheque_entrante_id", using: :btree
+  add_index "movimientos_de_cajas_detalles", ["cheque_propio_id"], name: "index_movimientos_de_cajas_detalles_on_cheque_propio_id", using: :btree
+  add_index "movimientos_de_cajas_detalles", ["movimiento_de_caja_id"], name: "index_movimientos_de_cajas_detalles_on_movimiento_de_caja_id", using: :btree
 
   create_table "paises", force: true do |t|
     t.string   "descripcion"
