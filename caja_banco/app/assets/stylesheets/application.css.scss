@@ -144,6 +144,14 @@ label.required:after {
   background-color: #00890C;
   border-color: #00890C;
 }
+#form-toggle{
+  .btn-circle {
+    width: 18px;
+    height: 18px;
+    padding: 0px 0;
+    font-size: 10px;
+  }
+}
 
 /////////////////////////////////navbar
 .nav > li > a:hover, .nav > li > a:focus {
