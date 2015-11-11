@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movimiento_de_banco_id: 
+  cuenta_bancaria_id: 
+  descripcion: MyString
+  monto: 9.99
+
+two:
+  movimiento_de_banco_id: 
+  cuenta_bancaria_id: 
+  descripcion: MyString
+  monto: 9.99

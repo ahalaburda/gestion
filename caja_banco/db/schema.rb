@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110222706) do
+ActiveRecord::Schema.define(version: 20151111215118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,29 @@ ActiveRecord::Schema.define(version: 20151110222706) do
 
   add_index "firmantes", ["cuenta_bancaria_id"], name: "index_firmantes_on_cuenta_bancaria_id", using: :btree
   add_index "firmantes", ["persona_id"], name: "index_firmantes_on_persona_id", using: :btree
+
+  create_table "movimientos_de_bancos", force: true do |t|
+    t.integer  "tipo_de_movimiento_id"
+    t.integer  "banco_id"
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movimientos_de_bancos", ["banco_id"], name: "index_movimientos_de_bancos_on_banco_id", using: :btree
+  add_index "movimientos_de_bancos", ["tipo_de_movimiento_id"], name: "index_movimientos_de_bancos_on_tipo_de_movimiento_id", using: :btree
+
+  create_table "movimientos_de_bancos_detalles", force: true do |t|
+    t.integer  "movimiento_de_banco_id"
+    t.integer  "cuenta_bancaria_id"
+    t.string   "descripcion"
+    t.decimal  "monto"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movimientos_de_bancos_detalles", ["cuenta_bancaria_id"], name: "index_movimientos_de_bancos_detalles_on_cuenta_bancaria_id", using: :btree
+  add_index "movimientos_de_bancos_detalles", ["movimiento_de_banco_id"], name: "index_movimientos_de_bancos_detalles_on_movimiento_de_banco_id", using: :btree
 
   create_table "paises", force: true do |t|
     t.string   "descripcion"

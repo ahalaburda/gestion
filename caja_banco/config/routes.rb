@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :movimientos_de_bancos_detalles
+
+  resources :movimientos_de_bancos
+
   resources :boletas_de_depositos do
     resources :boletas_de_depositos_detalles
   end
