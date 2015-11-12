@@ -1,0 +1,29 @@
+<h1>Listing movimientos_de_cajas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo de movimiento</th>
+      <th>Caja</th>
+      <th>Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movimientos_de_cajas.each do |movimiento_de_caja| %>
+      <tr>
+        <td><%= movimiento_de_caja.tipo_de_movimiento.descripcion %></td>
+        <td><%= movimiento_de_caja.caja_id %></td>
+        <td><%= movimiento_de_caja.descripcion %></td>
+        <td><%= link_to 'Show', movimiento_de_caja %></td>
+        <td><%= link_to 'Edit', edit_movimiento_de_caja_path(movimiento_de_caja) %></td>
+        <td><%= link_to 'Destroy', movimiento_de_caja, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Movimiento de caja', new_movimiento_de_caja_path %>
