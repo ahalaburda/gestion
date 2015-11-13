@@ -28,3 +28,34 @@
 <%= link_to 'boletas_de_depositos_detalles', boleta_de_deposito_boletas_de_depositos_detalles_path(@boleta_de_deposito) %> |
 <%= link_to 'Edit', edit_boleta_de_deposito_path(@boleta_de_deposito) %> |
 <%= link_to 'Back', boleta_de_deposito_path%>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Boleta de deposito</th>
+      <th>Cheque entrante</th>
+      <th>Monto efectivo</th>
+      <th>Monto cheque</th>
+      <th>Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @boletas_de_depositos_detalles.each do |boleta_de_deposito_detalle| %>
+    <% if boleta_de_deposito_detalle.boleta_de_deposito_id == boleta_de_deposito_detalle.id %>
+      <tr>
+        <td><%= boleta_de_deposito_detalle.boleta_de_deposito_id %></td>
+        <td><%= boleta_de_deposito_detalle.cheque_entrante_id %></td>
+        <td><%= boleta_de_deposito_detalle.monto_efectivo %></td>
+        <td><%= boleta_de_deposito_detalle.monto_cheque %></td>
+        <td><%= boleta_de_deposito_detalle.total %></td>
+        <td><%= link_to 'Show', [boleta_de_deposito_detalle.boleta_de_deposito, boleta_de_deposito_detalle] %></td>
+        <td><%= link_to 'Edit', edit_boleta_de_deposito_boleta_de_deposito_detalle_path(boleta_de_deposito_detalle.boleta_de_deposito, boleta_de_deposito_detalle) %></td>
+        <td><%= link_to 'Destroy', [boleta_de_deposito_detalle.boleta_de_deposito, boleta_de_deposito_detalle], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

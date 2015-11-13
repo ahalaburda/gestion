@@ -1,32 +1,6 @@
 <h1>Listing boletas_de_depositos_detalles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Boleta de deposito</th>
-      <th>Cheque entrante</th>
-      <th>Monto efectivo</th>
-      <th>Monto cheque</th>
-      <th>Total</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @boletas_de_depositos_detalles.each do |boleta_de_deposito_detalle| %>
-      <tr>
-        <td><%= boleta_de_deposito_detalle.boleta_de_deposito_id %></td>
-        <td><%= boleta_de_deposito_detalle.cheque_entrante_id %></td>
-        <td><%= boleta_de_deposito_detalle.monto_efectivo %></td>
-        <td><%= boleta_de_deposito_detalle.monto_cheque %></td>
-        <td><%= boleta_de_deposito_detalle.total %></td>
-        <td><%= link_to 'Show', [boleta_de_deposito_detalle.boleta_de_deposito, boleta_de_deposito_detalle] %></td>
-        <td><%= link_to 'Edit', edit_boleta_de_deposito_boleta_de_deposito_detalle_path(boleta_de_deposito_detalle.boleta_de_deposito, boleta_de_deposito_detalle) %></td>
-        <td><%= link_to 'Destroy', [boleta_de_deposito_detalle.boleta_de_deposito, boleta_de_deposito_detalle], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'boletas_de_depositos_detalles/listar'%>
 
 <br>
 

@@ -12,6 +12,7 @@ class BoletasDeDepositosController < ApplicationController
   # GET /boletas_de_depositos/1.json
   def show
     @boleta_de_deposito_detalle = BoletaDeDepositoDetalle.new
+    @boletas_de_depositos_detalles = BoletaDeDepositoDetalle.all
   end
 
   # GET /boletas_de_depositos/new

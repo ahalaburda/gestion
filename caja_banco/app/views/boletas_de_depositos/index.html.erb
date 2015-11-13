@@ -1,32 +1,6 @@
 <h1>Listing boletas_de_depositos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Banco</th>
-      <th>Persona</th>
-      <th>Cuenta bancaria</th>
-      <th>Caja</th>
-      <th>Fecha</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @boletas_de_depositos.each do |boleta_de_deposito| %>
-      <tr>
-        <td><%= boleta_de_deposito.banco.banco_sucursal %></td>
-        <td><%= boleta_de_deposito.persona.nombre_apellido %></td>
-        <td><%= boleta_de_deposito.cuenta_bancaria.numero_cuenta %></td>
-        <td><%= boleta_de_deposito.caja_id %></td>
-        <td><%= boleta_de_deposito.fecha %></td>
-        <td><%= link_to 'Show', boleta_de_deposito %></td>
-        <td><%= link_to 'Edit', edit_boleta_de_deposito_path(boleta_de_deposito) %></td>
-        <td><%= link_to 'Destroy', boleta_de_deposito, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'listar'%>
 
 <br>
 
