@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tipo de movimiento:</strong>
+  <%= @movimiento_de_caja.tipo_de_movimiento.descripcion %>
+</p>
+
+<p>
+  <strong>Caja:</strong>
+  <%= @movimiento_de_caja.caja_id %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @movimiento_de_caja.descripcion %>
+</p>
+
+<%= link_to 'movimientos_de_cajas_detalles', movimiento_de_caja_movimientos_de_cajas_detalles_path(@movimiento_de_caja) %> |
+<%= link_to 'Edit', edit_movimiento_de_caja_path(@movimiento_de_caja) %> |
+<%= link_to 'Back', movimientos_de_cajas_path %>

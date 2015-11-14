@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  boleta_de_deposito_id: 
+  cheque_entrante_id: 
+  monto_efectivo: 9.99
+  monto_cheque: 9.99
+  total: 9.99
+
+two:
+  boleta_de_deposito_id: 
+  cheque_entrante_id: 
+  monto_efectivo: 9.99
+  monto_cheque: 9.99
+  total: 9.99

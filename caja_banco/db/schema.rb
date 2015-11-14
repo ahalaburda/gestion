@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108170158) do
+ActiveRecord::Schema.define(version: 20151111232450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,34 @@ ActiveRecord::Schema.define(version: 20151108170158) do
   add_index "bancos", ["ciudad_id"], name: "index_bancos_on_ciudad_id", using: :btree
   add_index "bancos", ["departamento_id"], name: "index_bancos_on_departamento_id", using: :btree
   add_index "bancos", ["pais_id"], name: "index_bancos_on_pais_id", using: :btree
+
+  create_table "boletas_de_depositos", force: true do |t|
+    t.integer  "banco_id"
+    t.integer  "persona_id"
+    t.integer  "cuenta_bancaria_id"
+    t.integer  "caja_id"
+    t.date     "fecha"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "boletas_de_depositos", ["banco_id"], name: "index_boletas_de_depositos_on_banco_id", using: :btree
+  add_index "boletas_de_depositos", ["caja_id"], name: "index_boletas_de_depositos_on_caja_id", using: :btree
+  add_index "boletas_de_depositos", ["cuenta_bancaria_id"], name: "index_boletas_de_depositos_on_cuenta_bancaria_id", using: :btree
+  add_index "boletas_de_depositos", ["persona_id"], name: "index_boletas_de_depositos_on_persona_id", using: :btree
+
+  create_table "boletas_de_depositos_detalles", force: true do |t|
+    t.integer  "boleta_de_deposito_id"
+    t.integer  "cheque_entrante_id"
+    t.decimal  "monto_efectivo"
+    t.decimal  "monto_cheque"
+    t.decimal  "total"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "boletas_de_depositos_detalles", ["boleta_de_deposito_id"], name: "index_boletas_de_depositos_detalles_on_boleta_de_deposito_id", using: :btree
+  add_index "boletas_de_depositos_detalles", ["cheque_entrante_id"], name: "index_boletas_de_depositos_detalles_on_cheque_entrante_id", using: :btree
 
   create_table "cajas", force: true do |t|
     t.date     "apertura"
@@ -143,6 +171,55 @@ ActiveRecord::Schema.define(version: 20151108170158) do
 
   add_index "firmantes", ["cuenta_bancaria_id"], name: "index_firmantes_on_cuenta_bancaria_id", using: :btree
   add_index "firmantes", ["persona_id"], name: "index_firmantes_on_persona_id", using: :btree
+
+  create_table "movimientos_de_bancos", force: true do |t|
+    t.integer  "tipo_de_movimiento_id"
+    t.integer  "banco_id"
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movimientos_de_bancos", ["banco_id"], name: "index_movimientos_de_bancos_on_banco_id", using: :btree
+  add_index "movimientos_de_bancos", ["tipo_de_movimiento_id"], name: "index_movimientos_de_bancos_on_tipo_de_movimiento_id", using: :btree
+
+  create_table "movimientos_de_bancos_detalles", force: true do |t|
+    t.integer  "movimiento_de_banco_id"
+    t.integer  "cuenta_bancaria_id"
+    t.string   "descripcion"
+    t.decimal  "monto"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movimientos_de_bancos_detalles", ["cuenta_bancaria_id"], name: "index_movimientos_de_bancos_detalles_on_cuenta_bancaria_id", using: :btree
+  add_index "movimientos_de_bancos_detalles", ["movimiento_de_banco_id"], name: "index_movimientos_de_bancos_detalles_on_movimiento_de_banco_id", using: :btree
+
+  create_table "movimientos_de_cajas", force: true do |t|
+    t.integer  "tipo_de_movimiento_id"
+    t.integer  "caja_id"
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movimientos_de_cajas", ["caja_id"], name: "index_movimientos_de_cajas_on_caja_id", using: :btree
+  add_index "movimientos_de_cajas", ["tipo_de_movimiento_id"], name: "index_movimientos_de_cajas_on_tipo_de_movimiento_id", using: :btree
+
+  create_table "movimientos_de_cajas_detalles", force: true do |t|
+    t.integer  "movimiento_de_caja_id"
+    t.integer  "cheque_entrante_id"
+    t.integer  "cheque_propio_id"
+    t.decimal  "monto_efectivo"
+    t.decimal  "monto_cheque"
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movimientos_de_cajas_detalles", ["cheque_entrante_id"], name: "index_movimientos_de_cajas_detalles_on_cheque_entrante_id", using: :btree
+  add_index "movimientos_de_cajas_detalles", ["cheque_propio_id"], name: "index_movimientos_de_cajas_detalles_on_cheque_propio_id", using: :btree
+  add_index "movimientos_de_cajas_detalles", ["movimiento_de_caja_id"], name: "index_movimientos_de_cajas_detalles_on_movimiento_de_caja_id", using: :btree
 
   create_table "paises", force: true do |t|
     t.string   "descripcion"

@@ -1,0 +1,2 @@
+module BoletasDeDepositosDetallesHelper
+end

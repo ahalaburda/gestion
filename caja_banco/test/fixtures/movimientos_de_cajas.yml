@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_de_movimiento_id: 
+  caja_id: 
+  descripcion: MyString
+
+two:
+  tipo_de_movimiento_id: 
+  caja_id: 
+  descripcion: MyString
