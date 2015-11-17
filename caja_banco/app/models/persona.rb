@@ -4,11 +4,12 @@ class Persona < ActiveRecord::Base
   belongs_to :pais
   belongs_to :departamento
   belongs_to :ciudad
+  has_many :cajas
 
   validates :nombre,
 	:presence => {
 		message: 'Este campo es requerido'},
-	:length => { 
+	:length => {
 		:maximum => 20,
 		:too_long => 'debe tener como maximo %{count} caracteres'},
 	:format => {
@@ -18,7 +19,7 @@ class Persona < ActiveRecord::Base
 	validates :apellido,
 	:presence => {
 		message: 'Este campo es requerido'},
-	:length => { 
+	:length => {
 		:maximum => 20,
 		:too_long => 'debe tener como maximo %{count} caracteres'},
 	:format => {
@@ -32,7 +33,7 @@ class Persona < ActiveRecord::Base
 	validates :direccion,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:length => { 
+		:length => {
 			:maximum => 50,
 			:too_long => 'Debe tener como maximo %{count} caracteres'},
 		:uniqueness => {
@@ -53,7 +54,7 @@ class Persona < ActiveRecord::Base
 	validates :telefono,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:length => { 
+		:length => {
 			:maximum => 20,
 			:too_long => 'debe tener como maximo %{count} caracteres'},
 		:format => {

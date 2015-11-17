@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Movimiento de banco:</strong>
+  <%= @movimiento_de_banco_detalle.movimiento_de_banco_id %>
+</p>
+
+<p>
+  <strong>Cuenta bancaria:</strong>
+  <%= @movimiento_de_banco_detalle.cuenta_bancaria.numero_cuenta %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @movimiento_de_banco_detalle.descripcion %>
+</p>
+
+<p>
+  <strong>Monto:</strong>
+  <%= @movimiento_de_banco_detalle.monto %>
+</p>
+
+<%= link_to 'Edit', edit_movimiento_de_banco_movimiento_de_banco_detalle_path(@movimiento_de_banco_detalle.movimiento_de_banco, @movimiento_de_banco_detalle) %>

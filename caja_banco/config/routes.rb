@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :movimientos_de_cajas do
+    resources :movimientos_de_cajas_detalles
+  end
+
+  resources :movimientos_de_bancos do
+    resources :movimientos_de_bancos_detalles
+  end
+
+  resources :boletas_de_depositos do
+    resources :boletas_de_depositos_detalles
+  end
+
   resources :auditorias
 
   resources :cajas

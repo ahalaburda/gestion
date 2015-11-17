@@ -1,0 +1,33 @@
+<%= form_for([@movimiento_de_caja_detalle.movimiento_de_caja, @movimiento_de_caja_detalle]) do |f| %>
+<% if @movimiento_de_caja_detalle.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@movimiento_de_caja_detalle.errors.count, "error") %> prohibited this movimiento_de_caja_detalle from being saved:</h2>
+    <ul>
+    <% @movimiento_de_caja_detalle.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div class="form-inputs">
+    <div class="field">
+      <%= f.label :movimiento_de_caja_id %>
+      <%= f.text_field :movimiento_de_caja_id, disabled: true%>
+      <%= f.label :cheque_entrante_id %>
+      <%= f.text_field :cheque_entrante_id %>
+      <%= f.label :cheque_propio_id %>
+      <%= f.text_field :cheque_propio_id %>
+      <%= f.label :monto_efectivo %>
+      <%= f.text_field :monto_efectivo %>
+      <%= f.label :monto_cheque %>
+      <%= f.text_field :monto_cheque %>
+      <%= f.label :descripcion %>
+      <%= f.text_field :descripcion %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

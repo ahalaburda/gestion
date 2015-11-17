@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  banco_id: 
+  persona_id: 
+  cuenta_bancaria_id: 
+  caja_id: 
+  fecha: 2015-11-10
+
+two:
+  banco_id: 
+  persona_id: 
+  cuenta_bancaria_id: 
+  caja_id: 
+  fecha: 2015-11-10
