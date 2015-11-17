@@ -49,11 +49,10 @@ class PaisesController < ApplicationController
       if @pais.save
         format.html { redirect_to @pais, notice: 'pais was successfully created.' }
         format.json { render action: 'show', status: :created, location: @pais }
-        format.js   { render action: 'show', status: :created, location: @pais }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @pais.errors, status: :unprocessable_entity }
-        format.js   { render json: @pais.errors, status: :unprocessable_entity }
       end
     end
   end
