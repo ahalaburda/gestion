@@ -1,0 +1,3 @@
+$("#modal_ciudad").html(" <%= escape_javascript render  'ciudades/modals/ciudad' %>");
+$("#modal_ciudad .modal-body").html(" <%= escape_javascript render  'form', ciudad: @ciudad, remote: true %>");
+$("#modal_ciudad .modal").modal("show");

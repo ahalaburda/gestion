@@ -21,11 +21,21 @@ class DepartamentosController < ApplicationController
   # GET /departamentos/1
   # GET /departamentos/1.json
   def show
+    @departamento = Departamento.new(departamento_params)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @departamento }
+    end
   end
 
   # GET /departamentos/new
   def new
     @departamento = Departamento.new
+      respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @departamento }
+      format.js 
+    end
   end
 
   # GET /departamentos/1/edit
@@ -40,11 +50,11 @@ class DepartamentosController < ApplicationController
   # POST /departamentos.json
   def create
     @departamento = Departamento.new(departamento_params)
-
     respond_to do |format|
       if @departamento.save
         format.html { redirect_to departamentos_url, notice: 'Departamento was successfully created.' }
         format.json { render :show, status: :created, location: @departamento }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @departamento.errors, status: :unprocessable_entity }

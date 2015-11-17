@@ -1,6 +1,5 @@
 class CiudadesController < ApplicationController
   before_action :set_ciudad, only: [:show, :edit, :update, :destroy]
-
   # GET /ciudades
   # GET /ciudades.json
   def index
@@ -16,33 +15,45 @@ class CiudadesController < ApplicationController
         format.pdf { render_ciudad_list(@ciudades) }
     end
   end
-
   # GET /ciudades/1
   # GET /ciudades/1.json
   def show
+    @ciudad = Ciudad.new(ciudad_params)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @ciudad }
+    end
   end
-
   # GET /ciudades/new
   def new
     @ciudad = Ciudad.new
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @ciudad }
+        format.js 
+      end
   end
-
   # GET /ciudades/1/edit
   def edit
+    @ciudad = Ciudad.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
-
   # POST /ciudades
   # POST /ciudades.json
   def create
     @ciudad = Ciudad.new(ciudad_params)
-
     respond_to do |format|
       if @ciudad.save
         format.html { redirect_to ciudades_url, notice: 'Ciudad was successfully created.' }
-        format.json { render :show, status: :created, location: @ciudad }
+        format.json { render action: 'show', status: :created, location: @ciudad }
+        format.js   { render action: 'show', status: :created, location: @ciudad }
+
       else
         format.html { render :new }
         format.json { render json: @ciudad.errors, status: :unprocessable_entity }
+        format.js   { render json: @ciudad.errors, status: :unprocessable_entity }
       end
     end
   end

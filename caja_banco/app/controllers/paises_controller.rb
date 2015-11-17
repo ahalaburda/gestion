@@ -1,11 +1,11 @@
 class PaisesController < ApplicationController
   before_action :set_pais, only: [:show, :edit, :update, :destroy]
-
   # GET /paises
   # GET /paises.json
   def index
-    @paises = Pais.all
+    @departamento = Departamento.new
     @pais = Pais.new
+    @paises = Pais.all
      respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @paises }
@@ -16,7 +16,6 @@ class PaisesController < ApplicationController
         format.pdf { render_pais_list(@paises) }
     end
   end
-
   # GET /paises/1
   # GET /paises/1.json
   def show
@@ -26,17 +25,15 @@ class PaisesController < ApplicationController
       format.json { render json: @pais }
     end
   end
-
   # GET /paises/new
   def new
     @pais = Pais.new
-    respond_to do |format|
+      respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @pais }
       format.js 
     end
   end
-
   # GET /paises/1/edit
   def edit
     @pais = Pais.find(params[:id])
@@ -44,29 +41,27 @@ class PaisesController < ApplicationController
       format.js
     end
   end
-
   # POST /paises
   # POST /paises.json
   def create
     @pais = Pais.new(pais_params)
     respond_to do |format|
       if @pais.save
-        format.html { redirect_to paises_url, notice: 'Pais was successfully created.' }
-        format.json { render :show, status: :created, location: @pais }
-        format.js
+        format.html { redirect_to @pais, notice: 'pais was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @pais }
+        format.js   { render action: 'show', status: :created, location: @pais }
       else
-        format.html { render :new }
+        format.html { render action: 'new' }
         format.json { render json: @pais.errors, status: :unprocessable_entity }
+        format.js   { render json: @pais.errors, status: :unprocessable_entity }
       end
     end
   end
-
   # PATCH/PUT /paises/1
   # PATCH/PUT /paises/1.json
   def update
-    @pais = Pais.find(params[:id])
     respond_to do |format|
-      if @pais.update(pais_params)
+       if @pais.update(pais_params)
         format.html { redirect_to paises_url, notice: 'Pais was successfully updated.' }
         format.json { render :show, status: :ok, location: @pais }
       else

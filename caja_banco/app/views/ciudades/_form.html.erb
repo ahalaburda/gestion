@@ -1,4 +1,5 @@
-<%= form_for @ciudad, validate: true do |f| %>
+<% remote ||= false %>
+<%= form_for @ciudad, remote: remote , validate: true do |f| %>
 	<% if @ciudad.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ciudad.errors.count, "error") %> prohibited this ciudad from being saved:</h2>
@@ -12,21 +13,28 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="field">
-		        <%= f.label :descripcion %>
-		        <%= f.text_field :descripcion , autofocus:true , :class => 'form-control' %>
-	      	</div>
+		    <%= f.label :descripcion %>
+		    <%= f.text_field :descripcion , autofocus:true , :class => 'form-control' %>
+	     </div>
 		</div>
 		<div class="col-md-4">
 			<div class="field">
-		        <%= f.label :codigo_postal %>
-		        <%= f.text_field :codigo_postal , :class => 'form-control' %>
-	      	</div>
+		    <%= f.label :codigo_postal %>
+		    <%= f.text_field :codigo_postal , :class => 'form-control' %>
+	     </div>
 		</div>
 		<div class="col-md-4">
 			<div class="field">
-		        <%= f.label :departamento_id %>
-		        <%= f.collection_select :departamento_id, Departamento.all, :id, :nombre, {prompt: "Seleccione un departamento"}, {class: "form-control"} %>
-	      	</div>
+        <label for="ciudad_departamento_id">Departamento 
+          <%= link_to new_departamento_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :departamento_id, 
+          options_from_collection_for_select(Departamento.all, :id, :nombre, @ciudad.departamento_id),
+          {prompt: true}, id: "ciudad_departamento_id", include_blank: true, class: "form-control"%>
+       </div>
 		</div>
 	</div>
 	</br>
@@ -42,3 +50,4 @@
 			</div>
 		</div>
 <% end %>
+<div id="modal_departamento"></div>

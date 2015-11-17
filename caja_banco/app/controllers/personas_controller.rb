@@ -24,7 +24,7 @@ class PersonasController < ApplicationController
 
   # GET /personas/new
   def new
-    @persona = Persona.new
+    @persona = Persona.new(persona_params)
   end
 
   # GET /personas/1/edit
