@@ -4,7 +4,7 @@ class AuditoriasController < ApplicationController
   # GET /auditorias
   # GET /auditorias.json
   def index
-    @auditorias = Auditoria.all
+    @auditorias = Auditoria.all.order('id desc')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @auditorias }
