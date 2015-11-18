@@ -28,7 +28,7 @@ class PaisesController < ApplicationController
   # GET /paises/new
   def new
     @pais = Pais.new
-      respond_to do |format|
+    respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @pais }
       format.js 
