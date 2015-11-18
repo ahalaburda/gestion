@@ -11,11 +11,16 @@
   <% end %>
   <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-     <div class="field">
-        <%= f.label :persona_id , class: 'required' %>
-        <%= f.select :persona_id,
-          options_from_collection_for_select(Persona.all, :id, :nombre_apellido, @caja.persona),
-          {prompt: true}, id: "select2", include_blank: true, class: "form-control"%>
+      <div class="field">
+        <label for="caja_persona_id">Persona 
+          <%= link_to new_persona_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :persona_id, 
+          options_from_collection_for_select(Persona.all, :id, :nombre, @caja.persona_id),
+          {prompt: true}, id: "caja_persona_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
         <%= f.label :estado_id , class: 'required' %>
@@ -66,7 +71,7 @@
     </div>
   </div>
   <br>
-  <div class="col-md-offset-10">
+  <div class="col-md-offset-8">
     <div class="actions">
      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
       <% if controller.action_name == 'new' or controller.action_name == 'index' %>
@@ -77,4 +82,5 @@
     </div>
   </div>
 <% end %>
+<div id="modal_persona"></div>
 <div class="separador"></div>

@@ -1,4 +1,5 @@
-<%= form_for @persona, validate: true do |f| %>
+<% remote ||= false %>
+<%= form_for @persona, remote: remote , validate: true do |f| %>
   <% if @persona.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@persona.errors.count, "error") %> prohibited this persona from being saved:</h2>
@@ -9,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="row">
     <div class="col-md-3">
     <div class="field">
@@ -71,15 +71,15 @@
     </div>
   </div>
 </br>
-  <div class="col-md-offset-10">
+  <div class="col-md-offset-8">
     <div class="actions">
+      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
       <% if controller.action_name == 'new' or controller.action_name == 'index' %>
         <%= f.submit "Agregar", :class => 'btn btn-primary'%>
-        
       <% elsif controller.action_name == 'edit' %>
         <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
       <% end %>
-      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
     </div>
   </div>
 <% end %>
+<div class="separador"></div>

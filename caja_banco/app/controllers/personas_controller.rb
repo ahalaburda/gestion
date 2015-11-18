@@ -4,6 +4,7 @@ class PersonasController < ApplicationController
   # GET /personas
   # GET /personas.json
   def index
+    @caja = Caja.new
     @persona = Persona.new
     @personas = Persona.all
     respond_to do |format|
@@ -24,7 +25,10 @@ class PersonasController < ApplicationController
 
   # GET /personas/new
   def new
-    @persona = Persona.new(persona_params)
+    @persona = Persona.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /personas/1/edit
@@ -39,11 +43,11 @@ class PersonasController < ApplicationController
   # POST /personas.json
   def create
     @persona = Persona.new(persona_params)
-
     respond_to do |format|
       if @persona.save
         format.html { redirect_to personas_url, notice: 'Persona was successfully created.' }
         format.json { render :show, status: :created, location: @persona }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @persona.errors, status: :unprocessable_entity }

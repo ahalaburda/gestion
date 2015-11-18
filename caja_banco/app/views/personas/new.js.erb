@@ -1,0 +1,3 @@
+$("#modal_persona").html(" <%= escape_javascript render  'personas/modals/persona' %>");
+$("#modal_persona .modal-body").html(" <%= escape_javascript render  'form', persona: @persona, remote: true %>");
+$("#modal_persona .modal").modal("show");
