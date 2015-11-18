@@ -16,6 +16,7 @@
 <table id="table" class="table table-striped table-hover">
   <thead>
     <tr>
+      <th>Numero</th>
       <th>Apertura</th>
       <th>Cierre</th>
       <th>Saldo inicial efectivo</th>
@@ -32,6 +33,7 @@
   <tbody>
     <% @cajas.each do |caja| %>
       <tr>
+        <td><%= caja.numero %></td>
         <td><%= caja.apertura %></td>
         <td><%= caja.cierre %></td>
         <td><%= caja.saldo_inicial_efectivo %></td>
@@ -58,6 +60,7 @@
     <table class="table table-striped table-hover" >
       <thead>
         <tr>
+          <td>Numero</td>
           <th>Apertura</th>
           <th>Cierre</th>
           <th>Saldo inicial efectivo</th>
@@ -72,6 +75,7 @@
   <tbody>
     <% @cajas.each do |caja| %>
       <tr>
+        <td><%= caja.numero %></td>
         <td><%= caja.apertura %></td>
         <td><%= caja.cierre %></td>
         <td><%= caja.saldo_inicial_efectivo %></td>

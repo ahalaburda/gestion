@@ -1,4 +1,5 @@
 report.start_new_page do |page|
+  page.item(:numero).value(@cajas.numero)
   page.item(:apertura).value(@cajas.apertura)
   page.item(:cierre).value(@cajas.cierre)
   page.item(:saldo_inicial_efectivo).value(@cajas.saldo_inicial_efectivo)

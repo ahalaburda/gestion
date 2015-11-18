@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Banco</th>
+      <th>Numero</th>
       <th>Persona</th>
       <th>Cuenta bancaria</th>
       <th>Caja</th>
@@ -14,6 +15,7 @@
     <% @boletas_de_depositos.each do |boleta_de_deposito| %>
       <tr>
         <td><%= boleta_de_deposito.banco.banco_sucursal %></td>
+        <td><%= boleta_de_deposito.numero %></td>
         <td><%= boleta_de_deposito.persona.nombre_apellido %></td>
         <td><%= boleta_de_deposito.cuenta_bancaria.numero_cuenta %></td>
         <td><%= boleta_de_deposito.caja_id %></td>
