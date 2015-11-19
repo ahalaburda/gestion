@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>Movimiento de caja</th>
+      <th>Cheque entrante</th>
+      <th>Cheque propio</th>
+      <th>Monto efectivo</th>
+      <th>Monto cheque</th>
+      <th>Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movimientos_de_cajas_detalles.each do |movimiento_de_caja_detalle| %>
+      <tr>
+        <td><%= movimiento_de_caja_detalle.movimiento_de_caja_id %></td>
+        <td><%= movimiento_de_caja_detalle.cheque_entrante_id %></td>
+        <td><%= movimiento_de_caja_detalle.cheque_propio_id %></td>
+        <td><%= movimiento_de_caja_detalle.monto_efectivo %></td>
+        <td><%= movimiento_de_caja_detalle.monto_cheque %></td>
+        <td><%= movimiento_de_caja_detalle.descripcion %></td>
+        <td><%= link_to 'Show', [movimiento_de_caja_detalle.movimiento_de_caja, movimiento_de_caja_detalle] %></td>
+        <td><%= link_to 'Edit', edit_movimiento_de_caja_movimiento_de_caja_detalle_path(movimiento_de_caja_detalle.movimiento_de_caja, movimiento_de_caja_detalle) %></td>
+        <td><%= link_to 'Destroy', [movimiento_de_caja_detalle.movimiento_de_caja, movimiento_de_caja_detalle], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
