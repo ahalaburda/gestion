@@ -4,6 +4,7 @@ class PaisesController < ApplicationController
   # GET /paises.json
   def index
     @departamento = Departamento.new
+    @banco = Banco.new
     @pais = Pais.new
     @paises = Pais.all
      respond_to do |format|
