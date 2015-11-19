@@ -1,10 +1,12 @@
 class Persona < ActiveRecord::Base
   belongs_to :tipo_de_persona
-  belongs_to :categoria
   belongs_to :pais
   belongs_to :departamento
   belongs_to :ciudad
   has_many :cajas
+  has_many :boletas_de_depositos
+  has_many :firmantes
+  has_many :cheques_entrantes
 
   validates :nombre,
 	:presence => {

@@ -1,13 +1,13 @@
 class Ciudad < ActiveRecord::Base
-
 	belongs_to :departamento
 	has_many :bancos
+	has_many :personas
 
   validates :descripcion,
 
 			:presence => {
 				message: 'Este campo es requerido'},
-			:length => { 
+			:length => {
 				:maximum => 20,
 				:too_long => 'debe tener como maximo %{count} caracteres'},
 			:format => {
@@ -17,7 +17,7 @@ class Ciudad < ActiveRecord::Base
 				message: 'El nombre que desea usar ya a sido utilizado'}
 
 			validates :codigo_postal,
-				:length => { 
+				:length => {
 					:maximum => 8,
 					:too_long => 'debe tener como maximo %{count} caracteres'},
 				:format => {
@@ -26,7 +26,7 @@ class Ciudad < ActiveRecord::Base
 
 			validates :departamento_id,
 				:presence => {
-					message: 'Debe seleccionar un Departamento'}	
+					message: 'Debe seleccionar un Departamento'}
 	def nombre
     "#{descripcion}"
   end

@@ -1,5 +1,6 @@
 class ChequePropio < ActiveRecord::Base
   belongs_to :chequera
+  has_many :movimientos_de_cajas_detalles
 
   validates :chequera_id,
 	:presence => {
@@ -20,7 +21,7 @@ class ChequePropio < ActiveRecord::Base
 	validates :concepto,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:length => { 
+		:length => {
 			:maximum => 50,
 			:too_long => 'Debe tener como maximo %{count} caracteres'}
 end

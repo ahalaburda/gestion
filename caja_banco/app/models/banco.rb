@@ -2,11 +2,15 @@ class Banco < ActiveRecord::Base
   belongs_to :pais
   belongs_to :departamento
   belongs_to :ciudad
+  has_many :movimientos_de_bancos
+  has_many :cheques_entrantes
+  has_many :boletas_de_depositos
+  has_many :cuentas_bancarias
 
 	validates :nombre,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:length => { 
+		:length => {
 			:maximum => 20,
 			:too_long => 'debe tener como maximo %{count} caracteres'},
 		:format => {
@@ -22,7 +26,7 @@ class Banco < ActiveRecord::Base
 	validates :direccion,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:length => { 
+		:length => {
 			:maximum => 50,
 			:too_long => 'Debe tener como maximo %{count} caracteres'},
 		:uniqueness => {
@@ -43,7 +47,7 @@ class Banco < ActiveRecord::Base
 	validates :telefono,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:length => { 
+		:length => {
 			:maximum => 20,
 			:too_long => 'debe tener como maximo %{count} caracteres'},
 		:format => {
