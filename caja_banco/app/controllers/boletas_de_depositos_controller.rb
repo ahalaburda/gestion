@@ -6,6 +6,8 @@ class BoletasDeDepositosController < ApplicationController
   def index
     @boletas_de_depositos = BoletaDeDeposito.all
     @boleta_de_deposito = BoletaDeDeposito.new
+    @boleta_de_deposito_detalle = BoletaDeDepositoDetalle.new
+
   end
 
   # GET /boletas_de_depositos/1
@@ -72,6 +74,6 @@ class BoletasDeDepositosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def boleta_de_deposito_params
-      params.require(:boleta_de_deposito).permit(:banco_id, :persona_id, :cuenta_bancaria_id, :caja_id, :fecha, numero)
+      params.require(:boleta_de_deposito).permit(:banco_id, :persona_id, :cuenta_bancaria_id, :caja_id, :fecha, :numero)
     end
 end
