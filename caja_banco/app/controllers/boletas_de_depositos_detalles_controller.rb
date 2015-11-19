@@ -4,8 +4,8 @@ class BoletasDeDepositosDetallesController < ApplicationController
   # GET /boletas_de_depositos_detalles
   # GET /boletas_de_depositos_detalles.json
   def index
-    boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
-    @boletas_de_depositos_detalles = boleta_de_deposito.boletas_de_depositos_detalles
+    @boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
+    @boletas_de_depositos_detalles = @boleta_de_deposito.boletas_de_depositos_detalles
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @boletas_de_depositos_detalles }
@@ -15,8 +15,8 @@ class BoletasDeDepositosDetallesController < ApplicationController
   # GET /boletas_de_depositos_detalles/1
   # GET /boletas_de_depositos_detalles/1.json
   def show
-    boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
-    @boletas_de_depositos_detalles = boleta_de_deposito.boletas_de_depositos_detalles.find(params[:id])
+    @boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
+    @boletas_de_depositos_detalles = @boleta_de_deposito.boletas_de_depositos_detalles.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @boletas_de_depositos_detalles }
@@ -25,8 +25,8 @@ class BoletasDeDepositosDetallesController < ApplicationController
 
   # GET /boletas_de_depositos_detalles/new
   def new
-    boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
-    @boleta_de_deposito_detalle = boleta_de_deposito.boletas_de_depositos_detalles.build
+    @boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
+    @boleta_de_deposito_detalle = @boleta_de_deposito.boletas_de_depositos_detalles.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,15 +36,15 @@ class BoletasDeDepositosDetallesController < ApplicationController
 
   # GET /boletas_de_depositos_detalles/1/edit
   def edit
-    boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
-    @boleta_de_deposito_detalle = boleta_de_deposito.boletas_de_depositos_detalles.find(params[:id])
+    @boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
+    @boleta_de_deposito_detalle = @boleta_de_deposito.boletas_de_depositos_detalles.find(params[:id])
   end
 
   # POST /boletas_de_depositos_detalles
   # POST /boletas_de_depositos_detalles.json
   def create
-    boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
-    @boleta_de_deposito_detalle = boleta_de_deposito.boletas_de_depositos_detalles.create(params[:boleta_de_deposito])
+    @boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
+    @boleta_de_deposito_detalle = @boleta_de_deposito.boletas_de_depositos_detalles.create(params[:boleta_de_deposito])
     respond_to do |format|
       if @boleta_de_deposito_detalle.save
         format.html { redirect_to [@boleta_de_deposito_detalle.boleta_de_deposito, @boleta_de_deposito_detalle], notice: 'Boleta de deposito detalle was successfully created.' }
@@ -59,8 +59,8 @@ class BoletasDeDepositosDetallesController < ApplicationController
   # PATCH/PUT /boletas_de_depositos_detalles/1
   # PATCH/PUT /boletas_de_depositos_detalles/1.json
   def update
-    boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
-    @boleta_de_deposito_detalle = boleta_de_deposito.boletas_de_depositos_detalles.find(params[:id])
+    @boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
+    @boleta_de_deposito_detalle = @boleta_de_deposito.boletas_de_depositos_detalles.find(params[:id])
     respond_to do |format|
       if @boleta_de_deposito_detalle.update(boleta_de_deposito_detalle_params)
         format.html { redirect_to [@boleta_de_deposito_detalle.boleta_de_deposito, @boleta_de_deposito_detalle], notice: 'Boleta de deposito detalle was successfully updated.' }
@@ -75,8 +75,8 @@ class BoletasDeDepositosDetallesController < ApplicationController
   # DELETE /boletas_de_depositos_detalles/1
   # DELETE /boletas_de_depositos_detalles/1.json
   def destroy
-    boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
-    @boleta_de_deposito_detalle = boleta_de_deposito.boletas_de_depositos_detalles.find(params[:id])
+    @boleta_de_deposito = BoletaDeDeposito.find(params[:boleta_de_deposito_id])
+    @boleta_de_deposito_detalle = @boleta_de_deposito.boletas_de_depositos_detalles.find(params[:id])
     @boleta_de_deposito_detalle.destroy
 
     respond_to do |format|

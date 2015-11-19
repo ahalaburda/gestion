@@ -1,4 +1,4 @@
-<%= form_for([@boleta_de_deposito_detalle.boleta_de_deposito, @boleta_de_deposito_detalle]) do |f| %>
+<%= form_for([@boleta_de_deposito, @boleta_de_deposito_detalle]) do |f| %>
 <% if @boleta_de_deposito_detalle.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@boleta_de_deposito_detalle.errors.count, "error") %> prohibited this boleta_de_deposito_detalle from being saved:</h2>

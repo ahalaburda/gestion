@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Numero:</strong>
+  <%= @boleta_de_deposito.numero %>
+</p>
+
+<p>
   <strong>Persona:</strong>
   <%= @boleta_de_deposito.persona.nombre_apellido %>
 </p>
@@ -46,7 +51,7 @@
     <% @boletas_de_depositos_detalles.each do |boleta_de_deposito_detalle| %>
     <% if boleta_de_deposito_detalle.boleta_de_deposito_id == boleta_de_deposito_detalle.id %>
       <tr>
-        <td><%= boleta_de_deposito_detalle.boleta_de_deposito_id %></td>
+        <td><%= boleta_de_deposito_detalle.boleta_de_deposito.numero %></td>
         <td><%= boleta_de_deposito_detalle.cheque_entrante_id %></td>
         <td><%= boleta_de_deposito_detalle.monto_efectivo %></td>
         <td><%= boleta_de_deposito_detalle.monto_cheque %></td>

@@ -1,13 +1,13 @@
 class TipoDeMovimiento < ActiveRecord::Base
-	#has_many: movimientosdecajas
-	#has_many: movimientosdebancos
+	has_many :movimientos_de_cajas
+	has_many :movimientos_de_bancos
 
 
 	validates :descripcion,
 			:presence => {
 				message: 'Este campo es requerido'},
 
-			:length => { 
+			:length => {
 				:maximum => 20,
 				:too_long => 'debe tener como maximo %{count} caracteres'},
 

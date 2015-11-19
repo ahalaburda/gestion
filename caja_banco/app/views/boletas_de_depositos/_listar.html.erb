@@ -1,11 +1,13 @@
-<table>
+<table id="table" class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Banco</th>
+      <th>Numero</th>
       <th>Persona</th>
       <th>Cuenta bancaria</th>
       <th>Caja</th>
       <th>Fecha</th>
+      <th>Acciones</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,13 +16,20 @@
     <% @boletas_de_depositos.each do |boleta_de_deposito| %>
       <tr>
         <td><%= boleta_de_deposito.banco.banco_sucursal %></td>
+        <td><%= boleta_de_deposito.numero %></td>
         <td><%= boleta_de_deposito.persona.nombre_apellido %></td>
         <td><%= boleta_de_deposito.cuenta_bancaria.numero_cuenta %></td>
         <td><%= boleta_de_deposito.caja_id %></td>
         <td><%= boleta_de_deposito.fecha %></td>
-        <td><%= link_to 'Show', boleta_de_deposito %></td>
-        <td><%= link_to 'Edit', edit_boleta_de_deposito_path(boleta_de_deposito) %></td>
-        <td><%= link_to 'Destroy', boleta_de_deposito, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to boleta_de_deposito_path(boleta_de_deposito), class: 'btn btn-success btn-outline btn-circle', title: 'Mostrar Detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+          <span class="glyphicon glyphicon-eye-open"></span>
+        <% end %>
+          <%= link_to edit_boleta_de_deposito_path(boleta_de_deposito), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+          <%= link_to boleta_de_deposito, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
+            <span class="glyphicon glyphicon-remove"></span>
+          <% end %> </td>
       </tr>
     <% end %>
   </tbody>

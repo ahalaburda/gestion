@@ -1,6 +1,8 @@
 class ChequeEntrante < ActiveRecord::Base
   belongs_to :banco
   belongs_to :persona
+  has_many :movimientos_de_cajas_detalles
+  has_many :boletas_de_depositos_detalles
 
   	validates :banco_id,
 	:presence => {
@@ -21,10 +23,10 @@ class ChequeEntrante < ActiveRecord::Base
 	validates :concepto,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:length => { 
+		:length => {
 			:maximum => 50,
 			:too_long => 'Debe tener como maximo %{count} caracteres'}
-		
+
 	validates :persona_id,
 	:presence => {
 		message: 'Seleccione una persona'}

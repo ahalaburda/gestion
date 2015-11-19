@@ -1,10 +1,12 @@
 class Estado < ActiveRecord::Base
-	#has_many: cajas
+	has_many :cajas
+	has_many :chequeras
+	has_many :cuentas_bancarias
 
 	validates :descripcion,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:length => { 
+		:length => {
 			:maximum => 20,
 			:too_long => 'debe tener como maximo %{count} caracteres'},
 		:format => {
