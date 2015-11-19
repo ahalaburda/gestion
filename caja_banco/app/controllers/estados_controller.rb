@@ -4,6 +4,7 @@ class EstadosController < ApplicationController
   # GET /estados
   # GET /estados.json
   def index
+    @caja = Caja.new
     @estados = Estado.all
     @estado = Estado.new
       respond_to do |format|
@@ -25,11 +26,14 @@ class EstadosController < ApplicationController
   # GET /estados/new
   def new
     @estado = Estado.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /estados/1/edit
   def edit
-    @estado = TipoDeMovimiento.find(params[:id])
+    @estado = Estado.find(params[:id])
     respond_to do |format|
       format.js
     end
@@ -44,6 +48,7 @@ class EstadosController < ApplicationController
       if @estado.save
         format.html { redirect_to estados_url, notice: 'Estado was successfully created.' }
         format.json { render :show, status: :created, location: @estado }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @estado.errors, status: :unprocessable_entity }

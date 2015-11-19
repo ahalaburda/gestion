@@ -1,0 +1,3 @@
+$("#modal_estado").html(" <%= escape_javascript render  'estados/modals/estado' %>");
+$("#modal_estado .modal-body").html(" <%= escape_javascript render  'form', estado: @estado, remote: true %>");
+$("#modal_estado .modal").modal("show");
