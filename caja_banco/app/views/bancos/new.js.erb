@@ -1,0 +1,3 @@
+	$("#modal_banco").html(" <%= escape_javascript render  'bancos/modals/banco' %>");
+	$("#modal_banco .modal-body").html(" <%= escape_javascript render  'form', banco: @banco, remote: true %>");
+	$("#modal_banco .modal").modal("show");

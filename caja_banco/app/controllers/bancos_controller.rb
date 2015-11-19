@@ -8,11 +8,9 @@ class BancosController < ApplicationController
     @bancos = Banco.all
     
     @pais = Pais.new
-    @paises = Pais.all
-
     @departamento = Departamento.new
-
     @ciudad = Ciudad.new
+    @cuenta_bancaria = CuentaBancaria.new
 
     respond_to do |format|
         format.html # index.html.erb
@@ -34,6 +32,9 @@ class BancosController < ApplicationController
   # GET /bancos/new
   def new
     @banco = Banco.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /bancos/1/edit
@@ -53,6 +54,7 @@ class BancosController < ApplicationController
       if @banco.save
         format.html { redirect_to bancos_url, notice: 'Banco was successfully created.' }
         format.json { render :show, status: :created, location: @banco }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @banco.errors, status: :unprocessable_entity }

@@ -5,6 +5,8 @@ class CiudadesController < ApplicationController
   def index
     @ciudad = Ciudad.new
     @ciudades = Ciudad.all
+
+    @banco = Banco.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @ciudades }
@@ -48,12 +50,10 @@ class CiudadesController < ApplicationController
       if @ciudad.save
         format.html { redirect_to ciudades_url, notice: 'Ciudad was successfully created.' }
         format.json { render action: 'show', status: :created, location: @ciudad }
-        format.js   { render action: 'show', status: :created, location: @ciudad }
-
+        format.js
       else
         format.html { render :new }
         format.json { render json: @ciudad.errors, status: :unprocessable_entity }
-        format.js   { render json: @ciudad.errors, status: :unprocessable_entity }
       end
     end
   end
