@@ -1,5 +1,5 @@
 class TipoDePersona < ActiveRecord::Base
-	#has_many: personas
+	has_many :personas
 
 
 
@@ -7,7 +7,7 @@ class TipoDePersona < ActiveRecord::Base
 			:presence => {
 				message: 'Este campo es requerido'},
 
-			:length => { 
+			:length => {
 				:maximum => 20,
 				:too_long => 'debe tener como maximo %{count} caracteres'},
 

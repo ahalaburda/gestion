@@ -10,19 +10,56 @@
   </div>
 <% end %>
 
-  <div class="form-inputs">
-    <%= f.label :banco_id %>
-    <%= f.text_field :banco_id %>
-    <%= f.label :persona_id %>
-    <%= f.text_field :persona_id %>
-    <%= f.label :cuenta_bancaria_id %>
-    <%= f.text_field :cuenta_bancaria_id %>
-    <%= f.label :caja_id %>
-    <%= f.text_field :caja_id %>
-    <%= f.label :fecha %>
-    <%= f.text_field :fecha %>
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <div class="field">
+        <%= f.label :numero %>
+        <%= f.text_field :numero, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :banco_id %>
+        <%= f.collection_select :banco_id, Banco.all, :id, :banco_sucursal, {prompt: "Seleccione un Banco"}, {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <div class="field">
+        <%= f.label :persona_id %>
+        <%= f.collection_select :persona_id, Persona.all, :id, :nombre_apellido, {prompt: "Seleccione una persona"}, {class: "form-control"} %>
+      </div>
+      <div class="field">
+        <%= f.label :cuenta_bancaria_id %>
+        <%= f.collection_select :cuenta_bancaria_id, CuentaBancaria.all, :id, :numero_cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <div class="field">
+        <%= f.label :caja_id %>
+        <%= f.collection_select :caja_id, Caja.all, :id, :numero, {prompt: "Seleccione una caja"}, {class: "form-control"} %>
+      </div>
+      <div class="field">
+        <%= f.label :fecha %><br>
+          <div class="input-group">
+            <%= f.text_field :fecha, :class => 'datepicker form-control' %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+      </div>
+    </div>
   </div>
-  <div class="form-actions">
-    <%= f.button :submit %>
+</br>
+<h3> Agregar Detalles<button type="button" class="btn btn-info btn-outline btn-circle" id="btn1"><span class="glyphicon glyphicon-chevron-up" id="gbtn1"></span></button></h3>
+<div class="form-toggle">
+</div>
+  <div class="col-md-offset-10">
+    <div class="actions">
+     <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+      <% elsif controller.action_name == 'edit' %>
+        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+      <% end %>
+    </div>
   </div>
 <% end %>
+<div class="separador"></div>

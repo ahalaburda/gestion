@@ -1,6 +1,8 @@
 class Caja < ActiveRecord::Base
   belongs_to :estado
   belongs_to :persona
+  has_many :movimientos_de_cajas
+  has_many :boletas_de_depositos
 
   validates :estado_id,
 		:presence => {

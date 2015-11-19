@@ -10,8 +10,8 @@ class CajasController < ApplicationController
         format.html # index.html.erb
         format.json { render json: @cajas }
         format.xls { send_data @cajas.to_xls(
-          :columns => [ :apertura, :cierre, :saldo_inicial_efectivo, :saldo_inicial_cheque, :saldo_final_efectivo, :saldo_final_cheque, :estado_id, :persona_id, :created_at, :updated_at],
-          :headers => [  "Apertura", "Cierre", "Saldo Inicial Efectivo", "Saldo Inicial Cheque", "Saldo Final Efectivo", "Saldo Final Cheque", "Estado", "Cajero", "Fecha de Creacion", "Fecha de actualizacion"] ),
+          :columns => [ :numero, :apertura, :cierre, :saldo_inicial_efectivo, :saldo_inicial_cheque, :saldo_final_efectivo, :saldo_final_cheque, :estado_id, :persona_id, :created_at, :updated_at],
+          :headers => [ "Numero", "Apertura", "Cierre", "Saldo Inicial Efectivo", "Saldo Inicial Cheque", "Saldo Final Efectivo", "Saldo Final Cheque", "Estado", "Cajero", "Fecha de Creacion", "Fecha de actualizacion"] ),
           :filename => 'cajas.xls' }
         format.pdf { render_caja_list(@cajas) }
     end
@@ -83,7 +83,7 @@ class CajasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caja_params
-      params.require(:caja).permit(:apertura, :cierre, :saldo_inicial_efectivo, :saldo_inicial_cheque, :saldo_final_efectivo, :saldo_final_cheque, :estado_id, :persona_id)
+      params.require(:caja).permit(:apertura, :cierre, :saldo_inicial_efectivo, :saldo_inicial_cheque, :saldo_final_efectivo, :saldo_final_cheque, :estado_id, :persona_id, :numero)
     end
 
     def render_caja_list(caja)
@@ -91,7 +91,7 @@ class CajasController < ApplicationController
 
       caja.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id,
+          row.values no: task.numero,
                      apertura: task.apertura,
                      cierre: task.cierre,
                      saldo_inicial_efectivo: task.saldo_inicial_efectivo,
