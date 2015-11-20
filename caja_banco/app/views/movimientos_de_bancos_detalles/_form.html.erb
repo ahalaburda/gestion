@@ -10,20 +10,37 @@
   </div>
 <% end %>
 
-  <div class="form-inputs">
-    <div class="field">
-      <%= f.label :movimiento_de_banco_id %>
-      <%= f.text_field :movimiento_de_banco_id, disabled: true%>
-      <%= f.label :cuenta_bancaria_id %>
-      <%= f.text_field :cuenta_bancaria_id %>
-      <%= f.label :descripcion %>
-      <%= f.text_field :descripcion %>
-      <%= f.label :monto %>
-      <%= f.text_field :monto %>
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <div class="field">
+        <%= f.label :movimiento_de_banco_id %>
+        <%= f.text_field :movimiento_de_banco_id, disabled: true, class: 'form-control'%>
+      </div>
+      <div class="field">
+        <%= f.label :cuenta_bancaria_id %>
+        <%= f.collection_select :cuenta_bancaria_id, CuentaBancaria.all, :id, :numero_cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <div class="field">
+        <%= f.label :descripcion %>
+        <%= f.text_field :descripcion, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :monto %>
+        <%= f.text_field :monto, class: 'form-control' %>
+      </div>
     </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <br>
+  <div class="col-md-offset-10">
+    <div class="actions">
+     <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+      <% elsif controller.action_name == 'edit' %>
+        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+      <% end %>
+    </div>
   </div>
 <% end %>
