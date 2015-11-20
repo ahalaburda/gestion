@@ -3,10 +3,12 @@ class PaisesController < ApplicationController
   # GET /paises
   # GET /paises.json
   def index
-    @departamento = Departamento.new
-    @banco = Banco.new
     @pais = Pais.new
     @paises = Pais.all
+    
+    @departamento = Departamento.new
+    @banco = Banco.new
+    @persona = Persona.new
      respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @paises }

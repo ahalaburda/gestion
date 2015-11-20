@@ -1,8 +1,8 @@
-<%= form_for @tipo_de_persona, validate: true do |f| %>
+<% remote ||= false %>
+<%= form_for @tipo_de_persona, remote: remote , validate: true do |f| %>
   <% if @tipo_de_persona.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@tipo_de_persona.errors.count, "error") %> prohibited this tipo_de_persona from being saved:</h2>
-
       <ul>
       <% @tipo_de_persona.errors.full_messages.each do |message| %>
         <li><%= message %></li>

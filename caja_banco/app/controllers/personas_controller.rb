@@ -4,9 +4,11 @@ class PersonasController < ApplicationController
   # GET /personas
   # GET /personas.json
   def index
-    @caja = Caja.new
     @persona = Persona.new
     @personas = Persona.all
+    
+    @caja = Caja.new
+    @cheque_entrante = ChequeEntrante.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @personas }

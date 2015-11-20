@@ -6,6 +6,8 @@ class TiposDePersonasController < ApplicationController
   def index
     @tipos_de_personas = TipoDePersona.all
     @tipo_de_persona = TipoDePersona.new
+    
+    @persona = Persona.new
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @tipos_de_personas }

@@ -4,9 +4,11 @@ class DepartamentosController < ApplicationController
   # GET /departamentos
   # GET /departamentos.json
   def index
-    @pais= Pais.new
     @departamento = Departamento.new
     @departamentos = Departamento.all
+
+    @pais= Pais.new
+    @persona = Persona.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @departamentos }

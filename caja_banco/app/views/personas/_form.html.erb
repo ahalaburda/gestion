@@ -12,9 +12,16 @@
   <% end %>
   <div class="row">
     <div class="col-md-3">
-    <div class="field">
-        <%= f.label :tipo_de_persona_id %>
-        <%= f.collection_select :tipo_de_persona_id, TipoDePersona.all, :id, :descripcion, {prompt: "Seleccione un tipo de persona"}, {class: "form-control"} %>
+      <div class="field">
+        <label for="persona_tipo_de_persona_id" class="required"> Tipo de persona 
+          <%= link_to new_tipo_de_persona_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :tipo_de_persona_id, 
+          options_from_collection_for_select(TipoDePersona.all, :id, :nombre, @persona.tipo_de_persona_id),
+          {prompt: true}, id: "persona_tipo_de_persona_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
         <%= f.label :nombre %>
@@ -41,20 +48,40 @@
     </div>
     <div class="col-md-3">
       <div class="field">
-        <%= f.label :pais_id %>
-        <%= f.collection_select :pais_id, Pais.all, :id, :descripcion, {prompt: "Seleccione un pais"}, {class: "form-control"} %>
+        <label for="persona_pais_id" class="required">Pais 
+          <%= link_to new_pais_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :pais_id, 
+          options_from_collection_for_select(Pais.all, :id, :nombre, @persona.pais_id),
+          {prompt: true}, id: "persona_pais_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
-            <%= f.label :departamento_id %>
-            <%= f.collection_select :departamento_id, Departamento.all, :id, :nombre, {prompt: "Seleccione un departamento"}, {class: "form-control"} %>
-          </div>
+        <label for="persona_departamento_id" class="required">Departamento 
+          <%= link_to new_departamento_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :departamento_id, 
+          options_from_collection_for_select(Departamento.all, :id, :nombre, @persona.departamento_id),
+          {prompt: true}, id: "persona_departamento_id", include_blank: true, class: "form-control"%>
+      </div>
+      <div class="field">
+        <label for="persona_ciudad_id" class="required">Ciudad 
+          <%= link_to new_ciudad_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :ciudad_id, 
+          options_from_collection_for_select(Ciudad.all, :id, :nombre, @persona.ciudad_id),
+          {prompt: true}, id: "persona_ciudad_id", include_blank: true, class: "form-control"%>
+      </div>
     </div>
     <div class="col-md-3">
-      <div class="field">
-        <%= f.label :ciudad_id %>
-        </br>
-        <%= f.collection_select :ciudad_id, Ciudad.all, :id, :nombre, {prompt: "Seleccione una Ciudad"}, {class: "form-control"} %>
-      </div>
       <div class="field">
         <%= f.label :fecha_de_nacimiento %><br>  
           <div class="input-group">           
@@ -82,4 +109,8 @@
     </div>
   </div>
 <% end %>
+<div id="modal_tipo_de_persona"></div>
+<div id="modal_pais"></div>
+<div id="modal_departamento"></div>
+<div id="modal_ciudad"></div>
 <div class="separador"></div>

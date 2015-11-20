@@ -7,6 +7,7 @@ class CiudadesController < ApplicationController
     @ciudades = Ciudad.all
 
     @banco = Banco.new
+    @persona = Persona.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @ciudades }
