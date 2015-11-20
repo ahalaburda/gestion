@@ -4,9 +4,12 @@ class EstadosController < ApplicationController
   # GET /estados
   # GET /estados.json
   def index
-    @caja = Caja.new
     @estados = Estado.all
     @estado = Estado.new
+
+    @caja = Caja.new
+    @chequera = Chequera.new
+    @cuenta_bancaria = CuentaBancaria.new
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @estados }

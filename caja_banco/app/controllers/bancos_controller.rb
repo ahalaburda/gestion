@@ -11,6 +11,7 @@ class BancosController < ApplicationController
     @departamento = Departamento.new
     @ciudad = Ciudad.new
     @cuenta_bancaria = CuentaBancaria.new
+    @cheque_entrante = ChequeEntrante.new
 
     respond_to do |format|
         format.html # index.html.erb

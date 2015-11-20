@@ -1,0 +1,3 @@
+$("#modal_cuenta_bancaria .modal").modal("hide");
+$("#chequera_cuenta_bancaria_id").append("<option value='<%= @cuenta_bancaria.id %>'>
+	<%= @cuenta_bancaria.numero_cuenta %>, <%= @cuenta_bancaria.banco_id %></option>");

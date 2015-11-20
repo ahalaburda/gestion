@@ -6,6 +6,8 @@ class CuentasBancariasController < ApplicationController
   def index
     @cuentas_bancarias = CuentaBancaria.all
     @cuenta_bancaria = CuentaBancaria.new
+
+    @chequera = Chequera.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @cuentas_bancarias }
@@ -25,12 +27,19 @@ class CuentasBancariasController < ApplicationController
   # GET /cuentas_bancarias/new
   def new
     @cuenta_bancaria = CuentaBancaria.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @cuenta_bancaria }
+      format.js
+    end
   end
 
   # GET /cuentas_bancarias/1/edit
    def edit
     @cuenta_bancaria = CuentaBancaria.find(params[:id])
     respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @cuenta_bancaria }
       format.js
     end
   end
@@ -44,6 +53,7 @@ class CuentasBancariasController < ApplicationController
       if @cuenta_bancaria.save
         format.html { redirect_to cuentas_bancarias_url, notice: 'Cuenta bancaria was successfully created.' }
         format.json { render :show, status: :created, location: @cuenta_bancaria }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @cuenta_bancaria.errors, status: :unprocessable_entity }

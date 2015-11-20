@@ -1,0 +1,3 @@
+$("#modal_cuenta_bancaria").html(" <%= escape_javascript render  'cuentas_bancarias/modals/cuenta_bancaria' %>");
+$("#modal_cuenta_bancaria .modal-body").html(" <%= escape_javascript render  'form', cuenta_bancaria: @cuenta_bancaria, remote: true %>");
+$("#modal_cuenta_bancaria .modal").modal("show");
