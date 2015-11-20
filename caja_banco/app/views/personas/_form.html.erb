@@ -98,16 +98,16 @@
     </div>
   </div>
 </br>
-  <div class="col-md-offset-8">
-    <div class="actions">
-      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
-      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
-        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
-      <% elsif controller.action_name == 'edit' %>
-        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
-      <% end %>
-    </div>
+<div class="col-md-offset-10">
+  <div class="actions">
+   <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+    <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+      <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+    <% elsif controller.action_name == 'edit' %>
+      <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+    <% end %>
   </div>
+</div>
 <% end %>
 <div id="modal_tipo_de_persona"></div>
 <div id="modal_pais"></div>
