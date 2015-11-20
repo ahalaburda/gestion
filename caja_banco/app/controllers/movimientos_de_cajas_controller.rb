@@ -6,12 +6,14 @@ class MovimientosDeCajasController < ApplicationController
   def index
     @movimientos_de_cajas = MovimientoDeCaja.all
     @movimiento_de_caja = MovimientoDeCaja.new
+    @movimiento_de_caja_detalle = MovimientoDeCajaDetalle.new
   end
 
   # GET /movimientos_de_cajas/1
   # GET /movimientos_de_cajas/1.json
   def show
-    @movimiento_de_caja = MovimientoDeCaja.new
+    @movimiento_de_caja_detalle = MovimientoDeCajaDetalle.new
+    @movimientos_de_cajas_detalles = MovimientoDeCajaDetalle.all
   end
 
   # GET /movimientos_de_cajas/new
