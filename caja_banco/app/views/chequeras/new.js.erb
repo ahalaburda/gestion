@@ -1,0 +1,3 @@
+$("#modal_chequera").html(" <%= escape_javascript render  'chequeras/modals/chequera' %>");
+$("#modal_chequera .modal-body").html(" <%= escape_javascript render  'form', chequera: @chequera, remote: true %>");
+$("#modal_chequera .modal").modal("show");

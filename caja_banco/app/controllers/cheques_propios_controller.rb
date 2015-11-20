@@ -25,6 +25,9 @@ class ChequesPropiosController < ApplicationController
   # GET /cheques_propios/new
   def new
     @cheque_propio = ChequePropio.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /cheques_propios/1/edit

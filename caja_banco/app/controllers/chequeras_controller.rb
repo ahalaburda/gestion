@@ -6,6 +6,8 @@ class ChequerasController < ApplicationController
   def index
     @chequeras = Chequera.all
     @chequera = Chequera.new
+
+    @cheque_propio = ChequePropio.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @chequeras }
@@ -25,21 +27,28 @@ class ChequerasController < ApplicationController
   # GET /chequeras/new
   def new
     @chequera = Chequera.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /chequeras/1/edit
   def edit
+    @chequera = Chequera.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /chequeras
   # POST /chequeras.json
   def create
     @chequera = Chequera.new(chequera_params)
-
     respond_to do |format|
       if @chequera.save
         format.html { redirect_to chequeras_url, notice: 'Chequera was successfully created.' }
         format.json { render :show, status: :created, location: @chequera }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @chequera.errors, status: :unprocessable_entity }

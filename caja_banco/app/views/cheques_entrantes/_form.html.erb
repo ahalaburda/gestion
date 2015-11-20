@@ -13,8 +13,15 @@
   <div class="row">
     <div class="col-md-4">
       <div class="field">
-        <%= f.label :banco_id %>
-        <%= f.collection_select :banco_id, Banco.all, :id, :banco_sucursal, {prompt: "Seleccione un Banco"}, {class: "form-control"} %>
+        <label for="cheque_entrante_banco_id" class="required">Banco 
+          <%= link_to new_banco_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :banco_id, 
+          options_from_collection_for_select(Banco.all, :id, :numero, @cheque_entrante.banco_id),
+          {prompt: true}, id: "cheque_entrante_banco_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
         <%= f.label :numero %>
@@ -33,8 +40,15 @@
     </div>
     <div class="col-md-4">
       <div class="field">
-        <%= f.label :persona_id %>
-        <%= f.collection_select :persona_id, Persona.all, :id, :nombre_apellido, {prompt: "Seleccione una persona"}, {class: "form-control"} %>
+        <label for="cheque_entrante_persona_id" class="required">Persona 
+          <%= link_to new_persona_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :persona_id, 
+          options_from_collection_for_select(Persona.all, :id, :nombre, @cheque_entrante.persona_id),
+          {prompt: true}, id: "cheque_entrante_persona_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
         <%= f.label :fecha %><br>  
@@ -61,3 +75,5 @@
     </div>
   </div>
 <% end %>
+<div id="modal_banco"></div>
+<div id="modal_persona"></div>
