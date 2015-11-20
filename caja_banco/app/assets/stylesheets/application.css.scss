@@ -24,19 +24,19 @@
 @import 'bootstrap-datetimepicker';
 
 @font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('/assets/glyphicons-halflings-regular.eot');
-    src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+  font-family: 'Glyphicons Halflings';
+  src: url('/assets/glyphicons-halflings-regular.eot');
+  src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 
 body {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.42857143;
-    color: #333333;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.42857143;
+  color: #333333;
   }
 #tabla_print{
-      display: none !important;
+  display: none !important;
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
@@ -152,6 +152,20 @@ label.required:after {
     font-size: 10px;
   }
 }
+// #form-toggle{
+//   .actions{
+//     margin-left: 228px;
+//   }
+// }
+
+// .modal{
+// #form-toggle{
+//   .actions{
+//     margin-left: 228px;
+//   }
+// }
+
+// }
 
 /////////////////////////////////navbar
 .nav > li > a:hover, .nav > li > a:focus {
