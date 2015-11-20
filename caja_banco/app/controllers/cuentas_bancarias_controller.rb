@@ -8,6 +8,7 @@ class CuentasBancariasController < ApplicationController
     @cuenta_bancaria = CuentaBancaria.new
 
     @chequera = Chequera.new
+    @firmante = Firmante.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @cuentas_bancarias }

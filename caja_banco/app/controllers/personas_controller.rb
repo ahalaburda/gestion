@@ -9,6 +9,7 @@ class PersonasController < ApplicationController
     
     @caja = Caja.new
     @cheque_entrante = ChequeEntrante.new
+    @firmante = Firmante.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @personas }
