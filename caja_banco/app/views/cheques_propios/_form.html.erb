@@ -13,14 +13,14 @@
   <div class="row">
     <div class="col-md-4">
       <div class="field">
-        <label for="cheque_propio_chequera_id" class="required">Chequera 
+        <label for="cheque_propio_chequera_id" class="required">Chequera
           <%= link_to new_chequera_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :chequera_id, 
-          options_from_collection_for_select(Chequera.all, :id, :numero, @cheque_propio.chequera_id),
+        <%= f.select :chequera_id,
+          options_from_collection_for_select(Chequera.all, :id, :id, @cheque_propio.chequera_id),
           {prompt: true}, id: "cheque_propio_chequera_id", include_blank: true, class: "form-control"%>
     </div>
 

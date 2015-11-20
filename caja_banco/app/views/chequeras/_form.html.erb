@@ -20,8 +20,8 @@
           <% end %>
         </label>
         </br>
-        <%= f.select :cuenta_bancaria_id, 
-          options_from_collection_for_select(CuentaBancaria.all, :id, :nombre, @chequera.cuenta_bancaria_id),
+        <%= f.select :cuenta_bancaria_id,
+          options_from_collection_for_select(CuentaBancaria.all, :id, :numero_cuenta, @chequera.cuenta_bancaria_id),
           {prompt: true}, id: "chequera_cuenta_bancaria_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
@@ -31,7 +31,7 @@
           <% end %>
         </label>
         </br>
-        <%= f.select :estado_id, 
+        <%= f.select :estado_id,
           options_from_collection_for_select(Estado.all, :id, :descripcion, @chequera.estado_id),
           {prompt: true}, id: "chequera_estado_id", include_blank: true, class: "form-control"%>
       </div>
@@ -52,7 +52,7 @@
     <div class="actions">
       <% if controller.action_name == 'new' or controller.action_name == 'index' %>
         <%= f.submit "Agregar", :class => 'btn btn-primary'%>
-        
+
       <% elsif controller.action_name == 'edit' %>
         <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
       <% end %>
@@ -64,5 +64,3 @@
 <div id="modal_cuenta_bancaria"></div>
 <div id="modal_estado"></div>
 <div id="separador"></div>
-
-
