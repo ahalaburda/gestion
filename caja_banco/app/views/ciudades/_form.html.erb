@@ -25,13 +25,13 @@
 		</div>
 		<div class="col-md-4">
 			<div class="field">
-        <label for="ciudad_departamento_id">Departamento 
+        <label for="ciudad_departamento_id">Departamento
           <%= link_to new_departamento_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :departamento_id, 
+        <%= f.select :departamento_id,
           options_from_collection_for_select(Departamento.all, :id, :nombre, @ciudad.departamento_id),
           {prompt: true}, id: "ciudad_departamento_id", include_blank: true, class: "form-control"%>
        </div>
@@ -39,15 +39,15 @@
 	</div>
 	</br>
 	<div class="col-md-offset-10">
-			<div class="actions">
-				<% if controller.action_name == 'new' or controller.action_name == 'index' %>
-					<%= f.submit "Agregar", class: 'btn btn-primary'%>
-					
-				<% elsif controller.action_name == 'edit' %>
-					<%= f.submit "Actualizar", class: 'btn btn-primary'%>
-				<% end %>
-				<%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar', class: 'btn btn-reset'%>
-			</div>
-		</div>
+    <div class="actions">
+     <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+      <% elsif controller.action_name == 'edit' %>
+        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 <div id="modal_departamento"></div>
+<div class="separador"></div>

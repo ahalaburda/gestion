@@ -6,12 +6,14 @@ class MovimientosDeBancosController < ApplicationController
   def index
     @movimientos_de_bancos = MovimientoDeBanco.all
     @movimiento_de_banco = MovimientoDeBanco.new
+    @movimiento_de_banco_detalle = MovimientoDeBancoDetalle.new
   end
 
   # GET /movimientos_de_bancos/1
   # GET /movimientos_de_bancos/1.json
   def show
-    @movimiento_de_banco = MovimientoDeBanco.new
+    @movimiento_de_banco_detalle = MovimientoDeBancoDetalle.new
+    @movimientos_de_bancos_detalles = MovimientoDeBancoDetalle.all
   end
 
   # GET /movimientos_de_bancos/new

@@ -13,14 +13,14 @@
   <div class="row">
     <div class="col-md-3">
       <div class="field">
-        <label for="persona_tipo_de_persona_id" class="required"> Tipo de persona 
+        <label for="persona_tipo_de_persona_id" class="required"> Tipo de persona
           <%= link_to new_tipo_de_persona_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :tipo_de_persona_id, 
-          options_from_collection_for_select(TipoDePersona.all, :id, :nombre, @persona.tipo_de_persona_id),
+        <%= f.select :tipo_de_persona_id,
+          options_from_collection_for_select(TipoDePersona.all, :id, :descripcion, @persona.tipo_de_persona_id),
           {prompt: true}, id: "persona_tipo_de_persona_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
@@ -48,49 +48,49 @@
     </div>
     <div class="col-md-3">
       <div class="field">
-        <label for="persona_pais_id" class="required">Pais 
+        <label for="persona_pais_id" class="required">Pais
           <%= link_to new_pais_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :pais_id, 
+        <%= f.select :pais_id,
           options_from_collection_for_select(Pais.all, :id, :nombre, @persona.pais_id),
           {prompt: true}, id: "persona_pais_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
-        <label for="persona_departamento_id" class="required">Departamento 
+        <label for="persona_departamento_id" class="required">Departamento
           <%= link_to new_departamento_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :departamento_id, 
+        <%= f.select :departamento_id,
           options_from_collection_for_select(Departamento.all, :id, :nombre, @persona.departamento_id),
           {prompt: true}, id: "persona_departamento_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
-        <label for="persona_ciudad_id" class="required">Ciudad 
+        <label for="persona_ciudad_id" class="required">Ciudad
           <%= link_to new_ciudad_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :ciudad_id, 
+        <%= f.select :ciudad_id,
           options_from_collection_for_select(Ciudad.all, :id, :nombre, @persona.ciudad_id),
           {prompt: true}, id: "persona_ciudad_id", include_blank: true, class: "form-control"%>
       </div>
     </div>
     <div class="col-md-3">
       <div class="field">
-        <%= f.label :fecha_de_nacimiento %><br>  
-          <div class="input-group">           
+        <%= f.label :fecha_de_nacimiento %><br>
+          <div class="input-group">
             <%= f.text_field :fecha_de_nacimiento, :class => 'datepicker form-control' %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
           </div>
-      </div> 
+      </div>
       <div class="field">
         <%= f.label :correo %>
         <%= f.text_field :correo , class: "form-control" %>
@@ -98,16 +98,16 @@
     </div>
   </div>
 </br>
-  <div class="col-md-offset-8">
-    <div class="actions">
-      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
-      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
-        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
-      <% elsif controller.action_name == 'edit' %>
-        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
-      <% end %>
-    </div>
+<div class="col-md-offset-10">
+  <div class="actions">
+   <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+    <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+      <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+    <% elsif controller.action_name == 'edit' %>
+      <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+    <% end %>
   </div>
+</div>
 <% end %>
 <div id="modal_tipo_de_persona"></div>
 <div id="modal_pais"></div>

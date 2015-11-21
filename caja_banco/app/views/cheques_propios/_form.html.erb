@@ -13,14 +13,14 @@
   <div class="row">
     <div class="col-md-4">
       <div class="field">
-        <label for="cheque_propio_chequera_id" class="required">Chequera 
+        <label for="cheque_propio_chequera_id" class="required">Chequera
           <%= link_to new_chequera_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :chequera_id, 
-          options_from_collection_for_select(Chequera.all, :id, :numero, @cheque_propio.chequera_id),
+        <%= f.select :chequera_id,
+          options_from_collection_for_select(Chequera.all, :id, :id, @cheque_propio.chequera_id),
           {prompt: true}, id: "cheque_propio_chequera_id", include_blank: true, class: "form-control"%>
     </div>
 
@@ -54,16 +54,16 @@
   </div>
 
 </br>
-  <div class="col-md-offset-10">
-    <div class="actions">
-      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
-        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
-
-      <% elsif controller.action_name == 'edit' %>
-        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
-      <% end %>
-      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
-    </div>
+<div class="col-md-offset-10">
+  <div class="actions">
+   <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+    <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+      <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+    <% elsif controller.action_name == 'edit' %>
+      <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+    <% end %>
   </div>
+</div>
 <% end %>
 <div id="modal_chequera"></div>
+<div class="separador"></div>

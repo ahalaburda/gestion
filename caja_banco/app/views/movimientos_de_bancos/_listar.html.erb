@@ -1,0 +1,30 @@
+<table id="table" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Tipo de movimiento</th>
+      <th>Banco</th>
+      <th>Descripcion</th>
+      <th>Acciones</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movimientos_de_bancos.each do |movimiento_de_banco| %>
+      <tr>
+        <td><%= movimiento_de_banco.tipo_de_movimiento.descripcion %></td>
+        <td><%= movimiento_de_banco.banco.banco_sucursal %></td>
+        <td><%= movimiento_de_banco.descripcion %></td>
+        <td><%= link_to movimiento_de_banco_path(movimiento_de_banco), class: 'btn btn-success btn-outline btn-circle', title: 'Mostrar Detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+          <span class="glyphicon glyphicon-eye-open"></span>
+        <% end %>
+          <%= link_to edit_movimiento_de_banco_path(movimiento_de_banco), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+          <%= link_to movimiento_de_banco, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
+            <span class="glyphicon glyphicon-remove"></span>
+          <% end %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
