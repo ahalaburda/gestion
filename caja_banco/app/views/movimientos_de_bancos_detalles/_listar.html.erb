@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>Movimiento de banco</th>
+      <th>Cuenta bancaria</th>
+      <th>Descripcion</th>
+      <th>Monto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movimientos_de_bancos_detalles.each do |movimiento_de_banco_detalle| %>
+      <tr>
+        <td><%= movimiento_de_banco_detalle.movimiento_de_banco_id %></td>
+        <td><%= movimiento_de_banco_detalle.cuenta_bancaria.numero_cuenta %></td>
+        <td><%= movimiento_de_banco_detalle.descripcion %></td>
+        <td><%= movimiento_de_banco_detalle.monto %></td>
+        <td><%= link_to 'Show', [movimiento_de_banco_detalle.movimiento_de_banco, movimiento_de_banco_detalle] %></td>
+        <td><%= link_to 'Edit', edit_movimiento_de_banco_movimiento_de_banco_detalle_path(movimiento_de_banco_detalle.movimiento_de_banco, movimiento_de_banco_detalle) %></td>
+        <td><%= link_to 'Destroy', [movimiento_de_banco_detalle.movimiento_de_banco, movimiento_de_banco_detalle], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
