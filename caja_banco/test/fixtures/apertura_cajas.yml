@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  caja_id: 
+  apertura: 2015-11-24
+  cierre: 2015-11-24
+  saldo_inicial_efectivo: 9.99
+  saldo_inicial_cheque: 9.99
+  saldo_final_efectivo: 9.99
+  saldo_final_cheque: 9.99
+  persona_id: 
+
+two:
+  caja_id: 
+  apertura: 2015-11-24
+  cierre: 2015-11-24
+  saldo_inicial_efectivo: 9.99
+  saldo_inicial_cheque: 9.99
+  saldo_final_efectivo: 9.99
+  saldo_final_cheque: 9.99
+  persona_id: 

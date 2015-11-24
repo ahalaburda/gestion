@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Caja:</strong>
+  <%= @apertura_caja.caja %>
+</p>
+
+<p>
+  <strong>Apertura:</strong>
+  <%= @apertura_caja.apertura %>
+</p>
+
+<p>
+  <strong>Cierre:</strong>
+  <%= @apertura_caja.cierre %>
+</p>
+
+<p>
+  <strong>Saldo inicial efectivo:</strong>
+  <%= @apertura_caja.saldo_inicial_efectivo %>
+</p>
+
+<p>
+  <strong>Saldo inicial cheque:</strong>
+  <%= @apertura_caja.saldo_inicial_cheque %>
+</p>
+
+<p>
+  <strong>Saldo final efectivo:</strong>
+  <%= @apertura_caja.saldo_final_efectivo %>
+</p>
+
+<p>
+  <strong>Saldo final cheque:</strong>
+  <%= @apertura_caja.saldo_final_cheque %>
+</p>
+
+<p>
+  <strong>Persona:</strong>
+  <%= @apertura_caja.persona %>
+</p>
+
+<%= link_to 'Edit', edit_apertura_caja_path(@apertura_caja) %> |
+<%= link_to 'Back', apertura_cajas_path %>

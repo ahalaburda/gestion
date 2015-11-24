@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118192044) do
+ActiveRecord::Schema.define(version: 20151124193157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apertura_cajas", force: true do |t|
+    t.integer  "caja_id"
+    t.date     "apertura"
+    t.date     "cierre"
+    t.decimal  "saldo_inicial_efectivo"
+    t.decimal  "saldo_inicial_cheque"
+    t.decimal  "saldo_final_efectivo"
+    t.decimal  "saldo_final_cheque"
+    t.integer  "persona_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "apertura_cajas", ["caja_id"], name: "index_apertura_cajas_on_caja_id", using: :btree
+  add_index "apertura_cajas", ["persona_id"], name: "index_apertura_cajas_on_persona_id", using: :btree
 
   create_table "auditorias", force: true do |t|
     t.string   "nombre_tabla"
@@ -73,21 +89,13 @@ ActiveRecord::Schema.define(version: 20151118192044) do
   add_index "boletas_de_depositos_detalles", ["cheque_entrante_id"], name: "index_boletas_de_depositos_detalles_on_cheque_entrante_id", using: :btree
 
   create_table "cajas", force: true do |t|
-    t.date     "apertura"
-    t.date     "cierre"
-    t.decimal  "saldo_inicial_efectivo"
-    t.decimal  "saldo_inicial_cheque"
-    t.decimal  "saldo_final_efectivo"
-    t.decimal  "saldo_final_cheque"
     t.integer  "estado_id"
-    t.integer  "persona_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "numero"
   end
 
   add_index "cajas", ["estado_id"], name: "index_cajas_on_estado_id", using: :btree
-  add_index "cajas", ["persona_id"], name: "index_cajas_on_persona_id", using: :btree
 
   create_table "chequeras", force: true do |t|
     t.integer  "cuenta_bancaria_id"

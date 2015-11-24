@@ -1,0 +1,80 @@
+<%= form_for @apertura_caja , :validate => true do |f| %>
+  <% if @apertura_caja.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@apertura_caja.errors.count, "error") %> prohibited this apertura_caja from being saved:</h2>
+      <ul>
+      <% @apertura_caja.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="field">
+        <label for="apertura_caja_persona_id">Persona
+          <%= link_to new_persona_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :persona_id,
+          options_from_collection_for_select(Persona.all, :id, :nombre_apellido, @apertura_caja.persona_id),
+          {prompt: true}, id: "apertura_caja_persona_id", include_blank: true, class: "form-control"%>
+      </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="field">
+        <%= f.label :apertura, class: 'required' %><br>
+          <div class="input-group">
+            <%= f.text_field :apertura, :class => 'datepicker form-control' %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+      </div>
+      <div class="field">
+        <%= f.label :cierre, class: 'required' %><br>
+          <div class="input-group">
+            <%= f.text_field :cierre, :class => 'datepicker form-control' %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+      </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="field">
+        <%= f.label :saldo_inicial_efectivo , class: 'required' %>
+        <%= f.text_field :saldo_inicial_efectivo, :class => 'form-control', data: { role: 'money', a_sep: '.', a_dec: ',' } %>
+      </div>
+      <div class="field">
+        <%= f.label :saldo_final_efectivo , class: 'required' %>
+        <%= f.text_field :saldo_final_efectivo, :class => 'form-control', data: { role: 'money', a_sep: '.', a_dec: ',' } %>
+      </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+     <div class="field">
+        <%= f.label :saldo_inicial_cheque , class: 'required' %>
+        <%= f.text_field :saldo_inicial_cheque, :class => 'form-control', data: { role: 'money', a_sep: '.', a_dec: ',' } %>
+      </div>
+      <div class="field">
+        <%= f.label :saldo_final_cheque , class: 'required' %>
+        <%= f.text_field :saldo_final_cheque , :class => 'form-control', data: { role: 'money', a_sep: '.', a_dec: ',' } %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="col-md-offset-10">
+    <div class="actions">
+     <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+      <% elsif controller.action_name == 'edit' %>
+        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<div id="modal_persona"></div>
+<div class="separador"></div>

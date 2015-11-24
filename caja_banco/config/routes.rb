@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :apertura_cajas
+
   resources :movimientos_de_cajas do
     resources :movimientos_de_cajas_detalles
   end
