@@ -48,6 +48,94 @@ th{
 td{
    text-align: center;
 }
+.widget.widget-stats {
+    position: relative;
+}
+.bg-green {
+    background: #00acac;
+}
+.widget {
+    margin: 20px;
+    color: #fff;
+    text-align:left;
+    font-size:30px;
+    width: 100%;
+}
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
+
+.media-messaging .media, .widget {
+    padding: 50px;
+}
+.result-list>li, .widget {
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.widget-stats .stats-icon.stats-icon-lg {
+    font-size: 52px;
+    top: 12px;
+    right: 21px;
+}
+.widget-stats .stats-icon {
+    font-size: 42px;
+    height: 56px;
+    width: 56px;
+    text-align: center;
+    line-height: 56px;
+    margin-left: 15px;
+    color: #fff;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    opacity: .2;
+    filter: alpha(opacity=20);
+}
+.fa-fw {
+    width: 1.28571429em;
+    text-align: center;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+#index{
+  padding-top:100px;
+}
+
+
+.pace-progress {
+    background: #00acac;
+}
+.pace-progress {
+    text-align: center;
+    background: #00acac;
+    -webkit-transition: width 1s;
+    -moz-transition: width 1s;
+    -o-transition: width 1s;
+    transition: width 1s;
+    z-index: 2000;
+}
+.pace-progress, .pace:before {
+    left: 0;
+    position: fixed;
+    top: 54px;
+    right: 0;
+    height: 3px;
+}
+
+
+
+
+
+
+
+
 //////////////////////// campo requerido
 label.required:after {
     content: " *";

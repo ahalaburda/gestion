@@ -1,2 +1,40 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div id="index">
+	<div class="row">
+		<div class="col-md-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+			<%= link_to  bancos_path , class: 'btn bg-green grow widget widget-stats ' do%>
+			<div class="stats-icon stats-icon-lg ">
+				<span class="glyphicon glyphicon-piggy-bank"></span>
+				</div>
+				<div class="stats-title">Bancos</div>
+				   <!-- <div class="stats-number">7,842,900</div>        -->
+			<% end %>	
+		</div>
+		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+			<%= link_to  bancos_path , class: 'btn bg-green grow widget widget-stats' do%>
+			<div class="stats-icon stats-icon-lg ">
+				<span class="glyphicon glyphicon-list-alt"></span>
+				</div>
+				<div class="stats-title">Libro de Caja</div>
+				   <!-- <div class="stats-number">7,842,900</div>        -->
+			<% end %>	
+		</div>
+		<div class="col-md-offset-1 col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+			<%= link_to cajas_path , class: 'btn bg-green grow widget widget-stats' do%>
+			<div class="stats-icon stats-icon-lg ">
+				<span class="glyphicon glyphicon-usd"></span>
+				</div>
+				<div class="stats-title">Caja</div>
+				   <!-- <div class="stats-number">7,842,900</div>        -->
+			<% end %>	
+		</div>
+		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+			<%= link_to  cuentas_bancarias_path , class: 'btn bg-green grow widget widget-stats' do%>
+			<div class="stats-icon stats-icon-lg ">
+				<span class="glyphicon glyphicon-stats"></span>
+				</div>
+				<div class="stats-title">Cuentas Bancarias</div>
+				   <!-- <div class="stats-number">7,842,900</div>        -->
+			<% end %>	
+		</div>
+</div>
+</div>
