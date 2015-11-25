@@ -7,6 +7,13 @@ GIT
       jquery-rails (>= 3.1.2, < 5.0.0)
       rails (>= 4.0.0, < 4.3.0)
 
+GIT
+  remote: git://github.com/ifad/data-confirm-modal.git
+  revision: a2018ab8893cdeeeffaae407368ed1a20ea72b30
+  specs:
+    data-confirm-modal (1.1.0)
+      railties (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -160,6 +167,7 @@ DEPENDENCIES
   bootstrap3-datetimepicker-rails (~> 4.17.37)
   client_side_validations!
   coffee-rails (~> 4.0.0)
+  data-confirm-modal!
   jbuilder (~> 2.0)
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
