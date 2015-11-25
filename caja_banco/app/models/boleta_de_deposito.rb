@@ -4,6 +4,7 @@ class BoletaDeDeposito < ActiveRecord::Base
   belongs_to :cuenta_bancaria
   belongs_to :caja
   has_many :boletas_de_depositos_detalles
+  accepts_nested_attributes_for :boletas_de_depositos_detalles, allow_destroy: true
 
   validates :banco_id, presence: true
   validates :numero, presence: true
