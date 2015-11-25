@@ -73,6 +73,6 @@ class MovimientosDeBancosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movimiento_de_banco_params
-      params.require(:movimiento_de_banco).permit(:tipo_de_movimiento_id, :banco_id, :descripcion)
+      params.require(:movimiento_de_banco).permit(:tipo_de_movimiento_id, :banco_id, :descripcion, :fecha, movimientos_de_bancos_detalles_attributes: [:id, :cuenta_bancaria_id, :descripcion, :monto])
     end
 end
