@@ -1,4 +1,4 @@
-<%= form_for(@movimiento_de_caja) do |f| %>
+<%= nested_form_for(@movimiento_de_caja) do |f| %>
 <% if @movimiento_de_caja.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@movimiento_de_caja.errors.count, "error") %> prohibited this movimiento_de_caja from being saved:</h2>
@@ -11,29 +11,78 @@
 <% end %>
 
 <div class="row">
-  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
     <div class="field">
       <%= f.label :tipo_de_movimiento_id %>
       <%= f.collection_select :tipo_de_movimiento_id, TipoDeMovimiento.all, :id, :descripcion, {prompt: "Seleccione un Tipo de Movimiento"}, {class: "form-control"} %>
     </div>
   </div>
-  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
     <div class="field">
       <%= f.label :caja_id %>
-      <%= f.collection_select :caja_id, Caja.all, :id, :numero, {prompt: "Seleccione una caja"}, {class: "form-control"} %>
+      <%= f.collection_select :caja_id, Caja.all, :id, :numero_caja, {prompt: "Seleccione una Caja"}, {class: "form-control"} %>
     </div>
   </div>
-  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
     <div class="field">
       <%= f.label :descripcion %>
       <%= f.text_field :descripcion, class: 'form-control' %>
     </div>
   </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div class="field">
+      <%= f.label :fecha %><br>
+        <div class="input-group">
+          <%= f.text_field :fecha, :class => 'datepicker form-control' %>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+    </div>
+  </div>
 </div>
-</br>
-<h3> Agregar Detalles<button type="button" class="btn btn-info btn-outline btn-circle" id="btn1"><span class="glyphicon glyphicon-chevron-up" id="gbtn1"></span></button></h3>
-<div class="form-toggle">
+<br>
+<%= f.fields_for :movimientos_de_cajas_detalles do |movimiento_de_caja_detalle| %>
+<div class="row">
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <div class="field">
+      <%= movimiento_de_caja_detalle.label :cheque_entrante_id %>
+      <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
+    </div>
+  </div>
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <div class="field">
+      <%= movimiento_de_caja_detalle.label :cheque_propio_id %>
+      <%= movimiento_de_caja_detalle.collection_select :cheque_propio_id, ChequePropio.all, :id, :numero_cheque, {prompt: "Seleccione un Cheque Propio"}, {class: "form-control"} %>
+    </div>
+  </div>
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <div class="field">
+      <%= movimiento_de_caja_detalle.label :descripcion %>
+      <%= movimiento_de_caja_detalle.text_field :descripcion, class: 'form-control' %>
+    </div><br>
+  </div>
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <div class="field">
+      <%= movimiento_de_caja_detalle.label :monto_cheque %>
+      <%= movimiento_de_caja_detalle.text_field :monto_cheque, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <div class="field">
+      <%= movimiento_de_caja_detalle.label :monto_efectivo %>
+      <%= movimiento_de_caja_detalle.text_field :monto_efectivo, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <div class="field">
+      <br>
+      <%= movimiento_de_caja_detalle.link_to_remove "X", class: 'btn btn-danger', style:'font-weight: bold'%>
+    </div>
+  </div>
 </div>
+<% end %>
+<td><%= f.link_to_add "Agregar detalle", :movimientos_de_cajas_detalles, :class => 'btn btn-info' %></td>
   <div class="col-md-offset-10">
     <div class="actions">
      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
