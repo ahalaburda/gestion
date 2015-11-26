@@ -1,18 +1,37 @@
-<h1 id="titulo_caja"> Seleccione una Caja</h1>
+<h1 id="titulo_caja"> Seleccione una Caja <button type="button" class="btn btn-info btn-outline btn-circle" id="btn1"><span class="glyphicon glyphicon-plus" id="gbtn1"></span></button></h1>
+<div id="form-toggle" style="display: none;">
+  <%= render 'form' %>
+</div>
 <div id="cajas">
   <div class="row">
     <% @cajas.each do |caja| %>
-    <div class="col-md-3 col-sm-6">
-      <%= link_to new_apertura_caja_path , remote: true , class: 'btn bg-green grow widget widget-stats' do %>
-        <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i></div>
-        <div class="stats-title">Caja <%= caja.numero %></div>
-        <div class="stats-desc" style="font-size:15px;"><%= caja.estado.descripcion %></div>
-      <% end %>
-    </div>
+      <div class="col-md-3 col-sm-6" id="caja_<%= caja.numero %>" onclick="testClick(<%= caja.numero %>)">
+        <% if caja.estado.descripcion == 'Cerrado' %>
+
+        <%= link_to "#modal-apertura", "data-toggle" => "modal" , class: 'btn bg-green grow widget widget-stats' do %>
+
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i></div>
+            <div class="stats-title">Caja <%= caja.numero %></div>
+            <div class="stats-desc" style="font-size:15px;"><%= caja.estado.descripcion %></div>
+          <% end %>
+        <% else %>
+        <div class="btn bg-gray grow widget widget-stats" id="caja_<%= caja.numero %>">
+          <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></i></div>
+          <div class="stats-title">Caja <%= caja.numero %></div>
+          <div class="stats-desc" style="font-size:15px;"><%= caja.estado.descripcion %></div>
+        </div>
+        <% end %>
+
+        <%= link_to edit_caja_path(caja), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+          <span class="glyphicon glyphicon-pencil"></span>
+        <% end %>
+        <%= link_to caja, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
+          <span class="glyphicon glyphicon-remove"></span>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
-
 <!-- tabla oculta formateada para impresion -->
 <div id="tabla_print">
   <h1>Listado de Cajas</h1>
@@ -22,15 +41,91 @@
           <td>Numero</td>
           <th>Estado</th>
         </tr>
-  </thead>
-  <tbody>
-    <% @cajas.each do |caja| %>
-      <tr>
-        <td><%= caja.numero %></td>
-        <td><%= caja.estado.descripcion %></td>
-        <% end %>
+      </thead>
+      <tbody>
+        <% @cajas.each do |caja| %>
+        <tr>
+          <td><%= caja.numero %></td>
+          <td><%= caja.estado.descripcion %></td>
+          <% end %>
+          </tr>
       </tbody>
     </table>
 </div>
 
 <div id="modal_apertura_caja"></div>
+
+<div class="modal fade" id="modal-apertura">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Apertura de Caja</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @apertura_caja  ,  :validate => true do |f| %>
+  <% if @apertura_caja.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@apertura_caja.errors.count, "error") %> prohibited this apertura_caja from being saved:</h2>
+      <ul>
+      <% @apertura_caja.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div class="field">
+      <div class="field">
+        <%= f.label :caja_id , class: 'required' %>
+        <%= f.text_field :caja_id,  class: 'form-control', id: "caja_input" %>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="field">
+      <%= f.label :persona_id, class: 'required' %>
+      <%= f.text_field :persona_id, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="field">
+        <%= f.label :apertura, class: 'required' %><br>
+          <div class="input-group">
+            <%= f.text_field :apertura, :class => 'datepicker form-control' %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+      </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="field">
+        <%= f.label :saldo_inicial_efectivo , class: 'required' %>
+        <%= f.text_field :saldo_inicial_efectivo, :class => 'form-control', data: { role: 'money', a_sep: '.', a_dec: ',' } %>
+      </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+     <div class="field">
+        <%= f.label :saldo_inicial_cheque , class: 'required' %>
+        <%= f.text_field :saldo_inicial_cheque, :class => 'form-control', data: { role: 'money', a_sep: '.', a_dec: ',' } %>
+      </div>
+    </div>
+  </div>
+  <div class="separador"></div>
+
+  <div class="col-md-offset-9">
+    <div class="actions">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+    </div>
+  </div>
+<% end %>
+      </div>
+    </div>
+  </div>
+</div>

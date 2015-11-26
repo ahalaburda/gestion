@@ -4,8 +4,9 @@ class CajasController < ApplicationController
   # GET /cajas
   # GET /cajas.json
   def index
+    @apertura_caja = AperturaCaja.new
     @caja = Caja.new
-    @cajas = Caja.all
+    @cajas = Caja.all.order('numero asc')
      respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @cajas }
@@ -30,7 +31,7 @@ class CajasController < ApplicationController
   # GET /cajas/1/edit
   def edit
     @caja = Caja.find(params[:id])
-    respond_to do |format|
+     respond_to do |format|
       format.js
     end
   end
@@ -38,7 +39,7 @@ class CajasController < ApplicationController
   # POST /cajas
   # POST /cajas.json
   def create
-    @caja = Caja.new(caja_params)
+    @caja = Caja.find(params[:id])
 
     respond_to do |format|
       if @caja.save

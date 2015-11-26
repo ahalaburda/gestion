@@ -43,15 +43,6 @@ $(document).ready(function() {
 		}
 	});
 	$('#table').DataTable({
-	  // ajax: ...,
-	  // autoWidth: false,
-	  // pagingType: 'full_numbers',
-	  // processing: true,
-	  // serverSide: true,
-
-	  // Optional, if you want full pagination controls.
-	  // Check dataTables documentation to learn more about available options.
-	  // http://datatables.net/reference/option/pagingType
 		 "language": {
 	        "sProcessing":    "Procesando...",
 	        "sLengthMenu":    "Mostrar _MENU_ registros",
@@ -74,16 +65,16 @@ $(document).ready(function() {
 	        "oAria": {
 	            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 	            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-			}
+					}
 	    }
 	});
 
-dataConfirmModal.setDefaults({
-  title: 'Esta Seguro?',
-  text: 'Realmente desea hacerlo?',
-  commit: 'Si',
-  cancel: 'No'
-});
+		dataConfirmModal.setDefaults({
+		  title: 'Esta Seguro?',
+		  text: 'Realmente desea hacerlo?',
+		  commit: 'Si',
+		  cancel: 'No'
+		});
 
 	$('input[data-role=money]').autoNumeric('init');
 
@@ -137,3 +128,7 @@ ClientSideValidations.formBuilders['NestedForm::Builder'] = ClientSideValidation
 // 		}
 // 	});
 // });
+  function testClick(numero_de_caja){
+     $("#caja_input").val(numero_de_caja);
+     };
+  
