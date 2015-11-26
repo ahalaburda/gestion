@@ -7,6 +7,7 @@ class Persona < ActiveRecord::Base
   has_many :boletas_de_depositos
   has_many :firmantes
   has_many :cheques_entrantes
+  has_one :apertura_caja
 
   validates :nombre,
 	:presence => {
