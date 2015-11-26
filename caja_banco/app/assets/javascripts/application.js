@@ -24,6 +24,7 @@
 //= require moment/es
 //= require bootstrap-datetimepicker
 //= require autoNumeric
+//= require data-confirm-modal
 //= require_tree .
 
 $(document).ready(function() {
@@ -75,6 +76,13 @@ $(document).ready(function() {
 			}
 	    }
 	});
+
+dataConfirmModal.setDefaults({
+  title: 'Esta Seguro?',
+  text: 'Realmente desea hacerlo?',
+  commit: 'Si',
+  cancel: 'No'
+});
 
 	$('input[data-role=money]').autoNumeric('init');
 
