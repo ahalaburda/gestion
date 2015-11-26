@@ -24,7 +24,11 @@
 //= require moment/es
 //= require bootstrap-datetimepicker
 //= require autoNumeric
+<<<<<<< HEAD
 //= require data-confirm-modal
+=======
+//= require jquery_nested_form
+>>>>>>> c8b637a92a6b63d2a66c353b02604964ceccae53
 //= require_tree .
 
 $(document).ready(function() {
@@ -103,8 +107,8 @@ function printpage() {
 	//Get the HTML of whole page
 	var oldPage = document.body.innerHTML;
 	//Reset the page's HTML with div's HTML only
-	document.body.innerHTML = 
-	  "<html><head><title></title></head><body>" + 
+	document.body.innerHTML =
+	  "<html><head><title></title></head><body>" +
 	  divElements + "</body>";
 	//Print Page
 	window.print();

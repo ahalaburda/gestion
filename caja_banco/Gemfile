@@ -70,4 +70,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 gem 'pg'
 
+<<<<<<< HEAD
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
+=======
+gem 'nested_form'
+>>>>>>> c8b637a92a6b63d2a66c353b02604964ceccae53

@@ -1,4 +1,4 @@
-<%= form_for(@boleta_de_deposito) do |f| %>
+<%= nested_form_for(@boleta_de_deposito) do |f| %>
 <% if @boleta_de_deposito.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@boleta_de_deposito.errors.count, "error") %> prohibited this boleta_de_deposito from being saved:</h2>
@@ -50,6 +50,32 @@
 </br>
 <h3> Agregar Detalles<button type="button" class="btn btn-info btn-outline btn-circle" id="btn1"><span class="glyphicon glyphicon-chevron-up" id="gbtn1"></span></button></h3>
 <div class="form-toggle">
+  <%= f.fields_for :boletas_de_depositos_detalles do |boleta_de_deposito_detalle| %>
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <div class="field">
+        <%= boleta_de_deposito_detalle.label :cheque_entrante_id %>
+        <%= boleta_de_deposito_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
+      </div>
+      <div class="field">
+        <%= boleta_de_deposito_detalle.label :total %>
+        <%= boleta_de_deposito_detalle.text_field :total, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <div class="field">
+        <%= boleta_de_deposito_detalle.label :monto_cheque %>
+        <%= boleta_de_deposito_detalle.text_field :monto_cheque, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= boleta_de_deposito_detalle.label :monto_efectivo %>
+        <%= boleta_de_deposito_detalle.text_field :monto_efectivo, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+          <% end %>
+          <tr>
+             <td><%= f.link_to_add "Agregar cheque", :boletas_de_depositos_detalles, :class => 'insert_in_table btn btn-default' %></td>
 </div>
   <div class="col-md-offset-10">
     <div class="actions">
