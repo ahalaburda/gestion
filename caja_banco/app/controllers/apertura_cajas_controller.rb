@@ -6,6 +6,7 @@ class AperturaCajasController < ApplicationController
   def index
     @apertura_cajas = AperturaCaja.all
     @apertura_caja = AperturaCaja.new
+    @caja = Caja.new
   end
 
   # GET /apertura_cajas/1
@@ -16,10 +17,17 @@ class AperturaCajasController < ApplicationController
   # GET /apertura_cajas/new
   def new
     @apertura_caja = AperturaCaja.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /apertura_cajas/1/edit
   def edit
+    @apertura_caja = AperturaCaja.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /apertura_cajas
@@ -29,8 +37,9 @@ class AperturaCajasController < ApplicationController
 
     respond_to do |format|
       if @apertura_caja.save
-        format.html { redirect_to @apertura_caja, notice: 'Apertura caja was successfully created.' }
+        format.html { redirect_to apertura_cajas_url, notice: 'Apertura caja was successfully created.' }
         format.json { render :show, status: :created, location: @apertura_caja }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @apertura_caja.errors, status: :unprocessable_entity }
@@ -43,7 +52,7 @@ class AperturaCajasController < ApplicationController
   def update
     respond_to do |format|
       if @apertura_caja.update(apertura_caja_params)
-        format.html { redirect_to @apertura_caja, notice: 'Apertura caja was successfully updated.' }
+        format.html { redirect_to apertura_cajas_url, notice: 'Apertura caja was successfully updated.' }
         format.json { render :show, status: :ok, location: @apertura_caja }
       else
         format.html { render :edit }

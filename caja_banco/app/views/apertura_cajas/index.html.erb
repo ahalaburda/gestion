@@ -12,7 +12,8 @@
   <%= link_to apertura_cajas_path(:format => :xls), class: 'btn btn-xls btn-outline btn-circle', title: 'Exportar en formato XLS', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
     <span style="color: white">XLS</span>
   <% end %>
-</div><br>
+</div>
+<br>
 <table id="table" class="table table-striped table-hover">
   <thead>
     <tr>
@@ -24,10 +25,10 @@
       <th>Saldo final efectivo</th>
       <th>Saldo final cheque</th>
       <th>Persona</th>
+      <th>Acciones</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @apertura_cajas.each do |apertura_caja| %>
       <tr>
@@ -38,12 +39,12 @@
         <td><%= apertura_caja.saldo_inicial_cheque %></td>
         <td><%= apertura_caja.saldo_final_efectivo %></td>
         <td><%= apertura_caja.saldo_final_cheque %></td>
-        <td><%= apertura_caja.persona %></td>
+        <td><%= apertura_caja.persona_id %></td>
         <td>
-          <%= link_to edit_caja_path(caja), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+          <%= link_to edit_apertura_caja_path(apertura_caja), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
             <span class="glyphicon glyphicon-pencil"></span>
           <% end %>
-          <%= link_to caja, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
+          <%= link_to apertura_caja, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
             <span class="glyphicon glyphicon-remove"></span>
           <% end %>
         </td>
@@ -51,7 +52,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Apertura caja', new_apertura_caja_path %>

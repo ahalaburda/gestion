@@ -1,0 +1,3 @@
+$("#modal_apertura_caja").html(" <%= escape_javascript render  'apertura_cajas/modals/apertura_caja' %>");
+$("#modal_apertura_caja .modal-body").html(" <%= escape_javascript render  'formulario', apertura_caja: @apertura_caja, remote: true %>");
+$("#modal_apertura_caja .modal").modal("show");
