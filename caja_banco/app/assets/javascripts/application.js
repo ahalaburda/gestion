@@ -24,11 +24,8 @@
 //= require moment/es
 //= require bootstrap-datetimepicker
 //= require autoNumeric
-<<<<<<< HEAD
 //= require data-confirm-modal
-=======
 //= require jquery_nested_form
->>>>>>> c8b637a92a6b63d2a66c353b02604964ceccae53
 //= require_tree .
 
 $(document).ready(function() {
