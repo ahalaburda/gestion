@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124193157) do
+ActiveRecord::Schema.define(version: 20151125224623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 20151124193157) do
     t.string   "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "fecha"
   end
 
   add_index "movimientos_de_bancos", ["banco_id"], name: "index_movimientos_de_bancos_on_banco_id", using: :btree
@@ -211,6 +212,7 @@ ActiveRecord::Schema.define(version: 20151124193157) do
     t.string   "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "fecha"
   end
 
   add_index "movimientos_de_cajas", ["caja_id"], name: "index_movimientos_de_cajas_on_caja_id", using: :btree

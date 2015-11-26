@@ -15,6 +15,11 @@
   <%= @movimiento_de_banco.descripcion %>
 </p>
 
+<p>
+  <strong>Fecha:</strong>
+  <%= @movimiento_de_banco.fecha %>
+</p>
+
 <%= link_to 'movimientos_de_bancos_detalles', movimiento_de_banco_movimientos_de_bancos_detalles_path(@movimiento_de_banco) %> |
 <%= link_to 'Edit', edit_movimiento_de_banco_path(@movimiento_de_banco) %> |
 <%= link_to 'Back', movimientos_de_bancos_path %>
@@ -22,7 +27,6 @@
 <table>
   <thead>
     <tr>
-      <th>Movimiento de banco</th>
       <th>Cuenta bancaria</th>
       <th>Descripcion</th>
       <th>Monto</th>
@@ -32,8 +36,8 @@
 
   <tbody>
     <% @movimientos_de_bancos_detalles.each do |movimiento_de_banco_detalle| %>
+    <% if @movimiento_de_banco.id == movimiento_de_banco_detalle.movimiento_de_banco_id %>
       <tr>
-        <td><%= movimiento_de_banco_detalle.movimiento_de_banco_id %></td>
         <td><%= movimiento_de_banco_detalle.cuenta_bancaria.numero_cuenta %></td>
         <td><%= movimiento_de_banco_detalle.descripcion %></td>
         <td><%= movimiento_de_banco_detalle.monto %></td>
@@ -41,6 +45,7 @@
         <td><%= link_to 'Edit', edit_movimiento_de_banco_movimiento_de_banco_detalle_path(movimiento_de_banco_detalle.movimiento_de_banco, movimiento_de_banco_detalle) %></td>
         <td><%= link_to 'Destroy', [movimiento_de_banco_detalle.movimiento_de_banco, movimiento_de_banco_detalle], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
