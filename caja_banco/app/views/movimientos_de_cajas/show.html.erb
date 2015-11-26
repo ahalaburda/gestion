@@ -15,6 +15,11 @@
   <%= @movimiento_de_caja.descripcion %>
 </p>
 
+<p>
+  <strong>Fecha:</strong>
+  <%= @movimiento_de_caja.fecha %>
+</p>
+
 <%= link_to 'movimientos_de_cajas_detalles', movimiento_de_caja_movimientos_de_cajas_detalles_path(@movimiento_de_caja) %> |
 <%= link_to 'Edit', edit_movimiento_de_caja_path(@movimiento_de_caja) %> |
 <%= link_to 'Back', movimientos_de_cajas_path %>
@@ -34,6 +39,7 @@
 
   <tbody>
     <% @movimientos_de_cajas_detalles.each do |movimiento_de_caja_detalle| %>
+    <% if @movimiento_de_caja.id == movimiento_de_caja_detalle.movimiento_de_caja_id %>
       <tr>
         <td><%= movimiento_de_caja_detalle.movimiento_de_caja_id %></td>
         <td><%= movimiento_de_caja_detalle.cheque_entrante_id %></td>
@@ -45,6 +51,7 @@
         <td><%= link_to 'Edit', edit_movimiento_de_caja_movimiento_de_caja_detalle_path(movimiento_de_caja_detalle.movimiento_de_caja, movimiento_de_caja_detalle) %></td>
         <td><%= link_to 'Destroy', [movimiento_de_caja_detalle.movimiento_de_caja, movimiento_de_caja_detalle], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

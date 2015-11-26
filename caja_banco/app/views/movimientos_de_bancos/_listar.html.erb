@@ -4,6 +4,7 @@
       <th>Tipo de movimiento</th>
       <th>Banco</th>
       <th>Descripcion</th>
+      <th>Fecha</th>
       <th>Acciones</th>
       <th colspan="3"></th>
     </tr>
@@ -15,6 +16,7 @@
         <td><%= movimiento_de_banco.tipo_de_movimiento.descripcion %></td>
         <td><%= movimiento_de_banco.banco.banco_sucursal %></td>
         <td><%= movimiento_de_banco.descripcion %></td>
+        <td><%= movimiento_de_banco.fecha %></td>
         <td><%= link_to movimiento_de_banco_path(movimiento_de_banco), class: 'btn btn-success btn-outline btn-circle', title: 'Mostrar Detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
           <span class="glyphicon glyphicon-eye-open"></span>
         <% end %>

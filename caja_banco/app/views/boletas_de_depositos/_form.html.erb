@@ -48,35 +48,42 @@
     </div>
   </div>
 </br>
-<h3> Agregar Detalles<button type="button" class="btn btn-info btn-outline btn-circle" id="btn1"><span class="glyphicon glyphicon-chevron-up" id="gbtn1"></span></button></h3>
-<div class="form-toggle">
+
   <%= f.fields_for :boletas_de_depositos_detalles do |boleta_de_deposito_detalle| %>
   <div class="row">
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <div class="field">
         <%= boleta_de_deposito_detalle.label :cheque_entrante_id %>
         <%= boleta_de_deposito_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
       </div>
-      <div class="field">
-        <%= boleta_de_deposito_detalle.label :total %>
-        <%= boleta_de_deposito_detalle.text_field :total, class: 'form-control' %>
-      </div>
     </div>
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
       <div class="field">
         <%= boleta_de_deposito_detalle.label :monto_cheque %>
         <%= boleta_de_deposito_detalle.text_field :monto_cheque, class: 'form-control' %>
-      </div>
+      </div><br>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
       <div class="field">
         <%= boleta_de_deposito_detalle.label :monto_efectivo %>
         <%= boleta_de_deposito_detalle.text_field :monto_efectivo, class: 'form-control' %>
       </div>
     </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="field">
+        <%= boleta_de_deposito_detalle.label :total %>
+        <%= boleta_de_deposito_detalle.text_field :total, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <div class="field">
+        <br>
+        <%= boleta_de_deposito_detalle.link_to_remove "X", class: 'btn btn-danger', style:'font-weight: bold'%>
+      </div>
+    </div>
   </div>
-          <% end %>
-          <tr>
-             <td><%= f.link_to_add "Agregar cheque", :boletas_de_depositos_detalles, :class => 'insert_in_table btn btn-default' %></td>
-</div>
+  <% end %>
+  <td><%= f.link_to_add "Agregar detalle", :boletas_de_depositos_detalles, :class => 'btn btn-info' %></td>
   <div class="col-md-offset-10">
     <div class="actions">
      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>

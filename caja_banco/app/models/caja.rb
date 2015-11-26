@@ -7,4 +7,7 @@ class Caja < ActiveRecord::Base
 		:presence => {
 			message: 'Este campo es requerido'}
 
+      def numero_caja
+          "#{numero}"
+      end
 end
