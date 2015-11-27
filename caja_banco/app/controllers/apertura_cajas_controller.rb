@@ -37,7 +37,7 @@ class AperturaCajasController < ApplicationController
 
     respond_to do |format|
       if @apertura_caja.save
-        format.html { redirect_to apertura_cajas_url, notice: 'Apertura caja was successfully created.' }
+        format.html { redirect_to movimientos_de_cajas_url(apertura_id: @apertura_caja.id), notice: 'Apertura caja was successfully created.' }
         format.json { render :show, status: :created, location: @apertura_caja }
         format.js
       else

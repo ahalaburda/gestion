@@ -39,7 +39,7 @@ class CajasController < ApplicationController
   # POST /cajas
   # POST /cajas.json
   def create
-    @caja = Caja.find(params[:id])
+    @caja = Caja.new(caja_params)
 
     respond_to do |format|
       if @caja.save
