@@ -39,7 +39,7 @@
         <td><%= apertura_caja.saldo_inicial_cheque %></td>
         <td><%= apertura_caja.saldo_final_efectivo %></td>
         <td><%= apertura_caja.saldo_final_cheque %></td>
-        <td><%= apertura_caja.persona_id %></td>
+        <td><%= apertura_caja.persona.nombre_apellido %></td>
         <td>
           <%= link_to edit_apertura_caja_path(apertura_caja), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
             <span class="glyphicon glyphicon-pencil"></span>
