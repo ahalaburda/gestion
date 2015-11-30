@@ -8,16 +8,18 @@ class AperturaCaja < ActiveRecord::Base
   before_create :set_hora_apertura
 
   def set_estado_abierto
-  	caja = Caja.find(self.caja_id)
-  	caja.estado_id = 1
-  	caja.save
+    caja = Caja.find(self.caja_id)
+    caja.estado_id = 1
+    caja.save
   end
+  
   def set_saldos
-		self.saldo_final_cheque = self.saldo_inicial_cheque
-		self.saldo_final_efectivo = self.saldo_inicial_efectivo
+    self.saldo_final_cheque = self.saldo_inicial_cheque
+    self.saldo_final_efectivo = self.saldo_inicial_efectivo
   end
+
   def set_hora_apertura
-  	self.apertura = Time.now
+    self.apertura = Time.now
   end
 
 end
