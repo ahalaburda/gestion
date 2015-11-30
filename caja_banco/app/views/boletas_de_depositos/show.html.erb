@@ -1,44 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="well">
+    <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="field">
+          <strong>Numero:</strong>
+          <%= @boleta_de_deposito.numero %>
+        </div>
+        <div class="field">
+          <strong>Banco:</strong>
+          <%= @boleta_de_deposito.banco.banco_sucursal %>
+        </div>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="field">
+          <strong>Persona:</strong>
+          <%= @boleta_de_deposito.persona.nombre_apellido %>
+        </div>
+        <div class="field">
+          <strong>Cuenta bancaria:</strong>
+          <%= @boleta_de_deposito.cuenta_bancaria.numero_cuenta %>
+        </div>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="field">
+          <strong>Caja:</strong>
+          <%= @boleta_de_deposito.caja_id %>
+        </div>
+        <div class="field">
+          <strong>Fecha:</strong>
+          <%= @boleta_de_deposito.fecha %>
+        </div>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="field">
+          <%= link_to 'Editar', edit_boleta_de_deposito_path(@boleta_de_deposito), class: 'btn btn-warning' %>
+          <%= link_to 'Atras', boletas_de_depositos_path, class: 'btn btn-primary'%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Banco:</strong>
-  <%= @boleta_de_deposito.banco.banco_sucursal %>
-</p>
-
-<p>
-  <strong>Numero:</strong>
-  <%= @boleta_de_deposito.numero %>
-</p>
-
-<p>
-  <strong>Persona:</strong>
-  <%= @boleta_de_deposito.persona.nombre_apellido %>
-</p>
-
-<p>
-  <strong>Cuenta bancaria:</strong>
-  <%= @boleta_de_deposito.cuenta_bancaria.numero_cuenta %>
-</p>
-
-<p>
-  <strong>Caja:</strong>
-  <%= @boleta_de_deposito.caja_id %>
-</p>
-
-<p>
-  <strong>Fecha:</strong>
-  <%= @boleta_de_deposito.fecha %>
-</p>
-
-<%= link_to 'boletas_de_depositos_detalles', boleta_de_deposito_boletas_de_depositos_detalles_path(@boleta_de_deposito) %> |
-<%= link_to 'Edit', edit_boleta_de_deposito_path(@boleta_de_deposito) %> |
-<%= link_to 'Back', boleta_de_deposito_path%>
 
 
-<table>
+
+<table id="table" class="table table-striped table-hover">
   <thead>
     <tr>
-      <th>Boleta de deposito</th>
       <th>Cheque entrante</th>
       <th>Monto efectivo</th>
       <th>Monto cheque</th>
@@ -51,14 +59,10 @@
     <% @boletas_de_depositos_detalles.each do |boleta_de_deposito_detalle| %>
     <% if @boleta_de_deposito.id == boleta_de_deposito_detalle.boleta_de_deposito_id %>
       <tr>
-        <td><%= boleta_de_deposito_detalle.boleta_de_deposito.numero %></td>
         <td><%= boleta_de_deposito_detalle.cheque_entrante_id %></td>
         <td><%= boleta_de_deposito_detalle.monto_efectivo %></td>
         <td><%= boleta_de_deposito_detalle.monto_cheque %></td>
         <td><%= boleta_de_deposito_detalle.total %></td>
-        <td><%= link_to 'Show', [boleta_de_deposito_detalle.boleta_de_deposito, boleta_de_deposito_detalle] %></td>
-        <td><%= link_to 'Edit', edit_boleta_de_deposito_boleta_de_deposito_detalle_path(boleta_de_deposito_detalle.boleta_de_deposito, boleta_de_deposito_detalle) %></td>
-        <td><%= link_to 'Destroy', [boleta_de_deposito_detalle.boleta_de_deposito, boleta_de_deposito_detalle], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
     <% end %>

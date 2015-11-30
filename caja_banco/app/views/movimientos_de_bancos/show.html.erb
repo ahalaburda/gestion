@@ -1,30 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="well">
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="field">
+          <strong>Tipo de movimiento:</strong>
+          <%= @movimiento_de_banco.tipo_de_movimiento.descripcion %>
+        </div>
+        <div class="field">
+          <strong>Banco:</strong>
+          <%= @movimiento_de_banco.banco.banco_sucursal %>
+        </div>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="field">
+          <strong>Descripcion:</strong>
+          <%= @movimiento_de_banco.descripcion %>
+        </div>
+        <div class="field">
+          <strong>Fecha:</strong>
+          <%= @movimiento_de_banco.fecha %>
+        </div>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <%= link_to 'Editar', edit_movimiento_de_banco_path(@movimiento_de_banco), class: 'btn btn-warning' %>
+        <%= link_to 'Atras', movimientos_de_bancos_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Tipo de movimiento:</strong>
-  <%= @movimiento_de_banco.tipo_de_movimiento.descripcion %>
-</p>
-
-<p>
-  <strong>Banco:</strong>
-  <%= @movimiento_de_banco.banco.banco_sucursal %>
-</p>
-
-<p>
-  <strong>Descripcion:</strong>
-  <%= @movimiento_de_banco.descripcion %>
-</p>
-
-<p>
-  <strong>Fecha:</strong>
-  <%= @movimiento_de_banco.fecha %>
-</p>
-
-<%= link_to 'movimientos_de_bancos_detalles', movimiento_de_banco_movimientos_de_bancos_detalles_path(@movimiento_de_banco) %> |
-<%= link_to 'Edit', edit_movimiento_de_banco_path(@movimiento_de_banco) %> |
-<%= link_to 'Back', movimientos_de_bancos_path %>
-
-<table>
+<table id="table" class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Cuenta bancaria</th>
@@ -41,9 +46,6 @@
         <td><%= movimiento_de_banco_detalle.cuenta_bancaria.numero_cuenta %></td>
         <td><%= movimiento_de_banco_detalle.descripcion %></td>
         <td><%= movimiento_de_banco_detalle.monto %></td>
-        <td><%= link_to 'Show', [movimiento_de_banco_detalle.movimiento_de_banco, movimiento_de_banco_detalle] %></td>
-        <td><%= link_to 'Edit', edit_movimiento_de_banco_movimiento_de_banco_detalle_path(movimiento_de_banco_detalle.movimiento_de_banco, movimiento_de_banco_detalle) %></td>
-        <td><%= link_to 'Destroy', [movimiento_de_banco_detalle.movimiento_de_banco, movimiento_de_banco_detalle], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
     <% end %>

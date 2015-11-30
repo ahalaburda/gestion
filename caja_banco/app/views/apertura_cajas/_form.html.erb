@@ -20,7 +20,7 @@
         </label>
         </br>
         <%= f.select :persona_id,
-          options_from_collection_for_select(Persona.all, :id, :numero_caja, @apertura_caja.persona_id),
+          options_from_collection_for_select(Persona.all, :id, :nombre_apellido, @apertura_caja.persona_id),
           {prompt: true}, id: "apertura_caja_persona_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">

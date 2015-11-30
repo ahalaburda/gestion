@@ -1,30 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="well">
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="field">
+          <strong>Tipo de movimiento:</strong>
+          <%= @movimiento_de_caja.tipo_de_movimiento.descripcion %>
+        </div>
+        <div class="field">
+          <strong>Caja:</strong>
+          <%= @movimiento_de_caja.caja.numero_caja %>
+        </div>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="field">
+          <strong>Descripcion:</strong>
+          <%= @movimiento_de_caja.descripcion %>
+        </div>
+        <div class="field">
+          <strong>Fecha:</strong>
+          <%= @movimiento_de_caja.fecha %>
+        </div>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="field">
+          <%= link_to 'Editar', edit_movimiento_de_caja_path(@movimiento_de_caja), class: 'btn btn-warning' %>
+          <%= link_to 'Back', movimientos_de_cajas_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Tipo de movimiento:</strong>
-  <%= @movimiento_de_caja.tipo_de_movimiento.descripcion %>
-</p>
-
-<p>
-  <strong>Caja:</strong>
-  <%= @movimiento_de_caja.caja_id %>
-</p>
-
-<p>
-  <strong>Descripcion:</strong>
-  <%= @movimiento_de_caja.descripcion %>
-</p>
-
-<p>
-  <strong>Fecha:</strong>
-  <%= @movimiento_de_caja.fecha %>
-</p>
-
-<%= link_to 'movimientos_de_cajas_detalles', movimiento_de_caja_movimientos_de_cajas_detalles_path(@movimiento_de_caja) %> |
-<%= link_to 'Edit', edit_movimiento_de_caja_path(@movimiento_de_caja) %> |
-<%= link_to 'Back', movimientos_de_cajas_path %>
-
-<table>
+<table id="table" class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Movimiento de caja</th>
@@ -47,9 +54,6 @@
         <td><%= movimiento_de_caja_detalle.monto_efectivo %></td>
         <td><%= movimiento_de_caja_detalle.monto_cheque %></td>
         <td><%= movimiento_de_caja_detalle.descripcion %></td>
-        <td><%= link_to 'Show', [movimiento_de_caja_detalle.movimiento_de_caja, movimiento_de_caja_detalle] %></td>
-        <td><%= link_to 'Edit', edit_movimiento_de_caja_movimiento_de_caja_detalle_path(movimiento_de_caja_detalle.movimiento_de_caja, movimiento_de_caja_detalle) %></td>
-        <td><%= link_to 'Destroy', [movimiento_de_caja_detalle.movimiento_de_caja, movimiento_de_caja_detalle], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
     <% end %>
