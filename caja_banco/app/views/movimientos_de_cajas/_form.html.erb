@@ -13,8 +13,8 @@
 <div class="row">
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
     <div class="field">
-      <%= f.label :tipo_de_movimiento_id %>
-      <%= f.collection_select :tipo_de_movimiento_id, TipoDeMovimiento.all, :id, :descripcion, {prompt: "Seleccione un Tipo de Movimiento"}, {class: "form-control"} %>
+      <br>
+    <%= f.collection_radio_buttons :tipo_de_movimiento_id, TipoDeMovimiento.all, :id, :descripcion %>
     </div>
   </div>
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
