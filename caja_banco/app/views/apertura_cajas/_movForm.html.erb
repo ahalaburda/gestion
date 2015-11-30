@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <h1><strong>Caja:</strong>
+      <%= @apertura_caja.caja.numero_caja %>
+    </h1> 
+
+   <span id="input_cajero">
+      <strong>Cajero:</strong>
+      <%= @apertura_caja.persona %>
+    </span>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div id="input_saldo_inicial_efectivo">
+      <p>
+        <strong>Saldo inicial efectivo:</strong>
+        <input type="number" class="form-control" value="<%= @apertura_caja.saldo_inicial_efectivo %>" disabled>
+      </p>
+    </div>
+    <p>
+      <strong>Saldo actual efectivo:</strong>
+       <input type="number" class="form-control" value="<%= @apertura_caja.saldo_final_efectivo %>" disabled>
+    </p>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div id="input_saldo_inicial_cheque">
+    <p>
+      <strong>Saldo inicial cheque:</strong>
+      <input type="number" class="form-control" value="<%= @apertura_caja.saldo_inicial_cheque %>" disabled>
+    </p>
+    </div>
+    <p>
+      <strong>Saldo actual cheque:</strong>
+       <input type="number" class="form-control" value="<%= @apertura_caja.saldo_final_cheque %>" disabled>
+    </p>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div id="input_fecha">
+      <p>
+        <strong>Fecha y hora de Apertura:</strong>
+      <input type="label"  id="input" class="form-control" value="<%= @apertura_caja.apertura %>" disabled>
+      </p>
+    </div>
+  </div>
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+  <br>
+    <%= link_to 'Cerrar Caja', edit_apertura_caja_path(@apertura_caja),  class: "btn btn-danger" %> 
+  </div>
+</div>
+
+  <button type="button" id="button-up-apertura" class="btn btn-default btn-circle btn-outline button-up" style="margin-top: 3px">
+    <span id="button-up-apertura-icon" class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+  </button>

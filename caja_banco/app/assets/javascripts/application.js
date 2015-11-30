@@ -42,6 +42,34 @@ $(document).ready(function() {
 			$('#gbtn1').addClass('glyphicon glyphicon-plus');
 		}
 	});
+	$("#button-up").click(function(){
+		$('.subnavbar').fadeToggle();
+		if($('#button-up-icon').hasClass('glyphicon glyphicon-down')){
+			$('#button-up-icon').removeClass('glyphicon glyphicon-down');
+			$('#button-up-icon').addClass('glyphicon glyphicon-chevron-up');
+		}else{
+			$('#button-up-icon').removeClass('glyphicon glyphicon-chevron-up');
+			$('#button-up-icon').addClass('glyphicon glyphicon-down');
+		}
+	});
+		$("#button-up-apertura").click(function(){
+		$('#input_saldo_inicial_efectivo').fadeToggle();
+		$('#input_saldo_inicial_cheque').fadeToggle();
+		$('#input_cajero').fadeToggle();
+		$('#input_fecha').fadeToggle();
+		if($('#button-up-apertura-icon').hasClass('glyphicon glyphicon-chevron-down')){
+			$('#button-up-apertura-icon').removeClass('glyphicon glyphicon-chevron-down');
+			$('#button-up-apertura-icon').addClass('glyphicon glyphicon-chevron-up');
+			$('.well').css('padding','19px');
+		}else{
+			$('#button-up-apertura-icon').removeClass('glyphicon glyphicon-chevron-up');
+			$('#button-up-apertura-icon').addClass('glyphicon glyphicon-chevron-down');
+			$('.well').css('padding','5px');
+			$('.well').css('padding-left','160px');
+			$('.well').css('margin-bottom','1px');
+			$('#button-up-apertura').css('margin-top','-10px');
+		}
+	});
 	$('#table').DataTable({
 		 "language": {
 	        "sProcessing":    "Procesando...",

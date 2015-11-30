@@ -12,6 +12,7 @@ class AperturaCajasController < ApplicationController
   # GET /apertura_cajas/1
   # GET /apertura_cajas/1.json
   def show
+    @apertura_caja = AperturaCaja.find(params[:id])
   end
 
   # GET /apertura_cajas/new
@@ -25,9 +26,6 @@ class AperturaCajasController < ApplicationController
   # GET /apertura_cajas/1/edit
   def edit
     @apertura_caja = AperturaCaja.find(params[:id])
-    respond_to do |format|
-      format.js
-    end
   end
 
   # POST /apertura_cajas

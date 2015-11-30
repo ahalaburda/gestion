@@ -8,7 +8,6 @@ class MovimientosDeCajasController < ApplicationController
     apertura = AperturaCaja.where(id: params[:apertura_id])
     @apertura_caja = apertura.empty? ? AperturaCaja.new : apertura.first
 
-     
     @movimientos_de_cajas = MovimientoDeCaja.all
     @movimiento_de_caja = MovimientoDeCaja.new
     @movimiento_de_caja_detalle = MovimientoDeCajaDetalle.new

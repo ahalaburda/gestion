@@ -38,7 +38,21 @@ body {
 #tabla_print{
   display: none !important;
 }
-
+.button-up{
+    float: right;
+    margin-right: 25px ;
+    margin-top: -15px ;
+    background-color: #FFF !important;
+    .glyphicon{
+          color: #AAA !important;
+    }
+}
+.button-up:hover{
+  background-color:#AAA !important;
+  .glyphicon{
+    color:#FFF !important;
+  }
+}
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 2px;
 }
