@@ -1,0 +1,9 @@
+report.start_new_page do |page|
+  page.item(:banco).value(@boletas_de_depositos.banco.banco_sucursal)
+  page.item(:numero).value(@boletas_de_depositos.numero)
+  page.item(:persona).value(@boletas_de_depositos.persona.nombre_apellido)
+  page.item(:cuenta).value(@boletas_de_depositos.cuenta_bancaria.numero_cuenta)
+  page.item(:caja).value(@boletas_de_depositos.caja.numero_caja)
+  page.item(:fecha).value(@boletas_de_depositos.fecha)
+  page.item(:total).value(@boletas_de_depositos.total)
+end

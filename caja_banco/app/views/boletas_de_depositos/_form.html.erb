@@ -20,6 +20,10 @@
         <%= f.label :banco_id %>
         <%= f.collection_select :banco_id, Banco.all, :id, :banco_sucursal, {prompt: "Seleccione un Banco"}, {class: "form-control"} %>
       </div>
+      <div class="field">
+        <%= f.label :total %>
+        <%= f.text_field :total, class: 'form-control', disabled: 'true' %>
+      </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
