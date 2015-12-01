@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'libros_de_bancos/libro_de_banco'
+
   resources :apertura_cajas
 
   resources :movimientos_de_cajas do
