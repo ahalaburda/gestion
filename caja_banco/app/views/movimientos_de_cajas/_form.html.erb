@@ -80,16 +80,16 @@
     </div>
   </div>
   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-    <div class="field">
-      <br>
-      <%= movimiento_de_caja_detalle.link_to_remove "X", class: 'btn btn-danger', style:'font-weight: bold'%>
-    </div>
+    <br>
+      <%= movimiento_de_caja_detalle.link_to_remove  "<i class='glyphicon glyphicon-remove'></i>".html_safe,
+                        class: "btn btn-danger"%>
   </div>
 </div>
 <% end %>
 
-<td><%= f.link_to_add "Agregar detalle", :movimientos_de_cajas_detalles, :class => 'btn btn-info' %></td>
-
+<%= f.link_to_add  :movimientos_de_cajas_detalles , class: 'btn btn-info', title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+<% end %>
   <div class="col-md-offset-10">
     <div class="actions">
      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>

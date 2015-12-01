@@ -10,6 +10,7 @@ class MovimientosDeCajasController < ApplicationController
 
     @movimientos_de_cajas = MovimientoDeCaja.all
     @movimiento_de_caja = MovimientoDeCaja.new
+    @movimiento_de_caja.movimientos_de_cajas_detalles.build
     @movimiento_de_caja_detalle = MovimientoDeCajaDetalle.new
   end
 
