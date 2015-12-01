@@ -1,4 +1,5 @@
-<%= form_for @cheque_entrante, validate: true do |f| %>
+<% remote ||= false %>
+<%= form_for @cheque_entrante, remote: remote , validate: true do |f| %>
   <% if @cheque_entrante.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@cheque_entrante.errors.count, "error") %> prohibited this cheque_entrante from being saved:</h2>

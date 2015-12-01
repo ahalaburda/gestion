@@ -36,7 +36,7 @@ class MovimientosDeCajasController < ApplicationController
 
     respond_to do |format|
       if @movimiento_de_caja.save
-        format.html { redirect_to @movimiento_de_caja, notice: 'Movimiento de caja was successfully created.' }
+        format.html { redirect_to :back, notice: 'Movimiento de caja was successfully created.' }
         format.json { render :show, status: :created, location: @movimiento_de_caja }
       else
         format.html { render :new }

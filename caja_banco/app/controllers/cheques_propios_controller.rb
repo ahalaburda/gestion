@@ -4,6 +4,9 @@ class ChequesPropiosController < ApplicationController
   # GET /cheques_propios
   # GET /cheques_propios.json
   def index
+    @movimiento_de_caja = MovimientoDeCaja.new
+    @movimiento_de_caja_detalle = MovimientoDeCajaDetalle.new
+
     @cheques_propios = ChequePropio.all
     @cheque_propio = ChequePropio.new
     respond_to do |format|
@@ -47,6 +50,7 @@ class ChequesPropiosController < ApplicationController
       if @cheque_propio.save
         format.html { redirect_to cheques_propios_url, notice: 'Cheque propio was successfully created.' }
         format.json { render :show, status: :created, location: @cheque_propio }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @cheque_propio.errors, status: :unprocessable_entity }

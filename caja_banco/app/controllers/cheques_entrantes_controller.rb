@@ -4,6 +4,9 @@ class ChequesEntrantesController < ApplicationController
   # GET /cheques_entrantes
   # GET /cheques_entrantes.json
   def index
+    @movimiento_de_caja = MovimientoDeCaja.new
+    @movimiento_de_caja_detalle = MovimientoDeCajaDetalle.new
+
     @cheques_entrantes = ChequeEntrante.all
     @cheque_entrante = ChequeEntrante.new
     respond_to do |format|
@@ -25,6 +28,10 @@ class ChequesEntrantesController < ApplicationController
   # GET /cheques_entrantes/new
   def new
     @cheque_entrante = ChequeEntrante.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /cheques_entrantes/1/edit
@@ -44,6 +51,7 @@ class ChequesEntrantesController < ApplicationController
       if @cheque_entrante.save
         format.html { redirect_to cheques_entrantes_url, notice: 'Cheque entrante was successfully created.' }
         format.json { render :show, status: :created, location: @cheque_entrante }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @cheque_entrante.errors, status: :unprocessable_entity }

@@ -1,0 +1,3 @@
+$("#modal-cheque_propio").html(" <%= escape_javascript render  'cheques_propios/modals/cheque_propio' %>");
+$("#modal-cheque_propio .modal-body").html(" <%= escape_javascript render  'form', cheque_propio: @cheque_propio, remote: true %>");
+$("#modal-cheque_propio .modal").modal("show");
