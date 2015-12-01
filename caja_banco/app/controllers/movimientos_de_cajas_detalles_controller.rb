@@ -93,7 +93,7 @@ class MovimientosDeCajasDetallesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movimiento_de_caja_detalle_params
-      params.require(:movimiento_de_caja_detalle).permit(:movimiento_de_caja_id, :cheque_entrante_id, :cheque_propio_id, :monto_efectivo, :monto_cheque, :descripcion)
+      params.require(:movimiento_de_caja_detalle).permit(:movimiento_de_caja_id, :cheque_entrante_id, :cheque_propio_id, :monto_efectivo, :monto_cheque)
     end
     def set_movimiento_de_caja
       @movimiento_de_caja = MovimientoDeCaja.find(params[:movimiento_de_caja_id])
