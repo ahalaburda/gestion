@@ -32,6 +32,7 @@ $(document).ready(function() {
 	$('.datepicker').datetimepicker({
 		locale:'es'
 	});
+
 	$("#btn1").click(function(){
 		$('#form-toggle').fadeToggle();
 		if($('#gbtn1').hasClass('glyphicon glyphicon-plus')){
@@ -42,6 +43,7 @@ $(document).ready(function() {
 			$('#gbtn1').addClass('glyphicon glyphicon-plus');
 		}
 	});
+
 	$("#button-up").click(function(){
 		$('.subnavbar').fadeToggle();
 		if($('#button-up-icon').hasClass('glyphicon glyphicon-down')){
@@ -52,7 +54,8 @@ $(document).ready(function() {
 			$('#button-up-icon').addClass('glyphicon glyphicon-down');
 		}
 	});
-		$("#button-up-apertura").click(function(){
+
+	$("#button-up-apertura").click(function(){
 		$('#input_saldo_inicial_efectivo').fadeToggle();
 		$('#input_saldo_inicial_cheque').fadeToggle();
 		$('#input_cajero').fadeToggle();
@@ -70,6 +73,7 @@ $(document).ready(function() {
 			$('#button-up-apertura').css('margin-top','-10px');
 		}
 	});
+
 	$('#table').DataTable({
 		 "language": {
 	        "sProcessing":    "Procesando...",
@@ -96,6 +100,7 @@ $(document).ready(function() {
 					}
 	    }
 	});
+
 	$('#libro').DataTable({
 		 "paging": false,
 		 "language": {
@@ -123,7 +128,7 @@ $(document).ready(function() {
 					}
 	    }
 	});
-
+	
 		dataConfirmModal.setDefaults({
 		  title: 'Esta Seguro?',
 		  text: 'Realmente desea hacerlo?',
@@ -157,8 +162,39 @@ function printpage() {
 	window.print();
 	//Restore orignal HTML
 	document.body.innerHTML = oldPage;
-}
+};
 
+function date_time(id){
+        date = new Date;
+        year = date.getFullYear();
+        month = date.getMonth()+1;
+        day = date.getDate();
+
+
+        h = date.getHours();
+        if(h<10){
+          h = "0"+h;
+        }
+
+        m = date.getMinutes();
+        if(m<10){
+          m = "0"+m;
+        }
+
+        s = date.getSeconds();
+        if(s<10){
+          s = "0"+s;
+        }
+
+        result = ''+day+'-'+month+'-'+year+' '+h+':'+m+':'+s;
+
+        var x = document.getElementById(id);
+        x.value=result;
+
+        setTimeout('date_time("'+id+'");','1000');
+         
+        return true;
+};
 //Solucion de error de visualizacion de mensaje de validacion
 ClientSideValidations.selectors.validate_inputs += ', .select2-container:visible + :enabled[data-validate]';
 ClientSideValidations.selectors.inputs += ', .select2-container:visible + :enabled[data-validate]';

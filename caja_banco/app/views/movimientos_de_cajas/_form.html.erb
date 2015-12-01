@@ -33,7 +33,8 @@
     <div class="field">
       <%= f.label :fecha %><br>
         <div class="input-group">
-          <%= f.text_field :fecha, :class => 'datepicker form-control' %>
+          <input  id="date_time" class="form-control" disabled>
+            <script type="text/javascript">window.onload = date_time('date_time');</script>
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
           </span>
