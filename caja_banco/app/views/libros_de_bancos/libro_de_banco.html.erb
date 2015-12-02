@@ -6,7 +6,7 @@
   <%= link_to libros_de_bancos_libro_de_banco_path(@libros_de_bancos, format: 'pdf'), class: 'btn btn-pdf btn-outline btn-circle', title: 'Exportar en formato PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
     <span style="color: white">PDF</span>
   <% end %>
-  <a download="libro_de_banco.xls" href="#" onclick="return ExcellentExport.excel(this, 'libro', 'libro_banco');", class="btn btn-xls btn-outline btn-circle">XLS</a>
+  <a download="libro_de_banco.xls" href="#" onclick="return ExcellentExport.excel(this, 'tabla_print', 'libro_banco');", class="btn btn-xls btn-outline btn-circle">XLS</a>
 </div>
 </br>
 <table id="libro" class="table table-striped table-hover">

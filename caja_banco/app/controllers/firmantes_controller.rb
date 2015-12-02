@@ -9,10 +9,6 @@ class FirmantesController < ApplicationController
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @firmantes }
-        format.xls { send_data @firmantes.to_xls(
-          :columns => [:created_at, :persona_id, :cuenta_bancaria_id, :updated_at],
-          :headers => ["Fecha Creada", "Firmantes", "Cuenta Bancaria", "Fecha actualizacion"] ),
-          :filename => 'firmantes.xls' }
         format.pdf { render_firmantes_list(@firmantes) }
       end
   end
@@ -87,16 +83,16 @@ class FirmantesController < ApplicationController
 
       firmante.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id, 
+          row.values no: task.id,
                      firmante: task.persona.nombre_apellido,
                      numero_cuenta: task.cuenta_bancaria.numero_cuenta
           row.item(:firmante).style(:color, 'red')
           row.item(:numero_cuenta).style(:color, 'red')
         end
       end
-      
-      send_data report.generate, filename: 'firmantes.pdf', 
-                                 type: 'application/pdf', 
+
+      send_data report.generate, filename: 'firmantes.pdf',
+                                 type: 'application/pdf',
                                  disposition: 'attachment'
     end
 end

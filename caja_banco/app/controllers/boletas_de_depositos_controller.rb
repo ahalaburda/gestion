@@ -12,10 +12,6 @@ class BoletasDeDepositosController < ApplicationController
     respond_to do |format|
        format.html # index.html.erb
        format.json { render json: @boletas_de_depositos }
-       format.xls { send_data @boletas_de_depositos.to_xls(
-         :columns => [ :banco_id, :numero, :persona_id, :cuenta_bancaria_id, :caja_id, :fecha, :total, :created_at, :updated_at],
-         :headers => [ "Banco", "Numero", "Persona", "Cuenta Bancaria", "Caja", "Fecha", "Total", "Fecha de Creacion", "Fecha de actualizacion"] ),
-         :filename => 'boletas_de_depositos.xls' }
        format.pdf { render_boleta_de_deposito_list(@boletas_de_depositos) }
    end
   end

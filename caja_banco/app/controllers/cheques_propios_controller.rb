@@ -12,10 +12,6 @@ class ChequesPropiosController < ApplicationController
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @cheques_propios }
-        format.xls { send_data @cheques_propios.to_xls(
-          :columns => [ :chequera_id, :numero_cheque, :monto, :concepto, :fecha, :created_at, :updated_at],
-          :headers => [ "Chequera", "Numero de Cheque", "Monto","Concepto", "Fecha", "Fecha de Creacion", "Fecha de actualizacion"] ),
-          :filename => 'cheques_propios.xls' }
         format.pdf { render_cheque_propio_list(@cheques_propios) }
     end
   end
