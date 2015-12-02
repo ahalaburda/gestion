@@ -7,6 +7,7 @@ class MovimientosDeBancosController < ApplicationController
     @movimientos_de_bancos = MovimientoDeBanco.all
     @movimiento_de_banco = MovimientoDeBanco.new
     @movimiento_de_banco_detalle = MovimientoDeBancoDetalle.new
+    @movimiento_de_banco.movimientos_de_bancos_detalles.build
   end
 
   # GET /movimientos_de_bancos/1

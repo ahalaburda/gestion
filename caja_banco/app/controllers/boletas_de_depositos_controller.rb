@@ -8,6 +8,7 @@ class BoletasDeDepositosController < ApplicationController
     @boleta_de_deposito = BoletaDeDeposito.new
     @boleta_de_deposito_detalle = BoletaDeDepositoDetalle.new
     @boletas_de_depositos_detalles = BoletaDeDepositoDetalle.all
+    @boleta_de_deposito.boletas_de_depositos_detalles.build
     respond_to do |format|
        format.html # index.html.erb
        format.json { render json: @boletas_de_depositos }
