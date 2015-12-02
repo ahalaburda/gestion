@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201204841) do
+ActiveRecord::Schema.define(version: 20151202005111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,7 +199,6 @@ ActiveRecord::Schema.define(version: 20151201204841) do
   create_table "movimientos_de_bancos_detalles", force: true do |t|
     t.integer  "movimiento_de_banco_id"
     t.integer  "cuenta_bancaria_id"
-    t.string   "descripcion"
     t.decimal  "monto"
     t.datetime "created_at"
     t.datetime "updated_at"
