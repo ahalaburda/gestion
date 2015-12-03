@@ -16,7 +16,13 @@
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <div id="the-basics">
-              <input type="text" class="form-control" placeholder="Buscar">
+              <% if user_signed_in? %>
+                <span style="color: #B5ACAC">Bienvenido </span>
+                <span  style="color: #B5ACAC"><%= current_user.username %></span>
+                <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-outline'  %>
+              <% else %>
+                <%= link_to "Iniciar Sesión", new_user_session_path, :class => 'btn btn-default'  %>
+              <% end %>
             </div>
             <!-- <button type="submit" class="btn btn-default">Submit</button> -->
           </div>
@@ -24,4 +30,4 @@
       </ul>
     </div>
   </div>
-</div> 
+</div>

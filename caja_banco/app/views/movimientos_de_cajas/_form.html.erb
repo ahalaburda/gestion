@@ -64,18 +64,18 @@
   <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_entrante">
       <div class="field" >
-        <label for="movimiento_de_caja_detalle_cheque_entrante_id">Cheque entrante 
+        <label for="movimiento_de_caja_detalle_cheque_entrante_id">Cheque entrante
           <%= link_to new_cheque_entrante_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero_cheque, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
+        <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
       </div>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_propio">
       <div class="field" >
-        <label for="movimiento_de_caja_detalle_cheque_propio_id">Cheque propio 
+        <label for="movimiento_de_caja_detalle_cheque_propio_id">Cheque propio
           <%= link_to new_cheque_propio_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
@@ -233,14 +233,14 @@
   $(document).on('nested:fieldAdded', function(event){
     // this field was just inserted into your form
     fila+=1;
-    var field = event.field; 
+    var field = event.field;
     // it's a jQuery object already! Now you can find date input
     var tag1 = field.find('.precio-cheque');
     var tag2 = field.find('.precio-efectivo');
 
     var id_cheque = document.querySelectorAll('.precio-cheque');
     var id_efectivo = document.querySelectorAll('.precio-efectivo');
-   
+
     // Set their ids
     for (i = 0; i < id_cheque.length; i++)
         id_cheque[i].id = 'monto-cheque_' + i;
@@ -255,7 +255,7 @@
 
   $(document).on('nested:fieldRemoved', function(event){
     // this field was just inserted into your form
-    var field = event.field; 
+    var field = event.field;
     // it's a jQuery object already! No
     var tag = field.find('.precio-cheque');
 
