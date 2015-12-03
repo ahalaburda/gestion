@@ -99,9 +99,9 @@ class PersonasController < ApplicationController
                      apellido: task.apellido,
                      cedula: task.cedula_identidad,
                      direccion: task.direccion,
-                     departamento: task.departamento_id,
-                     pais: task.pais_id,
-                     ciudad: task.ciudad_id,
+                     departamento: task.departamento.descripcion,
+                     pais: task.pais.descripcion,
+                     ciudad: task.ciudad.descripcion,
                      correo: task.correo,
                      telefono: task.telefono
           row.item(:name).style(:color, 'red')

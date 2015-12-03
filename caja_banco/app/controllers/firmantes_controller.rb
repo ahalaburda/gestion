@@ -83,8 +83,7 @@ class FirmantesController < ApplicationController
 
       firmante.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id,
-                     firmante: task.persona.nombre_apellido,
+          row.values firmante: task.persona.nombre_apellido,
                      numero_cuenta: task.cuenta_bancaria.numero_cuenta
           row.item(:firmante).style(:color, 'red')
           row.item(:numero_cuenta).style(:color, 'red')

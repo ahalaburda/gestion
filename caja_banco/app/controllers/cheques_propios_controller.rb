@@ -94,8 +94,7 @@ class ChequesPropiosController < ApplicationController
 
       cheque_propio.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id,
-                     chequera: task.chequera_id,
+          row.values chequera: task.chequera_id,
                      numero_cheque: task.numero_cheque,
                      fecha: task.fecha,
                      concepto: task.concepto,

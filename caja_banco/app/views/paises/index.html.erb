@@ -42,14 +42,12 @@
   <table class="table table-striped table-hover" >
     <thead>
       <tr>
-        <th>ID</th>
         <th>Descripcion</th>
       </tr>
     </thead>
     <tbody>
       <% @paises.each do |pais| %>
         <tr>
-          <td><%= pais.id %></td>
           <td><%= pais.descripcion %></td>
         </tr
       <% end %>

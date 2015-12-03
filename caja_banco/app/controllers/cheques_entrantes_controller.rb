@@ -95,13 +95,12 @@ class ChequesEntrantesController < ApplicationController
 
       cheque_entrante.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id,
-                     banco: task.banco.nombre,
+          row.values banco: task.banco.banco_sucursal,
                      numero: task.numero,
                      fecha: task.fecha,
                      monto: task.monto,
                      concepto: task.concepto,
-                     persona: task.persona.nombre
+                     persona: task.persona.nombre_apellido
           row.item(:banco).style(:color, 'red')
           row.item(:numero).style(:color, 'red')
           row.item(:fecha).style(:color, 'red')

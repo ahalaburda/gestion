@@ -95,8 +95,7 @@ class CiudadesController < ApplicationController
 
       ciudad.each do |ciudad|
         report.list.add_row do |row|
-          row.values no: ciudad.id,
-                     name: ciudad.descripcion,
+          row.values name: ciudad.descripcion,
                      codigo_postal: ciudad.codigo_postal,
                      departamento: ciudad.departamento.descripcion
           row.item(:name).style(:color, 'red')

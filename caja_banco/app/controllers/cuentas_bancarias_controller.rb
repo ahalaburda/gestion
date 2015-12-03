@@ -98,10 +98,9 @@ class CuentasBancariasController < ApplicationController
 
       cuenta_bancaria.each do |cuenta_bancaria|
         report.list.add_row do |row|
-          row.values no: cuenta_bancaria.id,
-                     banco: cuenta_bancaria.banco.banco_sucursal,
+          row.values banco: cuenta_bancaria.banco.banco_sucursal,
                      numero_cuenta: cuenta_bancaria.numero_cuenta,
-                     saldo: cuenta_bancaria.departamento.saldo,
+                     saldo: cuenta_bancaria.saldo,
                      fecha_apertura: cuenta_bancaria.fecha_apertura,
                      estado: cuenta_bancaria.estado.descripcion
           row.item(:banco).style(:color, 'red')

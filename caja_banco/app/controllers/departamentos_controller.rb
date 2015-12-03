@@ -99,9 +99,8 @@ class DepartamentosController < ApplicationController
 
       departamento.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id,
-                     name: task.descripcion,
-                     pais: task.pais_id
+          row.values name: task.descripcion,
+                     pais: task.pais.descripcion
           row.item(:name).style(:color, 'red')
           row.item(:pais).style(:color, 'red')
         end

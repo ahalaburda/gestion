@@ -29,7 +29,7 @@
   <tbody>
     <% @chequeras.each do |chequera| %>
       <tr>
-        <td><%= chequera.cuenta_bancaria %></td>
+        <td><%= chequera.cuenta_bancaria.numero_cuenta %></td>
         <td><%= chequera.numero_cheque_inicial %></td>
         <td><%= chequera.numero_cheque_final %></td>
         <td><%= chequera.estado.descripcion %></td>
@@ -60,7 +60,7 @@
       <tbody>
         <% @chequeras.each do |chequera| %>
           <tr>
-            <td><%= chequera.cuenta_bancaria %></td>
+            <td><%= chequera.cuenta_bancaria.numero_cuenta %></td>
             <td><%= chequera.numero_cheque_inicial %></td>
             <td><%= chequera.numero_cheque_final %></td>
             <td><%= chequera.estado.descripcion %></td>

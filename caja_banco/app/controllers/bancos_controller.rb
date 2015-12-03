@@ -99,13 +99,12 @@ class BancosController < ApplicationController
 
       banco.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id,
-                     name: task.nombre,
+          row.values name: task.banco_sucursal,
                      direccion: task.direccion,
                      sucursal: task.sucursal,
-                     departamento: task.departamento_id,
-                     pais: task.pais_id,
-                     ciudad: task.ciudad_id,
+                     departamento: task.departamento.descripcion,
+                     pais: task.pais.descripcion,
+                     ciudad: task.ciudad.descripcion,
                      correo: task.correo,
                      telefono: task.telefono
           row.item(:name).style(:color, 'red')

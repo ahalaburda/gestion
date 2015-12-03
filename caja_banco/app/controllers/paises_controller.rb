@@ -94,8 +94,7 @@ class PaisesController < ApplicationController
 
       pais.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id,
-                     name: task.descripcion
+          row.values name: task.descripcion
           row.item(:name).style(:color, 'red')
         end
       end
