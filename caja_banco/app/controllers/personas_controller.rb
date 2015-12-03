@@ -6,17 +6,13 @@ class PersonasController < ApplicationController
   def index
     @persona = Persona.new
     @personas = Persona.all
-    
+
     @caja = Caja.new
     @cheque_entrante = ChequeEntrante.new
     @firmante = Firmante.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @personas }
-        format.xls { send_data @personas.to_xls(
-          :columns => [ :nombre, :apellido, :telefono, :cedula_identidad, :pais_id, :departamento_id, :ciudad_id, :direccion, :fecha_de_nacimiento, :correo, :created_at, :updated_at],
-          :headers => [ "Nombre", "Apellido", "Telefono","Cedula de Identidad", "Pais", "Departamento", "Ciudad", "Direccion","fecha de nacimiento", "Correo", "Fecha de Creacion", "Fecha de actualizacion"] ),
-          :filename => 'personas.xls' }
         format.pdf { render_persona_list(@personas) }
     end
   end
@@ -98,14 +94,14 @@ class PersonasController < ApplicationController
 
       persona.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id, 
+          row.values no: task.id,
                      name: task.nombre,
                      apellido: task.apellido,
                      cedula: task.cedula_identidad,
                      direccion: task.direccion,
-                     departamento: task.departamento_id,
-                     pais: task.pais_id,
-                     ciudad: task.ciudad_id,
+                     departamento: task.departamento.descripcion,
+                     pais: task.pais.descripcion,
+                     ciudad: task.ciudad.descripcion,
                      correo: task.correo,
                      telefono: task.telefono
           row.item(:name).style(:color, 'red')
@@ -119,9 +115,9 @@ class PersonasController < ApplicationController
           row.item(:telefono).style(:color, 'red')
         end
       end
-      
-      send_data report.generate, filename: 'personas.pdf', 
-                                 type: 'application/pdf', 
+
+      send_data report.generate, filename: 'personas.pdf',
+                                 type: 'application/pdf',
                                  disposition: 'attachment'
     end
 end

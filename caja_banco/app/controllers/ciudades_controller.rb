@@ -11,10 +11,6 @@ class CiudadesController < ApplicationController
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @ciudades }
-        format.xls { send_data @ciudades.to_xls(
-          :columns => [:descripcion, :codigo_postal, :departamento_id, :created_at, :updated_at],
-          :headers => ["Ciudad", "Codigo Postal", "departamento", "Fecha de Creacion", "Fecha de actualizacion"] ),
-          :filename => 'Ciudades.xls' }
         format.pdf { render_ciudad_list(@ciudades) }
     end
   end
@@ -33,7 +29,7 @@ class CiudadesController < ApplicationController
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @ciudad }
-        format.js 
+        format.js
       end
   end
   # GET /ciudades/1/edit
@@ -99,17 +95,16 @@ class CiudadesController < ApplicationController
 
       ciudad.each do |ciudad|
         report.list.add_row do |row|
-          row.values no: ciudad.id, 
-                     name: ciudad.descripcion,
+          row.values name: ciudad.descripcion,
                      codigo_postal: ciudad.codigo_postal,
                      departamento: ciudad.departamento.descripcion
           row.item(:name).style(:color, 'red')
           row.item(:codigo_postal).style(:color, 'red')
           row.item(:departamento).style(:color, 'red')
         end
-      end 
-      send_data report.generate, filename: 'ciudades.pdf', 
-                                   type: 'application/pdf', 
+      end
+      send_data report.generate, filename: 'ciudades.pdf',
+                                   type: 'application/pdf',
                                    disposition: 'attachment'
     end
 end

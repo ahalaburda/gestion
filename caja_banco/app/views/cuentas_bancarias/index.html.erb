@@ -10,9 +10,7 @@
   <%= link_to cuentas_bancarias_path(@cuentas_bancarias, format: 'pdf'), class: 'btn btn-pdf btn-outline btn-circle', title: 'Exportar en formato PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
     <span style="color: white">PDF</span>
   <% end %>
-  <%= link_to cuentas_bancarias_path(:format => :xls), class: 'btn btn-xls btn-outline btn-circle', title: 'Exportar en formato XLS', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
-    <span style="color: white">XLS</span>
-  <% end %>
+  <a download="cuentas_bancarias.xls" href="#" onclick="return ExcellentExport.excel(this, 'tabla_print', '');", class="btn btn-xls btn-outline btn-circle">XLS</a>
 </div>
 </br>
 

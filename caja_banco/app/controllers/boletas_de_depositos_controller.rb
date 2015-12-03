@@ -8,7 +8,12 @@ class BoletasDeDepositosController < ApplicationController
     @boleta_de_deposito = BoletaDeDeposito.new
     @boleta_de_deposito_detalle = BoletaDeDepositoDetalle.new
     @boletas_de_depositos_detalles = BoletaDeDepositoDetalle.all
-
+    @boleta_de_deposito.boletas_de_depositos_detalles.build
+    respond_to do |format|
+       format.html # index.html.erb
+       format.json { render json: @boletas_de_depositos }
+       format.pdf { render_boleta_de_deposito_list(@boletas_de_depositos) }
+   end
   end
 
   # GET /boletas_de_depositos/1
@@ -76,6 +81,32 @@ class BoletasDeDepositosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def boleta_de_deposito_params
-      params.require(:boleta_de_deposito).permit(:banco_id, :persona_id, :cuenta_bancaria_id, :caja_id, :fecha, :numero, boletas_de_depositos_detalles_attributes: [:id, :cheque_entrante_id, :total, :monto_cheque, :monto_efectivo])
+      params.require(:boleta_de_deposito).permit(:total, :banco_id, :persona_id, :cuenta_bancaria_id, :caja_id, :fecha, :numero, boletas_de_depositos_detalles_attributes: [:id, :cheque_entrante_id, :total, :monto_cheque, :monto_efectivo])
+    end
+    def render_boleta_de_deposito_list(boleta_de_deposito)
+      report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'boletas_de_depositos', 'show.tlf')
+
+      boleta_de_deposito.each do |task|
+        report.list.add_row do |row|
+          row.values banco: task.banco.banco_sucursal,
+                     numero: task.numero,
+                     persona: task.persona.nombre_apellido,
+                     cuenta: task.cuenta_bancaria.numero_cuenta,
+                     caja: task.caja.numero_caja,
+                     fecha: task.fecha,
+                     total: task.total
+          row.item(:banco).style(:color, 'red')
+          row.item(:numero).style(:color, 'red')
+          row.item(:persona).style(:color, 'red')
+          row.item(:cuenta).style(:color, 'red')
+          row.item(:caja).style(:color, 'red')
+          row.item(:fecha).style(:color, 'red')
+          row.item(:total).style(:color, 'red')
+        end
+      end
+
+      send_data report.generate, filename: 'boletas_de_depositos.pdf',
+                                 type: 'application/pdf',
+                                 disposition: 'attachment'
     end
 end

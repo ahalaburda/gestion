@@ -12,10 +12,6 @@ class ChequesEntrantesController < ApplicationController
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @cheques_entrantes }
-        format.xls { send_data @cheques_entrantes.to_xls(
-          :columns => [ :banco_id, :numero, :fecha, :monto, :concepto, :persona_id, :created_at, :updated_at],
-          :headers => [ "Banco", "Numero","Fecha", "Monto", "Concepto", "Persona", "Fecha de Creacion", "Fecha de actualizacion"] ),
-          :filename => 'cheques_entrantes.xls' }
         format.pdf { render_cheque_entrante_list(@cheques_entrantes) }
     end
   end
@@ -99,13 +95,12 @@ class ChequesEntrantesController < ApplicationController
 
       cheque_entrante.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id, 
-                     banco: task.banco.nombre,
+          row.values banco: task.banco.banco_sucursal,
                      numero: task.numero,
                      fecha: task.fecha,
                      monto: task.monto,
                      concepto: task.concepto,
-                     persona: task.persona.nombre
+                     persona: task.persona.nombre_apellido
           row.item(:banco).style(:color, 'red')
           row.item(:numero).style(:color, 'red')
           row.item(:fecha).style(:color, 'red')
@@ -114,9 +109,9 @@ class ChequesEntrantesController < ApplicationController
           row.item(:persona).style(:color, 'red')
         end
       end
-      
-      send_data report.generate, filename: 'cheques_entrantes.pdf', 
-                                 type: 'application/pdf', 
+
+      send_data report.generate, filename: 'cheques_entrantes.pdf',
+                                 type: 'application/pdf',
                                  disposition: 'attachment'
     end
 end

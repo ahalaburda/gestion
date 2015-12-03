@@ -2,5 +2,46 @@
 <div id="form-toggle">
   <%= render 'form' %>
 </div>
+<div class="reports" style="margin-left: 90.333333%">
+  <%= link_to '#', onclick: "printpage()", class: 'btn btn-print btn-outline btn-circle', title: 'Imprimir reporte', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+    <span class="glyphicon glyphicon-print" style="color: white"></span>
+  <% end %>
+  <%= link_to boletas_de_depositos_path(@boletas_de_depositos, format: 'pdf'), class: 'btn btn-pdf btn-outline btn-circle', title: 'Exportar en formato PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+    <span style="color: white">PDF</span>
+  <% end %>
+  <a download="boletas_de_depositos.xls" href="#" onclick="return ExcellentExport.excel(this, 'tabla_print', '');", class="btn btn-xls btn-outline btn-circle">XLS</a>
+</div>
+</br>
 
 <%= render 'listar'%>
+<!-- tabla oculta formateada para impresion -->
+<div id="tabla_print">
+  <h1>Listado de Boletas de Depositos</h1>
+    <table class="table table-striped table-hover" >
+      <thead>
+        <tr>
+          <th>Banco</th>
+          <th>Numero</th>
+          <th>Persona</th>
+          <th>Cuenta bancaria</th>
+          <th>Caja</th>
+          <th>Fecha</th>
+          <th>Total</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @boletas_de_depositos.each do |boleta_de_deposito| %>
+          <tr>
+            <td><%= boleta_de_deposito.banco.banco_sucursal %></td>
+            <td><%= boleta_de_deposito.numero %></td>
+            <td><%= boleta_de_deposito.persona.nombre_apellido %></td>
+            <td><%= boleta_de_deposito.cuenta_bancaria.numero_cuenta %></td>
+            <td><%= boleta_de_deposito.caja_id %></td>
+            <td><%= boleta_de_deposito.fecha %></td>
+            <td><%= boleta_de_deposito.total %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

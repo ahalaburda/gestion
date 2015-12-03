@@ -5,17 +5,13 @@ class PaisesController < ApplicationController
   def index
     @pais = Pais.new
     @paises = Pais.all
-    
+
     @departamento = Departamento.new
     @banco = Banco.new
     @persona = Persona.new
      respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @paises }
-        format.xls { send_data @paises.to_xls(
-          :columns => [ :descripcion, :created_at, :updated_at],
-          :headers => ["Nombre", "Fecha de Creacion", "Fecha de actualizacion"] ),
-          :filename => 'pais.xls' }
         format.pdf { render_pais_list(@paises) }
     end
   end
@@ -34,7 +30,7 @@ class PaisesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @pais }
-      format.js 
+      format.js
     end
   end
   # GET /paises/1/edit
@@ -98,13 +94,12 @@ class PaisesController < ApplicationController
 
       pais.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id, 
-                     name: task.descripcion
+          row.values name: task.descripcion
           row.item(:name).style(:color, 'red')
         end
-      end 
-      send_data report.generate, filename: 'paises.pdf', 
-                                   type: 'application/pdf', 
+      end
+      send_data report.generate, filename: 'paises.pdf',
+                                   type: 'application/pdf',
                                    disposition: 'attachment'
       end
 end

@@ -7,6 +7,7 @@ class MovimientosDeBancosController < ApplicationController
     @movimientos_de_bancos = MovimientoDeBanco.all
     @movimiento_de_banco = MovimientoDeBanco.new
     @movimiento_de_banco_detalle = MovimientoDeBancoDetalle.new
+    @movimiento_de_banco.movimientos_de_bancos_detalles.build
   end
 
   # GET /movimientos_de_bancos/1
@@ -73,6 +74,6 @@ class MovimientosDeBancosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movimiento_de_banco_params
-      params.require(:movimiento_de_banco).permit(:tipo_de_movimiento_id, :banco_id, :descripcion, :fecha, movimientos_de_bancos_detalles_attributes: [:id, :cuenta_bancaria_id, :descripcion, :monto])
+      params.require(:movimiento_de_banco).permit(:total, :tipo_de_movimiento_id, :banco_id, :descripcion, :fecha, movimientos_de_bancos_detalles_attributes: [:id, :cuenta_bancaria_id, :descripcion, :monto])
     end
 end

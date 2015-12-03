@@ -6,15 +6,11 @@ class ChequerasController < ApplicationController
   def index
     @chequeras = Chequera.all
     @chequera = Chequera.new
-
+    @cuenta_bancaria = CuentaBancaria.new
     @cheque_propio = ChequePropio.new
     respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @chequeras }
-        format.xls { send_data @chequeras.to_xls(
-          :columns => [:cuenta_bancaria_id, :estado_id, :numero_cheque_inicial, :numero_cheque_final, :created_at, :updated_at],
-          :headers => ["Cuenta Bancaria","Estado", "Numero de Cheque Inicial", "Numero de Cheque Final", "Fecha de Creacion", "Fecha de actualizacion"] ),
-          :filename => 'chequeras.xls' }
         format.pdf { render_chequera_list(@chequeras) }
     end
   end
@@ -96,8 +92,7 @@ class ChequerasController < ApplicationController
 
       chequera.each do |chequera|
         report.list.add_row do |row|
-          row.values no: chequera.id, 
-                     cuenta_bancaria: chequera.cuenta_bancaria.numero_cuenta,
+          row.values cuenta_bancaria: chequera.cuenta_bancaria.numero_cuenta,
                      estado: chequera.estado.descripcion,
                      numero_cheque_inicial: chequera.numero_cheque_inicial,
                      numero_cheque_final: chequera.numero_cheque_final
@@ -106,9 +101,9 @@ class ChequerasController < ApplicationController
           row.item(:numero_cheque_inicial).style(:color, 'red')
           row.item(:numero_cheque_final).style(:color, 'red')
         end
-      end 
-      send_data report.generate, filename: 'chequeras.pdf', 
-                                   type: 'application/pdf', 
+      end
+      send_data report.generate, filename: 'chequeras.pdf',
+                                   type: 'application/pdf',
                                    disposition: 'attachment'
     end
 end

@@ -13,10 +13,6 @@ class EstadosController < ApplicationController
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @estados }
-        format.xls { send_data @estados.to_xls(
-          :columns => [:created_at, :descripcion, :updated_at],
-          :headers => ["Fecha Creada", "Estados", "Fecha actualizacion"] ),
-          :filename => 'estados.xls' }
         format.pdf { render_estados_list(@estados) }
       end
   end
@@ -99,14 +95,14 @@ class EstadosController < ApplicationController
 
       estado.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id, 
+          row.values no: task.id,
                      descripcion: task.descripcion
           row.item(:descripcion).style(:color, 'red')
         end
       end
-      
-      send_data report.generate, filename: 'estados.pdf', 
-                                 type: 'application/pdf', 
+
+      send_data report.generate, filename: 'estados.pdf',
+                                 type: 'application/pdf',
                                  disposition: 'attachment'
     end
 end

@@ -6,15 +6,11 @@ class TiposDePersonasController < ApplicationController
   def index
     @tipos_de_personas = TipoDePersona.all
     @tipo_de_persona = TipoDePersona.new
-    
+
     @persona = Persona.new
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @tipos_de_personas }
-        format.xls { send_data @tipos_de_personas.to_xls(
-          :columns => [:created_at, :descripcion, :updated_at],
-          :headers => ["Fecha Creada", "tipos de personas", "Fecha actualizacion"] ),
-          :filename => 'tipos_de_personas.xls' }
         format.pdf { render_tipos_de_personas_list(@tipos_de_personas) }
       end
   end
@@ -89,14 +85,14 @@ class TiposDePersonasController < ApplicationController
 
       tipo_de_persona.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id, 
+          row.values no: task.id,
                      descripcion: task.descripcion
           row.item(:descripcion).style(:color, 'red')
         end
       end
-      
-      send_data report.generate, filename: 'tipos de personas.pdf', 
-                                 type: 'application/pdf', 
+
+      send_data report.generate, filename: 'tipos de personas.pdf',
+                                 type: 'application/pdf',
                                  disposition: 'attachment'
     end
 end

@@ -8,11 +8,7 @@ class AuditoriasController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @auditorias }
-      format.xls { send_data @auditorias.to_xls(
-        :columns => [:nombre_tabla, :operacion, :valor_anterior, :valor_nuevo, :nombre_usuario ],
-        :headers => ["Registro modificado", "Operacion", "Valor anterior", "Valor nuevo", "Nombre de usuario" ] ),
-        :filename => 'log_de_auditoria.xls' }
-       format.pdf { render_auditoria_list(@auditorias) }
+      format.pdf { render_auditoria_list(@auditorias) }
     end
   end
 

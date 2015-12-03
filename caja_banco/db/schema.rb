@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201233631) do
+ActiveRecord::Schema.define(version: 20151202005111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20151201233631) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "numero"
+    t.decimal  "total"
   end
 
   add_index "boletas_de_depositos", ["banco_id"], name: "index_boletas_de_depositos_on_banco_id", using: :btree
@@ -189,6 +190,7 @@ ActiveRecord::Schema.define(version: 20151201233631) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "fecha"
+    t.decimal  "total"
   end
 
   add_index "movimientos_de_bancos", ["banco_id"], name: "index_movimientos_de_bancos_on_banco_id", using: :btree
@@ -197,7 +199,6 @@ ActiveRecord::Schema.define(version: 20151201233631) do
   create_table "movimientos_de_bancos_detalles", force: true do |t|
     t.integer  "movimiento_de_banco_id"
     t.integer  "cuenta_bancaria_id"
-    t.string   "descripcion"
     t.decimal  "monto"
     t.datetime "created_at"
     t.datetime "updated_at"

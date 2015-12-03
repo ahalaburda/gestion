@@ -41,7 +41,6 @@
       </div>
     </div>
   </div>
-
   <div class="row">
       <div class="col-sm-offset-2 col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <%= f.label :monto_total_efectivo %>
@@ -85,7 +84,7 @@
         <%= movimiento_de_caja_detalle.collection_select :cheque_propio_id, ChequePropio.all, :id, :numero_cheque, {prompt: "Seleccione un Cheque propio"}, {class: "form-control"} %>
       </div>
     </div>
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="monto_cheque">
       <div class="field">
         <%= movimiento_de_caja_detalle.label :monto_cheque %>
         <%= movimiento_de_caja_detalle.text_field :monto_cheque, class: 'form-control precio-cheque ' %>
@@ -118,6 +117,7 @@
       <% end %>
     </div>
   </div>
+
 <% end %>
 
 <div class="separador"></div>
@@ -139,22 +139,22 @@
   var fila = 0;
   var i = 0;
 
-function print_total(){
-   console.log("print total INICIAL");
+  function print_total(){
+     console.log("print total INICIAL");
 
-     console.log("print total ENTRO");
-    var total_cheque = document.getElementById('movimiento_de_caja_monto_total_cheque').value;
-    var total_efectivo = document.getElementById('movimiento_de_caja_monto_total_efectivo').value;
+       console.log("print total ENTRO");
+      var total_cheque = document.getElementById('movimiento_de_caja_monto_total_cheque').value;
+      var total_efectivo = document.getElementById('movimiento_de_caja_monto_total_efectivo').value;
 
-    var monto_total_cheque = parseInt(total_cheque);
-    var monto_total_efectivo = parseInt(total_efectivo);
+      var monto_total_cheque = parseInt(total_cheque);
+      var monto_total_efectivo = parseInt(total_efectivo);
 
-    total = monto_total_efectivo + monto_total_cheque ;
+      total = monto_total_efectivo + monto_total_cheque ;
 
-    console.log("print total SUMADO");
-    $('#movimiento_de_caja_total').val(total);
+      console.log("print total SUMADO");
+      $('#movimiento_de_caja_total').val(total);
 
-}
+  }
 
 
   function sumarCheque(clase){

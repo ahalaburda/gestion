@@ -20,6 +20,10 @@
         <%= f.label :banco_id %>
         <%= f.collection_select :banco_id, Banco.all, :id, :banco_sucursal, {prompt: "Seleccione un Banco"}, {class: "form-control"} %>
       </div>
+      <div class="field">
+        <%= f.label :total %>
+        <%= f.text_field :total, class: 'form-control', disabled: 'true' %>
+      </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
@@ -83,7 +87,9 @@
     </div>
   </div>
   <% end %>
-  <td><%= f.link_to_add "Agregar detalle", :boletas_de_depositos_detalles, :class => 'btn btn-info' %></td>
+  <%= f.link_to_add  :boletas_de_depositos_detalles , class: 'btn btn-info', title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+  <% end %>
   <div class="col-md-offset-10">
     <div class="actions">
      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
