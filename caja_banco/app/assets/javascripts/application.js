@@ -195,6 +195,21 @@ function date_time(id){
          
         return true;
 };
+
+function radioButton_movimientos() {
+  $('input[type="radio"]').click(function() {
+      if ($(this).attr('value') == '1') {
+       	$('[id*=cheque_propio]').fadeOut('fast');
+       	 	$('[id*=monto_efectivo]').fadeIn('fast');
+          $('[id*=cheque_entrante]').fadeIn('slow');       
+       } else if ($(this).attr('value') == '2') {
+       			$('[id*=cheque_entrante]').fadeOut('fast');
+       			$('[id*=monto_efectivo]').fadeOut('fast');
+            $('[id*=cheque_propio]').fadeIn('slow');
+       }
+  });
+};
+
 //Solucion de error de visualizacion de mensaje de validacion
 ClientSideValidations.selectors.validate_inputs += ', .select2-container:visible + :enabled[data-validate]';
 ClientSideValidations.selectors.inputs += ', .select2-container:visible + :enabled[data-validate]';
@@ -219,6 +234,9 @@ ClientSideValidations.formBuilders['NestedForm::Builder'] = ClientSideValidation
 // 		}
 // 	});
 // });
-  function testClick(numero_de_caja){
-     $("#caja_input").val(numero_de_caja);
-     };
+
+
+
+function testClick(numero_de_caja){
+   $("#caja_input").val(numero_de_caja);
+};

@@ -3,3 +3,9 @@ class MovimientoDeCajaDetalle < ActiveRecord::Base
   belongs_to :cheque_entrante
   belongs_to :cheque_propio
 end
+
+# before_create :bc_movimiento_detalle
+
+# def bc_movimiento_detalle
+	
+# end

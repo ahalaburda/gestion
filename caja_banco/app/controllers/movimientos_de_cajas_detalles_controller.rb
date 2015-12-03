@@ -80,7 +80,7 @@ class MovimientosDeCajasDetallesController < ApplicationController
     @movimiento_de_caja_detalle.destroy
 
     respond_to do |format|
-      format.html { redirect_to @movimiento_de_caja, notice: 'Movimiento de caja detalle was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Movimiento de caja detalle was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

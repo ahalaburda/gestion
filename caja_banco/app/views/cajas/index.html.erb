@@ -7,21 +7,28 @@
     <% @cajas.each do |caja| %>
       <div class="col-md-3 col-sm-6" id="caja_<%= caja.numero %>" onclick="testClick(<%= caja.numero %>)">
         <% if caja.estado.descripcion == 'Cerrado' %>
-
-        <%= link_to "#modal-apertura", "data-toggle" => "modal" , class: 'btn bg-green grow widget widget-stats' do %>
-
-            <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i></div>
-            <div class="stats-title">Caja <%= caja.numero %></div>
-            <div class="stats-desc" style="font-size:15px;"><%= caja.estado.descripcion %></div>
-          <% end %>
-        <% else %>
-        <div class="btn bg-gray grow widget widget-stats" id="caja_<%= caja.numero %>">
-          <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></i></div>
+          <%= link_to "#modal-apertura", "data-toggle" => "modal" , class: 'btn bg-green grow widget widget-stats' do %>
+          <div class="stats-icon stats-icon-lg">
+            <i class="fa fa-globe fa-fw">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </i>
+          </div>
           <div class="stats-title">Caja <%= caja.numero %></div>
           <div class="stats-desc" style="font-size:15px;"><%= caja.estado.descripcion %></div>
-        </div>
+          <% end %>
+        <% else %>
+          <div class="btn bg-gray grow widget widget-stats" id="caja_<%= caja.numero %>">
+            <div class="stats-icon stats-icon-lg">
+              <i class="fa fa-globe fa-fw">
+                <span class="glyphicon glyphicon-ban-circle" aria-hidden="true">
+                </span>
+              </i>
+            </div>
+            <div class="stats-title">Caja <%= caja.numero %></div>
+            <div class="stats-desc" style="font-size:15px;"><%= caja.estado.descripcion %></div>
+          </div>
         <% end %>
-
+        
         <%= link_to edit_caja_path(caja), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
           <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
@@ -64,51 +71,50 @@
       </div>
       <div class="modal-body">
         <%= form_for @apertura_caja  ,  :validate => true do |f| %>
-  <% if @apertura_caja.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@apertura_caja.errors.count, "error") %> prohibited this apertura_caja from being saved:</h2>
-      <ul>
-      <% @apertura_caja.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="row">
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <div class="field">
-        <%= f.label :caja_id , class: 'required' %>
-        <%= f.text_field :caja_id,  class: 'form-control', id: "caja_input" %>
-      </div>
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <div class="field">
-        <%= f.label :persona_id, class: 'required' %>
-        <%= f.text_field :persona_id, :class => 'form-control' %>
-      </div>
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <div class="field">
-        <%= f.label :saldo_inicial_efectivo , class: 'required' %>
-        <%= f.text_field :saldo_inicial_efectivo, :class => 'form-control', data: { role: 'money', a_sep: ',', a_dec: '.' } %>
-      </div>
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-     <div class="field">
-        <%= f.label :saldo_inicial_cheque , class: 'required' %>
-        <%= f.text_field :saldo_inicial_cheque, :class => 'form-control', data: { role: 'money', a_sep: ',', a_dec: '.' } %>
-      </div>
-    </div>
-  </div>
-  <div class="separador"></div>
-
-  <div class="col-md-offset-9">
-    <div class="actions">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-      <%= f.submit "Abrir", :class => 'btn btn-primary'%>
-    </div>
-  </div>
-<% end %>
+          <% if @apertura_caja.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@apertura_caja.errors.count, "error") %> prohibited this apertura_caja from being saved:</h2>
+              <ul>
+              <% @apertura_caja.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <div class="field">
+                <%= f.label :caja_id , class: 'required' %>
+                <%= f.text_field :caja_id,  class: 'form-control', id: "caja_input" %>
+              </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <div class="field">
+                <%= f.label :persona_id, class: 'required' %>
+                <%= f.text_field :persona_id, :class => 'form-control' %>
+              </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <div class="field">
+                <%= f.label :saldo_inicial_efectivo , class: 'required' %>
+                <%= f.text_field :saldo_inicial_efectivo, :class => 'form-control', data: { role: 'money', a_sep: ',', a_dec: '.' } %>
+              </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+             <div class="field">
+                <%= f.label :saldo_inicial_cheque , class: 'required' %>
+                <%= f.text_field :saldo_inicial_cheque, :class => 'form-control', data: { role: 'money', a_sep: ',', a_dec: '.' } %>
+              </div>
+            </div>
+          </div>
+          <div class="separador"></div>
+          <div class="col-md-offset-9">
+            <div class="actions">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <%= f.submit "Abrir", :class => 'btn btn-primary'%>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -65,7 +65,7 @@ class MovimientosDeCajasController < ApplicationController
   def destroy
     @movimiento_de_caja.destroy
     respond_to do |format|
-      format.html { redirect_to movimientos_de_cajas_url, notice: 'Movimiento de caja was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Movimiento de caja was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

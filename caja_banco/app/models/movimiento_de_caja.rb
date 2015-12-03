@@ -15,4 +15,34 @@ class MovimientoDeCaja < ActiveRecord::Base
     caja.estado_id = 1
     caja.save
   end
+
+  # before_create :bc_movimiento
+  # after_create :ac_movimiento
+
+
+  # def bc_movimiento
+  #   self.fecha = Time.now
+    
+  #   if self.monto_cheque == 0 
+  #     monto_cheque = 0
+  #     self.cheque_recibidos.each do |cheque|
+  #       monto_cheque = monto_cheque + cheque.monto
+  #     end
+  #     self.monto_cheque = monto_cheque 
+  #   end
+  # end
+
+  #   def ac_movimiento
+  #     saldo_efectivo = self.apertura_caja.saldo_final_efectivo
+  #     saldo_cheque = self.apertura_caja.saldo_final_cheque
+  #     if self.es_ingreso 
+  #       saldo_efectivo = saldo_efectivo + self.monto_efectivo
+  #       saldo_cheque = saldo_cheque + self.monto_cheque
+  #     else
+  #       saldo_efectivo = saldo_efectivo - self.monto_efectivo
+  #       saldo_cheque = saldo_cheque - self.monto_cheque
+  #     end
+  #     AperturaCaja.update(self.apertura_caja_id, saldo_final_efectivo: saldo_efectivo)
+  #     AperturaCaja.update(self.apertura_caja_id, saldo_final_cheque: saldo_cheque)
+    # end
 end
