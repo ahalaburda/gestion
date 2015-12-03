@@ -6,7 +6,7 @@ class ChequerasController < ApplicationController
   def index
     @chequeras = Chequera.all
     @chequera = Chequera.new
-
+    
     @cheque_propio = ChequePropio.new
     respond_to do |format|
         format.html # index.html.erb
