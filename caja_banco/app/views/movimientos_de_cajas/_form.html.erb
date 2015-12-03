@@ -70,7 +70,7 @@
           <% end %>
         </label>
         </br>
-        <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero_cheque, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
+        <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
       </div>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_propio">
