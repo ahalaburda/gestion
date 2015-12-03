@@ -73,3 +73,4 @@ gem 'pg'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
 gem 'nested_form'
+gem 'devise'
