@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125224623) do
+ActiveRecord::Schema.define(version: 20151201233631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "apertura_cajas", force: true do |t|
     t.integer  "caja_id"
-    t.date     "apertura"
-    t.date     "cierre"
+    t.datetime "apertura"
+    t.datetime "cierre"
     t.decimal  "saldo_inicial_efectivo"
     t.decimal  "saldo_inicial_cheque"
     t.decimal  "saldo_final_efectivo"
@@ -212,7 +212,10 @@ ActiveRecord::Schema.define(version: 20151125224623) do
     t.string   "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "fecha"
+    t.datetime "fecha"
+    t.decimal  "total"
+    t.decimal  "monto_total_efectivo"
+    t.decimal  "monto_total_cheque"
   end
 
   add_index "movimientos_de_cajas", ["caja_id"], name: "index_movimientos_de_cajas_on_caja_id", using: :btree
@@ -224,7 +227,6 @@ ActiveRecord::Schema.define(version: 20151125224623) do
     t.integer  "cheque_propio_id"
     t.decimal  "monto_efectivo"
     t.decimal  "monto_cheque"
-    t.string   "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
