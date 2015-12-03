@@ -87,7 +87,9 @@
     </div>
   </div>
   <% end %>
-  <td><%= f.link_to_add "Agregar detalle", :boletas_de_depositos_detalles, :class => 'btn btn-info' %></td>
+  <%= f.link_to_add  :boletas_de_depositos_detalles , class: 'btn btn-info', title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+  <% end %>
   <div class="col-md-offset-10">
     <div class="actions">
      <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
