@@ -15,9 +15,7 @@ class Banco < ActiveRecord::Base
 			:too_long => 'debe tener como maximo %{count} caracteres'},
 		:format => {
 			with: /\A[a-zA-Z]+\z/,
-			message: 'Solo permite letras'},
-		:uniqueness => {
-			message: 'El nombre que desea usar ya ha sido utilizado'}
+			message: 'Solo permite letras'}
 
 	validates :sucursal,
 		:presence => {

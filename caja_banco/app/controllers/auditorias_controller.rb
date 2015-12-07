@@ -30,7 +30,7 @@ class AuditoriasController < ApplicationController
   # POST /auditorias.json
   def create
     @auditoria = Auditoria.new(auditoria_params)
-
+    
     respond_to do |format|
       if @auditoria.save
         format.html { redirect_to @auditoria, notice: 'Auditoria was successfully created.' }
