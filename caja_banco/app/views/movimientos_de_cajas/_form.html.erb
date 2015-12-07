@@ -10,57 +10,55 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-      <div class="field">
-        <br>
-        <%= f.collection_radio_buttons :tipo_de_movimiento_id, TipoDeMovimiento.all, :id, :descripcion %>
-      </div>
+<div class="row">
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <div class="field">
+      <br>
+      <%= f.collection_radio_buttons :tipo_de_movimiento_id, TipoDeMovimiento.all, :id, :descripcion %>
     </div>
-    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-      <div class="field">
-        <%= f.label :caja_id %>
-        <%= f.collection_select :caja_id, Caja.all, :id, :numero_caja, {prompt: "Seleccione una Caja"}, {class: "form-control"} %>
-      </div>
+  </div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    <div class="field">
+      <%= f.label :caja_id %>
+      <%= f.collection_select :caja_id, Caja.all, :id, :numero_caja, {prompt: "Seleccione una Caja"}, {class: "form-control"} %>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <div class="field">
-        <%= f.label :descripcion %>
-        <%= f.text_field :descripcion, class: 'form-control' %>
-      </div>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="field">
+      <%= f.label :descripcion %>
+      <%= f.text_field :descripcion, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div class="field">
+      <%= f.label :fecha %><br>
+        <div class="input-group">
+          <input id="date_time" class="form-control" disbaled>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-sm-offset-2 col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <%= f.label :monto_total_efectivo %>
+        <%= f.text_field :monto_total_efectivo, class: 'form-control', disabled: true , onchange: 'print_total()' %>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <div class="field">
-        <%= f.label :fecha %><br>
-          <div class="input-group">
-            <input  id="date_time" class="form-control" disabled>
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
-      </div>
+        <%= f.label :monto_total_cheque %>
+        <%= f.text_field :monto_total_cheque, class: 'form-control', disabled: true , onchange: 'print_total()'  %>
     </div>
-  </div>
-  <div class="row">
-      <div class="col-sm-offset-2 col-xs-3 col-sm-3 col-md-3 col-lg-3">
-          <%= f.label :monto_total_efectivo %>
-          <%= f.text_field :monto_total_efectivo, class: 'form-control', disabled: true , onchange: 'print_total()' %>
-      </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <%= f.label :total %>
+        <%= f.text_field :total, class: 'form-control' , disabled: true %>
+    </div>
+</div>
 
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-          <%= f.label :monto_total_cheque %>
-          <%= f.text_field :monto_total_cheque, class: 'form-control', disabled: true , onchange: 'print_total()'  %>
-      </div>
+<br>
 
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-          <%= f.label :total %>
-          <%= f.text_field :total, class: 'form-control' , disabled: true %>
-      </div>
-  </div>
-
-  <br>
-
-  <%= f.fields_for :movimientos_de_cajas_detalles do |movimiento_de_caja_detalle| %>
+<%= f.fields_for :movimientos_de_cajas_detalles do |movimiento_de_caja_detalle| %>
   <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_entrante">
       <div class="field" >
@@ -70,7 +68,7 @@
           <% end %>
         </label>
         </br>
-        <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
+        <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :nombre, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control cheque-entrante auto-select"} %>
       </div>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_propio">
@@ -81,7 +79,7 @@
           <% end %>
         </label>
         </br>
-        <%= movimiento_de_caja_detalle.collection_select :cheque_propio_id, ChequePropio.all, :id, :numero_cheque, {prompt: "Seleccione un Cheque propio"}, {class: "form-control"} %>
+        <%= movimiento_de_caja_detalle.collection_select :cheque_propio_id, ChequePropio.all, :id, :numero_cheque, {prompt: "Seleccione un Cheque propio"}, {class: "form-control cheque-propio auto-select"} %>
       </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="monto_cheque">
@@ -117,7 +115,6 @@
       <% end %>
     </div>
   </div>
-
 <% end %>
 
 <div class="separador"></div>
@@ -127,8 +124,13 @@
 <script type="text/javascript">
   window.onload = date_time('date_time');
 
- $('#movimiento_de_caja_monto_total_efectivo').val(0);
- $('#movimiento_de_caja_monto_total_cheque').val(0);
+  var cheque_entrante_id = document.getElementById('movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_cheque_entrante_id');
+  var cheque_propio_id = document.getElementById('movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_cheque_propio_id');
+  cheque_propio_id.id = "movimiento_de_caja_detalle_cheque_entrante_id_0";
+  cheque_entrante_id.id = "movimiento_de_caja_detalle_cheque_entrante_id_0";
+
+  $('#movimiento_de_caja_monto_total_efectivo').val(0);
+  $('#movimiento_de_caja_monto_total_cheque').val(0);
   $('#movimiento_de_caja_total').val(0);
 
   sumarCheque('.precio-cheque');
@@ -140,22 +142,16 @@
   var i = 0;
 
   function print_total(){
-     console.log("print total INICIAL");
+    var total_cheque = document.getElementById('movimiento_de_caja_monto_total_cheque').value;
+    var total_efectivo = document.getElementById('movimiento_de_caja_monto_total_efectivo').value;
 
-       console.log("print total ENTRO");
-      var total_cheque = document.getElementById('movimiento_de_caja_monto_total_cheque').value;
-      var total_efectivo = document.getElementById('movimiento_de_caja_monto_total_efectivo').value;
+    var monto_total_cheque = parseInt(total_cheque);
+    var monto_total_efectivo = parseInt(total_efectivo);
 
-      var monto_total_cheque = parseInt(total_cheque);
-      var monto_total_efectivo = parseInt(total_efectivo);
+    total = monto_total_efectivo + monto_total_cheque ;
 
-      total = monto_total_efectivo + monto_total_cheque ;
-
-      console.log("print total SUMADO");
-      $('#movimiento_de_caja_total').val(total);
-
+    $('#movimiento_de_caja_total').val(total);
   }
-
 
   function sumarCheque(clase){
     $(clase).change(function () {
@@ -208,27 +204,26 @@
   }
 
   function sumar_field_borrado_cheque(clase){
-      var suma = 0;
-      $(clase).each(function() {
-        if($(this).val()!=""){
-          suma += parseFloat($(this).val());
-         }
-      });
-      $('#movimiento_de_caja_monto_total_cheque').val(suma);
-      print_total();
+    var suma = 0;
+    $(clase).each(function() {
+      if($(this).val()!=""){
+        suma += parseFloat($(this).val());
+       }
+    });
+    $('#movimiento_de_caja_monto_total_cheque').val(suma);
+    print_total();
   }
   function sumar_field_borrado_efectivo(clase){
-      var suma = 0;
-      $(clase).each(function() {
-        if($(this).val()!=""){
-          suma += parseFloat($(this).val());
-          total += suma;
-         }
-      });
-       $('#movimiento_de_caja_monto_total_efectivo').val(suma);
-       print_total();
+    var suma = 0;
+    $(clase).each(function() {
+      if($(this).val()!=""){
+        suma += parseFloat($(this).val());
+        total += suma;
+       }
+    });
+    $('#movimiento_de_caja_monto_total_efectivo').val(suma);
+    print_total();
   }
-
 
   $(document).on('nested:fieldAdded', function(event){
     // this field was just inserted into your form
@@ -238,15 +233,23 @@
     var tag1 = field.find('.precio-cheque');
     var tag2 = field.find('.precio-efectivo');
 
-    var id_cheque = document.querySelectorAll('.precio-cheque');
-    var id_efectivo = document.querySelectorAll('.precio-efectivo');
+    var id_precio_cheque = document.querySelectorAll('.precio-cheque');
+    var id_precio_efectivo = document.querySelectorAll('.precio-efectivo');
+    var id_cheque_entrante = document.querySelectorAll('.cheque-entrante');
+    var id_cheque_propio = document.querySelectorAll('.cheque-propio');
 
-    // Set their ids
-    for (i = 0; i < id_cheque.length; i++)
-        id_cheque[i].id = 'monto-cheque_' + i;
+    // setear id de cada campo agregado
+    for (i = 0; i < id_precio_cheque.length; i++)
+        id_precio_cheque[i].id = 'monto-cheque_' + i;
 
-    for (i = 0; i < id_efectivo.length; i++)
-        id_efectivo[i].id = 'monto-efectivo_' + i;
+    for (i = 0; i < id_precio_efectivo.length; i++)
+        id_precio_efectivo[i].id = 'monto-efectivo_' + i;
+
+    for (i = 0; i < id_cheque_entrante.length; i++)
+        id_cheque_entrante[i].id = 'movimiento_de_caja_detalle_cheque_entrante_id_' + i;
+
+    for (i = 0; i < id_cheque_propio.length; i++)
+        id_cheque_propio[i].id = 'movimiento_de_caja_detalle_cheque_propio_id_' + i;
 
      sumar_field_agregado_cheque(tag1);
      sumar_field_agregado_efectivo(tag2);
@@ -256,21 +259,22 @@
   $(document).on('nested:fieldRemoved', function(event){
     // this field was just inserted into your form
     var field = event.field;
-    // it's a jQuery object already! No
-    var tag = field.find('.precio-cheque');
 
-    var id_cheque = document.querySelectorAll('.precio-cheque');
-    var id_efectivo = document.querySelectorAll('.precio-efectivo');
+    var id_precio_cheque = document.querySelectorAll('.precio-cheque');
+    var id_precio_efectivo = document.querySelectorAll('.precio-efectivo');
+    var id_cheque_entrante = document.querySelectorAll('.cheque-entrante');
+    var id_cheque_propio = document.querySelectorAll('.cheque-propio');
 
-    id_cheque[fila].parentNode.removeChild(id_cheque[fila]);
-    id_efectivo[fila].parentNode.removeChild(id_efectivo[fila]);
+    id_precio_cheque[fila].parentNode.removeChild(id_precio_cheque[fila]);
+    id_precio_efectivo[fila].parentNode.removeChild(id_precio_efectivo[fila]);
+    id_cheque_entrante[fila].parentNode.removeChild(id_cheque_entrante[fila]);
+    id_cheque_propio[fila].parentNode.removeChild(id_cheque_propio[fila]);
 
     fila-=1;
 
     sumar_field_borrado_cheque('.precio-cheque');
-
     sumar_field_borrado_efectivo('.precio-efectivo');
-    print_total();
 
+    print_total();
   })
 </script>

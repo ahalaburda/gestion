@@ -4,7 +4,7 @@ class ChequeEntrante < ActiveRecord::Base
   has_many :movimientos_de_cajas_detalles
   has_many :boletas_de_depositos_detalles
 
-  	validates :banco_id,
+  validates :banco_id,
 	:presence => {
 		message: 'Seleccione un banco'}
 
@@ -30,4 +30,9 @@ class ChequeEntrante < ActiveRecord::Base
 	validates :persona_id,
 	:presence => {
 		message: 'Seleccione una persona'}
+
+	def nombre
+		banco = Banco.find(banco_id)
+    "#{numero} - #{banco.nombre} (#{banco.sucursal})"
+  end
 end

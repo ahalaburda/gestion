@@ -6,7 +6,7 @@ class MovimientoDeCaja < ActiveRecord::Base
   accepts_nested_attributes_for :movimientos_de_cajas_detalles, allow_destroy: true
 
   validates :tipo_de_movimiento_id, presence: true
-  validates :fecha, presence: true
+
   validates :caja_id, presence: true
   validates :descripcion, presence: true
 
@@ -16,21 +16,14 @@ class MovimientoDeCaja < ActiveRecord::Base
     caja.save
   end
 
-  # before_create :bc_movimiento
+  before_create :bc_movimiento
   # after_create :ac_movimiento
 
 
-  # def bc_movimiento
-  #   self.fecha = Time.now
-    
-  #   if self.monto_cheque == 0 
-  #     monto_cheque = 0
-  #     self.cheque_recibidos.each do |cheque|
-  #       monto_cheque = monto_cheque + cheque.monto
-  #     end
-  #     self.monto_cheque = monto_cheque 
-  #   end
-  # end
+  def bc_movimiento
+    self.fecha = Time.now
+  
+  end
 
   #   def ac_movimiento
   #     saldo_efectivo = self.apertura_caja.saldo_final_efectivo
