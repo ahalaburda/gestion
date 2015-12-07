@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre empresa:</strong>
+  <%= @parametro.nombre_empresa %>
+</p>
+
+<p>
+  <strong>Logo empresa:</strong>
+  <%= image_tag @parametro.logo_empresa_url if @parametro.logo_empresa? %>
+</p>
+
+<%= link_to 'Edit', edit_parametro_path(@parametro) %> |
+<%= link_to 'Back', parametros_path %>
