@@ -65,7 +65,7 @@
     <% @cheques_propios.each do |cheque_propio| %>
       <tr>
         <td><%= cheque_propio.fecha %></td>
-        <td><%= cheque_propio.chequera.cuenta_bancaria %></td>
+        <td><%= cheque_propio.chequera.cuenta_bancaria.numero_cuenta %></td>
         <td><%= cheque_propio.concepto%> Segun cheque:<%= cheque_propio.numero_cheque%></td>
         <td></td>
         <td><%= cheque_propio.monto %></td>
