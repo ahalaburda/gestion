@@ -129,25 +129,29 @@ $(document).ready(function() {
 	    }
 	});
 	
-		dataConfirmModal.setDefaults({
-		  title: 'Esta Seguro?',
-		  text: 'Realmente desea hacerlo?',
-		  commit: 'Si',
-		  cancel: 'No'
-		});
+	dataConfirmModal.setDefaults({
+	  title: 'Esta Seguro?',
+	  text: 'Realmente desea hacerlo?',
+	  commit: 'Si',
+	  cancel: 'No'
+	});
 
 	$('input[data-role=money]').autoNumeric('init');
 
-		$( "select#select2 #departamento_pais_id" ).select2({
-	    placeholder: "Por favor selecciona "
-		});
-		$( "select#departamento_pais_id" ).select2({
-	    placeholder: "Por favor selecciona "
-		});
-		$( "select#ciudad_departamento_id" ).select2({
-	    placeholder: "Por favor selecciona "
-		});
+	$( ".auto-select" ).select2({
+    placeholder: "Por favor selecciona "
+	});
+	$( "select#departamento_pais_id" ).select2({
+    placeholder: "Por favor selecciona "
+	});
+	$( "select#ciudad_departamento_id" ).select2({
+    placeholder: "Por favor selecciona "
+	});
+
 });
+function testClick(numero_de_caja){
+   $("#caja_input").val(numero_de_caja);
+};
 
 function printpage() {
 	//Get the HTML of div
@@ -214,29 +218,3 @@ function radioButton_movimientos() {
 ClientSideValidations.selectors.validate_inputs += ', .select2-container:visible + :enabled[data-validate]';
 ClientSideValidations.selectors.inputs += ', .select2-container:visible + :enabled[data-validate]';
 ClientSideValidations.formBuilders['NestedForm::Builder'] = ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'];
-
-// $(document).ready(function() {
-// 	$('select#select2').select2({
-// 		placeholder: "Por favor selecciona ",
-// 		ajax: {
-// 			url: "/people.json",
-// 			dataType: "json",
-// 			results: function(data, page) {
-// 				return {
-// 					results: $.map(
-// 						data,
-// 						function(person, i) {
-// 							return { id: person.id, text: person.name }
-// 						}
-// 					)
-// 				}
-// 			}
-// 		}
-// 	});
-// });
-
-
-
-function testClick(numero_de_caja){
-   $("#caja_input").val(numero_de_caja);
-};
