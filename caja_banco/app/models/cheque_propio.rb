@@ -24,4 +24,8 @@ class ChequePropio < ActiveRecord::Base
 		:length => {
 			:maximum => 50,
 			:too_long => 'Debe tener como maximo %{count} caracteres'}
+
+	def nombre
+    "#{numero_cheque} - #{monto} "
+  end
 end

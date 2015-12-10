@@ -79,7 +79,7 @@
           <% end %>
         </label>
         </br>
-        <%= movimiento_de_caja_detalle.collection_select :cheque_propio_id, ChequePropio.all, :id, :numero_cheque, {prompt: "Seleccione un Cheque propio"}, {class: "form-control cheque-propio auto-select"} %>
+        <%= movimiento_de_caja_detalle.collection_select :cheque_propio_id, ChequePropio.all, :id, :nombre, {prompt: "Seleccione un Cheque propio"}, {class: "form-control cheque-propio auto-select"} %>
       </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="monto_cheque">
@@ -127,32 +127,38 @@
   $(".auto-select-cheque-entrante").select2({
      placeholder: "Nº de cheque - Banco - MONTO "
   });
-
+  $(".auto-select-propio-entrante").select2({
+     placeholder: "Nº de cheque - MONTO "
+  });
+  var total = 0;
+  var fila = 0;
+  var i = 0;
   var cheque_entrante_id = document.getElementById('movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_cheque_entrante_id');
   var cheque_propio_id = document.getElementById('movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_cheque_propio_id');
-  cheque_propio_id.id = "movimiento_de_caja_detalle_cheque_entrante_id_0";
+  var monto_cheque_id = document.getElementById("movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_monto_cheque");
+ 
   cheque_entrante_id.id = "movimiento_de_caja_detalle_cheque_entrante_id_0";
+  cheque_propio_id.id = "movimiento_de_caja_detalle_cheque_propio_id_0";
+  monto_cheque_id.id = "monto-cheque_0";
 
   $('#movimiento_de_caja_monto_total_efectivo').val(0);
   $('#movimiento_de_caja_monto_total_cheque').val(0);
   $('#movimiento_de_caja_total').val(0);
 
- var monto_cheque_id = document.getElementById("movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_monto_cheque");
- monto_cheque_id.id = "monto-cheque_0";
-
-  $('#movimiento_de_caja_detalle_cheque_entrante_id_0').change(function() {
-    var string = $('#movimiento_de_caja_detalle_cheque_entrante_id_0 option:selected').text();
+  $('#movimiento_de_caja_detalle_cheque_entrante_id_'+fila+'').change(function() {
+    var string = $('#movimiento_de_caja_detalle_cheque_entrante_id_'+fila+' option:selected').text();
     var array = string.split('-');
-    $('#monto-cheque_0').val(array[2]);
-    sumarCheque('#monto-cheque_0');
+    $('#monto-cheque_'+fila+'').val(array[2]);
+    sumarCheque('#monto-cheque_'+fila+'');
+  });
+  $('#movimiento_de_caja_detalle_cheque_propio_id_'+fila+'').change(function() {
+    var string = $('#movimiento_de_caja_detalle_cheque_propio_id_'+fila+' option:selected').text();
+    var array = string.split('-');
+    $('#monto-cheque_'+fila+'').val(array[1]);
+    sumarCheque('#monto-cheque_'+fila+'');
   });
 
   sumarEfectivo('.precio-efectivo');
-
-  var total = 0;
-
-  var fila = 0;
-  var i = 0;
 
   function print_total(){
     var total_cheque = document.getElementById('movimiento_de_caja_monto_total_cheque').value;
@@ -174,7 +180,6 @@
          }
       });
        $('#movimiento_de_caja_monto_total_cheque').val(suma);
-       console.log(suma);
        print_total();
   }
   function sumarEfectivo(clase){
@@ -191,13 +196,11 @@
   }
 
   function sumar_field_agregado_cheque(tag){
-    tag.change(function () {
       var suma = 0;
         $('.precio-cheque').each(function() {
             if($(this).val()!=""){
                 suma += parseFloat($(this).val());
          }
-      });
        $('#movimiento_de_caja_monto_total_cheque').val(suma);
        print_total();
     });
@@ -269,9 +272,22 @@
     for (i = 0; i < id_cheque_propio.length; i++)
         id_cheque_propio[i].id = 'movimiento_de_caja_detalle_cheque_propio_id_' + i;
 
+    $('#movimiento_de_caja_detalle_cheque_entrante_id_'+fila+'').change(function() {
+      var string = $('#movimiento_de_caja_detalle_cheque_entrante_id_'+fila+' option:selected').text();
+      var array = string.split('-');
+      $('#monto-cheque_'+fila+'').val(array[2]);
      sumar_field_agregado_cheque(tag1);
-     sumar_field_agregado_efectivo(tag2);
-     print_total();
+    });
+    $('#movimiento_de_caja_detalle_cheque_propio_id_'+fila+'').change(function() {
+      var string = $('#movimiento_de_caja_detalle_cheque_propio_id_'+fila+' option:selected').text();
+      var array = string.split('-');
+      $('#monto-cheque_'+fila+'').val(array[1]);
+     sumar_field_agregado_cheque(tag1);
+    });
+
+    sumar_field_agregado_cheque(tag1);
+    sumar_field_agregado_efectivo(tag2);
+    print_total();
   })
 
   $(document).on('nested:fieldRemoved', function(event){
