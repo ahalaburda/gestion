@@ -2,6 +2,7 @@ class Estado < ActiveRecord::Base
 	has_many :cajas
 	has_many :chequeras
 	has_many :cuentas_bancarias
+	has_many :parametros
 
 	validates :descripcion,
 		:presence => {
