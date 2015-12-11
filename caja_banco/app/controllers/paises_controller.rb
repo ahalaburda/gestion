@@ -98,6 +98,7 @@ class PaisesController < ApplicationController
           row.item(:name).style(:color, 'red')
         end
       end
+    report.page.item(:logo).src = 'E:/Desarrollo/Ruby_on_rails/gestion/caja_banco/public/uploads/parametro/logo_empresa/3/logo.png'
       send_data report.generate, filename: 'paises.pdf',
                                    type: 'application/pdf',
                                    disposition: 'attachment'
