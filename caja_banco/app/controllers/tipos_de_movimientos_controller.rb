@@ -91,7 +91,7 @@ class TiposDeMovimientosController < ApplicationController
           row.item(:descripcion).style(:color, 'red')
         end
       end
-
+    report.page.item(:logo).src = 'E:/Desarrollo/Ruby_on_rails/gestion/caja_banco/public/uploads/parametro/logo_empresa/3/logo.png'
       send_data report.generate, filename: 'tipos de movimientos.pdf',
                                  type: 'application/pdf',
                                  disposition: 'attachment'
