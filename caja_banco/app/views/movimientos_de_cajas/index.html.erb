@@ -5,7 +5,6 @@
 <div id="form-toggle">
   <%= render 'form'%>
 </div>
-<h1 id="caja_id"> <%= @apertura_caja.caja.numero %>  </h1> 
 <table id="table" class="table table-striped table-hover">
   <thead>
     <tr>
@@ -13,29 +12,40 @@
       <th>Caja</th>
       <th>Descripcion</th>
       <th>Fecha</th>
+      <th>Monto Cheque</th>
+      <th>Monto Efectivo</th>
+      <th>Monto Total</th>
       <th>Acciones</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @movimientos_de_cajas.each do |movimiento_de_caja| %>
     	<% if movimiento_de_caja.caja_id == @apertura_caja.caja.numero %>
+    	 <% @movimientos_de_cajas_detalles.each do |movimiento_de_caja_detalle| %>
+    	 	<% if movimiento_de_caja_detalle.movimiento_de_caja_id == movimiento_de_caja.id %>
 	      <tr>
 	        <td><%= movimiento_de_caja.tipo_de_movimiento.descripcion %></td>
 	        <td><%= movimiento_de_caja.caja_id %></td>
 	        <td><%= movimiento_de_caja.descripcion %></td>
 	        <td><%= movimiento_de_caja.fecha %></td>
-	        <td><%= link_to movimiento_de_caja_path(movimiento_de_caja), class: 'btn btn-success btn-outline btn-circle', title: 'Mostrar Detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
-	          <span class="glyphicon glyphicon-eye-open"></span>
-	        <% end %>
-	          <%= link_to edit_movimiento_de_caja_path(movimiento_de_caja), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
-	            <span class="glyphicon glyphicon-pencil"></span>
-	          <% end %>
-	          <%= link_to movimiento_de_caja, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
-	            <span class="glyphicon glyphicon-remove"></span>
-	          <% end %> </td>
+        	<td><%= movimiento_de_caja.monto_total_cheque %></td>
+        	<td><%= movimiento_de_caja.monto_total_efectivo %></td>
+        	<td><%= movimiento_de_caja.total %></td>
+	        <td>
+	        		<%= link_to movimiento_de_caja_path(movimiento_de_caja), class: 'btn btn-success btn-outline btn-circle', title: 'Mostrar Detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+	          		<span class="glyphicon glyphicon-eye-open"></span>
+	       			<% end %>
+	          	<%= link_to edit_movimiento_de_caja_path(movimiento_de_caja), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+	            	<span class="glyphicon glyphicon-pencil"></span>
+	          	<% end %>
+	          	<%= link_to movimiento_de_caja, method: :delete, data: { confirm: 'Va eliminarlo, esta seguro?' }, class: 'btn btn-danger btn-outline btn-circle', title: 'Borrar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'  do %>
+	            	<span class="glyphicon glyphicon-remove"></span>
+	          	<% end %>
+	        </td>
 	      </tr>
+	      <% end %>
+	     <% end %>
       <% end %>
     <% end %>
   </tbody>
