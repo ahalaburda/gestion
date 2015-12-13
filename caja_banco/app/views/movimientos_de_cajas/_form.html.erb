@@ -9,113 +9,111 @@
       </ul>
     </div>
   <% end %>
-
-<div class="row">
-  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-    <div class="field">
-      <br>
-      <%= f.collection_radio_buttons :tipo_de_movimiento_id, TipoDeMovimiento.all, :id, :descripcion %>
+  <div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <div class="field">
+        <br>
+        <%= f.collection_radio_buttons :tipo_de_movimiento_id, TipoDeMovimiento.all, :id, :descripcion %>
+      </div>
     </div>
-  </div>
-  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="display:none">
-    <div class="field">
-      <%= f.label :caja_id %>
-      <%= f.text_field :caja_id , class: 'form-control', :value => @apertura_caja.caja.numero %>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="display:none">
+      <div class="field">
+        <%= f.label :caja_id %>
+        <%= f.text_field :caja_id , class: 'form-control', :value => @apertura_caja.caja.numero %>
+      </div>
     </div>
-  </div>
-  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    <div class="field">
-      <%= f.label :descripcion %>
-      <%= f.text_field :descripcion, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-    <div class="field">
-      <%= f.label :fecha %><br>
-        <div class="input-group">
-          <input id="date_time" class="form-control" disbaled>
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-        </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-    <div class="col-sm-offset-2 col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <%= f.label :monto_total_efectivo %>
-        <%= f.text_field :monto_total_efectivo, class: 'form-control', disabled: true , onchange: 'print_total()' %>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="field">
+        <%= f.label :descripcion %>
+        <%= f.text_field :descripcion, class: 'form-control' %>
+      </div>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <%= f.label :monto_total_cheque %>
-        <%= f.text_field :monto_total_cheque, class: 'form-control', disabled: true , onchange: 'print_total()'  %>
+      <div class="field">
+        <%= f.label :fecha %><br>
+          <div class="input-group">
+            <input id="date_time" class="form-control" disbaled>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+      </div>
     </div>
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <%= f.label :total %>
-        <%= f.text_field :total, class: 'form-control' , disabled: true %>
-    </div>
-</div>
-
+  </div>
+  <div class="row">
+      <div class="col-sm-offset-2 col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <%= f.label :monto_total_efectivo %>
+          <%= f.text_field :monto_total_efectivo, class: 'form-control' , onchange: 'print_total()' %>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <%= f.label :monto_total_cheque %>
+          <%= f.text_field :monto_total_cheque, class: 'form-control', onchange: 'print_total()'  %>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <%= f.label :total %>
+          <%= f.text_field :total, class: 'form-control' %>
+      </div>
+  </div>
 <br>
 
-<%= f.fields_for :movimientos_de_cajas_detalles do |movimiento_de_caja_detalle| %>
-  <div class="row">
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_entrante">
-      <div class="field" >
-        <label for="movimiento_de_caja_detalle_cheque_entrante_id">Cheque entrante
-          <%= link_to new_cheque_entrante_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
-            <span class="glyphicon glyphicon-plus"></span>
-          <% end %>
-        </label>
-        </br>
-        <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :nombre, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control cheque-entrante auto-select-cheque-entrante"}%>
+  <%= f.fields_for :movimientos_de_cajas_detalles do |movimiento_de_caja_detalle| %>
+    <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_entrante">
+        <div class="field" >
+          <label for="movimiento_de_caja_detalle_cheque_entrante_id">Cheque entrante
+            <%= link_to new_cheque_entrante_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+              <span class="glyphicon glyphicon-plus"></span>
+            <% end %>
+          </label>
+          </br>
+          <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :nombre, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control cheque-entrante auto-select-cheque-entrante"}%>
+        </div>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_propio">
+        <div class="field" >
+          <label for="movimiento_de_caja_detalle_cheque_propio_id">Cheque propio
+            <%= link_to new_cheque_propio_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+              <span class="glyphicon glyphicon-plus"></span>
+            <% end %>
+          </label>
+          </br>
+          <%= movimiento_de_caja_detalle.collection_select :cheque_propio_id, ChequePropio.all, :id, :nombre, {prompt: "Seleccione un Cheque propio"}, {class: "form-control cheque-propio auto-select"} %>
+        </div>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="monto_cheque">
+        <div class="field">
+          <%= movimiento_de_caja_detalle.label :monto_cheque %>
+          <%= movimiento_de_caja_detalle.text_field :monto_cheque, class: 'form-control precio-cheque'   %>
+        </div>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="monto_efectivo">
+        <div class="field">
+          <%= movimiento_de_caja_detalle.label :monto_efectivo %>
+          <%= movimiento_de_caja_detalle.text_field :monto_efectivo, class: 'form-control precio-efectivo' %>
+        </div>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <br>
+          <%= movimiento_de_caja_detalle.link_to_remove  "<i class='glyphicon glyphicon-remove'></i>".html_safe, class: "btn btn-danger"%>
       </div>
     </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_propio">
-      <div class="field" >
-        <label for="movimiento_de_caja_detalle_cheque_propio_id">Cheque propio
-          <%= link_to new_cheque_propio_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
-            <span class="glyphicon glyphicon-plus"></span>
-          <% end %>
-        </label>
-        </br>
-        <%= movimiento_de_caja_detalle.collection_select :cheque_propio_id, ChequePropio.all, :id, :nombre, {prompt: "Seleccione un Cheque propio"}, {class: "form-control cheque-propio auto-select"} %>
-      </div>
-    </div>
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="monto_cheque">
-      <div class="field">
-        <%= movimiento_de_caja_detalle.label :monto_cheque %>
-        <%= movimiento_de_caja_detalle.text_field :monto_cheque, class: 'form-control precio-cheque'   %>
-      </div>
-    </div>
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="monto_efectivo">
-      <div class="field">
-        <%= movimiento_de_caja_detalle.label :monto_efectivo %>
-        <%= movimiento_de_caja_detalle.text_field :monto_efectivo, class: 'form-control precio-efectivo' %>
-      </div>
-    </div>
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-      <br>
-        <%= movimiento_de_caja_detalle.link_to_remove  "<i class='glyphicon glyphicon-remove'></i>".html_safe, class: "btn btn-danger"%>
-    </div>
-  </div>
-  <% end %>
+    <% end %>
 
-  <%= f.link_to_add  :movimientos_de_cajas_detalles , class: 'btn btn-info', title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
-      <span class="glyphicon glyphicon-plus"></span>
-  <% end %>
+    <%= f.link_to_add  :movimientos_de_cajas_detalles , class: 'btn btn-info', title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+        <span class="glyphicon glyphicon-plus"></span>
+    <% end %>
 
-  <div class="col-md-offset-10">
-    <div class="actions">
-     <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
-      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
-        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
-      <% elsif controller.action_name == 'edit' %>
-        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
-      <% end %>
+    <div class="col-md-offset-10">
+      <div class="actions">
+       <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+        <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+          <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+        <% elsif controller.action_name == 'edit' %>
+          <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 
 <div class="separador"></div>
 <div id="modal-cheque_entrante"></div>
