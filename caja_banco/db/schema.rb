@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207010103) do
+ActiveRecord::Schema.define(version: 20151213235205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 20151207010103) do
     t.decimal  "total"
     t.decimal  "monto_total_efectivo"
     t.decimal  "monto_total_cheque"
+    t.integer  "apertura_id"
   end
 
   add_index "movimientos_de_cajas", ["caja_id"], name: "index_movimientos_de_cajas_on_caja_id", using: :btree

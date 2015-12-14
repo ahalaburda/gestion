@@ -22,6 +22,12 @@
         <%= f.text_field :caja_id , class: 'form-control', :value => @apertura_caja.caja.numero %>
       </div>
     </div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="display:none">
+      <div class="field">
+        <%= f.label :apertura_id %>
+        <%= f.text_field :apertura_id , class: 'form-control', :value => @apertura_caja.id %>
+      </div>
+    </div>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
       <div class="field">
         <%= f.label :descripcion %>
