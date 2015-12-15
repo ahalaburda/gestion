@@ -3,6 +3,7 @@ class Persona < ActiveRecord::Base
   belongs_to :pais
   belongs_to :departamento
   belongs_to :ciudad
+  has_many :users
   has_many :cajas
   has_many :boletas_de_depositos
   has_many :firmantes
