@@ -76,7 +76,7 @@
 </table>
 
 <div id="tabla_print">
-<h1>Libro de Banco</h1>
+<h1><span><%= image_tag Parametro.last.logo_empresa_url%></span>Libro de Banco</h1>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -142,5 +142,7 @@
       <% end %>
     </tbody>
  </table>
+  <div class="separador" style="padding-top: 650px"></div>
+  <div>Elaborado por: <%=current_user.username%><span style="padding-left: 300px;">Fecha y Hora: <%= Time.current.to_s%></span></div>
 </div>
 <br>
