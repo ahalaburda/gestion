@@ -7,6 +7,7 @@ class PersonasController < ApplicationController
     @persona = Persona.new
     @personas = Persona.all
 
+    @user = User.new
     @caja = Caja.new
     @cheque_entrante = ChequeEntrante.new
     @firmante = Firmante.new
