@@ -25,7 +25,7 @@
   <tbody>
     <% @firmantes.each do |firmante| %>
       <tr>
-        <td><%= firmante.cuenta_bancaria %></td>
+        <td><%= firmante.cuenta_bancaria.numero_cuenta %></td>
         <td><%= firmante.persona.nombre_apellido %></td>
         <td>
         <%= link_to edit_firmante_path(firmante), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
@@ -54,7 +54,7 @@
   <tbody>
     <% @firmantes.each do |firmante| %>
       <tr>
-        <td><%= firmante.cuenta_bancaria %></td>
+        <td><%= firmante.cuenta_bancaria.numero_cuenta %></td>
         <td><%= firmante.persona.nombre_apellido %></td>
         <% end %>
       </tbody>

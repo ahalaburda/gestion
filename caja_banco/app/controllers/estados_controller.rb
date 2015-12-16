@@ -95,12 +95,11 @@ class EstadosController < ApplicationController
 
       estado.each do |task|
         report.list.add_row do |row|
-          row.values no: task.id,
-                     descripcion: task.descripcion
+          row.values descripcion: task.descripcion
           row.item(:descripcion).style(:color, 'red')
         end
       end
-     report.page.item(:logo).src = 'E:/Desarrollo/Ruby_on_rails/gestion/caja_banco/public/uploads/parametro/logo_empresa/3/logo.png'
+     report.page.item(:logo).src = File.join(Rails.root, 'public','uploads', 'parametro', 'logo_empresa', '3', 'logo.png')
      report.page.item(:elaboracion).value(current_user.username)
      report.page.item(:fecha_elaboracion).value(Time.current.to_s)
       send_data report.generate, filename: 'estados.pdf',
