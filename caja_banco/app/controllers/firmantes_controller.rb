@@ -34,7 +34,7 @@ class FirmantesController < ApplicationController
 
     respond_to do |format|
       if @firmante.save
-        format.html { redirect_to firmante_url, notice: 'Firmante was successfully created.' }
+        format.html { redirect_to firmantes_url, notice: 'Firmante was successfully created.' }
         format.json { render :show, status: :created, location: @firmante }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class FirmantesController < ApplicationController
   def update
     respond_to do |format|
       if @firmante.update(firmante_params)
-        format.html { redirect_to firmante_url, notice: 'Firmante was successfully updated.' }
+        format.html { redirect_to firmantes_url, notice: 'Firmante was successfully updated.' }
         format.json { render :show, status: :ok, location: @firmante }
       else
         format.html { render :edit }
@@ -89,7 +89,7 @@ class FirmantesController < ApplicationController
           row.item(:numero_cuenta).style(:color, 'red')
         end
       end
-    report.page.item(:logo).src = 'E:/Desarrollo/Ruby_on_rails/gestion/caja_banco/public/uploads/parametro/logo_empresa/3/logo.png'
+    report.page.item(:logo).src = File.join(Rails.root, 'public','uploads', 'parametro', 'logo_empresa', '3', 'logo.png')
     report.page.item(:elaboracion).value(current_user.username)
     report.page.item(:fecha_elaboracion).value(Time.current.to_s)
       send_data report.generate, filename: 'firmantes.pdf',
