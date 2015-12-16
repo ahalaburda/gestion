@@ -79,8 +79,6 @@ class MovimientosDeCajasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movimiento_de_caja_params
-      # params.require(:movimiento_de_caja).permit(:tipo_de_movimiento_id, :caja_id, :descripcion, :fecha, movimientos_de_cajas_detalles_attributes: [:id, :cheque_propio_id, :cheque_entrante_id, :monto_cheque, :monto_efectivo])
-      params.require(:movimiento_de_caja).permit(:tipo_de_movimiento_id, :caja_id, :descripcion, :fecha, :total, :monto_total_efectivo, :monto_total_cheque, movimientos_de_cajas_detalles_attributes: [:id, :cheque_propio_id, :cheque_entrante_id, :monto_cheque, :monto_efectivo])
-
+      params.require(:movimiento_de_caja).permit(:tipo_de_movimiento_id, :caja_id, :apertura_id, :descripcion, :fecha, :total, :monto_total_efectivo, :monto_total_cheque, movimientos_de_cajas_detalles_attributes: [:id, :cheque_propio_id, :cheque_entrante_id, :monto_cheque, :monto_efectivo])
     end
 end

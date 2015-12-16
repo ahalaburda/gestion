@@ -22,8 +22,6 @@
   <tbody>
     <% @movimientos_de_cajas.each do |movimiento_de_caja| %>
     	<% if movimiento_de_caja.caja_id == @apertura_caja.caja.numero %>
-    	 <% @movimientos_de_cajas_detalles.each do |movimiento_de_caja_detalle| %>
-    	 	<% if movimiento_de_caja_detalle.movimiento_de_caja_id == movimiento_de_caja.id %>
 	      <tr>
 	        <td><%= movimiento_de_caja.tipo_de_movimiento.descripcion %></td>
 	        <td><%= movimiento_de_caja.caja_id %></td>
@@ -44,8 +42,6 @@
 	          	<% end %>
 	        </td>
 	      </tr>
-	      <% end %>
-	     <% end %>
       <% end %>
     <% end %>
   </tbody>

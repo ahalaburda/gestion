@@ -1,8 +1,7 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user , validate: true do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,27 +10,43 @@
     </div>
     <% end %>
     <div class="field"> 
-    <label for="user_username">Nombre de Usuario</label><br />
-      <%= f.text_field :username , :autofocus=>true,:class => 'form-control'%>
+      <label for="user_username">Nombre de Usuario</label><br />
+        <%= f.text_field :username , :autofocus=>true, class: 'form-control'%>
     </div> 
     <div class="field">
-      <div><%= f.label :email %><br />
-      <%= f.email_field :email, :class => 'form-control' %></div>
+      <label for="user_persona_id" class="required"> Persona
+        <%= link_to new_persona_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+          <span class="glyphicon glyphicon-plus"></span>
+        <% end %>
+      </label>
+      </br>
+      <%= f.select :persona_id,
+          options_from_collection_for_select(Persona.all, :id, :nombre_apellido, @user.persona_id),
+          {prompt: true}, id: "user_persona_id", include_blank: true, class: "form-control"%>
     </div>
     <div class="field">
-      <div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
-        <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %></div>
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email, class: 'form-control' %></div>
+    </div>
+    <div class="field">
+      <div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> caracteres minimo)</i><% end %><br />
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %></div>
     </div>
     <div class="field">
       <label for="user_password_confirmation">Confirmar Password</label><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
     </div>
-
-    <div class="actions">
-    <% if controller.action_name == 'new' or controller.action_name == 'index' %>
-      <%= f.submit "Agregar", :class => 'btn btn-primary'%>
-    <% elsif controller.action_name == 'edit' %>
-      <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
-    <% end %>
-  </div>
+    <br>
+    <div class="col-md-offset-10">
+      <div class="actions">
+        <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+        <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+          <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+        <% elsif controller.action_name == 'edit' %>
+          <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+        <% end %>
+      </div>
+    </div>
 <% end %>
+<div class="separador"></div>
+<div id="modal_persona"></div>

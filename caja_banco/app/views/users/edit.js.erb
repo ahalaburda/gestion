@@ -1,0 +1,14 @@
+$("#form-toggle").html(" <%= escape_javascript render  'form', user: @user %>");
+
+$("html, body").scrollTop(0);
+$('#form-toggle').fadeIn(500);
+if($('#gbtn1').hasClass('glyphicon glyphicon-plus')){
+	$('#gbtn1').removeClass('glyphicon glyphicon-plus');
+	$('#gbtn1').addClass('glyphicon glyphicon-chevron-up');
+}
+
+document.getElementById("titulo_user").innerHTML = "Editando Usuario";
+
+$("#btn_cancelar").click(function() {
+  location.href = "/users";
+});
