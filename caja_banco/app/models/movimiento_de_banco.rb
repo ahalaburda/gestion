@@ -7,5 +7,5 @@ class MovimientoDeBanco < ActiveRecord::Base
   validates :tipo_de_movimiento_id, presence: true
   validates :fecha, presence: true
   validates :banco_id, presence: true
-  validates :descripcion, presence: true, length: { maximum: 50}, format: {with: /\A[a-zA-Z]+\z/,  message: 'Solo permite letras'}
+  validates :descripcion, presence: true, length: { maximum: 50}
 end

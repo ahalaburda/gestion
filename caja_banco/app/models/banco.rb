@@ -22,10 +22,7 @@ class Banco < ActiveRecord::Base
 			message: 'Este campo es requerido'},
     :length => {
 			:maximum => 20,
-			:too_long => 'debe tener como maximo %{count} caracteres'},
-		:format => {
-			with: /\A[a-zA-Z]+\z/,
-			message: 'Solo permite letras'}
+			:too_long => 'debe tener como maximo %{count} caracteres'}
 
 	validates :direccion,
 		:presence => {

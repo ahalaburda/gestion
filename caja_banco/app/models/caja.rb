@@ -7,6 +7,7 @@ class Caja < ActiveRecord::Base
   validates :estado_id,
 		:presence => {
 			message: 'Este campo es requerido'}
+  validates :numero, presence: true, numericality: true
 
       def numero_caja
           "#{numero}"
