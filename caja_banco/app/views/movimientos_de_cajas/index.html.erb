@@ -1,10 +1,13 @@
 <div class="well">
 <%= render 'apertura_cajas/movForm' %>
 </div>
+<% caja = Caja.find(@apertura_caja.caja_id) %>
+  <% if caja.estado_id == 1 %>
 <h3 id="titulo_movimiento_de_caja"> Movimientos <button type="button" class="btn btn-info btn-outline btn-circle" id="btn1"><span class="glyphicon glyphicon-chevron-up" id="gbtn1"></span></button></h3>
 <div id="form-toggle">
   <%= render 'form'%>
 </div>
+<% end %>
 <table id="table" class="table table-striped table-hover">
   <thead>
     <tr>

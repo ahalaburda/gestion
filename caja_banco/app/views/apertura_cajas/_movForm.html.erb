@@ -47,7 +47,14 @@
   </div>
   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
   <br>
+
+  <% caja = Caja.find(@apertura_caja.caja_id) %>
+  <% if caja.estado_id == 1 %>
     <%= link_to 'Cerrar Caja', edit_apertura_caja_path(@apertura_caja),  class: "btn btn-danger" %> 
+    <% else %>
+   <button type="button" class="btn btn-primary">Ir a Cajas</button>
+  <% end %>
+
   </div>
 </div>
 
