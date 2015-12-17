@@ -1,23 +1,15 @@
 <h1>Parametros</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nombre empresa</th>
-      <th>Logo empresa</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @parametros.each do |parametro| %>
-      <tr>
-        <td><%= parametro.nombre_empresa %></td>
-        <td><%= image_tag parametro.logo_empresa_url.to_s %></td>
-        <td><%= link_to 'Show', parametro %></td>
-        <td><%= link_to 'Edit', edit_parametro_path(parametro) %></td>
-        <td><%= link_to 'Destroy', parametro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+ <% @parametros.each do |parametro| %>
+   <table id="vertical-1" class="table">
+            <caption><%= link_to 'Editar', edit_parametro_path(parametro), class: "btn btn-info" %></caption>
+            <tr>
+                <th>Nombre de la Empresa</th>
+                <td><%= parametro.nombre_empresa %></td>
+            </tr>
+            <tr>
+                <th>Logo de la Empresa</th>
+                <td><%= image_tag parametro.logo_empresa_url.to_s %></td>
+            </tr>
+          <div class="separador"></div>
+        </table>
     <% end %>
-  </tbody>
-</table>

@@ -10,19 +10,24 @@
     </ul>
   </div>
 <% end %>
-  <div class="form-inputs">
+<div class="row">
+  <div class="col-sm-6 col-md-4">
     <%= f.label :nombre_empresa %>
-    <%= f.text_field :nombre_empresa %>
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          <%= f.file_field :logo_empresa %>
-        </div>
-      </div>
-    </div>
+    <%= f.text_field :nombre_empresa, class:"form-control" %>
   </div>
+  <div class="col-sm-6 col-md-4">
+    <label for="">Logo de la Empresa</label><br>
+    <%= f.file_field :logo_empresa, class:"form-control" %>
+  </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <div class="col-md-offset-10">
+    <div class="actions">
+    <%= link_to 'Cancelar', parametros_path , class: 'btn btn-reset'%>
+      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+        <%= f.submit "Agregar", class: 'btn btn-primary'%>
+      <% elsif controller.action_name == 'edit' %>
+        <%= f.submit "Actualizar", class: 'btn btn-primary'%>
+      <% end %>
+    </div>
 <% end %>
