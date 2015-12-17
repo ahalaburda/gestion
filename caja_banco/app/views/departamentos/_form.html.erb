@@ -1,25 +1,15 @@
 <% remote ||= false %>
 <%= form_for @departamento, remote: remote , validate: true do |f| %>
-  <% if @departamento.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@departamento.errors.count, "error") %> prohibited this departamento from being saved:</h2>
-      <ul>
-      <% @departamento.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 <div class="row">
   	<div class="col-md-4">
 	    <div class="field">
-			<%= f.label :descripcion %>
+			<%= f.label :descripcion, class: 'required' %>
 			<%= f.text_field :descripcion , autofocus:true , :class => 'form-control' %>
 		</div>
 	</div>
 	<div class="col-md-4">
 	  <div class="field">
-        <label for="departamento_pais_id">Pais
+        <label for="departamento_pais_id" class="required">Pais
           <%= link_to new_pais_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>

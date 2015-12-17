@@ -1,14 +1,4 @@
 <%= form_for([@movimiento_de_caja_detalle.movimiento_de_caja, @movimiento_de_caja_detalle]) do |f| %>
-<% if @movimiento_de_caja_detalle.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@movimiento_de_caja_detalle.errors.count, "error") %> prohibited this movimiento_de_caja_detalle from being saved:</h2>
-    <ul>
-    <% @movimiento_de_caja_detalle.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
 
   <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -23,13 +13,13 @@
         <%= f.collection_select :cheque_propio_id, ChequePropio.all, :id, :numero_cheque, {prompt: "Seleccione un Cheque Propio"}, {class: "form-control"} %>
       </div>
        <div class="field">
-          <label for="movimientos_de_cajas_detalles_cheque_entrante_id">Cheque entrante 
+          <label for="movimientos_de_cajas_detalles_cheque_entrante_id">Cheque entrante
             <%= link_to new_cheque_entrante_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
             <% end %>
           </label>
           </br>
-          <%= f.select :cheque_entrante_id, 
+          <%= f.select :cheque_entrante_id,
           options_from_collection_for_select(ChequeEntrante.all, :id, :numero, @movimientos_de_cajas_detalles.cheque_entrante_id),
           {prompt: true}, id: "movimientos_de_cajas_detalles_cheque_entrante_id", include_blank: true, class: "form-control"%>
         </div>

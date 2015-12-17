@@ -13,9 +13,8 @@ class CuentaBancaria < ActiveRecord::Base
 	validates :numero_cuenta,
 				:presence => {
 					message: 'Este campo es requerido'},
-				:format => {
-					with: /\A[0-9]+\z/,
-					message: 'solo permite numeros'}
+				:numericality => true,
+        :length => { maximum: 30  }
 
 	validates :estado_id,
 				:presence => {

@@ -19,16 +19,20 @@ class Banco < ActiveRecord::Base
 
 	validates :sucursal,
 		:presence => {
-			message: 'Este campo es requerido'}
+			message: 'Este campo es requerido'},
+    :length => {
+			:maximum => 20,
+			:too_long => 'debe tener como maximo %{count} caracteres'},
+		:format => {
+			with: /\A[a-zA-Z]+\z/,
+			message: 'Solo permite letras'}
 
 	validates :direccion,
 		:presence => {
 			message: 'Este campo es requerido'},
 		:length => {
 			:maximum => 50,
-			:too_long => 'Debe tener como maximo %{count} caracteres'},
-		:uniqueness => {
-			message: 'Este tipo de movimiento ya existe'}
+			:too_long => 'Debe tener como maximo %{count} caracteres'}
 
 	validates :pais_id,
 		:presence => {

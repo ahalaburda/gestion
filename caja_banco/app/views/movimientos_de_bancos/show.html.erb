@@ -37,7 +37,6 @@
   <thead>
     <tr>
       <th>Cuenta bancaria</th>
-      <th>Descripcion</th>
       <th>Monto</th>
       <th colspan="3"></th>
     </tr>
@@ -48,7 +47,6 @@
     <% if @movimiento_de_banco.id == movimiento_de_banco_detalle.movimiento_de_banco_id %>
       <tr>
         <td><%= movimiento_de_banco_detalle.cuenta_bancaria.numero_cuenta %></td>
-        <td><%= movimiento_de_banco_detalle.descripcion %></td>
         <td><%= movimiento_de_banco_detalle.monto %></td>
       </tr>
       <% end %>

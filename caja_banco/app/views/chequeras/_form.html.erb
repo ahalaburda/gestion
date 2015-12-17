@@ -1,15 +1,5 @@
 <% remote ||= false %>
   <%= form_for @chequera, remote: remote , validate: true do |f| %>
-  <% if @chequera.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@chequera.errors.count, "error") %> prohibited this chequera from being saved:</h2>
-      <ul>
-      <% @chequera.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
  <div class="row">
     <div class="col-md-4">
@@ -38,11 +28,11 @@
     </div>
     <div class="col-md-4">
       <div class="field">
-          <%= f.label :numero_cheque_inicial %>
+          <%= f.label :numero_cheque_inicial, class: 'required' %>
            <%= f.text_field :numero_cheque_inicial , class: "form-control" %>
       </div>
       <div class="field">
-          <%= f.label :numero_cheque_final %>
+          <%= f.label :numero_cheque_final, class: 'required' %>
            <%= f.text_field :numero_cheque_final , class: "form-control" %>
       </div>
     </div>

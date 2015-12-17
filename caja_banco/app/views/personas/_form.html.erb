@@ -1,15 +1,5 @@
 <% remote ||= false %>
 <%= form_for @persona, remote: remote , validate: true do |f| %>
-  <% if @persona.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@persona.errors.count, "error") %> prohibited this persona from being saved:</h2>
-      <ul>
-      <% @persona.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <div class="row">
     <div class="col-md-3">
       <div class="field">
@@ -24,25 +14,25 @@
           {prompt: true}, id: "persona_tipo_de_persona_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
-        <%= f.label :nombre %>
+        <%= f.label :nombre, class: 'required' %>
         <%= f.text_field :nombre , class: "form-control" %>
       </div>
       <div class="field">
-        <%= f.label :apellido %>
+        <%= f.label :apellido, class: 'required' %>
         <%= f.text_field :apellido , class: "form-control" %>
       </div>
     </div>
     <div class="col-md-3">
       <div class="field">
-        <%= f.label :telefono %>
+        <%= f.label :telefono, class: 'required' %>
         <%= f.text_field :telefono , class: "form-control" %>
       </div>
         <div class="field">
-        <%= f.label :cedula_identidad %>
+        <%= f.label :cedula_identidad, class: 'required' %>
         <%= f.text_field :cedula_identidad , class: "form-control" %>
       </div>
         <div class="field">
-        <%= f.label :direccion %>
+        <%= f.label :direccion, class: 'required' %>
         <%= f.text_field :direccion , class: "form-control" %>
       </div>
     </div>

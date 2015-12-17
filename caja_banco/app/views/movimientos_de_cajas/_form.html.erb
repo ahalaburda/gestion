@@ -1,14 +1,4 @@
 <%= nested_form_for(@movimiento_de_caja) do |f| %>
-  <% if @movimiento_de_caja.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@movimiento_de_caja.errors.count, "error") %> prohibited this movimiento_de_caja from being saved:</h2>
-      <ul>
-      <% @movimiento_de_caja.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <div class="row">
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
       <div class="field">
@@ -140,7 +130,7 @@
   var cheque_entrante_id = document.getElementById('movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_cheque_entrante_id');
   var cheque_propio_id = document.getElementById('movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_cheque_propio_id');
   var monto_cheque_id = document.getElementById("movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_monto_cheque");
- 
+
   cheque_entrante_id.id = "movimiento_de_caja_detalle_cheque_entrante_id_0";
   cheque_propio_id.id = "movimiento_de_caja_detalle_cheque_propio_id_0";
   monto_cheque_id.id = "monto-cheque_0";
