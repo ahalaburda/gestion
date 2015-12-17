@@ -8,7 +8,6 @@
         <li id="movimientos" class="dropdown subnavbar-open-right">
           <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-transfer"></i><span>Movimientos</span><b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li class="<%= 'active' if params[:controller] == 'movimientos_de_cajas' %>"> <a href="/movimientos_de_cajas">Movimiento de caja</a> </li>
             <li class="<%= 'active' if params[:controller] == 'movimientos_de_bancos' %>"> <a href="/movimientos_de_bancos">Movimiento de banco</a> </li>
           </ul>
         </li>
@@ -32,6 +31,7 @@
             <li class="<%= 'active' if params[:controller] == 'paises' %>"> <a href="/paises">Paises</a> </li>
             <li class="<%= 'active' if params[:controller] == 'departamentos' %>"> <a href="/departamentos">Departamentos</a> </li>
             <li class="<%= 'active' if params[:controller] == 'ciudades' %>"> <a href="/ciudades">Ciudades</a> </li>
+            <li class="<%= 'active' if params[:controller] == 'parametros' %>"> <a href="/parametros">Parametros</a> </li>
           </ul>
         </li>
         <li class="<%= 'active' if params[:controller] == 'personas' %>"><a href="/personas"><i class="glyphicon glyphicon-user"></i><span>Personas</span></a> </li>
