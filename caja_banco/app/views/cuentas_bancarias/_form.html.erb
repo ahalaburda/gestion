@@ -1,19 +1,9 @@
 <% remote ||= false %>
 <%= form_for @cuenta_bancaria, remote: remote , validate: true do |f| %>
-  <% if @cuenta_bancaria.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@cuenta_bancaria.errors.count, "error") %> prohibited this cuenta_bancaria from being saved:</h2>
-      <ul>
-      <% @cuenta_bancaria.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <div class="row">
     <div class="col-md-4">
       <div class="field">
-        <label for="cuenta_bancaria_banco_id">Banco
+        <label class="required" for="cuenta_bancaria_banco_id">Banco
           <%= link_to new_banco_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
@@ -24,7 +14,7 @@
           {prompt: true}, id: "cuenta_bancaria_banco_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
-        <%= f.label :numero_cuenta %>
+        <%= f.label :numero_cuenta, class: 'required' %>
         <%= f.text_field :numero_cuenta , class: "form-control" %>
       </div>
       <div class="field">
@@ -43,7 +33,7 @@
         <%= f.text_field :saldo , class: "form-control", value: '0'%>
       </div>
       <div class="field">
-        <label for="cuenta_bancaria_estado_id">Estado
+        <label class="required" for="cuenta_bancaria_estado_id">Estado
           <%= link_to new_estado_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>

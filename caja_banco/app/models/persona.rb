@@ -32,16 +32,16 @@ class Persona < ActiveRecord::Base
 
 	validates :cedula_identidad,
 	:presence => {
-		message: 'Este campo es requerido'}
+		message: 'Este campo es requerido'},
+  :numericality => true,
+  :length => {maximum: 30}
 
 	validates :direccion,
 		:presence => {
 			message: 'Este campo es requerido'},
 		:length => {
 			:maximum => 50,
-			:too_long => 'Debe tener como maximo %{count} caracteres'},
-		:uniqueness => {
-			message: 'Este tipo de movimiento ya existe'}
+			:too_long => 'Debe tener como maximo %{count} caracteres'}
 
 	validates :pais_id,
 		:presence => {
@@ -61,9 +61,7 @@ class Persona < ActiveRecord::Base
 		:length => {
 			:maximum => 20,
 			:too_long => 'debe tener como maximo %{count} caracteres'},
-		:format => {
-			with: /\A[0-9]+\z/,
-			message: 'solo permite numeros'}
+		:numericality => true
 
 	validates :correo,
 		:length =>{

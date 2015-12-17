@@ -1,19 +1,9 @@
 <% remote ||= false %>
 <%= form_for @ciudad, remote: remote , validate: true do |f| %>
-	<% if @ciudad.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ciudad.errors.count, "error") %> prohibited this ciudad from being saved:</h2>
-      <ul>
-      <% @ciudad.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="field">
-		    <%= f.label :descripcion %>
+		    <%= f.label :descripcion, class: 'required' %>
 		    <%= f.text_field :descripcion , autofocus:true , :class => 'form-control' %>
 	     </div>
 		</div>
@@ -25,7 +15,7 @@
 		</div>
 		<div class="col-md-4">
 			<div class="field">
-        <label for="ciudad_departamento_id">Departamento
+        <label for="ciudad_departamento_id" class="required">Departamento
           <%= link_to new_departamento_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>

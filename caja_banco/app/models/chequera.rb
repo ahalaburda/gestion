@@ -14,14 +14,12 @@ class Chequera < ActiveRecord::Base
 	validates :numero_cheque_inicial,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:format => {
-					with: /\A[0-9]+\z/,
-					message: 'solo permite numeros'}
+		:numericality => true,
+    :length => {maximum: 30}
 
 	validates :numero_cheque_final,
 		:presence => {
 			message: 'Este campo es requerido'},
-		:format => {
-					with: /\A[0-9]+\z/,
-					message: 'solo permite numeros'}
+		:numericality => true,
+    :length => {maximum: 30}
 end

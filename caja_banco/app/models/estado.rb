@@ -12,8 +12,5 @@ class Estado < ActiveRecord::Base
 			:too_long => 'debe tener como maximo %{count} caracteres'},
 		:format => {
 			with: /\A[a-zA-Z]+\z/,
-			message: 'Solo permite letras'},
-		:uniqueness => {
-			message: 'Este estado ya existe'
-		}
+			message: 'Solo permite letras'}
 end

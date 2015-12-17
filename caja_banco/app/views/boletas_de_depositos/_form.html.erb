@@ -1,47 +1,37 @@
-<%= nested_form_for(@boleta_de_deposito) do |f| %>
-<% if @boleta_de_deposito.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@boleta_de_deposito.errors.count, "error") %> prohibited this boleta_de_deposito from being saved:</h2>
-    <ul>
-    <% @boleta_de_deposito.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= nested_form_for @boleta_de_deposito, validate: true do |f| %>
 
   <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
-        <%= f.label :numero %>
-        <%= f.text_field :numero, class: 'form-control' %>
+        <%= f.label :numero, class: 'required' %>
+        <%= f.text_field :numero, class: 'form-control', autofocus: true %>
       </div>
       <div class="field">
-        <%= f.label :banco_id %>
+        <%= f.label :banco_id, class: 'required' %>
         <%= f.collection_select :banco_id, Banco.all, :id, :banco_sucursal, {prompt: "Seleccione un Banco"}, {class: "form-control"} %>
       </div>
       <div class="field">
         <%= f.label :total %>
-        <%= f.text_field :total, class: 'form-control', disabled: 'true' %>
+        <%= f.text_field :total, class: 'form-control' %>
       </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
-        <%= f.label :persona_id %>
+        <%= f.label :persona_id, class: 'required' %>
         <%= f.collection_select :persona_id, Persona.all, :id, :nombre_apellido, {prompt: "Seleccione una persona"}, {class: "form-control"} %>
       </div>
       <div class="field">
-        <%= f.label :cuenta_bancaria_id %>
+        <%= f.label :cuenta_bancaria_id, class: 'required' %>
         <%= f.collection_select :cuenta_bancaria_id, CuentaBancaria.all, :id, :numero_cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
       </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
-        <%= f.label :caja_id %>
+        <%= f.label :caja_id, class: 'required' %>
         <%= f.collection_select :caja_id, Caja.all, :id, :numero, {prompt: "Seleccione una caja"}, {class: "form-control"} %>
       </div>
       <div class="field">
-        <%= f.label :fecha %><br>
+        <%= f.label :fecha, class: 'required' %><br>
           <div class="input-group">
             <%= f.text_field :fecha, :class => 'datepicker form-control' %>
             <span class="input-group-addon">
@@ -76,7 +66,7 @@
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <div class="field">
         <%= boleta_de_deposito_detalle.label :total %>
-        <%= boleta_de_deposito_detalle.text_field :total, class: 'form-control', disabled: true %>
+        <%= boleta_de_deposito_detalle.text_field :total, class: 'form-control' %>
       </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">

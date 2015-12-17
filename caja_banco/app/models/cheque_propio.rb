@@ -10,11 +10,14 @@ class ChequePropio < ActiveRecord::Base
 		:presence => {
 			message: 'Este campo es requerido'},
 
-		:format => {
-			with: /\A[0-9]+\z/,
-			message: 'solo permite numeros'}
+		:numericality => true,
+    :length => { maximum: 30  }
 
 	validates :monto,
+		:presence => {
+			message: 'Este campo es requerido'}
+
+  validates :fecha,
 		:presence => {
 			message: 'Este campo es requerido'}
 

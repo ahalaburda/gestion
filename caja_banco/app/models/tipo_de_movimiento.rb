@@ -13,9 +13,5 @@ class TipoDeMovimiento < ActiveRecord::Base
 
 			:format => {
 				with: /\A[a-zA-Z]+\z/,
-				message: 'Solo permite letras'},
-
-			:uniqueness => {
-				message: 'Este tipo de movimiento ya existe'
-			}
+				message: 'Solo permite letras'}
 end
