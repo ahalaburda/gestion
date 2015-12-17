@@ -7,6 +7,7 @@ class AperturaCajasController < ApplicationController
     @apertura_cajas = AperturaCaja.all
     @apertura_caja = AperturaCaja.new
     @caja = Caja.new
+    @persona = Persona.new
   end
 
   # GET /apertura_cajas/1

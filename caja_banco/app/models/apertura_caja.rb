@@ -1,7 +1,7 @@
 class AperturaCaja < ActiveRecord::Base
   belongs_to :caja
   belongs_to :persona
-  belongs_to :caja
+  
 
   after_create :set_estado_abierto
   before_create :set_saldos
