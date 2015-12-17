@@ -51,7 +51,7 @@ class AperturaCajasController < ApplicationController
   def update
     respond_to do |format|
       if @apertura_caja.update(apertura_caja_params)
-        format.html { redirect_to apertura_cajas_url, notice: 'Apertura caja was successfully updated.' }
+        format.html { redirect_to movimientos_de_cajas_url(apertura_id: @apertura_caja.id), notice: 'Apertura caja was successfully updated.' }
         format.json { render :show, status: :ok, location: @apertura_caja }
       else
         format.html { render :edit }
