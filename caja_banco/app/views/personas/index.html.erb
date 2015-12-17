@@ -18,17 +18,12 @@
     <tr>
       <th>Tipo de persona</th>
       <th>Nombre</th>
-      <th>Apellido</th>
       <th>Telefono</th>
       <th>Cedula identidad</th>
-      <th>Pais</th>
-      <th>Departamento</th>
       <th>Ciudad</th>
       <th>Direccion</th>
-      <th>Fecha de nacimiento</th>
       <th>Correo</th>
       <th>Acciones</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -36,15 +31,11 @@
     <% @personas.each do |persona| %>
       <tr>
         <td><%= persona.tipo_de_persona.descripcion %></td>
-        <td><%= persona.nombre %></td>
-        <td><%= persona.apellido %></td>
+        <td><%= persona.nombre_apellido %></td>
         <td><%= persona.telefono %></td>
         <td><%= persona.cedula_identidad %></td>
-        <td><%= persona.pais.descripcion %></td>
-        <td><%= persona.departamento.descripcion %></td>
         <td><%= persona.ciudad.descripcion %></td>
         <td><%= persona.direccion %></td>
-        <td><%= persona.fecha_de_nacimiento %></td>
         <td><%= persona.correo %></td>
         <td>
         <%= link_to edit_persona_path(persona), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
