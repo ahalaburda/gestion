@@ -9,12 +9,7 @@ class Ciudad < ActiveRecord::Base
 				message: 'Este campo es requerido'},
 			:length => {
 				:maximum => 20,
-				:too_long => 'debe tener como maximo %{count} caracteres'},
-			:format => {
-				with: /\A[a-zA-Z]+\z/,
-				message: 'Solo permite letras'},
-			:uniqueness => {
-				message: 'El nombre que desea usar ya a sido utilizado'}
+				:too_long => 'debe tener como maximo %{count} caracteres'}
 
 			validates :codigo_postal,
 				:length => {
@@ -22,7 +17,8 @@ class Ciudad < ActiveRecord::Base
 					:too_long => 'debe tener como maximo %{count} caracteres'},
 				:format => {
 					with: /\A[0-9]+\z/,
-					message: 'solo permite numeros'}
+					message: 'solo permite numeros'},
+				allow_blank: true
 
 			validates :departamento_id,
 				:presence => {

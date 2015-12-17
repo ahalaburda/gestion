@@ -1,15 +1,5 @@
 <% remote ||= false %>
 <%= form_for @banco, remote: remote , validate: true do |f| %>
-  <% if @banco.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@banco.errors.count, "error") %> prohibited this banco from being saved:</h2>
-      <ul>
-      <% @banco.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
@@ -27,35 +17,35 @@
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
-        <label for="banco_pais_id" class="required">Pais 
+        <label for="banco_pais_id" class="required">Pais
           <%= link_to new_pais_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :pais_id, 
+        <%= f.select :pais_id,
           options_from_collection_for_select(Pais.all, :id, :descripcion, @banco.pais_id),
           {prompt: true}, id: "banco_pais_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
-        <label for="banco_departamento_id" class="required">Departamento 
+        <label for="banco_departamento_id" class="required">Departamento
           <%= link_to new_departamento_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :departamento_id, 
+        <%= f.select :departamento_id,
           options_from_collection_for_select(Departamento.all, :id, :descripcion, @banco.departamento_id),
           {prompt: true}, id: "banco_departamento_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
-        <label for="banco_ciudad_id" class="required">Ciudad 
+        <label for="banco_ciudad_id" class="required">Ciudad
           <%= link_to new_ciudad_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
             <span class="glyphicon glyphicon-plus"></span>
           <% end %>
         </label>
         </br>
-        <%= f.select :ciudad_id, 
+        <%= f.select :ciudad_id,
           options_from_collection_for_select(Ciudad.all, :id, :descripcion, @banco.ciudad_id),
           {prompt: true}, id: "banco_ciudad_id", include_blank: true, class: "form-control"%>
       </div>
@@ -67,7 +57,7 @@
       </div>
       <div class="field">
         <%= f.label :correo , class: 'required'%>
-        <%= f.text_field :correo , autofocus:true , :class => 'form-control' %> 
+        <%= f.text_field :correo , autofocus:true , :class => 'form-control' %>
       </div>
     </div>
   </div>

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+			format.pdf { render_users_list(@users)}
       format.json { render json: @user }
       format.js
     end
@@ -95,4 +96,29 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username,:persona_id, :email, :password, :password_confirmation)
     end
+
+	def render_users_list(user)
+		report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'users', 'show.tlf')
+
+		user.each do |task|
+			report.list.add_row do |row|
+				row.values usuario: task.username
+				row.values nombre: task.persona.nombre_apellido
+				row.values correo: task.email
+				row.values creacion: task.created_at
+				row.values conexion: task.current_sign_in_at
+				row.item(:usuario).style(:color, 'red')
+				row.item(:nombre).style(:color, 'red')
+				row.item(:correo).style(:color, 'red')
+				row.item(:creacion).style(:color, 'red')
+				row.item(:conexion).style(:color, 'red')
+			end
+		end
+	 report.page.item(:logo).src = File.join(Rails.root, 'public','uploads', 'parametro', 'logo_empresa', '3', 'logo.png')
+	 report.page.item(:elaboracion).value(current_user.username)
+	 report.page.item(:fecha_elaboracion).value(Time.current.to_s)
+		send_data report.generate, filename: 'usuarios.pdf',
+															 type: 'application/pdf',
+															 disposition: 'attachment'
+	end
 end

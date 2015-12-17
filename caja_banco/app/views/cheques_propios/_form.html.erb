@@ -1,15 +1,5 @@
 <% remote ||= false %>
 <%= form_for @cheque_propio, remote: remote , validate: true do |f| %>
-  <% if @cheque_propio.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@cheque_propio.errors.count, "error") %> prohibited this cheque_propio from being saved:</h2>
-      <ul>
-      <% @cheque_propio.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="row">
     <div class="col-md-4">
@@ -26,21 +16,21 @@
     </div>
 
       <div class="field">
-        <%= f.label :numero_cheque %>
+        <%= f.label :numero_cheque, class: 'required' %>
         <%= f.text_field :numero_cheque , class: "form-control" %>
       </div>
       <div class="field">
-        <%= f.label :concepto %>
+        <%= f.label :concepto, class: 'required' %>
         <%= f.text_field :concepto , class: "form-control" %>
       </div>
     </div>
     <div class="col-md-4">
       <div class="field">
-        <%= f.label :monto %>
+        <%= f.label :monto, class: 'required' %>
         <%= f.text_field :monto , class: "form-control" %>
       </div>
       <div class="field">
-        <%= f.label :fecha %><br>
+        <%= f.label :fecha, class: 'required' %><br>
           <div class="input-group">
             <%= f.text_field :fecha, :class => 'datepicker form-control' %>
             <span class="input-group-addon">

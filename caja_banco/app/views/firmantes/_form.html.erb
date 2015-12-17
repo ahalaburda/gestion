@@ -1,14 +1,4 @@
 <%= form_for @firmante, validate: true do |f| %>
-  <% if @firmante.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@firmante.errors.count, "error") %> prohibited this firmante from being saved:</h2>
-      <ul>
-      <% @firmante.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 	<div class="row">
 		<div class="col-md-4">
 		  <div class="field">
