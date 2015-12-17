@@ -90,20 +90,20 @@
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
               <div class="field">
-                <%= f.label :persona_id, class: 'required' %>
-                <%= f.text_field :persona_id, :class => 'form-control' %>
+                <label for="apertura_caja_persona_id">Cajero</label>
+                <%= f.text_field :persona_id, class: 'form-control', value: current_user.persona.nombre_apellido %>
               </div>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
               <div class="field">
                 <%= f.label :saldo_inicial_efectivo , class: 'required' %>
-                <%= f.text_field :saldo_inicial_efectivo, :class => 'form-control', data: { role: 'money', a_sep: ',', a_dec: '.' } %>
+                <%= f.text_field :saldo_inicial_efectivo, class: 'form-control' %>
               </div>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
              <div class="field">
                 <%= f.label :saldo_inicial_cheque , class: 'required' %>
-                <%= f.text_field :saldo_inicial_cheque, :class => 'form-control', data: { role: 'money', a_sep: ',', a_dec: '.' } %>
+                <%= f.text_field :saldo_inicial_cheque, class: 'form-control' %>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@
           <div class="col-md-offset-9">
             <div class="actions">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <%= f.submit "Abrir", :class => 'btn btn-primary'%>
+              <%= f.submit "Abrir", class: 'btn btn-primary'%>
             </div>
           </div>
         <% end %>
