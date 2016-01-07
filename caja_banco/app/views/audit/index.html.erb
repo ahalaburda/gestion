@@ -4,7 +4,7 @@
     <%= link_to '#', onclick: "printpage()", class: 'btn btn-print btn-outline btn-circle', title: 'Imprimir reporte', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
       <span class="glyphicon glyphicon-print" style="color: white"></span>
     <% end %>
-    <%= link_to auditorias_path(@users, format: 'pdf'), class: 'btn btn-pdf btn-outline btn-circle', title: 'Exportar en formato PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+    <%= link_to audit_index_path(@users, format: 'pdf'), class: 'btn btn-pdf btn-outline btn-circle', title: 'Exportar en formato PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
       <span style="color: white">PDF</span>
     <% end %>
     <a download="auditoria.xls" href="#" onclick="return ExcellentExport.excel(this, 'tabla_print', '');", class="btn btn-xls btn-outline btn-circle">XLS</a>
