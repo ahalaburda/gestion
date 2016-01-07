@@ -46,6 +46,11 @@ GEM
     ajax-datatables-rails (0.3.1)
       railties (>= 3.1)
     arel (5.0.1.20140414130214)
+    audited (4.2.0)
+      rails-observers (~> 0.1.2)
+    audited-activerecord (4.2.0)
+      activerecord (~> 4.0)
+      audited (= 4.2.0)
     autoprefixer-rails (6.0.3)
       execjs
       json
@@ -122,6 +127,8 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.8)
       sprockets-rails (~> 2.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     railties (4.1.8)
       actionpack (= 4.1.8)
       activesupport (= 4.1.8)
@@ -182,6 +189,7 @@ PLATFORMS
 
 DEPENDENCIES
   ajax-datatables-rails
+  audited-activerecord
   bootstrap-sass (~> 3.3.5)
   bootstrap3-datetimepicker-rails (~> 4.17.37)
   carrierwave
