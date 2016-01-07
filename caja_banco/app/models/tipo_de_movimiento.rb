@@ -1,4 +1,5 @@
 class TipoDeMovimiento < ActiveRecord::Base
+	audited
 	has_many :movimientos_de_cajas
 	has_many :movimientos_de_bancos
 

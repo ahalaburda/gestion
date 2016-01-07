@@ -1,4 +1,5 @@
 class Firmante < ActiveRecord::Base
+  audited
   belongs_to :cuenta_bancaria
   belongs_to :persona
 
