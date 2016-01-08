@@ -1,4 +1,5 @@
 class TipoDePersona < ActiveRecord::Base
+	audited
 	has_many :personas
 
 

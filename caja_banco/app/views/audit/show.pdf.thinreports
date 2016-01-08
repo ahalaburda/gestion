@@ -1,0 +1,6 @@
+report.start_new_page do |page|
+  page.item(:tabla_modificada).value(@audits.auditable_type)
+  page.item(:operacion).value(@audits.action)
+  page.item(:cambio_auditado).value(@audits.audited_changes)
+  page.item(:nombre_usuario).value(@audits.user_id.username)
+end

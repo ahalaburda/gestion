@@ -1,7 +1,8 @@
 class AperturaCaja < ActiveRecord::Base
+  audited
   belongs_to :caja
   belongs_to :persona
-  
+
   after_create :set_estado_abierto
   before_create :set_saldos
   before_create :set_hora_de_apertura

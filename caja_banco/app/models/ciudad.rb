@@ -1,4 +1,5 @@
 class Ciudad < ActiveRecord::Base
+	audited
 	belongs_to :departamento
 	has_many :bancos
 	has_many :personas

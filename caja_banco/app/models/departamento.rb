@@ -1,4 +1,5 @@
 class Departamento < ActiveRecord::Base
+  audited
   belongs_to :pais
   has_many :cuidades
   has_many :bancos

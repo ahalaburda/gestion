@@ -1,4 +1,5 @@
 class Banco < ActiveRecord::Base
+  audited
   belongs_to :pais
   belongs_to :departamento
   belongs_to :ciudad

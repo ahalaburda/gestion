@@ -1,4 +1,5 @@
 class ChequePropio < ActiveRecord::Base
+  audited
   belongs_to :chequera
   has_many :movimientos_de_cajas_detalles
 
