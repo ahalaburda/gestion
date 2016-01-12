@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cheque entrante:</strong>
+  <%= @apertura_cajas_detalle.cheque_entrante %>
+</p>
+
+<p>
+  <strong>Monto:</strong>
+  <%= @apertura_cajas_detalle.monto %>
+</p>
+
+<%= link_to 'Edit', edit_apertura_cajas_detalle_path(@apertura_cajas_detalle) %> |
+<%= link_to 'Back', apertura_cajas_detalles_path %>

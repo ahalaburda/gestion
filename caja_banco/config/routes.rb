@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :apertura_cajas_detalles
+
   resources :parametros
 
   get 'libros_de_bancos/libro_de_banco'

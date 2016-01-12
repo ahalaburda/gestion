@@ -1,0 +1,2 @@
+module AperturaCajasDetallesHelper
+end

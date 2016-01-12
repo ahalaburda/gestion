@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214022919) do
+ActiveRecord::Schema.define(version: 20160108231543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20151214022919) do
 
   add_index "apertura_cajas", ["caja_id"], name: "index_apertura_cajas_on_caja_id", using: :btree
   add_index "apertura_cajas", ["persona_id"], name: "index_apertura_cajas_on_persona_id", using: :btree
+
+  create_table "apertura_cajas_detalles", force: true do |t|
+    t.integer  "apertura_caja_id"
+    t.integer  "cheque_entrante_id"
+    t.decimal  "monto"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "apertura_cajas_detalles", ["apertura_caja_id"], name: "index_apertura_cajas_detalles_on_apertura_caja_id", using: :btree
+  add_index "apertura_cajas_detalles", ["cheque_entrante_id"], name: "index_apertura_cajas_detalles_on_cheque_entrante_id", using: :btree
 
   create_table "auditorias", force: true do |t|
     t.string   "nombre_tabla"

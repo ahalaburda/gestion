@@ -1,0 +1,28 @@
+<%= form_for([@apertura_caja, @apertura_cajas_detalle]) do |f| %>
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <div class="field">
+        <%= f.label :apertura_caja_id %>
+        <%= f.text_field :apertura_cajas_id, disabled: true, class: 'form-control'%>
+      </div>
+      <div class="field">
+        <%= f.label :cheque_entrante_id %>
+        <%= f.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
+      </div>
+      <div class="field">
+        <%= f.label :monto %>
+        <%= f.text_field :monto, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-offset-10">
+    <div class="actions">
+     <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
+      <% if controller.action_name == 'new' or controller.action_name == 'index' %>
+        <%= f.submit "Agregar", :class => 'btn btn-primary'%>
+      <% elsif controller.action_name == 'edit' %>
+        <%= f.submit "Actualizar", :class => 'btn btn-primary'%>
+      <% end %>
+    </div>
+  </div>
+<% end %>

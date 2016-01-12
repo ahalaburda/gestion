@@ -1,0 +1,27 @@
+<h1>Listing apertura_cajas_detalles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cheque entrante</th>
+      <th>Monto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @apertura_cajas_detalles.each do |apertura_cajas_detalle| %>
+      <tr>
+        <td><%= apertura_cajas_detalle.cheque_entrante %></td>
+        <td><%= apertura_cajas_detalle.monto %></td>
+        <td><%= link_to 'Show', apertura_cajas_detalle %></td>
+        <td><%= link_to 'Edit', edit_apertura_cajas_detalle_path(apertura_cajas_detalle) %></td>
+        <td><%= link_to 'Destroy', apertura_cajas_detalle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Apertura cajas detalle', new_apertura_cajas_detalle_path %>

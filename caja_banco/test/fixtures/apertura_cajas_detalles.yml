@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  apertura_caja_id: 
+  cheque_entrante_id: 
+  monto: 9.99
+
+two:
+  apertura_caja_id: 
+  cheque_entrante_id: 
+  monto: 9.99
