@@ -70,52 +70,182 @@
         <h4 class="modal-title">Apertura de Caja</h4>
       </div>
       <div class="modal-body">
-        <%= form_for @apertura_caja  ,  :validate => true do |f| %>
-          <% if @apertura_caja.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@apertura_caja.errors.count, "error") %> prohibited this apertura_caja from being saved:</h2>
-              <ul>
-              <% @apertura_caja.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class="row">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-              <div class="field">
+          <%= nested_form_for @apertura_caja, validate: true do |f| %>
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <%= f.label :caja_id , class: 'required' %>
                 <%= f.text_field :caja_id,  class: 'form-control', id: "caja_input" %>
               </div>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-              <div class="field">
-                <label for="apertura_caja_persona_id">Cajero</label>
-                <%= f.text_field :persona_id, class: 'form-control', value: current_user.persona.id %>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="display:none">
+                <div class="field">
+                <%= f.label :persona_id, class: 'required' %>
+                <%= f.text_field :persona_id, class: 'form-control', :value => current_user.persona_id %>
+                </div>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="field">
+                  <%= f.label :saldo_inicial_efectivo , class: 'required' %>
+                  <%= f.text_field :saldo_inicial_efectivo, class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+               <div class="field">
+                  <%= f.label :saldo_inicial_cheque , class: 'required' %>
+                  <%= f.text_field :saldo_inicial_cheque, class: 'form-control' %>
+                </div>
               </div>
             </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-              <div class="field">
-                <%= f.label :saldo_inicial_efectivo , class: 'required' %>
-                <%= f.text_field :saldo_inicial_efectivo, class: 'form-control' %>
+
+            </br>
+
+            <%= f.fields_for :apertura_cajas_detalles do |apertura_cajas_detalle| %>
+              <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="display:none">
+                  <div class="field">
+                  <% apertura = AperturaCaja.last.id%>
+                  <% apertura = apertura+1 %>
+                    <%= apertura_cajas_detalle.label :apertura_caja_id %>
+                    <%= apertura_cajas_detalle.text_field :apertura_caja_id , class: 'form-control' , :value => apertura %>
+                  </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="field">
+                    <%= apertura_cajas_detalle.label :cheque_entrante_id %>
+                    <%= apertura_cajas_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :nombre, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control cheque-entrante "} %>
+                  </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="field">
+                    <%= apertura_cajas_detalle.label :monto %>
+                    <%= apertura_cajas_detalle.text_field :monto, class: 'form-control precio-cheque' %>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-             <div class="field">
-                <%= f.label :saldo_inicial_cheque , class: 'required' %>
-                <%= f.text_field :saldo_inicial_cheque, class: 'form-control' %>
+                </br>
+              <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                <%= apertura_cajas_detalle.link_to_remove  "<i class='glyphicon glyphicon-remove'></i>".html_safe, class: "btn btn-danger pull-right"%>
               </div>
-            </div>
-          </div>
-          <div class="separador"></div>
-          <div class="col-md-offset-9">
-            <div class="actions">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <%= f.submit "Abrir", class: 'btn btn-primary'%>
-            </div>
-          </div>
-        <% end %>
+            <% end %>
+            
+            <%= f.link_to_add  :apertura_cajas_detalles , class: 'btn btn-info', title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+                <span class="glyphicon glyphicon-plus"></span>
+            <% end %>
+            <div class="separador"></div>
+              <div class="col-md-offset-9">
+                <div class="actions">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <%= f.submit "Abrir", class: 'btn btn-primary'%>
+                </div>
+              </div>
+          <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  // $(".auto-select-cheque-entrante").select2({
+  //    placeholder: "Nº de cheque - Banco - MONTO "
+  // });
+
+  var total = 0;
+  var fila = 0;
+  var i = 0;
+ //tomar los elementos segun su id y guardar en variables
+  var cheque_entrante_id = document.getElementById('apertura_caja_apertura_cajas_detalles_attributes_0_cheque_entrante_id');
+  var monto_cheque_id = document.getElementById("apertura_caja_apertura_cajas_detalles_attributes_0_monto");
+//cambiar las variables y setear un nuevo id
+  cheque_entrante_id.id = "apertura_caja_detalle_cheque_entrante_id_0";
+  monto_cheque_id.id = "monto-cheque_0";
+//setear valores de inicio por defecto a las varriables
+
+  $('#monto-cheque_0').val(0);
+  $('#apertura_caja_saldo_inicial_cheque').val(0);
+//iteramos todas los elementos que tenga el siguiente id y metemos en un array cada valor y hacemos un split para obtener el valor en efectivo de lo que contiente elemento y lo sumamos luego
+  $('#apertura_caja_detalle_cheque_entrante_id_'+fila+'').change(function() {
+    var string = $('#apertura_caja_detalle_cheque_entrante_id_'+fila+' option:selected').text();
+    var array = string.split('-');
+    $('#monto-cheque_'+fila+'').val(array[2]);
+    sumarCheque('#monto-cheque_'+fila+'');
+  });
+
+
+  function sumarCheque(clase){
+      var suma = 0;
+      $(clase).each(function() {
+        if($(this).val()!=""){
+          suma += parseFloat($(this).val());
+         }
+      });
+       $('#apertura_caja_saldo_inicial_cheque').val(suma);  
+  }
+
+  function sumar_field_agregado_cheque(tag){
+      var suma = 0;
+        $('.precio-cheque').each(function() {
+            if($(this).val()!=""){
+                suma += parseFloat($(this).val());
+         }
+       $('#apertura_caja_saldo_inicial_cheque').val(suma);
+    });
+  }
+
+  function sumar_field_borrado_cheque(clase){
+    var suma = 0;
+    $(clase).each(function() {
+      if($(this).val()!=""){
+        suma += parseFloat($(this).val());
+       }
+    });
+    $('#apertura_caja_saldo_inicial_cheque').val(suma);
+  }
+
+  $(document).on('nested:fieldAdded', function(event){
+    // $(".auto-select-cheque-entrante").select2({
+    //   placeholder: "Nº de cheque - Banco - MONTO "
+    // });
+    // this field was just inserted into your form
+    fila+=1;
+    var field = event.field;
+    // it's a jQuery object already! Now you can find date input
+    var tag1 = field.find('.precio-cheque');
+
+    var id_precio_cheque = document.querySelectorAll('.precio-cheque');
+    var id_cheque_entrante = document.querySelectorAll('.cheque-entrante');
+
+
+    // setear id de cada campo agregado
+    for (i = 0; i < id_precio_cheque.length; i++)
+        id_precio_cheque[i].id = 'monto-cheque_' + i;
+
+    for (i = 0; i < id_cheque_entrante.length; i++)
+        id_cheque_entrante[i].id = 'apertura_caja_detalle_cheque_entrante_id_' + i;
+
+
+    $('#apertura_caja_detalle_cheque_entrante_id_'+fila+'').change(function() {
+      var string = $('#apertura_caja_detalle_cheque_entrante_id_'+fila+' option:selected').text();
+      var array = string.split('-');
+      $('#monto-cheque_'+fila+'').val(array[2]);
+     sumar_field_agregado_cheque(tag1);
+    });
+
+    sumar_field_agregado_cheque(tag1);
+  })
+
+  $(document).on('nested:fieldRemoved', function(event){
+    // this field was just inserted into your form
+    var field = event.field;
+
+    var id_precio_cheque = document.querySelectorAll('.precio-cheque');
+    var id_cheque_entrante = document.querySelectorAll('.cheque-entrante');
+
+    id_precio_cheque[fila].parentNode.removeChild(id_precio_cheque[fila]);
+    id_cheque_entrante[fila].parentNode.removeChild(id_cheque_entrante[fila]);
+
+    fila-=1;
+
+    sumar_field_borrado_cheque('.precio-cheque');
+  })
+</script>
