@@ -1,11 +1,13 @@
 class AperturaCaja < ActiveRecord::Base
   belongs_to :caja
   belongs_to :persona
+  has_many :apertura_cajas_detalles
+  accepts_nested_attributes_for :apertura_cajas_detalles, allow_destroy: true
   
   after_create :set_estado_abierto
   before_create :set_saldos
   before_create :set_hora_de_apertura
-  after_update :set_estado_cerrado
+  # after_update :set_estado_cerrado
   after_update :set_hora_de_cierre
 
   def set_estado_abierto
