@@ -1,4 +1,5 @@
 class ChequeEntrante < ActiveRecord::Base
+  audited
   belongs_to :banco
   belongs_to :persona
   has_many :movimientos_de_cajas_detalles

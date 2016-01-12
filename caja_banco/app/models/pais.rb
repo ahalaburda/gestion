@@ -1,4 +1,5 @@
 class Pais < ActiveRecord::Base
+	audited
 	has_many :departamentos
 	has_many :bancos
 	has_many :personas

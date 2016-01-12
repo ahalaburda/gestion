@@ -1,4 +1,5 @@
 class CuentaBancaria < ActiveRecord::Base
+  audited
   belongs_to :banco
   belongs_to :estado
   has_many :chequeras

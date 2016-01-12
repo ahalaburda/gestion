@@ -1,4 +1,5 @@
 class Caja < ActiveRecord::Base
+  audited
   belongs_to :estado
   has_many :movimientos_de_cajas
   has_many :boletas_de_depositos

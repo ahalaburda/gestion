@@ -1,4 +1,5 @@
 class Estado < ActiveRecord::Base
+	audited
 	has_many :cajas
 	has_many :chequeras
 	has_many :cuentas_bancarias

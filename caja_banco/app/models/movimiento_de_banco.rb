@@ -1,4 +1,5 @@
 class MovimientoDeBanco < ActiveRecord::Base
+  audited
   belongs_to :tipo_de_movimiento
   belongs_to :banco
   has_many :movimientos_de_bancos_detalles

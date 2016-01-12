@@ -1,4 +1,5 @@
 class Persona < ActiveRecord::Base
+  audited
   belongs_to :tipo_de_persona
   belongs_to :pais
   belongs_to :departamento

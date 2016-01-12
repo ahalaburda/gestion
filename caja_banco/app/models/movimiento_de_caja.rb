@@ -1,4 +1,5 @@
 class MovimientoDeCaja < ActiveRecord::Base
+  audited
   belongs_to :tipo_de_movimiento
   belongs_to :caja
   has_many :movimientos_de_cajas_detalles

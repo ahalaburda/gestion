@@ -1,4 +1,5 @@
 class BoletaDeDeposito < ActiveRecord::Base
+  audited
   belongs_to :banco
   belongs_to :persona
   belongs_to :cuenta_bancaria

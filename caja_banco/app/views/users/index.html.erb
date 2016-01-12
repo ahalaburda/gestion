@@ -14,7 +14,7 @@
     <%= link_to users_path(@users, format: 'pdf'), class: 'btn btn-pdf btn-outline btn-circle', title: 'Exportar en formato PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
       <span style="color: white">PDF</span>
     <% end %>
-    <a download="tipos_de_personas.xls" href="#" onclick="return ExcellentExport.excel(this, 'tabla_print', '');", class="btn btn-xls btn-outline btn-circle">XLS</a>
+    <a download="usuarios.xls" href="#" onclick="return ExcellentExport.excel(this, 'tabla_print', '');", class="btn btn-xls btn-outline btn-circle">XLS</a>
 </div>
 </br>
 
