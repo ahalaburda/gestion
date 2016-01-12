@@ -4,7 +4,11 @@ class CajasController < ApplicationController
   # GET /cajas
   # GET /cajas.json
   def index
+    @apertura_cajas = AperturaCaja.all
     @apertura_caja = AperturaCaja.new
+    @apertura_cajas_detalles = AperturaCajasDetalle.all
+    @apertura_cajas_detalle = AperturaCajasDetalle.new
+    @apertura_caja.apertura_cajas_detalles.build
     @caja = Caja.new
     @cajas = Caja.all.order('numero asc')
      respond_to do |format|

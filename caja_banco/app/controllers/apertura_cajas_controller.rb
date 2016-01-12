@@ -4,21 +4,31 @@ class AperturaCajasController < ApplicationController
   # GET /apertura_cajas
   # GET /apertura_cajas.json
   def index
-    @apertura_cajas = AperturaCaja.all
-    @apertura_caja = AperturaCaja.new
     @caja = Caja.new
     @persona = Persona.new
+    @apertura_cajas = AperturaCaja.all
+    @apertura_caja = AperturaCaja.new
+    @apertura_cajas_detalles = AperturaCajasDetalle.all
+    @apertura_cajas_detalle = AperturaCajasDetalle.new
+    @apertura_caja.apertura_cajas_detalles.build
+    respond_to do |format|
+       format.html # index.html.erb
+       format.json { render json: @apertura_cajas }
+   end
   end
 
   # GET /apertura_cajas/1
   # GET /apertura_cajas/1.json
   def show
-    @apertura_caja = AperturaCaja.find(params[:id])
+    # @apertura_caja = AperturaCaja.find(params[:id])
+    @apertura_caja_detalle = AperturaCajasDetalle.new
+    @apertura_cajas_detalles = AperturaCajasDetalle.all
   end
 
   # GET /apertura_cajas/new
   def new
     @apertura_caja = AperturaCaja.new
+    @apertura_cajas = AperturaCaja.all
     respond_to do |format|
       format.js
     end
@@ -78,6 +88,6 @@ class AperturaCajasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apertura_caja_params
-      params.require(:apertura_caja).permit(:caja_id, :apertura, :cierre, :saldo_inicial_efectivo, :saldo_inicial_cheque, :saldo_final_efectivo, :saldo_final_cheque, :persona_id)
+      params.require(:apertura_caja).permit(:caja_id, :apertura, :cierre, :saldo_inicial_efectivo,:saldo_inicial_cheque, :saldo_final_efectivo, :saldo_final_cheque, :persona_id, apertura_cajas_detalles_attributes: [:id, :apertura_cajas_id, :cheque_entrante_id, :monto ])
     end
 end
