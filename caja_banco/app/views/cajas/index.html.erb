@@ -8,13 +8,13 @@
       <div class="col-md-3 col-sm-6" id="caja_<%= caja.numero %>" onclick="testClick(<%= caja.numero %>)">
         <% if caja.estado.descripcion == 'Cerrado' %>
           <%= link_to "#modal-apertura", "data-toggle" => "modal" , class: 'btn bg-green grow widget widget-stats' do %>
-          <div class="stats-icon stats-icon-lg">
-            <i class="fa fa-globe fa-fw">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </i>
-          </div>
-          <div class="stats-title">Caja <%= caja.numero %></div>
-          <div class="stats-desc" style="font-size:15px;"><%= caja.estado.descripcion %></div>
+            <div class="stats-icon stats-icon-lg">
+              <i class="fa fa-globe fa-fw">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </i>
+            </div>
+            <div class="stats-title">Caja <%= caja.numero %></div>
+            <div class="stats-desc" style="font-size:15px;"><%= caja.estado.descripcion %></div>
           <% end %>
         <% else %>
           <div class="btn bg-gray grow widget widget-stats" id="caja_<%= caja.numero %>">
