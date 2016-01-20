@@ -7,7 +7,7 @@ class CuentaBancaria < ActiveRecord::Base
   has_many :boletas_de_depositos
   has_many :firmantes
 
-  	validates :banco_id,
+	validates :banco_id,
 				:presence => {
 					message: 'Debe seleccionar un banco'}
 
@@ -15,10 +15,13 @@ class CuentaBancaria < ActiveRecord::Base
 				:presence => {
 					message: 'Este campo es requerido'},
 				:numericality => true,
-        :length => { maximum: 30  }
+				:length => { maximum: 30  }
 
 	validates :estado_id,
 				:presence => {
 					message: 'Debe seleccionar un estado'}
 
+	def cuenta
+		"#{banco.nombre} - #{numero_cuenta}"
+	end
 end
