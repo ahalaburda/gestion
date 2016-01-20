@@ -1,6 +1,5 @@
 <% remote ||= false %>
 <%= form_for @cheque_entrante, remote: remote , validate: true do |f| %>
-
   <div class="row">
     <div class="col-md-4">
       <div class="field">
@@ -68,3 +67,11 @@
 <div id="modal_banco"></div>
 <div id="modal_persona"></div>
 <div class="separador"></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.datepicker').datetimepicker({
+    locale:'es'
+  });
+});
+</script>
