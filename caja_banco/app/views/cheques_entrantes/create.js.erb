@@ -1,2 +1,2 @@
 $("#modal-cheque_entrante .modal").modal("hide");
-$("[id*=movimiento_de_caja_detalle_cheque_entrante_id_]").append("<option value='<%= @cheque_entrante.id %>'><%= @cheque_entrante.numero %> - <%= @cheque_entrante.banco_id %></option>");
+$("[id*=movimiento_de_caja_detalle_cheque_entrante_id_]").append("<option value='<%= @cheque_entrante.id %>'> <%= @cheque_entrante.numero %> - <%= @cheque_entrante.banco.nombre %> - <%= @cheque_entrante.monto %></option>");
