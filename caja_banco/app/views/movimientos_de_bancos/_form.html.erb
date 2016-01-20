@@ -1,30 +1,40 @@
 <%= nested_form_for @movimiento_de_banco, validate: true do |f| %>
-
   <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-      <div class="field">
+      <div class="field" style="padding-bottom: 10px;">
+      </br>  
         <%= f.label :tipo_de_movimiento_id, class: 'required' %>
-        <%= f.collection_select :tipo_de_movimiento_id, TipoDeMovimiento.all, :id, :descripcion, {prompt: "Seleccione un Tipo de Movimiento"}, {class: "form-control"} %>
+        <%= f.collection_radio_buttons :tipo_de_movimiento_id, TipoDeMovimiento.all, :id, :descripcion %>
       </div>
       <div class="field">
-        <%= f.label :descripcion, class: 'required' %>
-        <%= f.text_field :descripcion, class: 'form-control' %>
+        <label for="movimiento_de_banco_banco_id" class="required">Banco
+          <%= link_to new_banco_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= f.select :banco_id,
+          options_from_collection_for_select(Banco.all, :id, :banco_sucursal, @movimiento_de_banco.banco_id),
+          {prompt: true}, id: "movimiento_de_banco_banco_id", include_blank: true, class: "form-control"%>
       </div>
+     
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <div class="field">
+            <label for="movimiento_de_banco_descripcion" class="required">Motivo </label>
+            <%= f.text_field :descripcion, class: 'form-control' %>
+        </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-      <div class="field">
-        <%= f.label :banco_id, class: 'required' %>
-        <%= f.collection_select :banco_id, Banco.all, :id, :banco_sucursal, {prompt: "Seleccione un Banco"}, {class: "form-control"} %>
-      </div>
-      <div class="field">
-        <%= f.label :fecha %><br>
-          <div class="input-group">
-            <%= f.text_field :fecha, :class => 'datepicker form-control' %>
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
-      </div>
+        <div class="field">
+          <%= f.label :fecha %><br>
+            <div class="input-group">
+              <%= f.text_field :fecha, :class => 'datepicker form-control' %>
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+        </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <div class="field">
@@ -32,28 +42,31 @@
         <%= f.text_field :total, class: 'form-control' %>
       </div>
     </div>
-
   </div>
   <br>
-
   <%= f.fields_for :movimientos_de_bancos_detalles do |movimiento_de_banco_detalle| %>
   <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <div class="field">
-        <%= movimiento_de_banco_detalle.label :cuenta_bancaria_id, class: 'required' %>
-        <%= movimiento_de_banco_detalle.collection_select :cuenta_bancaria_id, CuentaBancaria.all, :id, :numero_cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
+        <label for="movimiento_de_banco_detalle_cuenta_bancaria_id" class="required"> Cuenta Bancaria
+          <%= link_to new_cuenta_bancaria_path , remote: true , class: 'btn btn-info btn-outline btn-circle' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </label>
+        </br>
+        <%= movimiento_de_banco_detalle.collection_select :cuenta_bancaria_id, CuentaBancaria.all, :id, :cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control cuenta"} %>
       </div>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <div class="field">
         <%= movimiento_de_banco_detalle.label :monto, class: 'required' %>
-        <%= movimiento_de_banco_detalle.text_field :monto, class: 'form-control' %>
+        <%= movimiento_de_banco_detalle.text_field :monto, class: 'form-control monto-cuenta' %>
       </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
       <div class="field">
         <br>
-        <%= movimiento_de_banco_detalle.link_to_remove "X", class: 'btn btn-danger', style:'font-weight: bold'%>
+        <%= movimiento_de_banco_detalle.link_to_remove  "<i class='glyphicon glyphicon-remove'></i>".html_safe, class: "btn btn-danger"%>
       </div>
     </div>
   </div>
@@ -73,3 +86,90 @@
     </div>
   <% end %>
   <div class="separador"></div>
+<div id="modal_banco"></div>
+<div id="modal_cuenta_bancaria"></div>
+
+<script type="text/javascript">
+  var total = 0;
+  var fila = 0;
+  var i = 0;
+ //tomar los elementos segun su id y guardar en variables
+  var monto_cuenta_bancaria_detalle_id = document.getElementById('movimiento_de_banco_movimientos_de_bancos_detalles_attributes_0_monto');
+  var cuenta_bancaria_id = document.getElementById('movimiento_de_banco_movimientos_de_bancos_detalles_attributes_0_cuenta_bancaria_id');
+  var total_id = document.getElementById("movimiento_de_banco_total");
+  //cambiar las variables y setear un nuevo id
+  monto_cuenta_bancaria_detalle_id.id = "movimiento_de_banco_detalle_monto_id_0";
+  cuenta_bancaria_id.id = "cuenta_bancaria_id_0";
+
+  //setear valores de inicio por defecto a las varriables
+  $('#movimiento_de_banco_total').val(total);
+  $('#movimiento_de_banco_detalle_monto_id_0').val(0);
+  //iteramos todas los elementos que tenga el siguiente id y metemos en un array cada valor y hacemos un split para obtener el valor en efectivo de lo que contiente elemento y lo sumamos luego
+  $('#movimiento_de_banco_detalle_monto_id_'+fila+'').change(function() {
+    var monto_id = document.getElementById('movimiento_de_banco_detalle_monto_id_0').value;
+    // var total_id = document.getElementById('movimiento_de_banco_total').value;
+    var monto = parseInt(monto_id);
+    // var total = parseInt(total_id);
+    var suma_total = 0;
+    suma_total = total + monto ;
+    $('#movimiento_de_banco_total').val(suma_total);
+  });
+  $(document).on('nested:fieldAdded', function(event){
+    // $(".auto-select-cheque-entrante").select2({
+    //   placeholder: "Nº de cheque - Banco - MONTO "
+    // });
+    // this field was just inserted into your form
+    fila+=1;
+    var field = event.field;
+    // it's a jQuery object already! Now you can find date input
+    var tag1 = field.find('.monto-cuenta');
+
+    var id_cuenta = document.querySelectorAll('.cuenta');
+    var id_monto_cuenta = document.querySelectorAll('.monto-cuenta');
+
+    // setear id de cada campo agregado
+    for (i = 0; i < id_cuenta.length; i++)
+        id_cuenta[i].id = 'cuenta_bancaria_id_' + i;
+
+    for (i = 0; i < id_monto_cuenta.length; i++)
+        id_monto_cuenta[i].id = 'movimiento_de_banco_detalle_monto_id_' + i;
+
+    $('#movimiento_de_banco_detalle_monto_id_'+fila+'').change(function() {
+      var monto_id = document.getElementById('movimiento_de_banco_detalle_monto_id_0').value;
+      var total_id = document.getElementById('movimiento_de_banco_total').value;
+      var monto = parseInt(monto_id);
+      var total = parseInt(total_id);
+      var suma_total = 0;
+      suma_total = total + monto ;
+      $('#movimiento_de_banco_total').val(suma_total);
+    });
+  })
+
+  $(document).on('nested:fieldRemoved', function(event){
+    // this field was just inserted into your form
+    var field = event.field;
+
+    var id_cuenta = document.querySelectorAll('.cuenta');
+    var id_monto_cuenta = document.querySelectorAll('.monto-cuenta');
+
+    $('#movimiento_de_banco_total').val(0);
+
+    id_cuenta[fila].parentNode.removeChild(id_cuenta[fila]);
+    id_monto_cuenta[fila].parentNode.removeChild(id_monto_cuenta[fila]);
+
+    fila-=1;
+    console.log(fila);
+    for (i = 0; i <= fila; i++){
+      var monto_id = document.getElementById('movimiento_de_banco_detalle_monto_id_'+i+'').value;
+      var total_id = document.getElementById('movimiento_de_banco_total').value;
+      var monto = parseInt(monto_id);
+      var total = parseInt(total_id);
+      var suma_total = 0;
+      suma_total = total + monto ;
+      console.log("monto: "+monto);
+      console.log("total: "+total);
+      console.log("suma :" +suma_total);
+      $('#movimiento_de_banco_total').val(suma_total);
+    }
+  })
+</script>
