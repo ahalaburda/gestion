@@ -11,7 +11,7 @@
         </label>
         </br>
         <%= f.select :cuenta_bancaria_id,
-          options_from_collection_for_select(CuentaBancaria.all, :id, :numero_cuenta, @chequera.cuenta_bancaria_id),
+          options_from_collection_for_select(CuentaBancaria.all, :id, :cuenta, @chequera.cuenta_bancaria_id),
           {prompt: true}, id: "chequera_cuenta_bancaria_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">
