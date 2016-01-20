@@ -37,7 +37,7 @@
         </label>
         </br>
         <%= f.select :persona_id,
-          options_from_collection_for_select(Persona.all, :id, :nombre, @cheque_entrante.persona_id),
+          options_from_collection_for_select(Persona.all, :id, :nombre_apellido, @cheque_entrante.persona_id),
           {prompt: true}, id: "cheque_entrante_persona_id", include_blank: true, class: "form-control"%>
       </div>
       <div class="field">

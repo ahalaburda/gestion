@@ -73,7 +73,7 @@ class Persona < ActiveRecord::Base
 		:presence => {
 			message: 'Debe seleccionar un Tipo de persona'}
 
-	def nombre_apellido
+  def nombre_apellido
     "#{nombre} #{apellido}"
   end
 end
