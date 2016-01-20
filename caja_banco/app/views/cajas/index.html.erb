@@ -151,14 +151,14 @@
  //tomar los elementos segun su id y guardar en variables
   var cheque_entrante_id = document.getElementById('apertura_caja_apertura_cajas_detalles_attributes_0_cheque_entrante_id');
   var monto_cheque_id = document.getElementById("apertura_caja_apertura_cajas_detalles_attributes_0_monto");
-//cambiar las variables y setear un nuevo id
+  //cambiar las variables y setear un nuevo id
   cheque_entrante_id.id = "apertura_caja_detalle_cheque_entrante_id_0";
   monto_cheque_id.id = "monto-cheque_0";
-//setear valores de inicio por defecto a las varriables
+  //setear valores de inicio por defecto a las varriables
 
   $('#monto-cheque_0').val(0);
   $('#apertura_caja_saldo_inicial_cheque').val(0);
-//iteramos todas los elementos que tenga el siguiente id y metemos en un array cada valor y hacemos un split para obtener el valor en efectivo de lo que contiente elemento y lo sumamos luego
+  //iteramos todas los elementos que tenga el siguiente id y metemos en un array cada valor y hacemos un split para obtener el valor en efectivo de lo que contiente elemento y lo sumamos luego
   $('#apertura_caja_detalle_cheque_entrante_id_'+fila+'').change(function() {
     var string = $('#apertura_caja_detalle_cheque_entrante_id_'+fila+' option:selected').text();
     var array = string.split('-');
