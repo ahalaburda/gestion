@@ -11,7 +11,7 @@
         </label>
         </br>
         <%= f.select :chequera_id,
-          options_from_collection_for_select(Chequera.all, :id, :id, @cheque_propio.chequera_id),
+          options_from_collection_for_select(Chequera.all, :id, :nombre, @cheque_propio.chequera_id),
           {prompt: true}, id: "cheque_propio_chequera_id", include_blank: true, class: "form-control"%>
     </div>
 
