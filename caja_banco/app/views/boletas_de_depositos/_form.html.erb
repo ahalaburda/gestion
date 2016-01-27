@@ -10,9 +10,9 @@
         <%= f.label :banco_id, class: 'required' %>
         <%= f.collection_select :banco_id, Banco.all, :id, :banco_sucursal, {prompt: "Seleccione un Banco"}, {class: "form-control"} %>
       </div>
-      <div class="field">
-        <%= f.label :total %>
-        <%= f.text_field :total, class: 'form-control' %>
+        <div class="field">
+          <%= f.label :monto_total_cheque %>
+          <%= f.text_field :monto_total_cheque, class: 'form-control' %>
       </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -23,6 +23,10 @@
       <div class="field">
         <%= f.label :cuenta_bancaria_id, class: 'required' %>
         <%= f.collection_select :cuenta_bancaria_id, CuentaBancaria.all, :id, :numero_cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
+      </div>
+      <div class="field">
+        <%= f.label :monto_total_efectivo %>
+        <%= f.text_field :monto_total_efectivo, class: 'form-control' %>
       </div>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -39,6 +43,10 @@
             </span>
           </div>
       </div>
+      <div class="field">
+        <%= f.label :total %>
+        <%= f.text_field :total, class: 'form-control' %>
+      </div>
     </div>
   </div>
 </br>
@@ -48,31 +56,25 @@
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <div class="field">
         <%= boleta_de_deposito_detalle.label :cheque_entrante_id %>
-        <%= boleta_de_deposito_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :numero, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control"} %>
+        <%= boleta_de_deposito_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :nombre, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control cheque-entrante"} %>
       </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
       <div class="field">
         <%= boleta_de_deposito_detalle.label :monto_cheque %>
-        <%= boleta_de_deposito_detalle.text_field :monto_cheque, class: 'form-control' %>
+        <%= boleta_de_deposito_detalle.text_field :monto_cheque, class: 'form-control precio-cheque' %>
       </div><br>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
       <div class="field">
         <%= boleta_de_deposito_detalle.label :monto_efectivo %>
-        <%= boleta_de_deposito_detalle.text_field :monto_efectivo, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <div class="field">
-        <%= boleta_de_deposito_detalle.label :total %>
-        <%= boleta_de_deposito_detalle.text_field :total, class: 'form-control' %>
+        <%= boleta_de_deposito_detalle.text_field :monto_efectivo, class: 'form-control precio-efectivo' %>
       </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
       <div class="field">
         <br>
-        <%= boleta_de_deposito_detalle.link_to_remove "X", class: 'btn btn-danger', style:'font-weight: bold'%>
+        <%= boleta_de_deposito_detalle.link_to_remove "<i class='glyphicon glyphicon-remove'></i>".html_safe, class: "btn btn-danger"%>
       </div>
     </div>
   </div>
@@ -92,3 +94,181 @@
   </div>
 <% end %>
 <div class="separador"></div>
+
+<script type="text/javascript">
+  // $(".auto-select-cheque-entrante").select2({
+  //    placeholder: "Nº de cheque - Banco - MONTO "
+  // });
+  // $(".auto-select-propio-entrante").select2({
+  //    placeholder: "Nº de cheque - MONTO "
+  // });
+
+  var total = 0;
+  var fila = 0;
+  var i = 0;
+
+  var cheque_entrante_id = document.getElementById('boleta_de_deposito_boletas_de_depositos_detalles_attributes_0_cheque_entrante_id');
+  var monto_cheque_id = document.getElementById('boleta_de_deposito_boletas_de_depositos_detalles_attributes_0_monto_cheque');
+  var monto_efectivo_id = document.getElementById('boleta_de_deposito_boletas_de_depositos_detalles_attributes_0_monto_efectivo');
+
+  cheque_entrante_id.id = "boleta_de_deposito_detalle_cheque_entrante_id_0";
+  monto_cheque_id.id = "monto-cheque_0";
+  monto_efectivo_id.id = "monto-efectivo_0"
+
+  $('#boleta_de_deposito_monto_total_cheque').val(0);
+  $('#boleta_de_deposito_monto_total_efectivo').val(0);
+  $('#boleta_de_deposito_total').val(0);
+  $('#monto-cheque_0').val(0);
+  $('#monto-efectivo_0').val(0);
+
+
+  $('#boleta_de_deposito_detalle_cheque_entrante_id_'+fila+'').change(function() {
+    var string = $('#boleta_de_deposito_detalle_cheque_entrante_id_'+fila+' option:selected').text();
+    var array = string.split('-');
+    $('#monto-cheque_'+fila+'').val(array[2]);
+    sumarCheque('#monto-cheque_'+fila+'');
+  });
+
+  sumarEfectivo('.precio-efectivo');
+
+  function print_total(){
+    var total_cheque = document.getElementById('boleta_de_deposito_monto_total_cheque').value;
+    var total_efectivo = document.getElementById('boleta_de_deposito_monto_total_efectivo').value;
+
+    var monto_total_cheque = parseInt(total_cheque);
+    var monto_total_efectivo = parseInt(total_efectivo);
+
+    total = monto_total_efectivo + monto_total_cheque ;
+
+    $('#boleta_de_deposito_total').val(total);
+  }
+
+  function sumarCheque(clase){
+      var suma = 0;
+      $(clase).each(function() {
+        if($(this).val()!=""){
+          suma += parseFloat($(this).val());
+         }
+      });
+       $('#boleta_de_deposito_monto_total_cheque').val(suma);
+       print_total();
+  }
+  function sumarEfectivo(clase){
+    $(clase).change(function () {
+      var suma = 0;
+      $(clase).each(function() {
+        if($(this).val()!=""){
+          suma += parseFloat($(this).val());
+         }
+      });
+       $('#boleta_de_deposito_monto_total_efectivo').val(suma);
+       print_total();
+    });
+  }
+
+  function sumar_field_agregado_cheque(tag){
+      var suma = 0;
+        $('.precio-cheque').each(function() {
+            if($(this).val()!=""){
+                suma += parseFloat($(this).val());
+         }
+       $('#boleta_de_deposito_monto_total_cheque').val(suma);
+       print_total();
+    });
+  }
+  function sumar_field_agregado_efectivo(tag){
+    tag.change(function () {
+      var suma = 0;
+        $('.precio-efectivo').each(function() {
+            if($(this).val()!=""){
+                suma += parseFloat($(this).val());
+             }
+        });
+        $('#boleta_de_deposito_monto_total_efectivo').val(suma);
+        print_total();
+    });
+  }
+
+  function sumar_field_borrado_cheque(clase){
+    var suma = 0;
+    $(clase).each(function() {
+      if($(this).val()!=""){
+        suma += parseFloat($(this).val());
+       }
+    });
+    $('#boleta_de_deposito_monto_total_cheque').val(suma);
+    print_total();
+  }
+  function sumar_field_borrado_efectivo(clase){
+    var suma = 0;
+    $(clase).each(function() {
+      if($(this).val()!=""){
+        suma += parseFloat($(this).val());
+        total += suma;
+       }
+    });
+    $('#boleta_de_deposito_monto_total_efectivo').val(suma);
+    print_total();
+  }
+
+  $(document).on('nested:fieldAdded', function(event){
+    // $(".auto-select-cheque-entrante").select2({
+    //   placeholder: "Nº de cheque - Banco - MONTO "
+    // });
+    // $( ".auto-select" ).select2({
+    //   placeholder: "Por favor selecciona "
+    // });
+    // this field was just inserted into your form
+    fila+=1;
+    var field = event.field;
+    // it's a jQuery object already! Now you can find date input
+    var tag1 = field.find('.precio-cheque');
+    var tag2 = field.find('.precio-efectivo');
+
+    var id_precio_cheque = document.querySelectorAll('.precio-cheque');
+    var id_precio_efectivo = document.querySelectorAll('.precio-efectivo');
+    var id_cheque_entrante = document.querySelectorAll('.cheque-entrante');
+  
+
+    // setear id de cada campo agregado
+    for (i = 0; i < id_precio_cheque.length; i++)
+        id_precio_cheque[i].id = 'monto-cheque_' + i;
+
+    for (i = 0; i < id_precio_efectivo.length; i++)
+        id_precio_efectivo[i].id = 'monto-efectivo_' + i;
+
+    for (i = 0; i < id_cheque_entrante.length; i++)
+        id_cheque_entrante[i].id = 'boleta_de_deposito_detalle_cheque_entrante_id_' + i;
+
+    $('#boleta_de_deposito_detalle_cheque_entrante_id_'+fila+'').change(function() {
+      var string = $('#boleta_de_deposito_detalle_cheque_entrante_id_'+fila+' option:selected').text();
+      var array = string.split('-');
+      $('#monto-cheque_'+fila+'').val(array[2]);
+     sumar_field_agregado_cheque(tag1);
+    });
+
+    sumar_field_agregado_cheque(tag1);
+    sumar_field_agregado_efectivo(tag2);
+    print_total();
+  })
+
+  $(document).on('nested:fieldRemoved', function(event){
+    // this field was just inserted into your form
+    var field = event.field;
+
+    var id_precio_cheque = document.querySelectorAll('.precio-cheque');
+    var id_precio_efectivo = document.querySelectorAll('.precio-efectivo');
+    var id_cheque_entrante = document.querySelectorAll('.cheque-entrante');
+
+    id_precio_cheque[fila].parentNode.removeChild(id_precio_cheque[fila]);
+    id_precio_efectivo[fila].parentNode.removeChild(id_precio_efectivo[fila]);
+    id_cheque_entrante[fila].parentNode.removeChild(id_cheque_entrante[fila]);
+
+    fila-=1;
+
+    sumar_field_borrado_cheque('.precio-cheque');
+    sumar_field_borrado_efectivo('.precio-efectivo');
+
+    print_total();
+  })
+</script>
