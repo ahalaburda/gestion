@@ -1,0 +1,145 @@
+<h1> Libro de Caja </h1>
+<div class="reports" style="margin-left: 90.333333%">
+  <%= link_to '#', onclick: "printpage()", class: 'btn btn-print btn-outline btn-circle', title: 'Imprimir reporte', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+    <span class="glyphicon glyphicon-print" style="color: white"></span>
+  <% end %>
+  <%= link_to libros_de_cajas_libro_de_caja_path(@libros_de_cajas, format: 'pdf'), class: 'btn btn-pdf btn-outline btn-circle', title: 'Exportar en formato PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+    <span style="color: white">PDF</span>
+  <% end %>
+  <a download="libro_de_caja.xls" href="#" onclick="return ExcellentExport.excel(this, 'tabla_print', 'libro_caja');", class="btn btn-xls btn-outline btn-circle">XLS</a>
+</div>
+</br>
+<table id="libro" class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Fecha</th>
+			<th>Caja</th>
+			<th>Tipo de Movimiento</th>
+			<th>Movimiento</th>
+			<th>Ingreso</th>
+			<th>Egreso</th>
+			<th>Saldo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @movimientos_de_cajas_detalles.each do |movimiento_de_caja_detalle| %>
+			<%if movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion == 'Ingreso' %>
+				<tr>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.fecha%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: Monto Efectivo</td>
+					<td><%= movimiento_de_caja_detalle.monto_efectivo%></td>
+					<td></td>
+					<td></td>
+				</tr>
+			<% else %>
+			<tr>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.fecha%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: Monto Efectivo</td>
+					<td></td>
+					<td><%= movimiento_de_caja_detalle.monto_efectivo%></td>
+					<td></td>
+			</tr>
+			<% end %>	
+			<% @cheques_entrantes.each do |cheque_entrante| %>
+				<% if cheque_entrante.id == movimiento_de_caja_detalle.cheque_entrante_id %>
+					<tr>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.fecha%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: cheque entrante: <%=cheque_entrante.numero %></td>
+						<td><%= cheque_entrante.monto%></td>
+						<td></td>
+						<td></td>
+					</tr>
+				<% end %>
+			<% end %>
+			<% @cheques_propios.each do |cheque_propio| %>
+				<% if cheque_propio.id == movimiento_de_caja_detalle.cheque_propio_id %>
+					<tr>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.fecha%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: cheque propio: <%=cheque_propio.numero_cheque %></td>
+						<td></td>
+						<td><%= cheque_propio.monto%></td>
+						<td></td>
+					</tr>
+				<% end %>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
+<div id="tabla_print">
+<h1><span><%= image_tag Parametro.last.logo_empresa_url%></span>Libro de Caja</h1>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Fecha</th>
+			<th>Caja</th>
+			<th>Tipo de Movimiento</th>
+			<th>Movimiento</th>
+			<th>Ingreso</th>
+			<th>Egreso</th>
+			<th>Saldo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @movimientos_de_cajas_detalles.each do |movimiento_de_caja_detalle| %>
+			<%if movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion == 'Ingreso' %>
+				<tr>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.fecha%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: Monto Efectivo</td>
+					<td><%= movimiento_de_caja_detalle.monto_efectivo%></td>
+					<td></td>
+					<td></td>
+				</tr>
+			<% else %>
+			<tr>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.fecha%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
+					<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: Monto Efectivo</td>
+					<td></td>
+					<td><%= movimiento_de_caja_detalle.monto_efectivo%></td>
+					<td></td>
+			</tr>
+			<% end %>	
+			<% @cheques_entrantes.each do |cheque_entrante| %>
+				<% if cheque_entrante.id == movimiento_de_caja_detalle.cheque_entrante_id %>
+					<tr>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.fecha%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: cheque entrante: <%=cheque_entrante.numero %></td>
+						<td><%= cheque_entrante.monto%></td>
+						<td></td>
+						<td></td>
+					</tr>
+				<% end %>
+			<% end %>
+			<% @cheques_propios.each do |cheque_propio| %>
+				<% if cheque_propio.id == movimiento_de_caja_detalle.cheque_propio_id %>
+					<tr>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.fecha%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
+						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: cheque propio: <%=cheque_propio.numero_cheque %></td>
+						<td></td>
+						<td><%= cheque_propio.monto%></td>
+						<td></td>
+					</tr>
+				<% end %>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
+<div class="separador" style="padding-top: 650px"></div>
+  <div>Elaborado por: <%=current_user.username%><span style="padding-left: 300px;">Fecha y Hora: <%= Time.current.to_s%></span></div>
+</div>
+<br>
