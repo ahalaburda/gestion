@@ -23,7 +23,9 @@ class Chequera < ActiveRecord::Base
 			message: 'Este campo es requerido'},
 		:numericality => true,
 		:length => {maximum: 30}
+	
 	def nombre
-		"#{numero_cheque} - #{monto}"
+		banco = Banco.find(cuenta_bancaria.banco_id)
+		"#{banco.nombre} - #{cuenta_bancaria.numero_cuenta} rango(#{numero_cheque_inicial} - #{numero_cheque_final})"
 	end
 end

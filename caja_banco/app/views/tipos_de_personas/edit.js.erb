@@ -1,4 +1,4 @@
-$("#form-toggle").html(" <%= escape_javascript render  'form', persona: @persona %>");
+$("#form-toggle").html(" <%= escape_javascript render  'form', tipo_de_persona: @tipo_de_persona %>");
 
 $("html, body").scrollTop(0);
 $('#form-toggle').fadeIn(500);
@@ -7,8 +7,8 @@ if($('#gbtn1').hasClass('glyphicon glyphicon-plus')){
 	$('#gbtn1').addClass('glyphicon glyphicon-chevron-up');
 }
 
-document.getElementById("titulo_persona").innerHTML = "Editando persona";
+document.getElementById("titulo_tipo_de_persona").innerHTML = "Editando tipo_de_persona";
 
 $("#btn_cancelar").click(function() {
-  location.href = "/personas";
+  location.href = "/tipos_de_personas";
 });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108231543) do
+ActiveRecord::Schema.define(version: 20160122223704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(version: 20160108231543) do
     t.datetime "updated_at"
     t.integer  "numero"
     t.decimal  "total"
+    t.decimal  "monto_total_efectivo"
+    t.decimal  "monto_total_cheque"
   end
 
   add_index "boletas_de_depositos", ["banco_id"], name: "index_boletas_de_depositos_on_banco_id", using: :btree
@@ -115,7 +117,6 @@ ActiveRecord::Schema.define(version: 20160108231543) do
     t.integer  "cheque_entrante_id"
     t.decimal  "monto_efectivo"
     t.decimal  "monto_cheque"
-    t.decimal  "total"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

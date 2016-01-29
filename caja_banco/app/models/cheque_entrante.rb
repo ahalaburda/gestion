@@ -39,4 +39,8 @@ class ChequeEntrante < ActiveRecord::Base
 		banco = Banco.find(banco_id)
 		"#{numero} - #{banco.nombre} - #{monto} "
 	end
+	def nombre_corto
+		banco = Banco.find(banco_id)
+		"#{banco.nombre} - Nº #{numero}"
+	end
 end

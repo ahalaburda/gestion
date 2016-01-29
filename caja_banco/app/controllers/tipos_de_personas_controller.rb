@@ -23,6 +23,9 @@ class TiposDePersonasController < ApplicationController
   # GET /tipos_de_personas/new
   def new
     @tipo_de_persona = TipoDePersona.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /tipos_de_personas/1/edit
@@ -38,6 +41,7 @@ class TiposDePersonasController < ApplicationController
       if @tipo_de_persona.save
         format.html { redirect_to tipos_de_personas_url, notice: 'Tipo de persona was successfully created.' }
         format.json { render :show, status: :created, location: @tipo_de_persona }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @tipo_de_persona.errors, status: :unprocessable_entity }
