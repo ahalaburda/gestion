@@ -17,7 +17,6 @@
           options_from_collection_for_select(Banco.all, :id, :banco_sucursal, @movimiento_de_banco.banco_id),
           {prompt: true}, id: "movimiento_de_banco_banco_id", include_blank: true, class: "form-control"%>
       </div>
-     
     </div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <div class="field">
@@ -64,12 +63,13 @@
       </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-      <div class="field">
+      <div class="field" style="margin-top: 8px;">
         <br>
         <%= movimiento_de_banco_detalle.link_to_remove  "<i class='glyphicon glyphicon-remove'></i>".html_safe, class: "btn btn-danger"%>
       </div>
     </div>
   </div>
+  <br>
   <% end %>
   <%= f.link_to_add  :movimientos_de_bancos_detalles , class: 'btn btn-info', title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
       <span class="glyphicon glyphicon-plus"></span>
