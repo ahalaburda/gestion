@@ -1,2 +1,2 @@
 $("#modal-cheque_propio .modal").modal("hide");
-$("[id*=movimiento_de_caja_detalle_cheque_propio_id_]").append("<option value='<%= @cheque_propio.id %>'><%= @cheque_propio.numero %> - <%= @cheque_propio.banco_id %></option>");
+$(".cheque-propio").append("<option value='<%= @cheque_propio.id %>'><%= @cheque_propio.numero_cheque%> - <%= @cheque_propio.monto %></option>");
