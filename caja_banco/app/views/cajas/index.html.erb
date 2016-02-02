@@ -158,6 +158,7 @@
 
   $('#monto-cheque_0').val(0);
   $('#apertura_caja_saldo_inicial_cheque').val(0);
+  $('#apertura_caja_saldo_inicial_efectivo').val(0);
   //iteramos todas los elementos que tenga el siguiente id y metemos en un array cada valor y hacemos un split para obtener el valor en efectivo de lo que contiente elemento y lo sumamos luego
   $('#apertura_caja_detalle_cheque_entrante_id_'+fila+'').change(function() {
     var string = $('#apertura_caja_detalle_cheque_entrante_id_'+fila+' option:selected').text();
