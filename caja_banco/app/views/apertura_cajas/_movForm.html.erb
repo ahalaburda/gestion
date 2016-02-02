@@ -52,7 +52,7 @@
   <% if caja.estado_id == 1 %>
     <%= link_to 'Cerrar Caja', edit_apertura_caja_path(@apertura_caja),  class: "btn btn-danger" %> 
     <% else %>
-   <button type="button" class="btn btn-primary">Ir a Cajas</button>
+    <a href="/cajas" class="btn btn-primary">Ir a Cajas</a>
   <% end %>
 
   </div>
