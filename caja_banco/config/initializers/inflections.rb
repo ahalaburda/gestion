@@ -24,6 +24,7 @@
   inflect.irregular 'movimiento_de_caja', 'movimientos_de_cajas'
   inflect.irregular 'movimiento_de_caja_detalle', 'movimientos_de_cajas_detalles'
   inflect.irregular 'libro_de_banco', 'libros_de_bancos'
+  inflect.irregular 'libro_de_caja', 'libros_de_cajas'
 # These inflection rules are supported but not enabled by default:
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
