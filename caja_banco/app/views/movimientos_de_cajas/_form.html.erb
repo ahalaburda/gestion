@@ -50,8 +50,7 @@
           <%= f.text_field :total, class: 'form-control' %>
       </div>
   </div>
-<br>
-
+  <br>
   <%= f.fields_for :movimientos_de_cajas_detalles do |movimiento_de_caja_detalle| %>
     <div class="row">
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_entrante">
@@ -63,7 +62,6 @@
           </label>
           </br>
           <%= movimiento_de_caja_detalle.collection_select :cheque_entrante_id, ChequeEntrante.all, :id, :nombre, {prompt: "Seleccione un Cheque Entrante"}, {class: "form-control cheque-entrante auto-select-cheque-entrante"}%>
-
         </div>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="cheque_propio">
@@ -97,11 +95,9 @@
     </div>
     </br>
     <% end %>
-
     <%= f.link_to_add  :movimientos_de_cajas_detalles , class: 'btn btn-info', title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
         <span class="glyphicon glyphicon-plus"></span>
     <% end %>
-
     <div class="col-md-offset-10">
       <div class="actions">
        <%= button_tag "Cancelar", type: :reset , id: 'btn_cancelar',:class => 'btn btn-reset'%>
@@ -112,7 +108,7 @@
         <% end %>
       </div>
     </div>
-  <% end %>
+<% end %>
 
 <div class="separador"></div>
 <div id="modal-cheque_entrante"></div>
