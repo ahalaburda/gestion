@@ -30,11 +30,11 @@ class MovimientoDeCaja < ActiveRecord::Base
     saldo_efectivo = apertura_caja.saldo_final_efectivo.to_f
 
     if self.tipo_de_movimiento_id == 1
-      saldo_cheque = saldo_cheque + self.monto_total_cheque
+      saldo_cheque = saldo_cheque + self.monto_total_cheque.to_f
     else
-      saldo_cheque = saldo_cheque - self.monto_total_cheque
+      saldo_cheque = saldo_cheque - self.monto_total_cheque.to_f
     end
-      saldo_efectivo = saldo_efectivo + self.monto_total_efectivo
+      saldo_efectivo = saldo_efectivo + self.monto_total_efectivo.to_f
       AperturaCaja.update(self.apertura_id, saldo_final_efectivo: saldo_efectivo)
       AperturaCaja.update(self.apertura_id, saldo_final_cheque: saldo_cheque)
   end
