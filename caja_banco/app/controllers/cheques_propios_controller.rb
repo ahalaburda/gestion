@@ -44,7 +44,7 @@ class ChequesPropiosController < ApplicationController
 
     respond_to do |format|
       if @cheque_propio.save
-        format.html { redirect_to cheques_propios_url, notice: 'Cheque propio was successfully created.' }
+        format.html { redirect_to :back, notice: 'Cheque propio was successfully created.' }
         format.json { render :show, status: :created, location: @cheque_propio }
         format.js
       else
