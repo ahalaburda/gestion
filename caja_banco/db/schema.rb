@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122223704) do
+ActiveRecord::Schema.define(version: 20160127233608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,9 +153,13 @@ ActiveRecord::Schema.define(version: 20160122223704) do
     t.integer  "persona_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "caja_id"
+    t.integer  "estado_id"
   end
 
   add_index "cheques_entrantes", ["banco_id"], name: "index_cheques_entrantes_on_banco_id", using: :btree
+  add_index "cheques_entrantes", ["caja_id"], name: "index_cheques_entrantes_on_caja_id", using: :btree
+  add_index "cheques_entrantes", ["estado_id"], name: "index_cheques_entrantes_on_estado_id", using: :btree
   add_index "cheques_entrantes", ["persona_id"], name: "index_cheques_entrantes_on_persona_id", using: :btree
 
   create_table "cheques_propios", force: true do |t|
