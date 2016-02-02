@@ -4,6 +4,7 @@ class Estado < ActiveRecord::Base
 	has_many :chequeras
 	has_many :cuentas_bancarias
 	has_many :parametros
+	has_many :cheques_entrantes
 
 	validates :descripcion,
 		:presence => {
@@ -11,7 +12,5 @@ class Estado < ActiveRecord::Base
 		:length => {
 			:maximum => 20,
 			:too_long => 'debe tener como maximo %{count} caracteres'},
-		:format => {
-			with: /\A[a-zA-Z]+\z/,
-			message: 'Solo permite letras'}
+		:numericality => false
 end
