@@ -81,7 +81,7 @@ class BoletasDeDepositosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def boleta_de_deposito_params
-      params.require(:boleta_de_deposito).permit(:total, :banco_id, :persona_id, :cuenta_bancaria_id, :caja_id, :fecha, :numero, boletas_de_depositos_detalles_attributes: [:id, :cheque_entrante_id, :total, :monto_cheque, :monto_efectivo])
+      params.require(:boleta_de_deposito).permit(:total, :banco_id, :persona_id, :cuenta_bancaria_id, :caja_id, :fecha, :numero, :monto_total_efectivo, :monto_total_cheque, boletas_de_depositos_detalles_attributes: [:id, :cheque_entrante_id, :total, :monto_cheque, :monto_efectivo])
     end
     def render_boleta_de_deposito_list(boleta_de_deposito)
       report = ThinReports::Report.new layout: File.join(Rails.root, 'app','views', 'boletas_de_depositos', 'show.tlf')
@@ -104,11 +104,11 @@ class BoletasDeDepositosController < ApplicationController
           row.item(:total).style(:color, 'red')
         end
       end
-    report.page.item(:logo).src = File.join(Rails.root, 'public','uploads', 'parametro', 'logo_empresa', '3', 'logo.png')
-    report.page.item(:elaboracion).value(current_user.username)
-    report.page.item(:fecha_elaboracion).value(Time.current.to_s)
-      send_data report.generate, filename: 'boletas_de_depositos.pdf',
-                                 type: 'application/pdf',
-                                 disposition: 'attachment'
+      report.page.item(:logo).src = File.join(Rails.root, 'public','uploads', 'parametro', 'logo_empresa', '3', 'logo.png')
+      report.page.item(:elaboracion).value(current_user.username)
+      report.page.item(:fecha_elaboracion).value(Time.current.to_s)
+        send_data report.generate, filename: 'boletas_de_depositos.pdf',
+                                   type: 'application/pdf',
+                                   disposition: 'attachment'
     end
 end
