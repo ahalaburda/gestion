@@ -4,7 +4,7 @@ class MovimientosDeCajasController < ApplicationController
   # GET /movimientos_de_cajas
   # GET /movimientos_de_cajas.json
   def index
-    
+    @cheque_entrante = ChequeEntrante.new
     apertura = AperturaCaja.where(id: params[:apertura_id])
     @apertura_caja = apertura.empty? ? AperturaCaja.new : apertura.first
 
@@ -25,6 +25,7 @@ class MovimientosDeCajasController < ApplicationController
   # GET /movimientos_de_cajas/new
   def new
     @movimiento_de_caja = MovimientoDeCaja.new
+    @cheque_entrante = ChequeEntrante.new
   end
 
   # GET /movimientos_de_cajas/1/edit
