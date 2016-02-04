@@ -1,0 +1,32 @@
+<h1>Listing asientos_automaticos_detalles</h1>
+
+<table id="table" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Asiento automatico</th>
+      <th>Cuenta</th>
+      <th>Monto credito</th>
+      <th>Monto debito</th>
+      <th>Acciones</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @asientos_automaticos_detalles.each do |asiento_automatico_detalle| %>
+      <tr>
+        <td><%= asiento_automatico_detalle.asiento_automatico_id %></td>
+        <td><%= asiento_automatico_detalle.cuenta.descripcion %></td>
+        <td><%= asiento_automatico_detalle.monto_credito %></td>
+        <td><%= asiento_automatico_detalle.monto_debito %></td>
+        <td><%= link_to 'Show', asiento_automatico_detalle %>
+        <%= link_to 'Edit', edit_asiento_automatico_detalle_path(asiento_automatico_detalle) %>
+        <%= link_to 'Destroy', asiento_automatico_detalle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Asiento automatico detalle', new_asiento_automatico_detalle_path %>

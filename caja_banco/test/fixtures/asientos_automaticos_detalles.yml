@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asiento_automatico_id: 
+  cuenta_id: 
+  monto_debito: 9.99
+  monto_credito: 9.99
+
+two:
+  asiento_automatico_id: 
+  cuenta_id: 
+  monto_debito: 9.99
+  monto_credito: 9.99

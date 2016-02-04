@@ -1,0 +1,34 @@
+<%= nested_form_for(@asiento_automatico) do |f| %>
+
+
+  <div class="form-inputs">
+    <%= f.label :tipo_de_asiento %>
+    <%= f.text_field :tipo_de_asiento %>
+    <%= f.label :descripcion %>
+    <%= f.text_field :descripcion %>
+    <%= f.label :fecha %>
+    <%= f.text_field :fecha %>
+  </div>
+
+
+  <%= f.fields_for :asientos_automaticos_detalles do |asiento_automatico_detalle| %>
+ <div class="form-inputs">
+    <%= asiento_automatico_detalle.label :asiento_automatico_id %>
+    <%= asiento_automatico_detalle.text_field :asiento_automatico_id %>
+    <%= asiento_automatico_detalle.label :cuenta_id %>
+    <%= asiento_automatico_detalle.text_field :cuenta_id %>
+    <%= asiento_automatico_detalle.label :monto_credito %>
+    <%= asiento_automatico_detalle.text_field :monto_credito %>
+    <%= asiento_automatico_detalle.label :monto_debito %>
+    <%= asiento_automatico_detalle.text_field :monto_debito %>
+  </div>
+
+  <% end %>
+  <%= f.link_to_add  :asientos_automaticos_detalles , class: 'btn btn-info', title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

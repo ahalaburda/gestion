@@ -1,0 +1,18 @@
+<%= form_for(@asiento_automatico_detalle) do |f| %>
+
+
+  <div class="form-inputs">
+    <%= f.label :asiento_automatico_id %>
+    <%= f.text_field :asiento_automatico_id %>
+    <%= f.label :cuenta_id %>
+    <%= f.text_field :cuenta_id %>
+    <%= f.label :monto_credito %>
+    <%= f.text_field :monto_credito %>
+    <%= f.label :monto_debito %>
+    <%= f.text_field :monto_debito %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

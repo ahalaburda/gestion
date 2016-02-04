@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127233608) do
+ActiveRecord::Schema.define(version: 20160203195113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,26 @@ ActiveRecord::Schema.define(version: 20160127233608) do
 
   add_index "apertura_cajas_detalles", ["apertura_caja_id"], name: "index_apertura_cajas_detalles_on_apertura_caja_id", using: :btree
   add_index "apertura_cajas_detalles", ["cheque_entrante_id"], name: "index_apertura_cajas_detalles_on_cheque_entrante_id", using: :btree
+
+  create_table "asientos_automaticos", force: true do |t|
+    t.integer  "tipo_de_asiento"
+    t.string   "descripcion"
+    t.date     "fecha"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "asientos_automaticos_detalles", force: true do |t|
+    t.integer  "asiento_automatico_id"
+    t.integer  "cuenta_id"
+    t.decimal  "monto_debito"
+    t.decimal  "monto_credito"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "asientos_automaticos_detalles", ["asiento_automatico_id"], name: "index_asientos_automaticos_detalles_on_asiento_automatico_id", using: :btree
+  add_index "asientos_automaticos_detalles", ["cuenta_id"], name: "index_asientos_automaticos_detalles_on_cuenta_id", using: :btree
 
   create_table "auditorias", force: true do |t|
     t.string   "nombre_tabla"
@@ -183,6 +203,13 @@ ActiveRecord::Schema.define(version: 20160127233608) do
   end
 
   add_index "ciudades", ["departamento_id"], name: "index_ciudades_on_departamento_id", using: :btree
+
+  create_table "cuentas", force: true do |t|
+    t.integer  "numero_cuenta_contable"
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cuentas_bancarias", force: true do |t|
     t.integer  "banco_id"
