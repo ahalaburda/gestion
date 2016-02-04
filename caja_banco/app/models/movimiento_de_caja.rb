@@ -18,6 +18,8 @@ class MovimientoDeCaja < ActiveRecord::Base
 
   before_create :bc_movimiento
   after_create :ac_movimiento
+  after_create :ac_movimiento_asiento
+  after_create :ac_movimiento_asiento_detalle
 
   def bc_movimiento
     self.fecha = Time.now
@@ -38,4 +40,32 @@ class MovimientoDeCaja < ActiveRecord::Base
       AperturaCaja.update(self.apertura_id, saldo_final_efectivo: saldo_efectivo)
       AperturaCaja.update(self.apertura_id, saldo_final_cheque: saldo_cheque)
   end
+
+  def ac_movimiento_asiento
+    if self.tipo_de_movimiento.descripcion == 'Ingreso' && self.monto_total_cheque == 0
+      @asiento_automatico = AsientoAutomatico.new({
+        :tipo_de_asiento => 1,
+        :descripcion => 'Asiento de venta segun factura en efectivo',
+        :fecha => Time.zone.now()
+        });
+      @asiento_automatico.save();
+    end
+  end
+  def ac_movimiento_asiento_detalle
+  if self.tipo_de_movimiento.descripcion == 'Ingreso' && self.monto_total_cheque == 0
+    aa = AsientoAutomatico.last
+    @asiento_automatico_detalle = AsientoAutomaticoDetalle.new({
+        :asiento_automatico_id => aa.id,
+        :cuenta_id => 1,
+        :monto_credito => self.total
+        });
+    @asiento_automatico_detalle.save();
+    @asiento_automatico_detalle2 = AsientoAutomaticoDetalle.new({
+        :asiento_automatico_id => aa.id,
+        :cuenta_id => 2,
+        :monto_debito => self.total
+        });
+    @asiento_automatico_detalle2.save();
+  end
+end
 end
