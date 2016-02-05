@@ -22,7 +22,7 @@
       </div>
       <div class="field">
         <%= f.label :cuenta_bancaria_id, class: 'required' %>
-        <%= f.collection_select :cuenta_bancaria_id, CuentaBancaria.all, :id, :numero_cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
+        <%= f.collection_select :cuenta_bancaria_id, CuentaBancaria.all, :id, :cuenta, {prompt: "Seleccione una cuenta bancaria"}, {class: "form-control"} %>
       </div>
       <div class="field">
         <%= f.label :monto_total_efectivo %>
@@ -229,7 +229,7 @@
     var id_precio_cheque = document.querySelectorAll('.precio-cheque');
     var id_precio_efectivo = document.querySelectorAll('.precio-efectivo');
     var id_cheque_entrante = document.querySelectorAll('.cheque-entrante');
-  
+
 
     // setear id de cada campo agregado
     for (i = 0; i < id_precio_cheque.length; i++)

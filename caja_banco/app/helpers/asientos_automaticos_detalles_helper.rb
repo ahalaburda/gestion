@@ -1,0 +1,2 @@
+module AsientosAutomaticosDetallesHelper
+end

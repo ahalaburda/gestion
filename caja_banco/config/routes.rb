@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :asientos_automaticos_detalles
+
+  resources :asientos_automaticos
+
+  resources :cuentas
+
   get 'libros_de_cajas/libro_de_caja'
 
   resources :apertura_cajas_detalles
