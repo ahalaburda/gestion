@@ -39,7 +39,6 @@ class BoletaDeDeposito < ActiveRecord::Base
     @movimiento_de_banco_detalle.save();
   end
   def movimiento_de_caja
-
     @apertura = AperturaCaja.all.order("id ASC");
     @apertura.each do |a|
       if a.caja_id == self.caja_id
