@@ -17,7 +17,7 @@ class MovimientoDeCaja < ActiveRecord::Base
   # end
 
   before_create :bc_movimiento
-  after_create :ac_movimiento
+  # after_create :ac_movimiento
 
   def bc_movimiento
     self.fecha = Time.now
