@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Asiento automatico:</strong>
+  <%= @asiento_automatico_detalle.asiento_automatico %>
+</p>
+
+<p>
+  <strong>Cuenta:</strong>
+  <%= @asiento_automatico_detalle.cuenta %>
+</p>
+
+<p>
+  <strong>Monto debito:</strong>
+  <%= @asiento_automatico_detalle.monto_debito %>
+</p>
+
+<p>
+  <strong>Monto credito:</strong>
+  <%= @asiento_automatico_detalle.monto_credito %>
+</p>
+
+<%= link_to 'Edit', edit_asiento_automatico_detalle_path(@asiento_automatico_detalle) %> |
+<%= link_to 'Back', asientos_automaticos_detalles_path %>

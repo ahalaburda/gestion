@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_de_asiento: 1
+  descripcion: MyString
+  fecha: 2016-02-03
+
+two:
+  tipo_de_asiento: 1
+  descripcion: MyString
+  fecha: 2016-02-03

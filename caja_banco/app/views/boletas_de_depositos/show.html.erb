@@ -61,7 +61,11 @@
     <% @boletas_de_depositos_detalles.each do |boleta_de_deposito_detalle| %>
     <% if @boleta_de_deposito.id == boleta_de_deposito_detalle.boleta_de_deposito_id %>
       <tr>
+        <%if boleta_de_deposito_detalle.cheque_entrante == nil%>
+        <td></td>
+        <% else %>
         <td><%= boleta_de_deposito_detalle.cheque_entrante.nombre_corto %></td>
+        <%end%>
         <td><%= boleta_de_deposito_detalle.monto_efectivo %></td>
         <td><%= boleta_de_deposito_detalle.monto_cheque %></td>
       </tr>

@@ -1,0 +1,16 @@
+<%= form_for(@cuenta) do |f| %>
+
+  <div class="form-inputs">
+    <%= f.label :numero_cuenta_contable %>
+    <%= f.text_field :numero_cuenta_contable %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.label :descripcion %>
+    <%= f.text_field :descripcion %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
