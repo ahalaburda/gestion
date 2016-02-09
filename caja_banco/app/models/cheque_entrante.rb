@@ -4,7 +4,7 @@ class ChequeEntrante < ActiveRecord::Base
 	belongs_to :persona
 	belongs_to :caja
 	belongs_to :estado
-	
+
 	has_many :movimientos_de_cajas_detalles
 	has_many :boletas_de_depositos_detalles
 
@@ -20,7 +20,8 @@ class ChequeEntrante < ActiveRecord::Base
 		:length => { maximum: 30  }
 	validates :monto,
 		:presence => {
-			message: 'Este campo es requerido'}
+			message: 'Este campo es requerido'},
+		:numericality => true
 	validates :fecha,
 		:presence => {
 			message: 'Este campo es requerido'}
@@ -33,6 +34,9 @@ class ChequeEntrante < ActiveRecord::Base
 	validates :persona_id,
 		:presence => {
 			message: 'Seleccione una persona'}
+	validates :caja_id,
+		:presence => {
+		message: 'Seleccione una caja'}
 
 	def nombre
 		banco = Banco.find(banco_id)
