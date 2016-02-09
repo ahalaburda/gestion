@@ -21,6 +21,10 @@ class CuentaBancaria < ActiveRecord::Base
 				:presence => {
 					message: 'Debe seleccionar un estado'}
 
+  validates :fecha_apertura,
+				:presence => {
+					message: 'Este campo es requerido'}
+
 	def cuenta
 		"#{banco.nombre} - #{numero_cuenta}"
 	end
