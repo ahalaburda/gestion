@@ -1,4 +1,5 @@
 class Cuenta < ActiveRecord::Base
+audited
 	has_many :asientos_automaticos_detalles
 
 	def cuenta_contable
