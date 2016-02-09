@@ -6,7 +6,7 @@ class ChequesPropiosController < ApplicationController
   def index
     @movimiento_de_caja = MovimientoDeCaja.new
     @movimiento_de_caja_detalle = MovimientoDeCajaDetalle.new
-
+    
     @cheques_propios = ChequePropio.all
     @cheque_propio = ChequePropio.new
     respond_to do |format|
@@ -15,12 +15,10 @@ class ChequesPropiosController < ApplicationController
         format.pdf { render_cheque_propio_list(@cheques_propios) }
     end
   end
-
   # GET /cheques_propios/1
   # GET /cheques_propios/1.json
   def show
   end
-
   # GET /cheques_propios/new
   def new
     @cheque_propio = ChequePropio.new
@@ -28,7 +26,6 @@ class ChequesPropiosController < ApplicationController
       format.js
     end
   end
-
   # GET /cheques_propios/1/edit
   def edit
     @cheque_propio = ChequePropio.find(params[:id])
@@ -36,7 +33,6 @@ class ChequesPropiosController < ApplicationController
       format.js
     end
   end
-
   # POST /cheques_propios
   # POST /cheques_propios.json
   def create
@@ -53,7 +49,6 @@ class ChequesPropiosController < ApplicationController
       end
     end
   end
-
   # PATCH/PUT /cheques_propios/1
   # PATCH/PUT /cheques_propios/1.json
   def update
@@ -67,7 +62,6 @@ class ChequesPropiosController < ApplicationController
       end
     end
   end
-
   # DELETE /cheques_propios/1
   # DELETE /cheques_propios/1.json
   def destroy

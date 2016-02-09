@@ -39,15 +39,15 @@
   <div class="row">
       <div class="col-sm-offset-2 col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <%= f.label :monto_total_efectivo %>
-          <%= f.text_field :monto_total_efectivo, class: 'form-control' , onchange: 'print_total()' %>
+          <%= f.text_field :monto_total_efectivo, class: 'form-control' , onchange: 'print_total()' , :readonly => true %>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <%= f.label :monto_total_cheque %>
-          <%= f.text_field :monto_total_cheque, class: 'form-control', onchange: 'print_total()'  %>
+          <%= f.text_field :monto_total_cheque, class: 'form-control', onchange: 'print_total()' , :readonly => true %>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           <%= f.label :total %>
-          <%= f.text_field :total, class: 'form-control' %>
+          <%= f.text_field :total, class: 'form-control', :readonly => true %>
       </div>
   </div>
   <br>
@@ -78,7 +78,7 @@
       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="monto_cheque">
         <div class="field">
           <%= movimiento_de_caja_detalle.label :monto_cheque %>
-          <%= movimiento_de_caja_detalle.text_field :monto_cheque, class: 'form-control precio-cheque'   %>
+          <%= movimiento_de_caja_detalle.text_field :monto_cheque, class: 'form-control precio-cheque' , :readonly => true %>
         </div>
       </div>
       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="monto_efectivo">
@@ -235,14 +235,19 @@
   var cheque_entrante_id = document.getElementById('movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_cheque_entrante_id');
   var cheque_propio_id = document.getElementById('movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_cheque_propio_id');
   var monto_cheque_id = document.getElementById("movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_monto_cheque");
+  var monto_efectivo_id = document.getElementById("movimiento_de_caja_movimientos_de_cajas_detalles_attributes_0_monto_efectivo");
 
   cheque_entrante_id.id = "movimiento_de_caja_detalle_cheque_entrante_id_0";
   cheque_propio_id.id = "movimiento_de_caja_detalle_cheque_propio_id_0";
   monto_cheque_id.id = "monto-cheque_0";
+  monto_efectivo_id.id = "monto-efectivo_0";
 
   $('#movimiento_de_caja_monto_total_efectivo').val(0);
   $('#movimiento_de_caja_monto_total_cheque').val(0);
   $('#movimiento_de_caja_total').val(0);
+
+  $('#monto-cheque_0').val(0);
+  $('#monto-efectivo_0').val(0);
 
   $('#movimiento_de_caja_detalle_cheque_entrante_id_'+fila+'').change(function() {
     var string = $('#movimiento_de_caja_detalle_cheque_entrante_id_'+fila+' option:selected').text();
@@ -370,6 +375,9 @@
 
     for (i = 0; i < id_cheque_propio.length; i++)
         id_cheque_propio[i].id = 'movimiento_de_caja_detalle_cheque_propio_id_' + i;
+
+    $('#monto-cheque_'+fila+'').val(0);
+    $('#monto-efectivo_'+fila+'').val(0);
 
     $('#movimiento_de_caja_detalle_cheque_entrante_id_'+fila+'').change(function() {
       var string = $('#movimiento_de_caja_detalle_cheque_entrante_id_'+fila+' option:selected').text();

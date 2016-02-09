@@ -12,9 +12,8 @@
   <thead>
     <tr>
       <th>Tipo</th>
-      <th>Caja</th>
-      <th>Descripcion</th>
       <th>Fecha</th>
+      <th>Descripcion</th>
       <th>Monto Cheque</th>
       <th>Monto Efectivo</th>
       <th>Monto Total</th>
@@ -24,13 +23,12 @@
 
   <tbody>
     <% @movimientos_de_cajas.each do |movimiento_de_caja| %>
-    	<% if movimiento_de_caja.caja_id == @apertura_caja.caja.numero %>
+    	<% if movimiento_de_caja.caja_id == @apertura_caja.caja_id %>
       <% if movimiento_de_caja.apertura_id == @apertura_caja.id %>
 	      <tr>
 	        <td><%= movimiento_de_caja.tipo_de_movimiento.descripcion %></td>
-	        <td><%= movimiento_de_caja.caja_id %></td>
+          <td><%= movimiento_de_caja.fecha %></td>
 	        <td><%= movimiento_de_caja.descripcion %></td>
-	        <td><%= movimiento_de_caja.fecha %></td>
         	<td><%= movimiento_de_caja.monto_total_cheque %></td>
         	<td><%= movimiento_de_caja.monto_total_efectivo %></td>
         	<td><%= movimiento_de_caja.total %></td>

@@ -17,6 +17,8 @@ class MovimientoDeCaja < ActiveRecord::Base
   # end
 
   before_create :bc_movimiento
+  # after_create :ac_movimiento
+
   after_create :ac_movimiento
   after_create :ac_movimiento_asiento
   after_create :ac_movimiento_asiento_detalle

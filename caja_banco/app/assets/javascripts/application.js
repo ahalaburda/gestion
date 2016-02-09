@@ -149,8 +149,9 @@ $(document).ready(function() {
 	});
 
 });
-function testClick(numero_de_caja){
-   $("#caja_input").val(numero_de_caja);
+function getCaja(numero_de_caja, caja_id){
+	document.getElementById("caja_input").innerHTML = numero_de_caja;
+	$("#idCaja").val(caja_id);
 };
 
 function printpage() {

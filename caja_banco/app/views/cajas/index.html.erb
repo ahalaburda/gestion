@@ -5,7 +5,7 @@
 <div id="cajas">
   <div class="row">
     <% @cajas.each do |caja| %>
-      <div class="col-md-3 col-sm-6" id="caja_<%= caja.numero %>" onclick="testClick(<%= caja.numero %>)">
+      <div class="col-md-3 col-sm-6" id="caja_<%= caja.numero %>" onclick="getCaja(<%= caja.numero %> , <%= caja.id %>)">
         <% if caja.estado.descripcion == 'Cerrado' %>
           <%= link_to "#modal-apertura", "data-toggle" => "modal" , class: 'btn bg-green grow widget widget-stats' do %>
             <div class="stats-icon stats-icon-lg">
@@ -66,14 +66,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Apertura de Caja</h4>
+        <h4 class="modal-title">Apertura de Caja </h4>
       </div>
       <div class="modal-body">
         <%= nested_form_for @apertura_caja, validate: true do |f| %>
           <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <div class="col-md-offset-1 col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <h4>Caja Nº <span id="caja_input">0</span></h4> 
+          </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="display:none">
               <%= f.label :caja_id , class: 'required' %>
-              <%= f.text_field :caja_id,  class: 'form-control', id: "caja_input" %>
+              <%= f.text_field :caja_id,  class: 'form-control', id: "idCaja"  %>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="display:none">
               <div class="field">
