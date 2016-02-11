@@ -41,3 +41,10 @@
 <% end %>
 <div id="modal_departamento"></div>
 <div class="separador"></div>
+
+<script>
+	  //Cuando se abra un modal activa la las validaciones del lado del cliente
+  $('#modal_departamento ').on('shown.bs.modal', function () {
+      $('#new_departamento ').enableClientSideValidations();
+  })
+</script>

@@ -42,3 +42,15 @@
 <% end %>
 <div class="separador"></div>
 <div id="modal_persona"></div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('.datepicker').datetimepicker({
+      locale:'es'
+    });
+  });
+    //Cuando se abra un modal activa la las validaciones del lado del cliente
+  $('#modal_persona ').on('shown.bs.modal', function () {
+      $('#new_persona').enableClientSideValidations();
+  })
+</script>

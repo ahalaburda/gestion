@@ -90,9 +90,13 @@
 <div class="separador"></div>
 
 <script type="text/javascript">
-$(document).ready(function() {
-    $('.datepicker').datetimepicker({
-    locale:'es'
+  $(document).ready(function() {
+      $('.datepicker').datetimepicker({
+      locale:'es'
+    });
   });
-});
+  //Cuando se abra un modal activa la las validaciones del lado del cliente
+  $('#modal_banco , #modal_estado, #modal_persona').on('shown.bs.modal', function () {
+      $('#new_banco ,  #new_estado, #new_persona').enableClientSideValidations();
+  })
 </script>

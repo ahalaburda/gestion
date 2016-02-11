@@ -59,9 +59,13 @@
 <div id="modal_chequera"></div>
 <div class="separador"></div>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('.datepicker').datetimepicker({
-    locale:'es'
+  $(document).ready(function() {
+      $('.datepicker').datetimepicker({
+      locale:'es'
+    });
   });
-});
+  //Cuando se abra un modal activa la las validaciones del lado del cliente
+  $('#modal_chequera').on('shown.bs.modal', function () {
+      $('#new_chequera').enableClientSideValidations();
+  })
 </script>

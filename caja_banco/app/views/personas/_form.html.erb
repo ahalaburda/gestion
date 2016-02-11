@@ -105,9 +105,13 @@
 <div id="modal_ciudad"></div>
 <div class="separador"></div>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('.datepicker').datetimepicker({
-    locale:'es'
+  $(document).ready(function() {
+      $('.datepicker').datetimepicker({
+      locale:'es'
+    });
   });
-});
+    //Cuando se abra un modal activa la las validaciones del lado del cliente
+  $('#modal_tipo_de_persona , #modal_pais , #modal_departamento , #modal_ciudad ').on('shown.bs.modal', function () {
+      $('#new_tipo_de_persona , #new_pais , #new_departamento , #new_ciudad ').enableClientSideValidations();
+  })
 </script>

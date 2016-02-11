@@ -40,3 +40,10 @@
 <div class="separador"></div>
 <div id="modal_cuenta_bancaria"></div>
 <div id="modal_persona"></div>
+
+<script type="text/javascript">
+   //Cuando se abra un modal activa la las validaciones del lado del cliente
+  $('#modal_cuenta_bancaria , #modal_persona ').on('shown.bs.modal', function () {
+      $('#new_cuenta_bancaria , #new_persona ').enableClientSideValidations();
+  })
+</script>

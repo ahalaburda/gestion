@@ -90,6 +90,13 @@
 <div id="modal_cuenta_bancaria"></div>
 
 <script type="text/javascript">
+//Cuando se abra un modal activa la las validaciones del lado del cliente
+  $('#modal_banco  , #modal_cuenta_bancaria').on('shown.bs.modal', function () {
+      $('#new_banco , #new_cuenta_bancaria').enableClientSideValidations();
+  })
+</script>
+
+<script type="text/javascript">
   var total = 0;
   var fila = 0;
   var i = 0;

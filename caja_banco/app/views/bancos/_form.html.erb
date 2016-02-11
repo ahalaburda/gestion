@@ -77,3 +77,10 @@
 <div id="modal_departamento"></div>
 <div id="modal_ciudad"></div>
 <div class="separador"></div>
+
+<script type="text/javascript">
+//Cuando se abra un modal activa la las validaciones del lado del cliente
+  $('#modal_pais , #modal_departamento , #modal_ciudad').on('shown.bs.modal', function () {
+      $('#new_pais , #new_ciudad , #new_departamento').enableClientSideValidations();
+  })
+</script>

@@ -35,3 +35,15 @@
 <% end %>
 <div id="modal_pais"></div>
 <div class="separador"></div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('.datepicker').datetimepicker({
+      locale:'es'
+    });
+  });
+    //Cuando se abra un modal activa la las validaciones del lado del cliente
+  $('#modal_pais ').on('shown.bs.modal', function () {
+      $('#new_pais ').enableClientSideValidations();
+  })
+</script>
