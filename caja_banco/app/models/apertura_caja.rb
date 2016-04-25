@@ -2,7 +2,7 @@ class AperturaCaja < ActiveRecord::Base
   audited
   belongs_to :caja
   belongs_to :persona
-  has_many :apertura_cajas_detalles
+  has_many :apertura_cajas_detalles, dependent: :restrict_with_error
   accepts_nested_attributes_for :apertura_cajas_detalles, allow_destroy: true
 
   after_create :set_estado_abierto

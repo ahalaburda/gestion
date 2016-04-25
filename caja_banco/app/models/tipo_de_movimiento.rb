@@ -1,7 +1,7 @@
 class TipoDeMovimiento < ActiveRecord::Base
 	audited
-	has_many :movimientos_de_cajas
-	has_many :movimientos_de_bancos
+	has_many :movimientos_de_cajas, dependent: :restrict_with_error
+	has_many :movimientos_de_bancos, dependent: :restrict_with_error
 
 
 	validates :descripcion,

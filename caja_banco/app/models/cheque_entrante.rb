@@ -5,8 +5,8 @@ class ChequeEntrante < ActiveRecord::Base
 	belongs_to :caja
 	belongs_to :estado
 
-	has_many :movimientos_de_cajas_detalles
-	has_many :boletas_de_depositos_detalles
+	has_many :movimientos_de_cajas_detalles, dependent: :restrict_with_error
+	has_many :boletas_de_depositos_detalles, dependent: :restrict_with_error
 
 	after_create :set_estado_a_cobrar
 

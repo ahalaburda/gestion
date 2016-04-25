@@ -1,8 +1,8 @@
 class Pais < ActiveRecord::Base
 	audited
-	has_many :departamentos
-	has_many :bancos
-	has_many :personas
+	has_many :departamentos, dependent: :restrict_with_error
+	has_many :bancos, dependent: :restrict_with_error
+	has_many :personas, dependent: :restrict_with_error
 
 	validates :descripcion,
 		:presence => {
