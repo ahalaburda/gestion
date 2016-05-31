@@ -42,7 +42,7 @@ class ChequerasController < ApplicationController
     @chequera = Chequera.new(chequera_params)
     respond_to do |format|
       if @chequera.save
-        format.html { redirect_to chequeras_url, notice: 'Chequera was successfully created.' }
+        format.html { redirect_to chequeras_url }
         format.json { render :show, status: :created, location: @chequera }
         format.js
       else
@@ -57,7 +57,7 @@ class ChequerasController < ApplicationController
   def update
     respond_to do |format|
       if @chequera.update(chequera_params)
-        format.html { redirect_to chequeras_url, notice: 'Chequera was successfully updated.' }
+        format.html { redirect_to chequeras_url }
         format.json { render :show, status: :ok, location: @chequera }
       else
         format.html { render :edit }
@@ -69,10 +69,15 @@ class ChequerasController < ApplicationController
   # DELETE /chequeras/1
   # DELETE /chequeras/1.json
   def destroy
-    @chequera.destroy
+
     respond_to do |format|
-      format.html { redirect_to chequeras_url, notice: 'Chequera was successfully destroyed.' }
-      format.json { head :no_content }
+      if @chequera.destroy
+        format.html { redirect_to chequeras_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to chequeras_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -50,7 +50,7 @@ class DepartamentosController < ApplicationController
     @departamento = Departamento.new(departamento_params)
     respond_to do |format|
       if @departamento.save
-        format.html { redirect_to departamentos_url, notice: 'Departamento was successfully created.' }
+        format.html { redirect_to departamentos_url }
         format.json { render :show, status: :created, location: @departamento }
         format.js
       else
@@ -65,7 +65,7 @@ class DepartamentosController < ApplicationController
   def update
     respond_to do |format|
       if @departamento.update(departamento_params)
-        format.html { redirect_to departamentos_url, notice: 'Departamento was successfully updated.' }
+        format.html { redirect_to departamentos_url }
         format.json { render :show, status: :ok, location: @departamento }
       else
         format.html { render :edit }
@@ -77,10 +77,14 @@ class DepartamentosController < ApplicationController
   # DELETE /departamentos/1
   # DELETE /departamentos/1.json
   def destroy
-    @departamento.destroy
     respond_to do |format|
-      format.html { redirect_to departamentos_url, notice: 'Departamento was successfully destroyed.' }
-      format.json { head :no_content }
+      if @departamento.destroy
+        format.html { redirect_to departamentos_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to departamentos_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

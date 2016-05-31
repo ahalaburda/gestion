@@ -45,7 +45,7 @@ class PersonasController < ApplicationController
     @persona = Persona.new(persona_params)
     respond_to do |format|
       if @persona.save
-        format.html { redirect_to personas_url, notice: 'Persona was successfully created.' }
+        format.html { redirect_to personas_url }
         format.json { render :show, status: :created, location: @persona }
         format.js
       else
@@ -60,7 +60,7 @@ class PersonasController < ApplicationController
   def update
     respond_to do |format|
       if @persona.update(persona_params)
-        format.html { redirect_to personas_url, notice: 'Persona was successfully updated.' }
+        format.html { redirect_to personas_url }
         format.json { render :show, status: :ok, location: @persona }
       else
         format.html { render :edit }
@@ -72,10 +72,14 @@ class PersonasController < ApplicationController
   # DELETE /personas/1
   # DELETE /personas/1.json
   def destroy
-    @persona.destroy
     respond_to do |format|
-      format.html { redirect_to personas_url, notice: 'Persona was successfully destroyed.' }
-      format.json { head :no_content }
+      if @persona.destroy
+        format.html { redirect_to personas_url }
+        format.json { head :no_content }
+      else
+          format.html { redirect_to personas_url, notice: 'No se puede eliminar.' }
+          format.json { head :no_content }
+      end
     end
   end
 

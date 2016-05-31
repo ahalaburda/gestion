@@ -38,7 +38,7 @@ class TiposDeMovimientosController < ApplicationController
 
     respond_to do |format|
       if @tipo_de_movimiento.save
-        format.html { redirect_to tipos_de_movimientos_url, notice: 'Tipo de movimiento was successfully created.' }
+        format.html { redirect_to tipos_de_movimientos_url }
         format.json { render :show, status: :created, location: @tipo_de_movimiento }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class TiposDeMovimientosController < ApplicationController
   def update
     respond_to do |format|
       if @tipo_de_movimiento.update(tipo_de_movimiento_params)
-        format.html { redirect_to tipo_de_movimiento_url, notice: 'Tipo de movimiento was successfully updated.' }
+        format.html { redirect_to tipo_de_movimiento_url }
         format.json { render :show, status: :ok, location: @tipo_de_movimiento }
       else
         format.html { render :edit }
@@ -64,10 +64,14 @@ class TiposDeMovimientosController < ApplicationController
   # DELETE /tipos_de_movimientos/1
   # DELETE /tipos_de_movimientos/1.json
   def destroy
-    @tipo_de_movimiento.destroy
     respond_to do |format|
-      format.html { redirect_to tipos_de_movimientos_url, notice: 'Tipo de movimiento was successfully destroyed.' }
-      format.json { head :no_content }
+      if @tipo_de_movimiento.destroy
+        format.html { redirect_to tipos_de_movimientos_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to tipos_de_movimientos_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

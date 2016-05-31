@@ -45,7 +45,7 @@ class ChequesEntrantesController < ApplicationController
 
     respond_to do |format|
       if @cheque_entrante.save
-        format.html { redirect_to :back , notice: 'Cheque entrante was successfully created.' }
+        format.html { redirect_to :back  }
         format.json { render :show, status: :created, location: @cheque_entrante }
         format.js
       else
@@ -60,7 +60,7 @@ class ChequesEntrantesController < ApplicationController
   def update
     respond_to do |format|
       if @cheque_entrante.update(cheque_entrante_params)
-        format.html { redirect_to cheques_entrantes_url, notice: 'Cheque entrante was successfully updated.' }
+        format.html { redirect_to cheques_entrantes_url }
         format.json { render :show, status: :ok, location: @cheque_entrante }
       else
         format.html { render :edit }
@@ -72,10 +72,14 @@ class ChequesEntrantesController < ApplicationController
   # DELETE /cheques_entrantes/1
   # DELETE /cheques_entrantes/1.json
   def destroy
-    @cheque_entrante.destroy
     respond_to do |format|
-      format.html { redirect_to cheques_entrantes_url, notice: 'Cheque entrante was successfully destroyed.' }
-      format.json { head :no_content }
+      if @cheque_entrante.destroy
+        format.html { redirect_to cheques_entrantes_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to cheques_entrantes_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

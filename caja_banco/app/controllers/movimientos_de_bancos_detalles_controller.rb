@@ -47,7 +47,7 @@ class MovimientosDeBancosDetallesController < ApplicationController
     @movimiento_de_banco_detalle = movimiento_de_banco.movimientos_de_bancos_detalles.create(params[:movimiento_de_banco])
     respond_to do |format|
       if @movimiento_de_banco_detalle.save
-        format.html { redirect_to [@movimiento_de_banco_detalle.movimiento_de_banco, @movimiento_de_banco_detalle], notice: 'Movimiento de banco detalle was successfully created.' }
+        format.html { redirect_to [@movimiento_de_banco_detalle.movimiento_de_banco, @movimiento_de_banco_detalle] }
         format.json { render :show, status: :created, location: [@movimiento_de_banco_detalle.movimiento_de_banco, @movimiento_de_banco_detalle] }
       else
         format.html { render :new }
@@ -63,7 +63,7 @@ class MovimientosDeBancosDetallesController < ApplicationController
     @movimiento_de_banco_detalle = movimiento_de_banco.movimientos_de_bancos_detalles.find(params[:id])
     respond_to do |format|
       if @movimiento_de_banco_detalle.update(movimiento_de_banco_detalle_params)
-        format.html { redirect_to [@movimiento_de_banco_detalle.movimiento_de_banco, @movimiento_de_banco_detalle], notice: 'Movimiento de banco detalle was successfully updated.' }
+        format.html { redirect_to [@movimiento_de_banco_detalle.movimiento_de_banco, @movimiento_de_banco_detalle] }
         format.json { render :show, status: :ok, location: [@movimiento_de_banco_detalle.movimiento_de_banco, @movimiento_de_banco_detalle] }
       else
         format.html { render :edit }
@@ -80,7 +80,7 @@ class MovimientosDeBancosDetallesController < ApplicationController
     @movimiento_de_banco_detalle.destroy
 
     respond_to do |format|
-      format.html { redirect_to @movimiento_de_banco, notice: 'Movimiento de banco detalle was successfully destroyed.' }
+      format.html { redirect_to @movimiento_de_banco }
       format.json { head :no_content }
     end
   end
