@@ -47,7 +47,7 @@ class BoletasDeDepositosDetallesController < ApplicationController
     @boleta_de_deposito_detalle = @boleta_de_deposito.boletas_de_depositos_detalles.create(params[:boleta_de_deposito])
     respond_to do |format|
       if @boleta_de_deposito_detalle.save
-        format.html { redirect_to [@boleta_de_deposito_detalle.boleta_de_deposito, @boleta_de_deposito_detalle], notice: 'Boleta de deposito detalle was successfully created.' }
+        format.html { redirect_to [@boleta_de_deposito_detalle.boleta_de_deposito, @boleta_de_deposito_detalle] }
         format.json { render :show, status: :created, location: [@boleta_de_deposito_detalle.boleta_de_deposito, @boleta_de_deposito_detalle] }
       else
         format.html { render :new }
@@ -63,7 +63,7 @@ class BoletasDeDepositosDetallesController < ApplicationController
     @boleta_de_deposito_detalle = @boleta_de_deposito.boletas_de_depositos_detalles.find(params[:id])
     respond_to do |format|
       if @boleta_de_deposito_detalle.update(boleta_de_deposito_detalle_params)
-        format.html { redirect_to [@boleta_de_deposito_detalle.boleta_de_deposito, @boleta_de_deposito_detalle], notice: 'Boleta de deposito detalle was successfully updated.' }
+        format.html { redirect_to [@boleta_de_deposito_detalle.boleta_de_deposito, @boleta_de_deposito_detalle] }
         format.json { render :show, status: :ok, location: [@boleta_de_deposito_detalle.boleta_de_deposito, @boleta_de_deposito_detalle] }
       else
         format.html { render :edit }
@@ -80,7 +80,7 @@ class BoletasDeDepositosDetallesController < ApplicationController
     @boleta_de_deposito_detalle.destroy
 
     respond_to do |format|
-      format.html { redirect_to @boleta_de_deposito, notice: 'Boleta de deposito detalle was successfully destroyed.' }
+      format.html { redirect_to @boleta_de_deposito }
       format.json { head :no_content }
     end
   end

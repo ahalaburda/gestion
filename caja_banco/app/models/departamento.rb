@@ -1,9 +1,9 @@
 class Departamento < ActiveRecord::Base
   audited
   belongs_to :pais
-  has_many :cuidades
-  has_many :bancos
-  has_many :personas
+  has_many :ciudades, dependent: :restrict_with_error
+  has_many :bancos, dependent: :restrict_with_error
+  has_many :personas, dependent: :restrict_with_error
 
   validates :descripcion,
 		:presence => {

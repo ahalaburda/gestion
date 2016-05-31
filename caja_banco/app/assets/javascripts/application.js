@@ -32,6 +32,9 @@ $(document).ready(function() {
 	$('.datepicker').datetimepicker({
 		locale:'es'
 	});
+	window.setTimeout(function(){
+		$('#alerta').fadeOut(500);
+	},5000);
 
 	$("#btn1").click(function(){
 		$('#form-toggle').fadeToggle();
@@ -128,7 +131,7 @@ $(document).ready(function() {
 					}
 	    }
 	});
-	
+
 	dataConfirmModal.setDefaults({
 	  title: 'Esta Seguro?',
 	  text: 'Realmente desea hacerlo?',
@@ -197,7 +200,7 @@ function date_time(id){
         x.value=result;
 
         setTimeout('date_time("'+id+'");','1000');
-         
+
         return true;
 };
 
@@ -206,7 +209,7 @@ function radioButton_movimientos() {
       if ($(this).attr('value') == '1') {
        	$('[id*=cheque_propio]').fadeOut('fast');
        	 	$('[id*=monto_efectivo]').fadeIn('fast');
-          $('[id*=cheque_entrante]').fadeIn('slow');       
+          $('[id*=cheque_entrante]').fadeIn('slow');
        } else if ($(this).attr('value') == '2') {
        			$('[id*=cheque_entrante]').fadeOut('fast');
        			$('[id*=monto_efectivo]').fadeOut('fast');

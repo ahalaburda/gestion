@@ -2,7 +2,7 @@ class MovimientoDeCaja < ActiveRecord::Base
   audited
   belongs_to :tipo_de_movimiento
   belongs_to :caja
-  has_many :movimientos_de_cajas_detalles
+  has_many :movimientos_de_cajas_detalles, dependent: :restrict_with_error
 
   accepts_nested_attributes_for :movimientos_de_cajas_detalles, allow_destroy: true
 

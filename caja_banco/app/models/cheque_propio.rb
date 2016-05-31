@@ -1,7 +1,7 @@
 class ChequePropio < ActiveRecord::Base
   audited
   belongs_to :chequera
-  has_many :movimientos_de_cajas_detalles
+  has_many :movimientos_de_cajas_detalles, dependent: :restrict_with_error
 
 	validates :chequera_id,
 		:presence => {

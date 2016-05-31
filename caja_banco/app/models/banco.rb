@@ -3,10 +3,10 @@ class Banco < ActiveRecord::Base
   belongs_to :pais
   belongs_to :departamento
   belongs_to :ciudad
-  has_many :movimientos_de_bancos
-  has_many :cheques_entrantes
-  has_many :boletas_de_depositos
-  has_many :cuentas_bancarias
+  has_many :movimientos_de_bancos, dependent: :restrict_with_error
+  has_many :cheques_entrantes, dependent: :restrict_with_error
+  has_many :boletas_de_depositos, dependent: :restrict_with_error
+  has_many :cuentas_bancarias, dependent: :restrict_with_error
 
 	validates :nombre,
 		:presence => {

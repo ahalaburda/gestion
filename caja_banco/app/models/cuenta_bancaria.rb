@@ -2,10 +2,10 @@ class CuentaBancaria < ActiveRecord::Base
   audited
   belongs_to :banco
   belongs_to :estado
-  has_many :chequeras
-  has_many :movimientos_de_bancos_detalles
-  has_many :boletas_de_depositos
-  has_many :firmantes
+  has_many :chequeras, dependent: :restrict_with_error
+  has_many :movimientos_de_bancos_detalles, dependent: :restrict_with_error
+  has_many :boletas_de_depositos, dependent: :restrict_with_error
+  has_many :firmantes, dependent: :restrict_with_error
 
 	validates :banco_id,
 				:presence => {

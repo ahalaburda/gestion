@@ -48,7 +48,7 @@ class CuentasBancariasController < ApplicationController
 
     respond_to do |format|
       if @cuenta_bancaria.save
-        format.html { redirect_to cuentas_bancarias_url, notice: 'Cuenta bancaria was successfully created.' }
+        format.html { redirect_to cuentas_bancarias_url }
         format.json { render :show, status: :created, location: @cuenta_bancaria }
         format.js
       else
@@ -63,7 +63,7 @@ class CuentasBancariasController < ApplicationController
   def update
     respond_to do |format|
       if @cuenta_bancaria.update(cuenta_bancaria_params)
-        format.html { redirect_to cuentas_bancarias_url, notice: 'Cuenta bancaria was successfully updated.' }
+        format.html { redirect_to cuentas_bancarias_url }
         format.json { render :show, status: :ok, location: @cuenta_bancaria }
       else
         format.html { render :edit }
@@ -75,10 +75,14 @@ class CuentasBancariasController < ApplicationController
   # DELETE /cuentas_bancarias/1
   # DELETE /cuentas_bancarias/1.json
   def destroy
-    @cuenta_bancaria.destroy
     respond_to do |format|
-      format.html { redirect_to cuentas_bancarias_url, notice: 'Cuenta bancaria was successfully destroyed.' }
-      format.json { head :no_content }
+      if @cuenta_bancaria.destroy
+        format.html { redirect_to cuentas_bancarias_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to cuentas_bancarias_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -1,6 +1,6 @@
 class TipoDePersona < ActiveRecord::Base
 	audited
-	has_many :personas
+	has_many :personas, dependent: :restrict_with_error
 
 
 

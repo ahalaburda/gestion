@@ -40,7 +40,7 @@ class BoletasDeDepositosController < ApplicationController
 
     respond_to do |format|
       if @boleta_de_deposito.save
-        format.html { redirect_to @boleta_de_deposito, notice: 'Boleta de deposito was successfully created.' }
+        format.html { redirect_to boletas_de_depositos_url }
         format.json { render :show, status: :created, location: @boleta_de_deposito }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class BoletasDeDepositosController < ApplicationController
   def update
     respond_to do |format|
       if @boleta_de_deposito.update(boleta_de_deposito_params)
-        format.html { redirect_to @boleta_de_deposito, notice: 'Boleta de deposito was successfully updated.' }
+        format.html { redirect_to boletas_de_depositos_url }
         format.json { render :show, status: :ok, location: @boleta_de_deposito }
       else
         format.html { render :edit }
@@ -66,10 +66,14 @@ class BoletasDeDepositosController < ApplicationController
   # DELETE /boletas_de_depositos/1
   # DELETE /boletas_de_depositos/1.json
   def destroy
-    @boleta_de_deposito.destroy
     respond_to do |format|
-      format.html { redirect_to boletas_de_depositos_url, notice: 'Boleta de deposito was successfully destroyed.' }
-      format.json { head :no_content }
+      if @boleta_de_deposito.destroy
+        format.html { redirect_to boletas_de_depositos_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to boletas_de_depositos_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

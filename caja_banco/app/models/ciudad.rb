@@ -1,8 +1,8 @@
 class Ciudad < ActiveRecord::Base
 	audited
 	belongs_to :departamento
-	has_many :bancos
-	has_many :personas
+	has_many :bancos, dependent: :restrict_with_error
+	has_many :personas, dependent: :restrict_with_error
 
   validates :descripcion,
 

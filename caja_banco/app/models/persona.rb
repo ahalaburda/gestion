@@ -4,12 +4,12 @@ class Persona < ActiveRecord::Base
   belongs_to :pais
   belongs_to :departamento
   belongs_to :ciudad
-  has_many :users
-  has_many :cajas
-  has_many :boletas_de_depositos
-  has_many :firmantes
-  has_many :cheques_entrantes
-  has_one :apertura_caja
+  has_many :users, dependent: :restrict_with_error
+  has_many :cajas, dependent: :restrict_with_error
+  has_many :boletas_de_depositos, dependent: :restrict_with_error
+  has_many :firmantes, dependent: :restrict_with_error
+  has_many :cheques_entrantes, dependent: :restrict_with_error
+  has_one :apertura_caja, dependent: :restrict_with_error
 
   validates :nombre,
 	:presence => {

@@ -45,7 +45,7 @@ class CiudadesController < ApplicationController
     @ciudad = Ciudad.new(ciudad_params)
     respond_to do |format|
       if @ciudad.save
-        format.html { redirect_to ciudades_url, notice: 'Ciudad was successfully created.' }
+        format.html { redirect_to ciudades_url }
         format.json { render action: 'show', status: :created, location: @ciudad }
         format.js
       else
@@ -60,7 +60,7 @@ class CiudadesController < ApplicationController
   def update
     respond_to do |format|
       if @ciudad.update(ciudad_params)
-        format.html { redirect_to ciudades_url, notice: 'Ciudad was successfully updated.' }
+        format.html { redirect_to ciudades_url }
         format.json { render :show, status: :ok, location: @ciudad }
       else
         format.html { render :edit }
@@ -72,10 +72,14 @@ class CiudadesController < ApplicationController
   # DELETE /ciudades/1
   # DELETE /ciudades/1.json
   def destroy
-    @ciudad.destroy
     respond_to do |format|
-      format.html { redirect_to ciudades_url, notice: 'Ciudad was successfully destroyed.' }
-      format.json { head :no_content }
+      if @ciudad.destroy
+        format.html { redirect_to ciudades_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to ciudades_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 
