@@ -17,6 +17,9 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="container">
+        <% if flash[:notice] %>
+            <div class="notice alert alert-danger alert-dismissible" id="alerta"><strong><%= flash[:notice]%></strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+        <% end %>
 				<%= yield %>
 			</div>
 		</div>

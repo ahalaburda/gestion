@@ -47,7 +47,7 @@ class MovimientosDeCajasDetallesController < ApplicationController
     @movimiento_de_caja_detalle = movimiento_de_caja.movimientos_de_cajas_detalles.create(params[:movimiento_de_caja])
     respond_to do |format|
       if @movimiento_de_caja_detalle.save
-        format.html { redirect_to [@movimiento_de_caja_detalle.movimiento_de_caja, @movimiento_de_caja_detalle], notice: 'Movimiento de caja detalle was successfully created.' }
+        format.html { redirect_to [@movimiento_de_caja_detalle.movimiento_de_caja, @movimiento_de_caja_detalle] }
         format.json { render :show, status: :created, location: [@movimiento_de_caja_detalle.movimiento_de_caja, @movimiento_de_caja_detalle] }
       else
         format.html { render :new }
@@ -63,7 +63,7 @@ class MovimientosDeCajasDetallesController < ApplicationController
     @movimiento_de_caja_detalle = movimiento_de_caja.movimientos_de_cajas_detalles.find(params[:id])
     respond_to do |format|
       if @movimiento_de_caja_detalle.update(movimiento_de_caja_detalle_params)
-        format.html { redirect_to [@movimiento_de_caja_detalle.movimiento_de_caja, @movimiento_de_caja_detalle], notice: 'Movimiento de caja detalle was successfully updated.' }
+        format.html { redirect_to [@movimiento_de_caja_detalle.movimiento_de_caja, @movimiento_de_caja_detalle] }
         format.json { render :show, status: :ok, location: [@movimiento_de_caja_detalle.movimiento_de_caja, @movimiento_de_caja_detalle] }
       else
         format.html { render :edit }
@@ -80,7 +80,7 @@ class MovimientosDeCajasDetallesController < ApplicationController
     @movimiento_de_caja_detalle.destroy
 
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Movimiento de caja detalle was successfully destroyed.' }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

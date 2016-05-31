@@ -47,7 +47,7 @@ class CajasController < ApplicationController
 
     respond_to do |format|
       if @caja.save
-        format.html { redirect_to cajas_url, notice: 'Caja was successfully created.' }
+        format.html { redirect_to cajas_url }
         format.json { render :show, status: :created, location: @caja }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class CajasController < ApplicationController
   def update
     respond_to do |format|
       if @caja.update(caja_params)
-        format.html { redirect_to cajas_url, notice: 'Caja was successfully updated.' }
+        format.html { redirect_to cajas_url }
         format.json { render :show, status: :ok, location: @caja }
       else
         format.html { render :edit }
@@ -73,10 +73,14 @@ class CajasController < ApplicationController
   # DELETE /cajas/1
   # DELETE /cajas/1.json
   def destroy
-    @caja.destroy
     respond_to do |format|
-      format.html { redirect_to cajas_url, notice: 'Caja was successfully destroyed.' }
-      format.json { head :no_content }
+      if @caja.destroy
+        format.html { redirect_to cajas_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to cajas_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

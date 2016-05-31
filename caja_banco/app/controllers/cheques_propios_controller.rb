@@ -6,7 +6,7 @@ class ChequesPropiosController < ApplicationController
   def index
     @movimiento_de_caja = MovimientoDeCaja.new
     @movimiento_de_caja_detalle = MovimientoDeCajaDetalle.new
-    
+
     @cheques_propios = ChequePropio.all
     @cheque_propio = ChequePropio.new
     respond_to do |format|
@@ -40,7 +40,7 @@ class ChequesPropiosController < ApplicationController
 
     respond_to do |format|
       if @cheque_propio.save
-        format.html { redirect_to :back, notice: 'Cheque propio was successfully created.' }
+        format.html { redirect_to :back }
         format.json { render :show, status: :created, location: @cheque_propio }
         format.js
       else
@@ -54,7 +54,7 @@ class ChequesPropiosController < ApplicationController
   def update
     respond_to do |format|
       if @cheque_propio.update(cheque_propio_params)
-        format.html { redirect_to cheques_propios_url, notice: 'Cheque propio was successfully updated.' }
+        format.html { redirect_to cheques_propios_url }
         format.json { render :show, status: :ok, location: @cheque_propio }
       else
         format.html { render :edit }
@@ -65,10 +65,14 @@ class ChequesPropiosController < ApplicationController
   # DELETE /cheques_propios/1
   # DELETE /cheques_propios/1.json
   def destroy
-    @cheque_propio.destroy
     respond_to do |format|
-      format.html { redirect_to cheques_propios_url, notice: 'Cheque propio was successfully destroyed.' }
-      format.json { head :no_content }
+      if @cheque_propio.destroy
+        format.html { redirect_to cheques_propios_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to cheques_propios_url, notice: 'No se puede eliminar' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -34,7 +34,7 @@ class FirmantesController < ApplicationController
 
     respond_to do |format|
       if @firmante.save
-        format.html { redirect_to firmantes_url, notice: 'Firmante was successfully created.' }
+        format.html { redirect_to firmantes_url }
         format.json { render :show, status: :created, location: @firmante }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class FirmantesController < ApplicationController
   def update
     respond_to do |format|
       if @firmante.update(firmante_params)
-        format.html { redirect_to firmantes_url, notice: 'Firmante was successfully updated.' }
+        format.html { redirect_to firmantes_url }
         format.json { render :show, status: :ok, location: @firmante }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class FirmantesController < ApplicationController
   def destroy
     @firmante.destroy
     respond_to do |format|
-      format.html { redirect_to firmantes_url, notice: 'Firmante was successfully destroyed.' }
+      format.html { redirect_to firmantes_url }
       format.json { head :no_content }
     end
   end

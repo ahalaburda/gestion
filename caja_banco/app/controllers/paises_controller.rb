@@ -47,7 +47,7 @@ class PaisesController < ApplicationController
     @pais = Pais.new(pais_params)
     respond_to do |format|
       if @pais.save
-        format.html { redirect_to @pais, notice: 'pais was successfully created.' }
+        format.html { redirect_to @pais }
         format.json { render action: 'show', status: :created, location: @pais }
         format.js
       else
@@ -61,7 +61,7 @@ class PaisesController < ApplicationController
   def update
     respond_to do |format|
        if @pais.update(pais_params)
-        format.html { redirect_to paises_url, notice: 'Pais was successfully updated.' }
+        format.html { redirect_to paises_url }
         format.json { render :show, status: :ok, location: @pais }
       else
         format.html { render :edit }
@@ -73,10 +73,14 @@ class PaisesController < ApplicationController
   # DELETE /paises/1
   # DELETE /paises/1.json
   def destroy
-    @pais.destroy
     respond_to do |format|
-      format.html { redirect_to paises_url, notice: 'Pais was successfully destroyed.' }
-      format.json { head :no_content }
+      if @pais.destroy
+        format.html { redirect_to paises_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to paises_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

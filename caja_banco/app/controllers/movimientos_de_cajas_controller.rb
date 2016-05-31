@@ -39,7 +39,7 @@ class MovimientosDeCajasController < ApplicationController
 
     respond_to do |format|
       if @movimiento_de_caja.save
-        format.html { redirect_to :back, notice: 'Movimiento de caja was successfully created.' }
+        format.html { redirect_to :back }
         format.json { render :show, status: :created, location: @movimiento_de_caja }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class MovimientosDeCajasController < ApplicationController
   def update
     respond_to do |format|
       if @movimiento_de_caja.update(movimiento_de_caja_params)
-        format.html { redirect_to @movimiento_de_caja, notice: 'Movimiento de caja was successfully updated.' }
+        format.html { redirect_to @movimiento_de_caja }
         format.json { render :show, status: :ok, location: @movimiento_de_caja }
       else
         format.html { render :edit }
@@ -65,10 +65,14 @@ class MovimientosDeCajasController < ApplicationController
   # DELETE /movimientos_de_cajas/1
   # DELETE /movimientos_de_cajas/1.json
   def destroy
-    @movimiento_de_caja.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Movimiento de caja was successfully destroyed.' }
-      format.json { head :no_content }
+      if @movimiento_de_caja.destroy
+        format.html { redirect_to :back }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to :back, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

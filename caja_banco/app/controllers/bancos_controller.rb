@@ -49,7 +49,7 @@ class BancosController < ApplicationController
 
     respond_to do |format|
       if @banco.save
-        format.html { redirect_to bancos_url, notice: 'Banco was successfully created.' }
+        format.html { redirect_to bancos_url }
         format.json { render :show, status: :created, location: @banco }
         format.js
       else
@@ -64,7 +64,7 @@ class BancosController < ApplicationController
   def update
     respond_to do |format|
       if @banco.update(banco_params)
-        format.html { redirect_to bancos_url, notice: 'Actualizado correctamente.' }
+        format.html { redirect_to bancos_url }
         format.json { render :show, status: :ok, location: @banco }
       else
         format.html { render :edit }
@@ -76,10 +76,14 @@ class BancosController < ApplicationController
   # DELETE /bancos/1
   # DELETE /bancos/1.json
   def destroy
-    @banco.destroy
     respond_to do |format|
-      format.html { redirect_to bancos_url, notice: 'Banco was successfully destroyed.' }
-      format.json { head :no_content }
+      if @banco.destroy
+        format.html { redirect_to bancos_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to bancos_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -39,7 +39,7 @@ class AperturaCajasDetallesController < ApplicationController
     @apertura_cajas_detalle = @apertura_caja.apertura_cajas_detalles.create(params[:apertura_caja])
     respond_to do |format|
       if @apertura_cajas_detalle.save
-        format.html { redirect_to [@apertura_cajas_detalle.apertura_caja, @apertura_cajas_detalle], notice: 'Detalle de la apertura de caja creada' }
+        format.html { redirect_to [@apertura_cajas_detalle.apertura_caja, @apertura_cajas_detalle] }
         format.json { render :show, status: :created, location: [@apertura_cajas_detalle.apertura_caja, @apertura_cajas_detalle] }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class AperturaCajasDetallesController < ApplicationController
     @apertura_cajas_detalle = @apertura_caja.apertura_cajas_detalles.find(params[:id])
     respond_to do |format|
       if @apertura_cajas_detalle.update(apertura_cajas_detalle_params)
-        format.html { redirect_to [@apertura_cajas_detalle.apertura_caja, @apertura_cajas_detalle], notice: 'Detalle de la apertura de caja actualizado' }
+        format.html { redirect_to [@apertura_cajas_detalle.apertura_caja, @apertura_cajas_detalle] }
         format.json { render :show, status: :created, location: [@apertura_cajas_detalle.apertura_caja, @apertura_cajas_detalle] }
       else
         format.html { render :new }
@@ -67,7 +67,7 @@ class AperturaCajasDetallesController < ApplicationController
     @apertura_cajas_detalles = @apertura_caja.apertura_cajas_detalles.find(params[:id])
     @apertura_cajas_detalle.destroy
     respond_to do |format|
-      format.html { redirect_to @apertura_caja, notice: 'Detalle de la apertura de caja eliminada' }
+      format.html { redirect_to @apertura_caja }
       format.json { head :no_content }
     end
   end

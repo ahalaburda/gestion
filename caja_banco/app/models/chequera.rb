@@ -2,7 +2,7 @@ class Chequera < ActiveRecord::Base
   audited
   belongs_to :cuenta_bancaria
   belongs_to :estado
-  has_many :cheques_propios
+  has_many :cheques_propios, dependent: :restrict_with_error
 
 	validates :cuenta_bancaria_id,
 		:presence => {
@@ -23,7 +23,7 @@ class Chequera < ActiveRecord::Base
 			message: 'Este campo es requerido'},
 		:numericality => true,
 		:length => {maximum: 30}
-	
+
 	def nombre
 		banco = Banco.find(cuenta_bancaria.banco_id)
 		"#{banco.nombre} - #{cuenta_bancaria.numero_cuenta} rango(#{numero_cheque_inicial} - #{numero_cheque_final})"

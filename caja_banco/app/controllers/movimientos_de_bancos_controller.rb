@@ -33,7 +33,7 @@ class MovimientosDeBancosController < ApplicationController
 
     respond_to do |format|
       if @movimiento_de_banco.save
-        format.html { redirect_to @movimiento_de_banco, notice: 'Movimiento de banco was successfully created.' }
+        format.html { redirect_to movimientos_de_bancos_url }
         format.json { render :show, status: :created, location: @movimiento_de_banco }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class MovimientosDeBancosController < ApplicationController
   def update
     respond_to do |format|
       if @movimiento_de_banco.update(movimiento_de_banco_params)
-        format.html { redirect_to @movimiento_de_banco, notice: 'Movimiento de banco was successfully updated.' }
+        format.html { redirect_to movimientos_de_bancos_url }
         format.json { render :show, status: :ok, location: @movimiento_de_banco }
       else
         format.html { render :edit }
@@ -59,10 +59,14 @@ class MovimientosDeBancosController < ApplicationController
   # DELETE /movimientos_de_bancos/1
   # DELETE /movimientos_de_bancos/1.json
   def destroy
-    @movimiento_de_banco.destroy
     respond_to do |format|
-      format.html { redirect_to movimientos_de_bancos_url, notice: 'Movimiento de banco was successfully destroyed.' }
-      format.json { head :no_content }
+      if @movimiento_de_banco.destroy
+        format.html { redirect_to movimientos_de_bancos_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to movimientos_de_bancos_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
     end
   end
 

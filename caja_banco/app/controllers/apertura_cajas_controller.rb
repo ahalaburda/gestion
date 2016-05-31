@@ -46,7 +46,7 @@ class AperturaCajasController < ApplicationController
 
     respond_to do |format|
       if @apertura_caja.save
-        format.html { redirect_to movimientos_de_cajas_url(apertura_id: @apertura_caja.id), notice: 'Apertura caja was successfully created.' }
+        format.html { redirect_to movimientos_de_cajas_url(apertura_id: @apertura_caja.id) }
         format.json { render :show, status: :created, location: @apertura_caja }
         format.js
       else
@@ -61,7 +61,7 @@ class AperturaCajasController < ApplicationController
   def update
     respond_to do |format|
       if @apertura_caja.update(apertura_caja_params)
-        format.html { redirect_to movimientos_de_cajas_url(apertura_id: @apertura_caja.id), notice: 'Apertura caja was successfully updated.' }
+        format.html { redirect_to movimientos_de_cajas_url(apertura_id: @apertura_caja.id) }
         format.json { render :show, status: :ok, location: @apertura_caja }
       else
         format.html { render :edit }
@@ -73,11 +73,13 @@ class AperturaCajasController < ApplicationController
   # DELETE /apertura_cajas/1
   # DELETE /apertura_cajas/1.json
   def destroy
-    @apertura_caja.destroy
-    respond_to do |format|
-      format.html { redirect_to apertura_cajas_url, notice: 'Apertura caja was successfully destroyed.' }
+  respond_to do |format|
+    if @apertura_caja.destroy
+      format.html { redirect_to apertura_cajas_url }
       format.json { head :no_content }
-    end
+    else
+      format.html { redirect_to apertura_cajas_url, notice: 'No se puede eliminar.' }
+      format.json { head :no_content }
   end
 
   private

@@ -39,7 +39,7 @@ class TiposDePersonasController < ApplicationController
 
     respond_to do |format|
       if @tipo_de_persona.save
-        format.html { redirect_to tipos_de_personas_url, notice: 'Tipo de persona was successfully created.' }
+        format.html { redirect_to tipos_de_personas_url }
         format.json { render :show, status: :created, location: @tipo_de_persona }
         format.js
       else
@@ -54,7 +54,7 @@ class TiposDePersonasController < ApplicationController
   def update
     respond_to do |format|
       if @tipo_de_persona.update(tipo_de_persona_params)
-        format.html { redirect_to tipos_de_personas_url, notice: 'Tipo de persona was successfully updated.' }
+        format.html { redirect_to tipos_de_personas_url }
         format.json { render :show, status: :ok, location: @tipo_de_persona }
       else
         format.html { render :edit }
@@ -66,10 +66,14 @@ class TiposDePersonasController < ApplicationController
   # DELETE /tipos_de_personas/1
   # DELETE /tipos_de_personas/1.json
   def destroy
-    @tipo_de_persona.destroy
     respond_to do |format|
-      format.html { redirect_to tipos_de_personas_url, notice: 'Tipo de persona was successfully destroyed.' }
-      format.json { head :no_content }
+      if @tipo_de_persona.destroy
+        format.html { redirect_to tipos_de_personas_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to tipos_de_personas_url, notice: 'No se puede eliminar' }
+        format.json { head :no_content }
+      end
     end
   end
 
