@@ -18,11 +18,12 @@ class PaisesController < ApplicationController
   # GET /paises/1
   # GET /paises/1.json
   def show
-    @pais = Pais.new(pais_params)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @pais }
-    end
+    # @pais = Pais.new(pais_params)
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @pais }
+    # end
+    format.html { redirect_to pais_url, notice: 'Pais creado correctamente.' }
   end
   # GET /paises/new
   def new
