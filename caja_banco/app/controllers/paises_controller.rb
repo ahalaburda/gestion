@@ -23,7 +23,7 @@ class PaisesController < ApplicationController
     #   format.html # show.html.erb
     #   format.json { render json: @pais }
     # end
-    format.html { redirect_to pais_url, notice: 'Pais creado correctamente.' }
+    #format.html { redirect_to pais_url, notice: 'Pais creado correctamente.' }
   end
   # GET /paises/new
   def new
@@ -47,7 +47,7 @@ class PaisesController < ApplicationController
     @pais = Pais.new(pais_params)
     respond_to do |format|
       if @pais.save
-        format.html { redirect_to @pais }
+        format.html { redirect_to paises_url }
         format.json { render action: 'show', status: :created, location: @pais }
         format.js
       else
