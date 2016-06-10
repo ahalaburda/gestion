@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203195113) do
+ActiveRecord::Schema.define(version: 20160610233721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 20160203195113) do
     t.integer  "caja_id"
     t.datetime "apertura"
     t.datetime "cierre"
-    t.decimal  "saldo_inicial_efectivo"
-    t.decimal  "saldo_inicial_cheque"
-    t.decimal  "saldo_final_efectivo"
-    t.decimal  "saldo_final_cheque"
+    t.decimal  "saldo_inicial_efectivo", precision: 15, scale: 0
+    t.decimal  "saldo_inicial_cheque",   precision: 15, scale: 0
+    t.decimal  "saldo_final_efectivo",   precision: 15, scale: 0
+    t.decimal  "saldo_final_cheque",     precision: 15, scale: 0
     t.integer  "persona_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160203195113) do
   create_table "apertura_cajas_detalles", force: true do |t|
     t.integer  "apertura_caja_id"
     t.integer  "cheque_entrante_id"
-    t.decimal  "monto"
+    t.decimal  "monto",              precision: 15, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 20160203195113) do
   create_table "asientos_automaticos_detalles", force: true do |t|
     t.integer  "asiento_automatico_id"
     t.integer  "cuenta_id"
-    t.decimal  "monto_debito"
-    t.decimal  "monto_credito"
+    t.decimal  "monto_debito",          precision: 15, scale: 0
+    t.decimal  "monto_credito",         precision: 15, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -122,9 +122,9 @@ ActiveRecord::Schema.define(version: 20160203195113) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "numero"
-    t.decimal  "total"
-    t.decimal  "monto_total_efectivo"
-    t.decimal  "monto_total_cheque"
+    t.decimal  "total",                precision: 15, scale: 0
+    t.decimal  "monto_total_efectivo", precision: 15, scale: 0
+    t.decimal  "monto_total_cheque",   precision: 15, scale: 0
   end
 
   add_index "boletas_de_depositos", ["banco_id"], name: "index_boletas_de_depositos_on_banco_id", using: :btree
@@ -135,8 +135,8 @@ ActiveRecord::Schema.define(version: 20160203195113) do
   create_table "boletas_de_depositos_detalles", force: true do |t|
     t.integer  "boleta_de_deposito_id"
     t.integer  "cheque_entrante_id"
-    t.decimal  "monto_efectivo"
-    t.decimal  "monto_cheque"
+    t.decimal  "monto_efectivo",        precision: 15, scale: 0
+    t.decimal  "monto_cheque",          precision: 15, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20160203195113) do
     t.integer  "banco_id"
     t.integer  "numero"
     t.date     "fecha"
-    t.decimal  "monto"
+    t.decimal  "monto",      precision: 15, scale: 0
     t.string   "concepto"
     t.integer  "persona_id"
     t.datetime "created_at"
@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(version: 20160203195113) do
     t.integer  "numero_cheque"
     t.date     "fecha"
     t.string   "concepto"
-    t.decimal  "monto"
+    t.decimal  "monto",         precision: 15, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -215,7 +215,7 @@ ActiveRecord::Schema.define(version: 20160203195113) do
     t.integer  "banco_id"
     t.integer  "numero_cuenta"
     t.date     "fecha_apertura"
-    t.decimal  "saldo"
+    t.decimal  "saldo",          precision: 15, scale: 0
     t.integer  "estado_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -256,7 +256,7 @@ ActiveRecord::Schema.define(version: 20160203195113) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "fecha"
-    t.decimal  "total"
+    t.decimal  "total",                 precision: 15, scale: 0
   end
 
   add_index "movimientos_de_bancos", ["banco_id"], name: "index_movimientos_de_bancos_on_banco_id", using: :btree
@@ -265,7 +265,7 @@ ActiveRecord::Schema.define(version: 20160203195113) do
   create_table "movimientos_de_bancos_detalles", force: true do |t|
     t.integer  "movimiento_de_banco_id"
     t.integer  "cuenta_bancaria_id"
-    t.decimal  "monto"
+    t.decimal  "monto",                  precision: 15, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -280,9 +280,9 @@ ActiveRecord::Schema.define(version: 20160203195113) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "fecha"
-    t.decimal  "total"
-    t.decimal  "monto_total_efectivo"
-    t.decimal  "monto_total_cheque"
+    t.decimal  "total",                 precision: 15, scale: 0
+    t.decimal  "monto_total_efectivo",  precision: 15, scale: 0
+    t.decimal  "monto_total_cheque",    precision: 15, scale: 0
     t.integer  "apertura_id"
   end
 
@@ -293,8 +293,8 @@ ActiveRecord::Schema.define(version: 20160203195113) do
     t.integer  "movimiento_de_caja_id"
     t.integer  "cheque_entrante_id"
     t.integer  "cheque_propio_id"
-    t.decimal  "monto_efectivo"
-    t.decimal  "monto_cheque"
+    t.decimal  "monto_efectivo",        precision: 15, scale: 0
+    t.decimal  "monto_cheque",          precision: 15, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
