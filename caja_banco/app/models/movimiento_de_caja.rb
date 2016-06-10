@@ -44,7 +44,7 @@ class MovimientoDeCaja < ActiveRecord::Base
   end
 
   def ac_movimiento_asiento
-    if self.tipo_de_movimiento.descripcion == 'Ingreso' && self.monto_total_cheque == 0
+    if self.tipo_de_movimiento.descripcion == 'Ingreso' && self.monto_total_cheque == 0 && self.monto_total_efectivo > 0 && self.descripcion != 'Saldo Inicial'
       @asiento_automatico = AsientoAutomatico.new({
         :tipo_de_asiento => 1,
         :descripcion => 'Asiento de venta segun factura en efectivo',
@@ -54,7 +54,7 @@ class MovimientoDeCaja < ActiveRecord::Base
     end
   end
   def ac_movimiento_asiento_detalle
-  if self.tipo_de_movimiento.descripcion == 'Ingreso' && self.monto_total_cheque == 0
+  if self.tipo_de_movimiento.descripcion == 'Ingreso' && self.monto_total_cheque == 0 && self.monto_total_efectivo > 0 && self.descripcion != 'Saldo Inicial'
     aa = AsientoAutomatico.last
     @asiento_automatico_detalle = AsientoAutomaticoDetalle.new({
         :asiento_automatico_id => aa.id,

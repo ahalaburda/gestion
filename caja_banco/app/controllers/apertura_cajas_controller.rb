@@ -73,13 +73,15 @@ class AperturaCajasController < ApplicationController
   # DELETE /apertura_cajas/1
   # DELETE /apertura_cajas/1.json
   def destroy
-  respond_to do |format|
-    if @apertura_caja.destroy
-      format.html { redirect_to apertura_cajas_url }
-      format.json { head :no_content }
-    else
-      format.html { redirect_to apertura_cajas_url, notice: 'No se puede eliminar.' }
-      format.json { head :no_content }
+    respond_to do |format|
+      if @apertura_caja.destroy
+        format.html { redirect_to apertura_cajas_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to apertura_cajas_url, notice: 'No se puede eliminar.' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   private
