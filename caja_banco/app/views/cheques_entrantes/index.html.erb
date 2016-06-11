@@ -20,7 +20,6 @@
       <th>Numero</th>
       <th>Fecha</th>
       <th>Monto</th>
-      <th>Concepto</th>
       <th>Persona</th>
       <th>Acciones</th>
       <th colspan="3"></th>
@@ -34,7 +33,6 @@
         <td><%= cheque_entrante.numero %></td>
         <td><%= cheque_entrante.fecha %></td>
         <td><%= cheque_entrante.monto %></td>
-        <td><%= cheque_entrante.concepto %></td>
         <td><%= cheque_entrante.persona.nombre_apellido %></td>
         <td>
         <%= link_to edit_cheque_entrante_path(cheque_entrante), class: 'btn btn-warning btn-outline btn-circle', title: 'Editar', 'remote' => true, 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
@@ -59,7 +57,6 @@
           <th>Numero</th>
           <th>Fecha</th>
           <th>Monto</th>
-          <th>Concepto</th>
           <th>Persona</th>
         </tr>
       </thead>
@@ -70,7 +67,6 @@
             <td><%= cheque_entrante.numero %></td>
             <td><%= cheque_entrante.fecha %></td>
             <td><%= cheque_entrante.monto %></td>
-            <td><%= cheque_entrante.concepto %></td>
             <td><%= cheque_entrante.persona.nombre_apellido %></td>
           </tr>
         <% end %>

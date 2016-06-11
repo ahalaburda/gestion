@@ -91,7 +91,7 @@ class ChequesEntrantesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cheque_entrante_params
-      params.require(:cheque_entrante).permit(:banco_id, :numero, :fecha, :monto, :concepto, :persona_id, :caja_id, :estado_id)
+      params.require(:cheque_entrante).permit(:banco_id, :numero, :fecha, :monto, :persona_id, :caja_id, :estado_id)
     end
 
     def render_cheque_entrante_list(cheque_entrante)
@@ -103,13 +103,11 @@ class ChequesEntrantesController < ApplicationController
                      numero: task.numero,
                      fecha: task.fecha,
                      monto: task.monto,
-                     concepto: task.concepto,
                      persona: task.persona.nombre_apellido
           row.item(:banco).style(:color, 'red')
           row.item(:numero).style(:color, 'red')
           row.item(:fecha).style(:color, 'red')
           row.item(:monto).style(:color, 'red')
-          row.item(:concepto).style(:color, 'red')
           row.item(:persona).style(:color, 'red')
         end
       end
