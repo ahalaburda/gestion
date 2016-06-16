@@ -25,12 +25,6 @@ class ChequeEntrante < ActiveRecord::Base
 	validates :fecha,
 		:presence => {
 			message: 'Este campo es requerido'}
-	validates :concepto,
-		:presence => {
-			message: 'Este campo es requerido'},
-		:length => {
-			:maximum => 50,
-			:too_long => 'Debe tener como maximo %{count} caracteres'}
 	validates :persona_id,
 		:presence => {
 			message: 'Seleccione una persona'}
