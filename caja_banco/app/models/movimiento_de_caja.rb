@@ -22,6 +22,8 @@ class MovimientoDeCaja < ActiveRecord::Base
   after_create :ac_movimiento
   after_create :ac_movimiento_asiento
   after_create :ac_movimiento_asiento_detalle
+  after_create :ac_deposito_asiento
+  after_create :ac_deposito_asiento_detalle
 
   def bc_movimiento
     self.fecha = Time.now
@@ -69,5 +71,34 @@ class MovimientoDeCaja < ActiveRecord::Base
         });
     @asiento_automatico_detalle2.save();
   end
+end
+def ac_deposito_asiento
+  boleta_de_deposito = BoletaDeDeposito.last
+  if self.tipo_de_movimiento.descripcion == 'Egreso' && self.descripcion == "Segun boleta de deposito nº #{boleta_de_deposito.numero}"
+    @asiento_automatico = AsientoAutomatico.new({
+      :tipo_de_asiento => 2,
+      :descripcion => "Asiento de Deposito en Banco: #{boleta_de_deposito.banco.nombre} ",
+      :fecha => Time.zone.now()
+      });
+    @asiento_automatico.save();
+  end
+end
+def ac_deposito_asiento_detalle
+boleta_de_deposito = BoletaDeDeposito.last
+if self.tipo_de_movimiento.descripcion == 'Egreso' && self.descripcion == "Segun boleta de deposito nº #{boleta_de_deposito.numero}"
+  aa = AsientoAutomatico.last
+  @asiento_automatico_detalle = AsientoAutomaticoDetalle.new({
+      :asiento_automatico_id => aa.id,
+      :cuenta_id => 3,
+      :monto_credito => self.total
+      });
+  @asiento_automatico_detalle.save();
+  @asiento_automatico_detalle2 = AsientoAutomaticoDetalle.new({
+      :asiento_automatico_id => aa.id,
+      :cuenta_id => 1,
+      :monto_debito => self.total
+      });
+  @asiento_automatico_detalle2.save();
+end
 end
 end
