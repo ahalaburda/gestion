@@ -77,7 +77,7 @@ def ac_deposito_asiento
   if self.tipo_de_movimiento.descripcion == 'Egreso' && self.descripcion == "Segun boleta de deposito nº #{boleta_de_deposito.numero}"
     @asiento_automatico = AsientoAutomatico.new({
       :tipo_de_asiento => 2,
-      :descripcion => "Asiento de Deposito en Banco: #{boleta_de_deposito.banco.nombre} ",
+      :descripcion => "Asiento de Deposito en Banco: #{boleta_de_deposito.banco.nombre} segun boleta de deposito n° #{boleta_de_deposito.numero}",
       :fecha => Time.zone.now()
       });
     @asiento_automatico.save();
