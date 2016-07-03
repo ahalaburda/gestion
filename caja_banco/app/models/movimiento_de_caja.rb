@@ -17,7 +17,6 @@ class MovimientoDeCaja < ActiveRecord::Base
   # end
 
   before_create :bc_movimiento
-  # after_create :ac_movimiento
 
   after_create :ac_movimiento
   after_create :ac_movimiento_asiento
@@ -33,12 +32,17 @@ class MovimientoDeCaja < ActiveRecord::Base
     saldo_cheque = apertura_caja.saldo_final_cheque.to_f
     saldo_efectivo = apertura_caja.saldo_final_efectivo.to_f
 
-    if self.tipo_de_movimiento_id == 1
+    if self.descripcion == "Saldo Inicial"
+      saldo_cheque = apertura_caja.saldo_final_cheque.to_f
+      saldo_efectivo = apertura_caja.saldo_final_efectivo.to_f
+    elsif self.tipo_de_movimiento_id == 1
       saldo_cheque = saldo_cheque + self.monto_total_cheque.to_f
+      saldo_efectivo = saldo_efectivo + self.monto_total_efectivo.to_f
     else
       saldo_cheque = saldo_cheque - self.monto_total_cheque.to_f
+      saldo_efectivo = saldo_efectivo - self.monto_total_efectivo.to_f
     end
-      saldo_efectivo = saldo_efectivo + self.monto_total_efectivo.to_f
+
       AperturaCaja.update(self.apertura_id, saldo_final_efectivo: saldo_efectivo)
       AperturaCaja.update(self.apertura_id, saldo_final_cheque: saldo_cheque)
   end
@@ -54,20 +58,20 @@ class MovimientoDeCaja < ActiveRecord::Base
     end
   end
   def ac_movimiento_asiento_detalle
-  if self.tipo_de_movimiento.descripcion == 'Ingreso' && self.monto_total_cheque == 0 && self.monto_total_efectivo > 0 && self.descripcion != 'Saldo Inicial'
-    aa = AsientoAutomatico.last
-    @asiento_automatico_detalle = AsientoAutomaticoDetalle.new({
-        :asiento_automatico_id => aa.id,
-        :cuenta_id => 1,
-        :monto_credito => self.total
-        });
-    @asiento_automatico_detalle.save();
-    @asiento_automatico_detalle2 = AsientoAutomaticoDetalle.new({
-        :asiento_automatico_id => aa.id,
-        :cuenta_id => 2,
-        :monto_debito => self.total
-        });
-    @asiento_automatico_detalle2.save();
+    if self.tipo_de_movimiento.descripcion == 'Ingreso' && self.monto_total_cheque == 0 && self.monto_total_efectivo > 0 && self.descripcion != 'Saldo Inicial'
+      aa = AsientoAutomatico.last
+      @asiento_automatico_detalle = AsientoAutomaticoDetalle.new({
+          :asiento_automatico_id => aa.id,
+          :cuenta_id => 1,
+          :monto_credito => self.total
+          });
+      @asiento_automatico_detalle.save();
+      @asiento_automatico_detalle2 = AsientoAutomaticoDetalle.new({
+          :asiento_automatico_id => aa.id,
+          :cuenta_id => 2,
+          :monto_debito => self.total
+          });
+      @asiento_automatico_detalle2.save();
+    end
   end
-end
 end
