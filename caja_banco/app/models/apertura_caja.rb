@@ -58,6 +58,7 @@ class AperturaCaja < ActiveRecord::Base
         @movimiento_de_caja_detalle = MovimientoDeCajaDetalle.new({
           :movimiento_de_caja_id =>mov.id ,
           :cheque_entrante_id => aperturaDetalle.cheque_entrante_id,
+          :monto_efectivo => self.saldo_inicial_efectivo,
           :monto_cheque => aperturaDetalle.monto
           });
         @movimiento_de_caja_detalle.save();
