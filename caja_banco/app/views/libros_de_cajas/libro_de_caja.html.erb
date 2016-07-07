@@ -1,3 +1,13 @@
+<table>
+  <tbody><tr>
+      <td>Desde el:</td>
+      <td><input type="text" id="min" name="min"></td>
+  </tr>
+  <tr>
+      <td>Hasta el:</td>
+      <td><input type="text" id="max" name="max"></td>
+  </tr>
+</table>
 <h1> Libro de Caja </h1>
 <div class="reports" style="margin-left: 90.333333%">
   <%= link_to '#', onclick: "printpage()", class: 'btn btn-print btn-outline btn-circle', title: 'Imprimir reporte', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
@@ -46,7 +56,7 @@
 					<td><%= movimiento_de_caja_detalle.monto_efectivo%></td>
 					<td></td>
 			</tr>
-			<% end %>	
+			<% end %>
 			<% @cheques_entrantes.each do |cheque_entrante| %>
 				<% if cheque_entrante.id == movimiento_de_caja_detalle.cheque_entrante_id %>
 					<tr>
@@ -54,7 +64,7 @@
 						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
 						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
 						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: cheque entrante: <%=cheque_entrante.numero %></td>
-						<td><%= cheque_entrante.concepto%></td>
+						<td></td>
 						<td><%= cheque_entrante.monto%></td>
 						<td></td>
 						<td></td>
@@ -117,7 +127,7 @@
 					<td><%= movimiento_de_caja_detalle.monto_efectivo%></td>
 					<td></td>
 			</tr>
-			<% end %>	
+			<% end %>
 			<% @cheques_entrantes.each do |cheque_entrante| %>
 				<% if cheque_entrante.id == movimiento_de_caja_detalle.cheque_entrante_id %>
 					<tr>
@@ -125,7 +135,7 @@
 						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.caja.numero_caja%></td>
 						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.tipo_de_movimiento.descripcion%></td>
 						<td><%= movimiento_de_caja_detalle.movimiento_de_caja.descripcion%> Con: cheque entrante: <%=cheque_entrante.numero %></td>
-						<td><%= cheque_entrante.concepto%></td>
+						<td></td>
 						<td><%= cheque_entrante.monto%></td>
 						<td></td>
 						<td></td>
