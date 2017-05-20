@@ -8,10 +8,11 @@ class AperturaCaja < ActiveRecord::Base
   after_create :set_estado_abierto
   before_create :set_saldos
   before_create :set_hora_de_apertura
-  # after_update :set_estado_cerrado
+ 
   after_create :ac_movimiento_de_caja_saldo_inicial
   after_create :ac_movimiento_de_caja_detalle
   after_update :set_hora_de_cierre
+  after_commit :set_estado_cerrado, on:  :update
 
   def set_estado_abierto
     caja = Caja.find(self.caja_id)
