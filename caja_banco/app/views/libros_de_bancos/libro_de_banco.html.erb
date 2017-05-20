@@ -1,13 +1,11 @@
-<table>
-  <tbody><tr>
-      <td>Desde el:</td>
-      <td><input type="text" id="min" name="min"></td>
-  </tr>
-  <tr>
-      <td>Hasta el:</td>
-      <td><input type="text" id="max" name="max"></td>
-  </tr>
-</table>
+
+<div class="container">
+  Desde el:
+  <input class="datepicker_format" type="text" id="min" name="min">
+  Hasta el:
+<input type="text" id="max" name="max">
+
+</div>
 <h1> Libro de Banco </h1>
 <div class="reports" style="margin-left: 90.333333%">
   <%= link_to '#', onclick: "printpage()", class: 'btn btn-print btn-outline btn-circle', title: 'Imprimir reporte', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>

@@ -64,6 +64,10 @@ $(document).ready(function() {
 	$('.datepicker').datetimepicker({
 		locale:'es'
 	});
+$('.datepicker_format').datetimepicker({
+  locale:'es',
+  format: 'YYYY-MM-DD'
+});
 	window.setTimeout(function(){
 		$('#alerta').fadeOut(500);
 	},5000);
