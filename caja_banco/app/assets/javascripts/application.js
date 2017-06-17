@@ -28,46 +28,46 @@
 //= require jquery_nested_form
 //= require_tree .
 
-$.fn.dataTableExt.afnFiltering.push(
-    function( oSettings, aData, iDataIndex ) {
-        var iFini = document.getElementById('min').value;
-        var iFfin = document.getElementById('max').value;
-        var iStartDateCol = 0;
-        var iEndDateCol = 0;
+// $.fn.dataTableExt.afnFiltering.push(
+//     function( oSettings, aData, iDataIndex ) {
+//         var iFini = document.getElementById('min').value;
+//         var iFfin = document.getElementById('max').value;
+//         var iStartDateCol = 0;
+//         var iEndDateCol = 0;
 
-        iFini=iFini.substring(6,10) + iFini.substring(3,5)+ iFini.substring(0,2);
-        iFfin=iFfin.substring(6,10) + iFfin.substring(3,5)+ iFfin.substring(0,2);
+//         iFini=iFini.substring(6,10) + iFini.substring(3,5)+ iFini.substring(0,2);
+//         iFfin=iFfin.substring(6,10) + iFfin.substring(3,5)+ iFfin.substring(0,2);
 
-        var datofini=aData[iStartDateCol].substring(6,10) + aData[iStartDateCol].substring(3,5)+ aData[iStartDateCol].substring(0,2);
-        var datoffin=aData[iEndDateCol].substring(6,10) + aData[iEndDateCol].substring(3,5)+ aData[iEndDateCol].substring(0,2);
+//         var datofini=aData[iStartDateCol].substring(6,10) + aData[iStartDateCol].substring(3,5)+ aData[iStartDateCol].substring(0,2);
+//         var datoffin=aData[iEndDateCol].substring(6,10) + aData[iEndDateCol].substring(3,5)+ aData[iEndDateCol].substring(0,2);
 
-        if ( iFini === "" && iFfin === "" )
-        {
-            return true;
-        }
-        else if ( iFini <= datofini && iFfin === "")
-        {
-            return true;
-        }
-        else if ( iFfin >= datoffin && iFini === "")
-        {
-            return true;
-        }
-        else if (iFini <= datofini && iFfin >= datoffin)
-        {
-            return true;
-        }
-        return false;
-    }
-);
+//         if ( iFini === "" && iFfin === "" )
+//         {
+//             return true;
+//         }
+//         else if ( iFini <= datofini && iFfin === "")
+//         {
+//             return true;
+//         }
+//         else if ( iFfin >= datoffin && iFini === "")
+//         {
+//             return true;
+//         }
+//         else if (iFini <= datofini && iFfin >= datoffin)
+//         {
+//             return true;
+//         }
+//         return false;
+//     }
+// );
 $(document).ready(function() {
-	$('.datepicker').datetimepicker({
-		locale:'es'
-	});
-$('.datepicker_format').datetimepicker({
-  locale:'es',
-  format: 'YYYY-MM-DD'
-});
+// 	$('.datepicker').datetimepicker({
+// 		locale:'es'
+// 	});
+// $('.datepicker_format').datetimepicker({
+//   locale:'es',
+//   format: 'YYYY-MM-DD'
+// });
 	window.setTimeout(function(){
 		$('#alerta').fadeOut(500);
 	},5000);
@@ -168,8 +168,8 @@ $('.datepicker_format').datetimepicker({
 	    }
 	});
 
-$('#min').keyup( function() { table1.draw(); } );
-$('#max').keyup( function() { table1.draw(); } );
+// $('#min').keyup( function() { table1.draw(); } );
+// $('#max').keyup( function() { table1.draw(); } );
 
 	dataConfirmModal.setDefaults({
 	  title: 'Esta Seguro?',
@@ -245,7 +245,7 @@ function date_time(id){
 
 function radioButton_movimientos() {
   $('input[type="radio"]').click(function() {
-      if ($(this).attr('value') == '1') {
+      if ($(this).attr('value') == '1') {+
        	$('[id*=cheque_propio]').fadeOut('fast');
        	 	$('[id*=monto_efectivo]').fadeIn('fast');
           $('[id*=cheque_entrante]').fadeIn('slow');
@@ -256,6 +256,21 @@ function radioButton_movimientos() {
        }
   });
 };
+$(document).ready(function() {
+	movimiento_de_caja_detalle_cheque_entrante_id_0
+	$("[id*=#movimiento_de_caja_detalle_cheque_entrante_id_]").on('change', function(){
+          if($.trim($(this).val())){
+            $('#monto-efectivo_0').attr("disabled", "disabled");
+        }else{$('#monto-efectivo_0').removeAttr('disabled');}
+    });
+
+$("#monto-efectivo_0").on("keyup blur", function(){
+          if($.trim($(this).val())){
+            $('#movimiento_de_caja_detalle_cheque_entrante_id_0').attr("disabled", "disabled");
+        }else{$('#movimiento_de_caja_detalle_cheque_entrante_id_0').removeAttr('disabled');}
+    });
+});
+
 
 //Solucion de error de visualizacion de mensaje de validacion
 ClientSideValidations.selectors.validate_inputs += ', .select2-container:visible + :enabled[data-validate]';
